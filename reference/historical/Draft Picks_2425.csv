@@ -1,0 +1,181 @@
+,element,short_name,index,pick,web_name,total_points,league_code,position
+0,351,CR,1,1,Haaland,181,Prem,FWD
+1,4,CR,12,6,Havertz,97,Prem,FWD
+2,207,CR,13,1,Mateta,150,Prem,FWD
+3,199,CR,24,6,Eze,148,Prem,MID
+4,28,CR,25,1,Bailey,47,Prem,MID
+5,18,CR,36,6,Saliba,130,Prem,DEF
+6,99,CR,37,1,Mbeumo,236,Prem,MID
+7,340,CR,48,6,Akanji,61,Prem,DEF
+8,361,CR,49,1,Rúben,90,Prem,DEF
+9,525,CR,60,6,Kudus,106,Prem,MID
+10,15,CR,61,1,Raya,142,Prem,GKP
+11,333,CR,72,6,Quansah,9,Prem,DEF
+12,19,CR,73,1,Smith Rowe,114,Prem,MID
+13,409,CR,84,6,Livramento,105,Prem,DEF
+14,358,CR,85,1,Ortega Moreno,35,Prem,GKP
+15,182,JP,3,3,Palmer,214,Prem,MID
+16,348,JP,10,4,Foden,105,Prem,MID
+17,82,JP,15,3,Solanke,108,Prem,FWD
+18,327,JP,22,4,Luis Díaz,183,Prem,MID
+19,311,JP,27,3,Alexander-Arnold,148,Prem,DEF
+20,541,JP,34,4,Cunha,178,Prem,FWD
+21,495,JP,39,3,Pedro Porro,98,Prem,DEF
+22,350,JP,46,4,Gvardiol,153,Prem,DEF
+23,335,JP,51,3,Robertson,91,Prem,DEF
+24,2,JP,58,4,G.Jesus,42,Prem,FWD
+25,347,JP,63,3,Ederson M.,111,Prem,GKP
+26,560,JP,70,4,Neto,104,Prem,MID
+27,593,JP,75,3,De Ligt,68,Prem,DEF
+28,508,JP,82,4,Vicario,66,Prem,GKP
+29,16,JP,87,3,Rice,127,Prem,MID
+30,328,HC,4,4,M.Salah,344,Prem,MID
+31,345,HC,9,3,De Bruyne,114,Prem,MID
+32,13,HC,16,4,Ødegaard,116,Prem,MID
+33,316,HC,21,3,Darwin,66,Prem,FWD
+34,375,HC,28,4,Højlund,78,Prem,FWD
+35,589,HC,33,3,Füllkrug,42,Prem,FWD
+36,385,HC,40,4,Rashford,95,Prem,MID
+37,578,HC,45,3,Calafiori,39,Prem,DEF
+38,363,HC,52,4,Walker,13,Prem,DEF
+39,45,HC,57,3,Maatsen,57,Prem,DEF
+40,310,HC,64,4,A.Becker,112,Prem,GKP
+41,181,HC,69,3,Nkunku,60,Prem,MID
+42,171,HC,76,4,Gusto,60,Prem,DEF
+43,122,HC,81,3,Estupiñan,63,Prem,DEF
+44,325,HC,88,4,Kelleher,45,Prem,GKP
+45,17,LD,5,5,Saka,127,Prem,MID
+46,401,LD,8,2,Isak,211,Prem,FWD
+47,317,LD,17,5,Diogo J.,87,Prem,MID
+48,514,LD,20,2,Bowen,193,Prem,MID
+49,24,LD,29,5,White,50,Prem,DEF
+50,342,LD,32,2,Bernardo,110,Prem,MID
+51,180,LD,41,5,N.Jackson,121,Prem,FWD
+52,339,LD,44,2,Virgil,143,Prem,DEF
+53,418,LD,53,5,Trippier,72,Prem,DEF
+54,129,LD,56,2,João Pedro,126,Prem,FWD
+55,362,LD,65,5,Stones,29,Prem,DEF
+56,47,LD,68,2,Martinez,111,Prem,GKP
+57,360,LD,77,5,Rodrigo,3,Prem,MID
+58,25,LD,80,2,Zinchenko,40,Prem,DEF
+59,383,LD,89,5,Onana,120,Prem,GKP
+60,503,TS,6,6,Son,129,Prem,MID
+61,58,TS,7,1,Watkins,186,Prem,FWD
+62,398,TS,18,6,Gordon,124,Prem,MID
+63,366,TS,19,1,B.Fernandes,174,Prem,MID
+64,494,TS,30,6,Maddison,133,Prem,MID
+65,108,TS,31,1,Toney,0,Prem,FWD
+66,3,TS,42,6,Gabriel,117,Prem,DEF
+67,251,TS,43,1,Muniz,86,Prem,FWD
+68,136,TS,54,6,Mitoma,145,Prem,MID
+69,211,TS,55,1,Muñoz,142,Prem,DEF
+70,505,TS,66,6,Udogie,43,Prem,DEF
+71,415,TS,67,1,Schär,118,Prem,DEF
+72,235,TS,78,6,Pickford,158,Prem,GKP
+73,160,TS,79,1,Chilwell,13,Prem,DEF
+74,413,TS,90,6,Pope,102,Prem,GKP
+0,351,IR,1,1,Haaland,181,Conf,FWD
+1,82,IR,14,7,Solanke,108,Conf,FWD
+2,13,IR,15,1,Ødegaard,116,Conf,MID
+3,316,IR,28,7,Darwin,66,Conf,FWD
+4,199,IR,29,1,Eze,148,Conf,MID
+5,340,IR,42,7,Akanji,61,Conf,DEF
+6,385,IR,43,1,Rashford,95,Conf,MID
+7,28,IR,56,7,Bailey,47,Conf,MID
+8,415,IR,57,1,Schär,118,Conf,DEF
+9,181,IR,70,7,Nkunku,60,Conf,MID
+10,341,IR,71,1,Aké,25,Conf,DEF
+11,44,IR,84,7,Konsa,103,Conf,DEF
+12,508,IR,85,1,Vicario,66,Conf,GKP
+13,333,IR,98,7,Quansah,9,Conf,DEF
+14,413,IR,99,1,Pope,102,Conf,GKP
+15,328,MN,2,2,M.Salah,344,Conf,MID
+16,366,MN,13,6,B.Fernandes,174,Conf,MID
+17,514,MN,16,2,Bowen,193,Conf,MID
+18,531,MN,27,6,Ward-Prowse,51,Conf,MID
+19,321,MN,30,2,Gakpo,127,Conf,FWD
+20,207,MN,41,6,Mateta,150,Conf,FWD
+21,497,MN,44,2,Richarlison,35,Conf,FWD
+22,394,MN,55,6,Bruno G.,135,Conf,MID
+23,363,MN,58,2,Walker,13,Conf,DEF
+24,47,MN,69,6,Martinez,111,Conf,GKP
+25,498,MN,72,2,Romero,49,Conf,DEF
+26,171,MN,83,6,Gusto,60,Conf,DEF
+27,505,MN,86,2,Udogie,43,Conf,DEF
+28,52,MN,97,6,Pau,55,Conf,DEF
+29,91,MN,100,2,Flekken,138,Conf,GKP
+30,58,AC,3,3,Watkins,186,Conf,FWD
+31,4,AC,12,5,Havertz,97,Conf,FWD
+32,327,AC,17,3,Luis Díaz,183,Conf,MID
+33,360,AC,26,5,Rodrigo,3,Conf,MID
+34,361,AC,31,3,Rúben,90,Conf,DEF
+35,335,AC,40,5,Robertson,91,Conf,DEF
+36,23,AC,45,3,Trossard,152,Conf,MID
+37,15,AC,54,5,Raya,142,Conf,GKP
+38,9,AC,59,3,Martinelli,125,Conf,MID
+39,391,AC,68,5,Almirón,10,Conf,MID
+40,236,AC,73,3,Tarkowski,105,Conf,DEF
+41,210,AC,82,5,Mitchell,123,Conf,DEF
+42,541,AC,87,3,Cunha,178,Conf,FWD
+43,322,AC,96,5,Gomez,14,Conf,DEF
+44,358,AC,101,3,Ortega Moreno,35,Conf,GKP
+45,182,LB,4,4,Palmer,214,Conf,MID
+46,398,LB,11,4,Gordon,124,Conf,MID
+47,24,LB,18,4,White,50,Conf,DEF
+48,350,LB,25,4,Gvardiol,153,Conf,DEF
+49,129,LB,32,4,João Pedro,126,Conf,FWD
+50,506,LB,39,4,Van de Ven,32,Conf,DEF
+51,342,LB,46,4,Bernardo,110,Conf,MID
+52,347,LB,53,4,Ederson M.,111,Conf,GKP
+53,180,LB,60,4,N.Jackson,121,Conf,FWD
+54,235,LB,67,4,Pickford,158,Conf,GKP
+55,172,LB,74,4,James,54,Conf,DEF
+56,409,LB,81,4,Livramento,105,Conf,DEF
+57,389,LB,88,4,Zirkzee,64,Conf,FWD
+58,336,LB,95,4,Szoboszlai,143,Conf,MID
+59,527,LB,102,4,L.Paquetá,80,Conf,MID
+60,17,AN,5,5,Saka,127,Conf,MID
+61,311,AN,10,3,Alexander-Arnold,148,Conf,DEF
+62,494,AN,19,5,Maddison,133,Conf,MID
+63,18,AN,24,3,Saliba,130,Conf,DEF
+64,220,AN,33,5,Calvert-Lewin,63,Conf,FWD
+65,495,AN,38,3,Pedro Porro,98,Conf,DEF
+66,268,AN,47,5,Delap,132,Conf,FWD
+67,525,AN,52,3,Kudus,106,Conf,MID
+68,392,AN,61,5,Barnes,130,Conf,MID
+69,582,AN,66,3,O'Brien,65,Conf,DEF
+70,383,AN,75,5,Onana,120,Conf,GKP
+71,346,AN,80,3,Doku,88,Conf,MID
+72,198,AN,89,5,Edouard,7,Conf,FWD
+73,25,AN,94,3,Zinchenko,40,Conf,DEF
+74,293,AN,103,5,Hermansen,63,Conf,GKP
+75,348,PV,6,6,Foden,105,Conf,MID
+76,401,PV,9,2,Isak,211,Conf,FWD
+77,317,PV,20,6,Diogo J.,87,Conf,MID
+78,99,PV,23,2,Mbeumo,236,Conf,MID
+79,375,PV,34,6,Højlund,78,Conf,FWD
+80,3,PV,37,2,Gabriel,117,Conf,DEF
+81,339,PV,48,6,Virgil,143,Conf,DEF
+82,16,PV,51,2,Rice,127,Conf,MID
+83,310,PV,62,6,A.Becker,112,Conf,GKP
+84,251,PV,65,2,Muniz,86,Conf,FWD
+85,362,PV,76,6,Stones,29,Conf,DEF
+86,550,PV,79,2,Hee Chan,37,Conf,MID
+87,211,PV,90,6,Muñoz,142,Conf,DEF
+88,593,PV,93,2,De Ligt,68,Conf,DEF
+89,513,PV,104,6,Areola,69,Conf,GKP
+90,345,BP,7,7,De Bruyne,114,Conf,MID
+91,503,BP,8,1,Son,129,Conf,MID
+92,108,BP,21,7,Toney,0,Conf,FWD
+93,2,BP,22,1,G.Jesus,42,Conf,FWD
+94,418,BP,35,7,Trippier,72,Conf,DEF
+95,589,BP,36,1,Füllkrug,42,Conf,FWD
+96,372,BP,49,7,Garnacho,106,Conf,MID
+97,578,BP,50,1,Calafiori,39,Conf,DEF
+98,248,BP,63,7,Leno,115,Conf,GKP
+99,492,BP,64,1,Kulusevski,117,Conf,MID
+100,163,BP,77,7,Cucurella,133,Conf,DEF
+101,160,BP,78,1,Chilwell,13,Conf,DEF
+102,369,BP,91,7,Dalot,95,Conf,DEF
+103,491,BP,92,1,Johnson,137,Conf,MID
+104,142,BP,105,7,Steele,9,Conf,GKP

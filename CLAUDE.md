@@ -1,0 +1,179 @@
+# CLAUDE.md — WOD Datapacks
+
+Public web app: a near-live data pack for a **draft** Fantasy Premier League among friends.
+Supports a weekly podcast (two hosts review the previous gameweek + long-term trends) and
+casual viewers who just want the stats. Replaces a manual Jupyter → PNG → static-HTML →
+git-commit workflow with an automated pipeline + interactive frontend.
+
+## Architecture (static-first — do not add a server or DB without asking)
+
+```
+FPL APIs ──(scheduled GitHub Action)──> pipeline (Python) ──> JSON artifacts ──> React SPA on GitHub Pages
+```
+
+- **No always-on server, no database.** Data is tiny (single-digit MB/season), append-only,
+  read by a handful of people. A scheduled job + static JSON is the correct scale.
+- The Action runs on a cron, self-throttles based on game status (see Pipeline principles),
+  and **force-deploys** the built site *including* the JSON data to Pages each run, so git
+  history does not bloat with hundreds of data commits.
+- Frontend is a static SPA. It never talks to the FPL API directly and holds no secrets.
+
+## Repo layout
+
+The Claude Code working folder **is** the git repo (one repo for the whole project). `/reference`
+is committed — `/reference/historical/` is read by the regression tests, so it must be in the repo.
+Nothing under `/reference` is served on the site (Pages deploys the build output, not repo source).
+
+```
+/pipeline
+  /fetchers        # one thin client per endpoint; return raw parsed JSON, no logic
+  /transforms      # PURE functions: raw JSON in, output tables out. No I/O, no fetching.
+  /config          # season config (league codes, entry_ids, sizes, promo/releg, gw offset)
+  /cache           # cached raw responses for finalized (immutable) gameweeks
+  build.py         # orchestrator: decide what to fetch -> fetch -> transform -> write JSON
+/data              # generated JSON output (gitignored; produced at build time)
+  /<season>/       # e.g. 2627/  -> players.json, weekly_points.json, weekly_summary.json, ...
+/web               # React (Vite) app
+/reference         # READ-ONLY inputs, do not treat as source of truth for the app:
+  weekly_report_generator.ipynb   # the existing messy logic = the SPEC to port (commit; optional)
+  /historical/                    # last seasons' CSVs = the VALIDATION ORACLE (commit — tests need it)
+  /old_html/                      # last seasons' rendered reports (content inventory; gitignore if bulky)
+/tests
+.github/workflows/update.yml
+CLAUDE.md
+```
+
+## Data model (logical tables + join keys)
+
+The pipeline reproduces these tables (same as the historical CSVs). The valuable part is the
+join graph and the gotchas, not the column lists (those are in the CSVs / notebook).
+
+- **players** (`All Players Summary`) — 1 row per footballer. PK `id`.
+- **draft_picks** — 1 row per pick. `element` → players.`id`. `short_name` = drafter initials.
+  `index` = overall pick number; `pick` = position within a round. Draft is a **snake**
+  (ABCDDCBA), so pick→drafter ordering reverses each round.
+- **weekly_points** (`Player Points Weekly`) — 1 row per footballer per gameweek. `id` → players.`id`.
+- **weekly_summary** — 1 row per drafter per player per gameweek. The richest table:
+  starting/benched, auto-subs, `optimal_points`, cumulative %, fixtures/difficulty. `element`/`id`
+  → players.`id`.
+- **transfers** — waiver + free-transfer moves, incl. *attempted* ones (`result` distinguishes).
+  Waiver = priority-ordered, resolved by reverse league position weekly. Free = 24h window pre-lock.
+- **trades** — drafter↔drafter swaps, accepted only. (None existed in season 2425.)
+- **teams** — `team` ↔ `team_id` lookup used across the point/summary tables.
+- Every league-scoped row carries `league_code` (there are two leagues — Premiership + Conference).
+
+Joins: `element` == `id` (footballer); `team` == `team_id` (PL club); `league_code` selects league.
+
+## Seasons & archives
+
+- **Every season is first-class in the same app**, served from one GitHub Pages site with an in-app
+  season selector and deep-linkable per-season routes (e.g. `#/2425`).
+- **Current season** = live pipeline output (regenerated on the cron).
+- **Archived seasons** = frozen JSON, generated **once** and baked into the deploy; never refetched.
+  - **2425:** raw is gone forever — generate archive JSON from the `/reference/historical/` CSVs via
+    the adapter. Logic can't be re-validated for 2425; schema/plausibility sanity-check only.
+  - **2526:** the live API still serves 2526 raw as of late July 2026, until the 2627 rollover.
+    **Snapshot it immediately** (see Validation) and commit to `/reference/raw_2526/`. Generate the
+    2526 archive JSON by running the pipeline on that snapshot (native canonical schema), and
+    cross-check it equals the CSV-derived version.
+  - Note the FPL API only serves the current season, so once 2627 opens, 2526 raw is unrecoverable.
+- **One canonical JSON schema** for all seasons. The live pipeline emits it; the adapter maps the
+  historical CSV columns onto it. Where an older season lacks a column a current-season view needs,
+  the frontend must degrade gracefully (hide/grey-out that view for that season), never error.
+
+## Domain rules
+
+- Two leagues of six: **Premiership** and **Conference**. 2 promoted / 2 relegated per season.
+- **Season 2425 was different: 5 in Premiership, 7 in Conference, 3 up / 1 down.** League sizes
+  and promo/releg counts are per-season **config**, never hardcoded in logic.
+- Points during a live match are **provisional**; bonus points are added after matches finish.
+  A gameweek is only immutable once fully finalized (bonus applied, no live fixtures).
+- Auto-subs: benched players replace non-playing starters per FPL rules; `optimal_points` is the
+  best-possible lineup in hindsight. This logic lives in the notebook — port it, don't reinvent.
+
+## Pipeline principles
+
+- **The notebook is the spec.** Port its transformation logic; do not invent new stat definitions.
+  If the notebook is ambiguous, ask — don't guess a formula.
+- **Incremental / no wasted work.** Finalized past gameweeks never change → fetch once, cache raw
+  response, never refetch. Each run refetches only: game status, the current (in-progress) GW, and
+  anything not yet cached. This is the #1 fix vs. the old notebook (which re-looped all history).
+- **Transforms are pure.** `raw JSON -> DataFrame/dict`. No network, no file writes inside them.
+  This is what makes them testable against the historical CSVs.
+- **Gameweeks are 1-indexed everywhere**, matching FPL's `event` field (GW1 = first week). The old
+  `event/{gameweek+1}` was only compensating for a zero-based Python loop — do **not** carry the
+  `+1` forward; use the gameweek number directly.
+- Output both **raw tables** (for the data explorer) and **pre-computed per-view JSON** (so the
+  mobile client isn't crunching large tables for charts).
+
+## Config (must be data, not code)
+
+Per season: `season_id`, `league_code` per league, `entry_id` per drafter, league sizes,
+promotion/relegation mapping to the prior season. Fill placeholders:
+
+```
+# pipeline/config/2627.py  (example — real values TBD)
+LEAGUE_CODES = {"premiership": "<FILL IN>", "conference": "<FILL IN>"}
+ENTRY_IDS    = { "<short_name>": <entry_id>, ... }   # discover via league details endpoint
+```
+
+## Frontend conventions
+
+- **Mobile-first.** The old report was laptop-only; phone usability is a hard requirement.
+- Charts: **Recharts** (interactive tooltips/hover). Data tables/filtering: **TanStack Table**.
+  Do not pull in ECharts or DuckDB-WASM without asking (weight/complexity).
+- **Season selector.** All seasons load from per-season canonical JSON; a selector switches between
+  them and each season is deep-linkable. Views that need columns a season lacks degrade gracefully.
+- SPA on GitHub Pages: set Vite `base` to the repo path; add a `404.html` fallback (or use hash
+  routing) so deep links work on Pages.
+- No secrets, no API keys, no direct FPL calls from the browser. It only fetches local JSON.
+
+## Commands
+
+```
+# pipeline
+python pipeline/build.py --season 2627          # incremental build
+python pipeline/build.py --season 2627 --full    # ignore cache, rebuild from scratch
+pytest                                            # incl. historical regression tests
+
+# web
+cd web && npm run dev                             # local dev
+cd web && npm run build                           # production build
+```
+
+## Validation (acceptance test for the refactor)
+
+The goal is to prove the refactored pipeline reproduces the old notebook's logic on identical input.
+
+- **2526 is the oracle — but the window is closing.** The live API still serves complete 2526 raw
+  data until the 2627 rollover (which may come as soon as the new-season draft opens, potentially
+  before the first match). **Snapshot every 2526 endpoint now** (all 38 GWs, all entries, league
+  details/choices/transactions/trades, both bootstraps, fixtures) into `/reference/raw_2526/` and
+  commit it. Then run the new pipeline on that snapshot and assert its output equals the 2526 CSVs
+  column-for-column. A full completed season is the strongest possible regression test.
+- **2425 can't be validated** (no raw, ever). Schema/plausibility sanity-check on the CSV-derived
+  archive only.
+- Handle 2425's 5/7 split and 3-up/1-down correctly regardless.
+
+Any intentional cleanup that changes a value must be listed explicitly. **A refactor that can't
+reproduce the 2526 numbers from 2526 raw is wrong.**
+
+## Gotchas
+
+- FPL APIs are **public read endpoints** — no auth, no credentials, no secrets in the job. (Do a
+  one-off unauthenticated sanity check at build time to confirm each still returns data.)
+- GitHub Actions cron: 5-min minimum, and short schedules get delayed/dropped. Target near-live
+  (~10–15 min during matches), not true-live.
+- **60-day cron auto-disable.** On public repos GitHub disables scheduled workflows after 60 days
+  with no new commits. The off-season exceeds this, so the cron switches itself off ~summer. Plan:
+  re-enable it (one click) when onboarding the new season — you're editing config then anyway. A
+  monthly keepalive workflow is the automated alternative if you'd rather it never lapse.
+- Provisional vs. final points/bonus — don't cache a gameweek as immutable until it's truly done.
+- Season 2425's 5/7 split will break any code that assumes 6/6.
+
+## Non-goals / do not do
+
+- Do not add a database or long-running server.
+- Do not silently drop or add report sections — content changes go through the user (curation step).
+- Do not reimplement stat definitions from scratch; port them from the notebook.
+- Do not commit generated `/data` JSON to `main` history.

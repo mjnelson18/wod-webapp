@@ -1,0 +1,24 @@
+# Generated pipeline output — regenerated every build, never in main history (CLAUDE.md)
+/data/
+
+# Cached raw API responses for finalized gameweeks
+/pipeline/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node / Vite
+node_modules/
+/web/dist/
+
+# Rendered PNGs from the old report (67 MB). The weekly_report_GW*.html files are
+# kept as the content-inventory source; the images themselves are not needed.
+/reference/old_html/*.png
+
+# OS
+Thumbs.db
+.DS_Store

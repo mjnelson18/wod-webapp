@@ -1,0 +1,24 @@
+{
+  "source": "FPL public API (draft.premierleague.com, fantasy.premierleague.com)",
+  "league_codes": {
+    "premiership": 21123,
+    "conference": 21136
+  },
+  "entry_ids": {
+    "95076": "PV",
+    "95131": "PV",
+    "96259": "LB",
+    "100781": "ts",
+    "108853": "BP",
+    "109621": "HC",
+    "151112": "IR",
+    "154251": "JP",
+    "177570": "MN",
+    "196213": "AN",
+    "201562": "CR",
+    "218704": "LD",
+    "259062": "AC"
+  },
+  "gameweeks": 38,
+  "file_count": 544
+}

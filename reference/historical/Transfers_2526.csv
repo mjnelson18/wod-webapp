@@ -1,0 +1,1207 @@
+league_code,date_added,gameweek,short_name,kind,result,index,priority,position,element_in,player_in,element_out,player_out,player_in_points_scored_in_week,player_out_points_scored_in_week,net_points_of_transfer_in_week,abs_net_trade,transfer_category
+Prem,2025-08-21 07:08:55.949857+00:00,2,TS,waiver,successful,9.0,2.0,DEF,74,Truffert (6),8,J.Timber (24),6,24,-18,18,waiver - successful
+Prem,2025-10-12 17:16:51.407588+00:00,8,AN,waiver,successful,1.0,1.0,DEF,225,James (18),473,Hall (0),18,0,18,18,waiver - successful
+Prem,2026-02-09 09:27:25.512927+00:00,26,MN,waiver,successful,10.0,3.0,DEF,371,Kerkez (0),720,Hincapie (15),0,15,-15,15,waiver - successful
+Prem,2026-03-17 20:50:21.478749+00:00,31,LB,waiver,successful,5.0,2.0,DEF,508,N.Williams (15),257,Lacroix (0),15,0,15,15,waiver - successful
+Prem,2026-04-16 21:11:44.261367+00:00,33,AN,waiver,unsuccessful - player in already been picked up,32.0,11.0,DEF,406,Khusanov (15),7,Calafiori (0),15,0,15,15,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-17 07:32:23.284803+00:00,33,JP,waiver,successful,20.0,3.0,DEF,406,Khusanov (15),408,Rúben (0),15,0,15,15,waiver - successful
+Prem,2026-04-29 11:09:45.824734+00:00,35,TS,waiver,successful,6.0,1.0,MID,418,Doku (15),718,Xavi (0),15,0,15,15,waiver - successful
+Prem,2026-04-29 11:09:45.824946+00:00,35,TS,waiver,unsuccessful - player in already been picked up,33.0,9.0,DEF,72,Senesi (14),606,Mavropanos (-1),14,-1,15,15,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-27 19:51:50.610097+00:00,3,AN,waiver,unsuccessful - player in already been picked up,18.0,4.0,DEF,575,Van de Ven (1),260,Guéhi (15),1,15,-14,14,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-27 19:51:50.610115+00:00,3,AN,waiver,successful,19.0,5.0,DEF,507,Aina (1),260,Guéhi (15),1,15,-14,14,waiver - successful
+Prem,2025-11-21 07:41:43.533523+00:00,12,AN,waiver,unsuccessful - player in already been picked up,5.0,2.0,MID,47,Rogers (15),718,Xavi (1),15,1,14,14,waiver - unsuccessful - player in already been picked up
+Prem,2025-11-21 07:41:43.533553+00:00,12,AN,waiver,successful,6.0,3.0,MID,487,Barnes (15),718,Xavi (1),15,1,14,14,waiver - successful
+Prem,2026-02-09 09:27:25.512965+00:00,26,MN,waiver,unsuccessful - player in already been picked up,17.0,5.0,DEF,440,Dalot (1),720,Hincapie (15),1,15,-14,14,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-16 21:11:44.261350+00:00,33,AN,waiver,unsuccessful - player out already gone,31.0,10.0,MID,784,Groß (16),487,Barnes (2),16,2,14,14,waiver - unsuccessful - player out already gone
+Prem,2026-04-28 20:10:41.208344+00:00,35,AN,waiver,unsuccessful - player in already been picked up,29.0,7.0,DEF,72,Senesi (14),8,J.Timber (0),14,0,14,14,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-20 19:47:54.044273+00:00,2,LD,waiver,successful,10.0,1.0,DEF,7,Calafiori (13),372,Robertson (0),13,0,13,13,waiver - successful
+Prem,2025-08-29 09:55:53.500294+00:00,3,LD,waiver,successful,16.0,4.0,DEF,226,Chalobah (13),11,White (0),13,0,13,13,waiver - successful
+Prem,2025-09-11 16:18:05.669358+00:00,4,AN,waiver,successful,15.0,3.0,DEF,575,Van de Ven (14),441,Dorgu (1),14,1,13,13,waiver - successful
+Prem,2025-11-07 07:02:33.396522+00:00,11,AN,waiver,successful,9.0,4.0,GKP,32,Martinez (14),565,Vicario (1),14,1,13,13,waiver - successful
+Prem,2026-04-17 10:54:33.549864+00:00,33,AN,free agent,successful,,,MID,698,Okafor (16),83,O.Dango (3),16,3,13,13,free agent - successful
+Prem,2026-04-28 20:10:41.208380+00:00,35,AN,waiver,unsuccessful - player in already been picked up,31.0,9.0,DEF,72,Senesi (14),473,Hall (1),14,1,13,13,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-30 14:04:14.477212+00:00,35,LD,waiver,unsuccessful - player in already been picked up,23.0,4.0,DEF,72,Senesi (14),374,Konaté (1),14,1,13,13,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 18:06:59.259151+00:00,2,AN,waiver,unsuccessful - player in already been picked up,22.0,5.0,DEF,7,Calafiori (13),10,Lewis-Skelly (1),13,1,12,12,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 09:56:31.073127+00:00,17,LB,waiver,successful,15.0,4.0,FWD,691,Calvert-Lewin (13),215,Flemming (1),13,1,12,12,waiver - successful
+Prem,2026-01-05 15:29:40.398144+00:00,21,MN,waiver,successful,1.0,1.0,DEF,106,Collins (13),440,Dalot (1),13,1,12,12,waiver - successful
+Prem,2026-01-23 07:05:09.260641+00:00,23,TS,waiver,successful,5.0,1.0,MID,418,Doku (1),387,Szoboszlai (13),1,13,-12,12,waiver - successful
+Prem,2026-01-28 07:51:14.188171+00:00,24,LD,waiver,successful,2.0,1.0,MID,457,Casemiro (13),427,Reijnders (1),13,1,12,12,waiver - successful
+Prem,2026-04-23 08:18:42.396412+00:00,34,LD,waiver,successful,28.0,7.0,MID,457,Casemiro (12),414,Foden (0),12,0,12,12,waiver - successful
+Prem,2026-05-08 08:42:41.351534+00:00,36,MN,waiver,unsuccessful - player in already been picked up,8.0,2.0,MID,414,Foden (13),26,Zubimendi (1),13,1,12,12,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-24 14:33:25.955822+00:00,9,LD,free agent,successful,,,DEF,151,Van Hecke (2),348,Rodon (13),2,13,-11,11,free agent - successful
+Prem,2025-11-06 15:54:23.741350+00:00,11,TS,waiver,successful,5.0,1.0,DEF,411,O'Reilly (11),478,Trippier (0),11,0,11,11,waiver - successful
+Prem,2025-11-29 20:17:55.118314+00:00,14,AN,waiver,unsuccessful - player out already gone,4.0,2.0,FWD,64,Watkins (13),735,Kolo Muani (2),13,2,11,11,waiver - unsuccessful - player out already gone
+Prem,2026-01-30 09:43:13.179551+00:00,24,JP,waiver,unsuccessful - player out already gone,10.0,2.0,DEF,374,Konaté (11),11,White (0),11,0,11,11,waiver - unsuccessful - player out already gone
+Prem,2026-02-06 09:17:43.566802+00:00,25,JP,free agent,successful,,,DEF,408,Rúben (1),440,Dalot (12),1,12,-11,11,free agent - successful
+Prem,2026-02-19 04:49:13.330867+00:00,27,LD,waiver,successful,1.0,1.0,MID,390,Gravenberch (3),266,Eze (14),3,14,-11,11,waiver - successful
+Prem,2026-05-01 08:53:50.632390+00:00,35,TS,free agent,successful,,,MID,416,Bernardo (2),387,Szoboszlai (13),2,13,-11,11,free agent - successful
+Prem,2025-12-25 13:31:38.007010+00:00,18,MN,waiver,successful,3.0,1.0,DEF,295,Keane (10),261,Richards (0),10,0,10,10,waiver - successful
+Prem,2025-12-25 13:31:38.007062+00:00,18,MN,waiver,unsuccessful - player in already been picked up,9.0,2.0,DEF,295,Keane (10),113,Van den Berg (0),10,0,10,10,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-25 14:51:06.963059+00:00,18,TS,waiver,unsuccessful - player in already been picked up,5.0,1.0,DEF,295,Keane (10),682,Diakité (0),10,0,10,10,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-29 17:11:13.159885+00:00,24,MN,waiver,unsuccessful - player out already gone,14.0,5.0,MID,515,Gibbs-White (8),120,Schade (-2),8,-2,10,10,waiver - unsuccessful - player out already gone
+Prem,2026-03-11 20:14:05.483299+00:00,30,MN,waiver,successful,8.0,4.0,DEF,74,Truffert (11),38,Konsa (1),11,1,10,10,waiver - successful
+Prem,2026-04-14 12:16:38.414284+00:00,33,LD,waiver,successful,1.0,1.0,FWD,100,Kroupi.Jr (10),597,Richarlison (0),10,0,10,10,waiver - successful
+Prem,2026-04-16 10:26:34.118269+00:00,33,LB,waiver,successful,6.0,1.0,DEF,74,Truffert (13),6,Saliba (3),13,3,10,10,waiver - successful
+Prem,2026-04-16 21:11:44.261238+00:00,33,AN,waiver,unsuccessful - player in already been picked up,12.0,4.0,FWD,100,Kroupi.Jr (10),135,Wissa (0),10,0,10,10,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-28 09:26:12.901995+00:00,35,LB,waiver,successful,5.0,1.0,DEF,72,Senesi (14),475,Botman (4),14,4,10,10,waiver - successful
+Prem,2026-04-29 11:09:45.824963+00:00,35,TS,waiver,unsuccessful - player in already been picked up,34.0,10.0,DEF,72,Senesi (14),568,Pedro Porro (4),14,4,10,10,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.825020+00:00,35,TS,waiver,unsuccessful - player in already been picked up,39.0,13.0,DEF,258,Mitchell (1),694,Mukiele (11),1,11,-10,10,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.825074+00:00,35,TS,waiver,successful,42.0,16.0,DEF,261,Richards (1),694,Mukiele (11),1,11,-10,10,waiver - successful
+Prem,2025-08-15 15:31:22.370874+00:00,1,AN,free agent,successful,,,GKP,565,Vicario (9),399,Ederson M. (0),9,0,9,9,free agent - successful
+Prem,2025-08-29 09:55:53.500347+00:00,3,LD,waiver,unsuccessful - player out already gone,23.0,7.0,MID,237,Enzo (12),19,Martinelli (3),12,3,9,9,waiver - unsuccessful - player out already gone
+Prem,2025-09-12 09:09:21.983671+00:00,4,JP,waiver,successful,5.0,1.0,FWD,715,Woltemade (9),596,Solanke (0),9,0,9,9,waiver - successful
+Prem,2025-11-30 21:40:12.928650+00:00,14,MN,waiver,successful,7.0,4.0,DEF,317,Andersen (0),261,Richards (9),0,9,-9,9,waiver - successful
+Prem,2025-12-25 14:37:23.581205+00:00,18,LD,waiver,unsuccessful - player in already been picked up,8.0,2.0,DEF,295,Keane (10),228,Gusto (1),10,1,9,9,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-29 17:11:13.159847+00:00,24,MN,waiver,successful,12.0,3.0,MID,517,Anderson (7),120,Schade (-2),7,-2,9,9,waiver - successful
+Prem,2026-02-06 09:15:30.367707+00:00,25,JP,free agent,successful,,,MID,26,Zubimendi (10),580,Johnson (1),10,1,9,9,free agent - successful
+Prem,2026-04-02 03:37:17.166644+00:00,32,LD,waiver,successful,7.0,3.0,GKP,139,Verbruggen (9),469,Pope (0),9,0,9,9,waiver - successful
+Prem,2026-04-15 14:16:07.795925+00:00,33,MN,waiver,unsuccessful - player in already been picked up,24.0,8.0,DEF,343,Struijk (10),38,Konsa (1),10,1,9,9,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-15 14:16:07.795980+00:00,33,MN,waiver,unsuccessful - player in already been picked up,33.0,11.0,FWD,100,Kroupi.Jr (10),337,Raúl (1),10,1,9,9,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-17 14:54:33.495508+00:00,33,LD,free agent,successful,,,DEF,402,Aït-Nouri (8),694,Mukiele (-1),8,-1,9,9,free agent - successful
+Prem,2026-04-23 08:18:42.396444+00:00,34,LD,waiver,successful,39.0,8.0,DEF,720,Hincapie (9),72,Senesi (0),9,0,9,9,waiver - successful
+Prem,2026-04-28 20:10:41.208257+00:00,35,AN,waiver,unsuccessful - player out already gone,11.0,3.0,FWD,500,Osula (9),596,Solanke (0),9,0,9,9,waiver - unsuccessful - player out already gone
+Prem,2026-04-30 16:53:41.370620+00:00,35,MN,waiver,successful,10.0,4.0,DEF,148,F.Kadıoğlu (1),636,S.Bueno (10),1,10,-9,9,waiver - successful
+Prem,2026-05-05 11:28:34.354766+00:00,36,LB,waiver,unsuccessful - player in already been picked up,4.0,1.0,MID,414,Foden (13),646,J.Gomes (4),13,4,9,9,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-22 11:50:11.400294+00:00,38,LD,waiver,successful,1.0,1.0,MID,119,Mbeumo (9),457,Casemiro (0),9,0,9,9,waiver - successful
+Prem,2026-05-22 11:50:11.400371+00:00,38,LD,waiver,successful,14.0,3.0,DEF,7,Calafiori (1),568,Pedro Porro (10),1,10,-9,9,waiver - successful
+Prem,2026-05-22 22:19:30.762961+00:00,38,MN,waiver,successful,2.0,1.0,FWD,215,Flemming (9),679,Šeško (0),9,0,9,9,waiver - successful
+Prem,2025-09-09 08:05:53.439621+00:00,4,TS,waiver,unsuccessful - player out already gone,14.0,2.0,DEF,374,Konaté (9),505,Milenković (1),9,1,8,8,waiver - unsuccessful - player out already gone
+Prem,2025-09-12 11:34:45.362103+00:00,4,LD,free agent,successful,,,MID,237,Enzo (4),414,Foden (12),4,12,-8,8,free agent - successful
+Prem,2025-10-02 06:27:51.091962+00:00,7,MN,waiver,successful,2.0,1.0,MID,21,Rice (11),26,Zubimendi (3),11,3,8,8,waiver - successful
+Prem,2025-10-27 08:50:18.640825+00:00,10,LB,waiver,successful,1.0,1.0,MID,452,Amad (9),427,Reijnders (1),9,1,8,8,waiver - successful
+Prem,2025-10-30 22:38:39.646727+00:00,10,TS,waiver,successful,8.0,1.0,DEF,477,Livramento (0),374,Konaté (8),0,8,-8,8,waiver - successful
+Prem,2025-10-31 08:13:27.233667+00:00,10,AN,waiver,unsuccessful - player out already gone,13.0,3.0,DEF,370,Frimpong (0),411,O'Reilly (8),0,8,-8,8,waiver - unsuccessful - player out already gone
+Prem,2025-12-01 15:14:27.859880+00:00,14,LB,waiver,successful,1.0,1.0,DEF,508,N.Williams (8),506,Murillo (0),8,0,8,8,waiver - successful
+Prem,2025-12-02 17:51:42.981926+00:00,14,JP,free agent,successful,,,DEF,720,Hincapie (8),575,Van de Ven (0),8,0,8,8,free agent - successful
+Prem,2025-12-05 20:28:14.446375+00:00,15,AN,free agent,successful,,,DEF,145,De Cuyper (8),660,Mosquera (0),8,0,8,8,free agent - successful
+Prem,2025-12-12 23:49:39.611508+00:00,16,JP,free agent,successful,,,DEF,11,White (1),374,Konaté (9),1,9,-8,8,free agent - successful
+Prem,2025-12-19 10:03:24.901138+00:00,17,MN,waiver,unsuccessful - player in already been picked up,25.0,8.0,FWD,691,Calvert-Lewin (13),661,Gyökeres (5),13,5,8,8,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-29 15:28:26.422849+00:00,19,TS,waiver,unsuccessful - player out already gone,23.0,10.0,DEF,151,Van Hecke (0),293,O'Brien (8),0,8,-8,8,waiver - unsuccessful - player out already gone
+Prem,2026-01-30 14:21:05.480650+00:00,24,TS,free agent,successful,,,MID,515,Gibbs-White (8),418,Doku (0),8,0,8,8,free agent - successful
+Prem,2026-02-25 10:54:08.856683+00:00,28,AN,waiver,successful,2.0,1.0,FWD,178,Welbeck (9),250,Delap (1),9,1,8,8,waiver - successful
+Prem,2026-03-02 17:00:04.112151+00:00,29,MN,waiver,successful,1.0,1.0,DEF,257,Lacroix (0),74,Truffert (8),0,8,-8,8,waiver - successful
+Prem,2026-03-03 17:52:44.806911+00:00,29,LB,free agent,successful,,,MID,242,Dewsbury-Hall (9),452,Amad (1),9,1,8,8,free agent - successful
+Prem,2026-03-11 20:14:05.483265+00:00,30,MN,waiver,unsuccessful - player out already gone,6.0,2.0,DEF,74,Truffert (11),295,Keane (3),11,3,8,8,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:35:23.721608+00:00,32,TS,waiver,unsuccessful - player in already been picked up,9.0,2.0,GKP,139,Verbruggen (9),673,Ramsdale (1),9,1,8,8,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-22 20:54:43.584212+00:00,34,AN,waiver,unsuccessful - player out already gone,14.0,6.0,MID,242,Dewsbury-Hall (8),160,Minteh (0),8,0,8,8,waiver - unsuccessful - player out already gone
+Prem,2026-04-22 20:54:43.584321+00:00,34,AN,waiver,unsuccessful - player in already been picked up,29.0,12.0,DEF,568,Pedro Porro (8),342,Bogle (0),8,0,8,8,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 13:49:29.647403+00:00,34,TS,waiver,unsuccessful - player out already gone,16.0,5.0,MID,242,Dewsbury-Hall (8),237,Enzo (0),8,0,8,8,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 13:49:29.647420+00:00,34,TS,waiver,successful,17.0,6.0,DEF,568,Pedro Porro (8),224,Cucurella (0),8,0,8,8,waiver - successful
+Prem,2026-04-23 13:49:29.647437+00:00,34,TS,waiver,unsuccessful - player in already been picked up,24.0,7.0,DEF,568,Pedro Porro (8),148,F.Kadıoğlu (0),8,0,8,8,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 19:15:55.570086+00:00,34,MN,free agent,successful,,,MID,242,Dewsbury-Hall (8),421,Rodrigo (0),8,0,8,8,free agent - successful
+Prem,2026-04-30 19:30:05.285777+00:00,35,LB,free agent,successful,,,MID,784,Groß (2),664,Stach (10),2,10,-8,8,free agent - successful
+Prem,2026-05-07 16:16:06.290841+00:00,36,LD,waiver,successful,1.0,1.0,MID,414,Foden (13),54,McGinn (5),13,5,8,8,waiver - successful
+Prem,2026-05-22 11:50:11.400348+00:00,38,LD,waiver,successful,7.0,2.0,DEF,606,Mavropanos (8),407,Matheus N. (0),8,0,8,8,waiver - successful
+Prem,2025-08-29 10:13:47.516856+00:00,3,LB,free agent,successful,,,MID,299,Ndiaye (7),485,Gordon (0),7,0,7,7,free agent - successful
+Prem,2025-09-26 10:51:15.500738+00:00,6,LD,free agent,successful,,,MID,390,Gravenberch (8),487,Barnes (1),8,1,7,7,free agent - successful
+Prem,2025-10-31 08:13:27.233644+00:00,10,AN,waiver,successful,7.0,2.0,DEF,683,Thiaw (1),411,O'Reilly (8),1,8,-7,7,waiver - successful
+Prem,2025-11-07 07:02:33.396540+00:00,11,AN,waiver,unsuccessful - player out already gone,10.0,5.0,MID,487,Barnes (9),81,Kluivert (2),9,2,7,7,waiver - unsuccessful - player out already gone
+Prem,2025-12-28 13:57:24.292151+00:00,19,LD,waiver,unsuccessful - player out already gone,7.0,2.0,FWD,283,Mateta (9),679,Šeško (2),9,2,7,7,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 15:28:26.422786+00:00,19,TS,waiver,unsuccessful - player out already gone,21.0,8.0,DEF,505,Milenković (1),293,O'Brien (8),1,8,-7,7,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 15:28:26.422817+00:00,19,TS,waiver,unsuccessful - player out already gone,22.0,9.0,DEF,506,Murillo (1),293,O'Brien (8),1,8,-7,7,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 18:16:45.353799+00:00,19,TS,free agent,successful,,,FWD,283,Mateta (9),97,Evanilson (2),9,2,7,7,free agent - successful
+Prem,2026-01-22 13:36:19.498080+00:00,23,MN,waiver,successful,9.0,4.0,FWD,310,Barry (9),752,Mané (2),9,2,7,7,waiver - successful
+Prem,2026-01-23 07:05:09.260693+00:00,23,TS,waiver,successful,7.0,2.0,DEF,317,Andersen (8),258,Mitchell (1),8,1,7,7,waiver - successful
+Prem,2026-02-01 19:23:49.403434+00:00,25,AN,waiver,successful,4.0,1.0,MID,267,Sarr (8),160,Minteh (1),8,1,7,7,waiver - successful
+Prem,2026-02-17 13:56:58.375461+00:00,27,LB,waiver,unsuccessful - player in already been picked up,11.0,2.0,MID,236,Neto (8),19,Martinelli (1),8,1,7,7,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-20 12:26:07.541874+00:00,27,TS,waiver,unsuccessful - player in already been picked up,7.0,1.0,MID,236,Neto (8),18,Madueke (1),8,1,7,7,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-27 07:27:35.993489+00:00,28,TS,free agent,successful,,,DEF,77,Hill (2),290,Branthwaite (9),2,9,-7,7,free agent - successful
+Prem,2026-03-02 17:00:04.112204+00:00,29,MN,waiver,unsuccessful - player out already gone,3.0,2.0,DEF,295,Keane (1),74,Truffert (8),1,8,-7,7,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:57:03.027186+00:00,32,MN,waiver,unsuccessful - player in already been picked up,22.0,6.0,GKP,139,Verbruggen (9),67,Petrović (2),9,2,7,7,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-15 14:16:07.795872+00:00,33,MN,waiver,unsuccessful - player in already been picked up,18.0,5.0,DEF,74,Truffert (13),440,Dalot (6),13,6,7,7,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-17 14:51:28.816496+00:00,33,LD,free agent,successful,,,DEF,228,Gusto (3),568,Pedro Porro (10),3,10,-7,7,free agent - successful
+Prem,2026-04-18 05:27:55.988155+00:00,33,AN,free agent,successful,,,DEF,342,Bogle (7),7,Calafiori (0),7,0,7,7,free agent - successful
+Prem,2026-04-22 20:54:43.584129+00:00,34,AN,waiver,unsuccessful - player out already gone,8.0,2.0,FWD,525,Wood (7),250,Delap (0),7,0,7,7,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 08:18:42.396183+00:00,34,LD,waiver,successful,2.0,1.0,DEF,6,Saliba (7),228,Gusto (0),7,0,7,7,waiver - successful
+Prem,2026-04-23 08:18:42.396320+00:00,34,LD,waiver,unsuccessful - player out already gone,18.0,4.0,MID,388,C.Jones (7),418,Doku (0),7,0,7,7,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 13:49:29.647290+00:00,34,TS,waiver,unsuccessful - player in already been picked up,4.0,1.0,DEF,6,Saliba (7),224,Cucurella (0),7,0,7,7,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 19:48:18.462479+00:00,34,TS,free agent,successful,,,DEF,442,Maguire (7),77,Hill (0),7,0,7,7,free agent - successful
+Prem,2026-04-28 20:10:41.208363+00:00,35,AN,waiver,unsuccessful - player out already gone,30.0,8.0,DEF,74,Truffert (7),8,J.Timber (0),7,0,7,7,waiver - unsuccessful - player out already gone
+Prem,2026-05-08 06:51:59.584823+00:00,36,TS,waiver,successful,18.0,4.0,FWD,311,Beto (8),30,Havertz (1),8,1,7,7,waiver - successful
+Prem,2026-05-08 08:42:41.351558+00:00,36,MN,waiver,successful,9.0,3.0,MID,267,Sarr (8),26,Zubimendi (1),8,1,7,7,waiver - successful
+Prem,2026-05-22 22:19:30.763113+00:00,38,MN,waiver,unsuccessful - player in already been picked up,23.0,7.0,DEF,606,Mavropanos (8),403,Gvardiol (1),8,1,7,7,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-23 13:11:08.395059+00:00,38,TS,waiver,successful,6.0,1.0,MID,452,Amad (7),553,Talbi (0),7,0,7,7,waiver - successful
+Prem,2026-05-24 07:20:39.045495+00:00,38,AN,free agent,successful,,,FWD,792,Taty (8),178,Welbeck (1),8,1,7,7,free agent - successful
+Prem,2025-08-14 16:50:49.777439+00:00,1,AN,waiver,successful,1.0,1.0,MID,415,Savinho (0),21,Rice (6),0,6,-6,6,waiver - successful
+Prem,2025-08-15 15:47:57.389909+00:00,1,AN,free agent,successful,,,MID,417,Cherki (6),415,Savinho (0),6,0,6,6,free agent - successful
+Prem,2025-08-21 15:24:17.668131+00:00,2,JP,waiver,successful,7.0,2.0,MID,669,Ndoye (7),239,Gittens (1),7,1,6,6,waiver - successful
+Prem,2025-08-21 15:24:17.668150+00:00,2,JP,waiver,unsuccessful - player in already been picked up,13.0,3.0,MID,669,Ndoye (7),418,Doku (1),7,1,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 15:24:17.668184+00:00,2,JP,waiver,successful,15.0,5.0,DEF,573,Spence (6),374,Konaté (0),6,0,6,6,waiver - successful
+Prem,2025-08-21 18:06:59.259234+00:00,2,AN,waiver,successful,26.0,9.0,GKP,470,Dúbravka (6),183,Weiss (0),6,0,6,6,waiver - successful
+Prem,2025-08-22 16:26:27.162656+00:00,2,MN,free agent,successful,,,GKP,67,Petrović (6),33,M.Bizot (0),6,0,6,6,free agent - successful
+Prem,2025-08-22 17:29:42.284219+00:00,2,JP,free agent,successful,,,DEF,191,Estève (6),407,Matheus N. (0),6,0,6,6,free agent - successful
+Prem,2025-08-28 19:42:39.834852+00:00,3,MN,waiver,successful,4.0,1.0,MID,674,J.Palhinha (1),413,Marmoush (7),1,7,-6,6,waiver - successful
+Prem,2025-09-11 06:17:51.304578+00:00,4,LB,waiver,successful,4.0,1.0,DEF,260,Guéhi (6),233,Acheampong (0),6,0,6,6,waiver - successful
+Prem,2025-09-11 11:26:55.138528+00:00,4,MN,waiver,unsuccessful - player in already been picked up,18.0,6.0,DEF,260,Guéhi (6),508,N.Williams (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-11 11:26:55.138542+00:00,4,MN,waiver,successful,19.0,7.0,DEF,476,Burn (6),508,N.Williams (0),6,0,6,6,waiver - successful
+Prem,2025-09-12 09:09:21.983727+00:00,4,JP,waiver,unsuccessful - player in already been picked up,12.0,2.0,GKP,728,Donnarumma (6),182,Trafford (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-12 09:09:21.983806+00:00,4,JP,waiver,unsuccessful - player in already been picked up,22.0,6.0,MID,718,Xavi (6),238,Estêvão (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-12 10:18:41.984775+00:00,4,LB,free agent,successful,,,DEF,258,Mitchell (6),410,Lewis (0),6,0,6,6,free agent - successful
+Prem,2025-10-01 20:01:57.400528+00:00,7,TS,waiver,successful,13.0,4.0,DEF,478,Trippier (6),477,Livramento (0),6,0,6,6,waiver - successful
+Prem,2025-10-24 14:48:57.883200+00:00,9,LD,free agent,successful,,,FWD,100,Kroupi.Jr (6),525,Wood (0),6,0,6,6,free agent - successful
+Prem,2025-10-31 08:13:27.233587+00:00,10,AN,waiver,unsuccessful - player in already been picked up,6.0,1.0,DEF,575,Van de Ven (2),411,O'Reilly (8),2,8,-6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-11-07 07:02:33.396503+00:00,11,AN,waiver,successful,8.0,3.0,DEF,37,Digne (9),683,Thiaw (3),9,3,6,6,waiver - successful
+Prem,2025-11-21 12:14:10.839873+00:00,12,MN,free agent,successful,,,DEF,261,Richards (6),476,Burn (0),6,0,6,6,free agent - successful
+Prem,2025-12-05 09:25:28.369054+00:00,15,MN,waiver,unsuccessful - player in already been picked up,2.0,1.0,FWD,64,Watkins (2),597,Richarlison (8),2,8,-6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-09 03:30:13.727010+00:00,16,LD,waiver,successful,1.0,1.0,MID,20,Trossard (1),381,M.Salah (7),1,7,-6,6,waiver - successful
+Prem,2025-12-11 20:33:50.450093+00:00,16,AN,waiver,successful,10.0,3.0,DEF,371,Kerkez (7),37,Digne (1),7,1,6,6,waiver - successful
+Prem,2025-12-19 09:47:38.251753+00:00,17,LD,waiver,successful,9.0,2.0,DEF,228,Gusto (-1),74,Truffert (5),-1,5,-6,6,waiver - successful
+Prem,2025-12-19 10:03:24.901080+00:00,17,MN,waiver,unsuccessful - player in already been picked up,18.0,5.0,DEF,374,Konaté (1),317,Andersen (7),1,7,-6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-25 14:51:06.963144+00:00,18,TS,waiver,successful,6.0,2.0,DEF,293,O'Brien (6),682,Diakité (0),6,0,6,6,waiver - successful
+Prem,2025-12-29 15:28:26.422691+00:00,19,TS,waiver,unsuccessful - player in already been picked up,17.0,5.0,DEF,441,Dorgu (2),293,O'Brien (8),2,8,-6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-29 15:28:26.422754+00:00,19,TS,waiver,unsuccessful - player out already gone,20.0,7.0,DEF,437,Martinez (2),293,O'Brien (8),2,8,-6,6,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 16:17:33.156396+00:00,19,MN,waiver,unsuccessful - player out already gone,9.0,2.0,DEF,107,Lewis-Potter (6),113,Van den Berg (0),6,0,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-01-01 11:52:36.755021+00:00,20,MN,waiver,successful,10.0,3.0,MID,120,Schade (6),266,Eze (0),6,0,6,6,waiver - successful
+Prem,2026-01-04 18:57:43.359568+00:00,21,AN,waiver,successful,3.0,1.0,FWD,250,Delap (7),31,G.Jesus (1),7,1,6,6,waiver - successful
+Prem,2026-01-15 13:10:19.482555+00:00,22,LD,waiver,successful,10.0,3.0,DEF,72,Senesi (3),293,O'Brien (9),3,9,-6,6,waiver - successful
+Prem,2026-01-15 16:42:01.860356+00:00,22,JP,waiver,successful,15.0,4.0,DEF,11,White (6),720,Hincapie (0),6,0,6,6,waiver - successful
+Prem,2026-01-16 10:58:15.762007+00:00,22,MN,waiver,unsuccessful - player out already gone,11.0,2.0,DEF,343,Struijk (6),403,Gvardiol (0),6,0,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-01-30 09:59:03.619818+00:00,24,LB,waiver,successful,6.0,1.0,DEF,74,Truffert (6),408,Rúben (0),6,0,6,6,waiver - successful
+Prem,2026-02-08 16:41:08.288692+00:00,26,AN,waiver,unsuccessful - player in already been picked up,15.0,4.0,DEF,374,Konaté (6),569,Romero (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-09 07:18:03.580949+00:00,26,LB,waiver,successful,7.0,2.0,DEF,230,Fofana (1),74,Truffert (7),1,7,-6,6,waiver - successful
+Prem,2026-02-09 16:00:15.109782+00:00,26,TS,waiver,unsuccessful - player out already gone,12.0,4.0,DEF,508,N.Williams (8),148,F.Kadıoğlu (2),8,2,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-02-09 16:00:15.109800+00:00,26,TS,waiver,unsuccessful - player out already gone,13.0,5.0,DEF,508,N.Williams (8),317,Andersen (2),8,2,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-02-17 13:56:58.375413+00:00,27,LB,waiver,successful,5.0,1.0,MID,236,Neto (8),718,Xavi (2),8,2,6,6,waiver - successful
+Prem,2026-02-19 10:10:41.666357+00:00,27,MN,waiver,successful,3.0,2.0,DEF,74,Truffert (6),224,Cucurella (0),6,0,6,6,waiver - successful
+Prem,2026-02-20 12:26:07.541991+00:00,27,TS,waiver,unsuccessful - player in already been picked up,17.0,4.0,DEF,74,Truffert (6),257,Lacroix (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-20 12:26:07.542084+00:00,27,TS,waiver,successful,23.0,9.0,DEF,370,Frimpong (0),261,Richards (6),0,6,-6,6,waiver - successful
+Prem,2026-03-19 20:53:50.235343+00:00,31,MN,free agent,successful,,,DEF,38,Konsa (6),258,Mitchell (0),6,0,6,6,free agent - successful
+Prem,2026-04-09 16:57:03.027172+00:00,32,MN,waiver,unsuccessful - player in already been picked up,21.0,5.0,FWD,311,Beto (7),337,Raúl (1),7,1,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-15 14:16:07.795908+00:00,33,MN,waiver,unsuccessful - player in already been picked up,23.0,7.0,DEF,343,Struijk (10),374,Konaté (4),10,4,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-22 20:54:43.584284+00:00,34,AN,waiver,unsuccessful - player out already gone,22.0,10.0,DEF,575,Van de Ven (6),226,Chalobah (0),6,0,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-04-22 20:54:43.584338+00:00,34,AN,waiver,unsuccessful - player out already gone,30.0,13.0,DEF,575,Van de Ven (6),342,Bogle (0),6,0,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 08:18:42.396288+00:00,34,LD,waiver,successful,11.0,3.0,MID,266,Eze (6),418,Doku (0),6,0,6,6,waiver - successful
+Prem,2026-04-28 09:26:12.902103+00:00,35,LB,waiver,successful,16.0,4.0,MID,808,Rayan (8),390,Gravenberch (2),8,2,6,6,waiver - successful
+Prem,2026-04-28 20:10:41.208176+00:00,35,AN,waiver,unsuccessful - player in already been picked up,3.0,1.0,FWD,691,Calvert-Lewin (6),596,Solanke (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-28 20:10:41.208276+00:00,35,AN,waiver,unsuccessful - player out already gone,12.0,4.0,FWD,100,Kroupi.Jr (6),596,Solanke (0),6,0,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-04-28 20:10:41.208326+00:00,35,AN,waiver,successful,25.0,6.0,DEF,11,White (6),8,J.Timber (0),6,0,6,6,waiver - successful
+Prem,2026-04-28 20:10:41.208398+00:00,35,AN,waiver,successful,32.0,10.0,DEF,74,Truffert (7),473,Hall (1),7,1,6,6,waiver - successful
+Prem,2026-05-07 16:16:06.290942+00:00,36,LD,waiver,unsuccessful - player out already gone,14.0,3.0,FWD,311,Beto (8),817,Armstrong (2),8,2,6,6,waiver - unsuccessful - player out already gone
+Prem,2026-05-08 05:22:35.964439+00:00,36,AN,waiver,unsuccessful - player in already been picked up,10.0,2.0,MID,267,Sarr (8),120,Schade (2),8,2,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-14 14:36:39.668102+00:00,37,MN,waiver,unsuccessful - player out already gone,23.0,9.0,MID,413,Marmoush (1),267,Sarr (7),1,7,-6,6,waiver - unsuccessful - player out already gone
+Prem,2026-05-22 22:19:30.763038+00:00,38,MN,waiver,successful,15.0,3.0,GKP,565,Vicario (0),101,Kelleher (6),0,6,-6,6,waiver - successful
+Prem,2026-05-23 12:56:18.254794+00:00,38,JP,waiver,successful,5.0,1.0,MID,615,Summerville (6),47,Rogers (0),6,0,6,6,waiver - successful
+Prem,2026-05-23 12:56:18.254864+00:00,38,JP,waiver,unsuccessful - player in already been picked up,11.0,2.0,DEF,606,Mavropanos (8),292,Mykolenko (2),8,2,6,6,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-22 12:20:10.517428+00:00,2,MN,free agent,successful,,,GKP,33,M.Bizot (0),101,Kelleher (5),0,5,-5,5,free agent - successful
+Prem,2025-08-28 18:03:38.576264+00:00,3,TS,waiver,unsuccessful - player in already been picked up,5.0,1.0,DEF,8,J.Timber (2),74,Truffert (7),2,7,-5,5,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-29 20:04:23.808726+00:00,3,AN,free agent,successful,,,DEF,474,Schär (6),473,Hall (1),6,1,5,5,free agent - successful
+Prem,2025-09-11 16:18:05.669280+00:00,4,AN,waiver,successful,1.0,1.0,MID,718,Xavi (6),83,O.Dango (1),6,1,5,5,waiver - successful
+Prem,2025-09-19 11:57:33.758190+00:00,5,LB,free agent,successful,,,FWD,217,Foster (6),561,Mayenda (1),6,1,5,5,free agent - successful
+Prem,2025-10-01 10:44:55.525675+00:00,7,LD,waiver,unsuccessful - player in already been picked up,9.0,3.0,MID,267,Sarr (7),236,Neto (2),7,2,5,5,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-16 17:37:56.730968+00:00,8,LD,waiver,successful,3.0,1.0,DEF,407,Matheus N. (7),38,Konsa (2),7,2,5,5,waiver - successful
+Prem,2025-10-16 22:40:56.613735+00:00,8,JP,waiver,successful,2.0,1.0,DEF,226,Chalobah (6),317,Andersen (1),6,1,5,5,waiver - successful
+Prem,2025-10-16 22:40:56.613799+00:00,8,JP,waiver,unsuccessful - player in already been picked up,7.0,3.0,DEF,407,Matheus N. (7),36,Cash (2),7,2,5,5,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-24 13:23:24.094601+00:00,9,LD,free agent,successful,,,FWD,337,Raúl (5),135,Wissa (0),5,0,5,5,free agent - successful
+Prem,2025-10-31 08:20:59.410808+00:00,10,MN,waiver,successful,5.0,2.0,DEF,258,Mitchell (6),569,Romero (1),6,1,5,5,waiver - successful
+Prem,2025-11-30 21:40:12.928613+00:00,14,MN,waiver,successful,5.0,2.0,DEF,476,Burn (6),568,Pedro Porro (1),6,1,5,5,waiver - successful
+Prem,2025-12-01 18:19:55.545296+00:00,14,LD,free agent,successful,,,MID,390,Gravenberch (5),267,Sarr (0),5,0,5,5,free agent - successful
+Prem,2025-12-19 06:18:47.885858+00:00,17,AN,waiver,successful,3.0,1.0,MID,160,Minteh (3),718,Xavi (-2),3,-2,5,5,waiver - successful
+Prem,2025-12-19 06:18:47.885950+00:00,17,AN,waiver,unsuccessful - player in already been picked up,21.0,4.0,DEF,374,Konaté (1),145,De Cuyper (6),1,6,-5,5,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 06:18:47.885969+00:00,17,AN,waiver,unsuccessful - player out already gone,22.0,5.0,DEF,375,Bradley (1),145,De Cuyper (6),1,6,-5,5,waiver - unsuccessful - player out already gone
+Prem,2025-12-25 13:31:38.007103+00:00,18,MN,waiver,unsuccessful - player out already gone,16.0,4.0,DEF,317,Andersen (5),261,Richards (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Prem,2025-12-25 14:51:06.963196+00:00,18,TS,waiver,unsuccessful - player out already gone,13.0,4.0,DEF,317,Andersen (5),682,Diakité (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 16:17:33.156459+00:00,19,MN,waiver,successful,13.0,6.0,GKP,101,Kelleher (6),67,Petrović (1),6,1,5,5,waiver - successful
+Prem,2026-01-29 17:11:13.159773+00:00,24,MN,waiver,successful,3.0,1.0,FWD,679,Šeško (6),715,Woltemade (1),6,1,5,5,waiver - successful
+Prem,2026-01-30 09:59:03.619871+00:00,24,LB,waiver,unsuccessful - player out already gone,11.0,2.0,DEF,714,A.Jimenez (5),408,Rúben (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Prem,2026-02-19 10:10:41.666378+00:00,27,MN,waiver,successful,9.0,3.0,DEF,38,Konsa (7),295,Keane (2),7,2,5,5,waiver - successful
+Prem,2026-02-19 10:10:41.666395+00:00,27,MN,waiver,successful,19.0,4.0,MID,90,Scott (5),488,Bruno G. (0),5,0,5,5,waiver - successful
+Prem,2026-03-13 11:20:24.481404+00:00,30,TS,waiver,unsuccessful - player out already gone,12.0,3.0,DEF,508,N.Williams (5),290,Branthwaite (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:35:23.721725+00:00,32,TS,waiver,unsuccessful - player out already gone,18.0,9.0,DEF,148,F.Kadıoğlu (6),317,Andersen (1),6,1,5,5,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:35:23.721740+00:00,32,TS,waiver,unsuccessful - player out already gone,19.0,10.0,DEF,148,F.Kadıoğlu (6),477,Livramento (1),6,1,5,5,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:57:03.027075+00:00,32,MN,waiver,successful,3.0,1.0,DEF,151,Van Hecke (5),371,Kerkez (0),5,0,5,5,waiver - successful
+Prem,2026-04-16 10:26:34.118362+00:00,33,LB,waiver,successful,28.0,4.0,MID,169,Gomez (1),242,Dewsbury-Hall (6),1,6,-5,5,waiver - successful
+Prem,2026-04-17 09:37:10.514342+00:00,33,TS,waiver,successful,7.0,1.0,MID,237,Enzo (4),84,Tavernier (9),4,9,-5,5,waiver - successful
+Prem,2026-04-23 22:11:45.467362+00:00,34,JP,free agent,successful,,,DEF,443,Shaw (5),406,Khusanov (0),5,0,5,5,free agent - successful
+Prem,2026-04-28 20:10:41.208234+00:00,35,AN,waiver,successful,4.0,2.0,FWD,97,Evanilson (5),596,Solanke (0),5,0,5,5,waiver - successful
+Prem,2026-04-28 20:10:41.208416+00:00,35,AN,waiver,unsuccessful - player in already been picked up,37.0,11.0,DEF,148,F.Kadıoğlu (1),293,O'Brien (6),1,6,-5,5,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.824810+00:00,35,TS,waiver,unsuccessful - player in already been picked up,18.0,3.0,FWD,691,Calvert-Lewin (6),733,Brobbey (1),6,1,5,5,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.824847+00:00,35,TS,waiver,unsuccessful - player in already been picked up,20.0,5.0,FWD,97,Evanilson (5),30,Havertz (0),5,0,5,5,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-30 14:04:14.477116+00:00,35,LD,waiver,successful,1.0,1.0,FWD,691,Calvert-Lewin (6),311,Beto (1),6,1,5,5,waiver - successful
+Prem,2026-05-05 11:28:34.354817+00:00,36,LB,waiver,successful,5.0,2.0,MID,160,Minteh (9),646,J.Gomes (4),9,4,5,5,waiver - successful
+Prem,2026-05-14 04:58:51.500998+00:00,37,AN,waiver,successful,2.0,1.0,MID,487,Barnes (5),698,Okafor (0),5,0,5,5,waiver - successful
+Prem,2026-05-20 07:23:34.422290+00:00,38,AN,waiver,unsuccessful - player in already been picked up,9.0,2.0,DEF,575,Van de Ven (6),293,O'Brien (1),6,1,5,5,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-22 22:19:30.763016+00:00,38,MN,waiver,successful,8.0,2.0,DEF,575,Van de Ven (6),403,Gvardiol (1),6,1,5,5,waiver - successful
+Prem,2026-05-23 12:56:18.254892+00:00,38,JP,waiver,successful,12.0,3.0,DEF,603,Diouf (6),683,Thiaw (1),6,1,5,5,waiver - successful
+Prem,2026-05-24 13:10:09.809551+00:00,38,LD,free agent,successful,,,MID,381,M.Salah (6),266,Eze (1),6,1,5,5,free agent - successful
+Prem,2025-08-19 07:47:41.440712+00:00,2,LB,waiver,successful,2.0,1.0,MID,427,Reijnders (2),488,Bruno G. (6),2,6,-4,4,waiver - successful
+Prem,2025-08-21 08:35:17.224136+00:00,2,MN,waiver,successful,5.0,3.0,FWD,597,Richarlison (4),178,Welbeck (0),4,0,4,4,waiver - successful
+Prem,2025-08-22 16:57:54.110466+00:00,2,JP,free agent,successful,,,MID,238,Estêvão (5),418,Doku (1),5,1,4,4,free agent - successful
+Prem,2025-08-28 18:03:38.576317+00:00,3,TS,waiver,successful,6.0,2.0,DEF,257,Lacroix (11),74,Truffert (7),11,7,4,4,waiver - successful
+Prem,2025-09-18 11:18:19.845729+00:00,5,TS,waiver,successful,9.0,2.0,DEF,374,Konaté (4),506,Murillo (0),4,0,4,4,waiver - successful
+Prem,2025-10-18 09:19:32.459655+00:00,8,LD,free agent,successful,,,DEF,348,Rodon (1),37,Digne (5),1,5,-4,4,free agent - successful
+Prem,2025-10-23 07:52:27.408450+00:00,9,MN,waiver,successful,1.0,1.0,FWD,178,Welbeck (6),311,Beto (2),6,2,4,4,waiver - successful
+Prem,2025-10-31 06:52:09.368014+00:00,10,JP,waiver,unsuccessful - player in already been picked up,9.0,2.0,DEF,258,Mitchell (6),603,Diouf (2),6,2,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2025-11-28 12:51:29.103729+00:00,13,AN,waiver,unsuccessful - player out already gone,9.0,4.0,DEF,476,Burn (5),74,Truffert (1),5,1,4,4,waiver - unsuccessful - player out already gone
+Prem,2025-12-01 18:21:00.463987+00:00,14,LD,free agent,successful,,,DEF,74,Truffert (4),295,Keane (0),4,0,4,4,free agent - successful
+Prem,2025-12-04 03:12:28.928443+00:00,15,LD,waiver,successful,4.0,2.0,MID,22,Merino (1),84,Tavernier (5),1,5,-4,4,waiver - successful
+Prem,2025-12-19 06:18:47.885908+00:00,17,AN,waiver,unsuccessful - player in already been picked up,12.0,2.0,MID,329,Wilson (2),718,Xavi (-2),2,-2,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 10:03:24.901061+00:00,17,MN,waiver,unsuccessful - player in already been picked up,17.0,4.0,DEF,72,Senesi (4),476,Burn (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 10:22:00.073277+00:00,17,TS,waiver,successful,16.0,4.0,DEF,72,Senesi (4),10,Lewis-Skelly (0),4,0,4,4,waiver - successful
+Prem,2025-12-29 15:28:26.422722+00:00,19,TS,waiver,successful,18.0,6.0,DEF,474,Schär (4),293,O'Brien (8),4,8,-4,4,waiver - successful
+Prem,2026-01-01 11:52:36.755002+00:00,20,MN,waiver,successful,6.0,2.0,MID,303,Garner (4),241,Caicedo (0),4,0,4,4,waiver - successful
+Prem,2026-01-02 10:08:26.113961+00:00,20,TS,waiver,unsuccessful - player in already been picked up,8.0,3.0,DEF,293,O'Brien (0),437,Martinez (4),0,4,-4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-05 15:53:21.901436+00:00,21,TS,waiver,unsuccessful - player in already been picked up,5.0,1.0,MID,419,Grealish (-1),387,Szoboszlai (3),-1,3,-4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-05 15:53:21.901483+00:00,21,TS,waiver,successful,6.0,2.0,FWD,97,Evanilson (6),526,Igor Jesus (2),6,2,4,4,waiver - successful
+Prem,2026-01-18 20:41:10.335199+00:00,23,LB,waiver,successful,4.0,1.0,MID,452,Amad (2),515,Gibbs-White (6),2,6,-4,4,waiver - successful
+Prem,2026-01-22 13:36:19.498044+00:00,23,MN,waiver,unsuccessful - player out already gone,8.0,3.0,DEF,293,O'Brien (4),295,Keane (0),4,0,4,4,waiver - unsuccessful - player out already gone
+Prem,2026-02-20 12:26:07.542066+00:00,27,TS,waiver,unsuccessful - player in already been picked up,22.0,8.0,DEF,290,Branthwaite (2),261,Richards (6),2,6,-4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-26 11:46:31.666045+00:00,28,MN,waiver,successful,3.0,1.0,MID,324,Iwobi (10),303,Garner (6),10,6,4,4,waiver - successful
+Prem,2026-03-14 08:09:29.089633+00:00,30,AN,free agent,successful,,,DEF,7,Calafiori (6),440,Dalot (2),6,2,4,4,free agent - successful
+Prem,2026-03-25 13:10:20.002567+00:00,32,LB,waiver,successful,4.0,1.0,DEF,257,Lacroix (4),531,Ballard (0),4,0,4,4,waiver - successful
+Prem,2026-04-02 03:37:17.166625+00:00,32,LD,waiver,unsuccessful - player in already been picked up,6.0,2.0,DEF,257,Lacroix (4),442,Maguire (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-09 16:35:23.721657+00:00,32,TS,waiver,unsuccessful - player in already been picked up,13.0,5.0,DEF,151,Van Hecke (5),317,Andersen (1),5,1,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-09 16:35:23.721672+00:00,32,TS,waiver,unsuccessful - player in already been picked up,14.0,6.0,DEF,151,Van Hecke (5),477,Livramento (1),5,1,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-15 14:16:07.795890+00:00,33,MN,waiver,successful,19.0,6.0,DEF,343,Struijk (10),440,Dalot (6),10,6,4,4,waiver - successful
+Prem,2026-04-22 20:54:43.584230+00:00,34,AN,waiver,successful,15.0,7.0,DEF,440,Dalot (4),226,Chalobah (0),4,0,4,4,waiver - successful
+Prem,2026-04-22 20:54:43.584248+00:00,34,AN,waiver,unsuccessful - player in already been picked up,20.0,8.0,DEF,374,Konaté (4),226,Chalobah (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-22 20:54:43.584391+00:00,34,AN,waiver,unsuccessful - player in already been picked up,33.0,16.0,DEF,374,Konaté (4),342,Bogle (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 08:18:42.396350+00:00,34,LD,waiver,successful,19.0,5.0,DEF,374,Konaté (4),402,Aït-Nouri (0),4,0,4,4,waiver - successful
+Prem,2026-04-23 08:18:42.396381+00:00,34,LD,waiver,unsuccessful - player out already gone,27.0,6.0,DEF,606,Mavropanos (4),402,Aït-Nouri (0),4,0,4,4,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 13:49:29.647366+00:00,34,TS,waiver,successful,6.0,3.0,FWD,30,Havertz (4),691,Calvert-Lewin (0),4,0,4,4,waiver - successful
+Prem,2026-04-23 13:49:29.647525+00:00,34,TS,waiver,unsuccessful - player in already been picked up,35.0,11.0,DEF,440,Dalot (4),224,Cucurella (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 13:49:29.647543+00:00,34,TS,waiver,unsuccessful - player in already been picked up,36.0,12.0,DEF,440,Dalot (4),148,F.Kadıoğlu (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 13:49:29.647560+00:00,34,TS,waiver,unsuccessful - player in already been picked up,37.0,13.0,DEF,440,Dalot (4),77,Hill (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 19:16:42.615511+00:00,34,MN,free agent,successful,,,MID,26,Zubimendi (5),517,Anderson (9),5,9,-4,4,free agent - successful
+Prem,2026-04-24 12:02:53.803399+00:00,34,LB,free agent,successful,,,DEF,475,Botman (4),74,Truffert (0),4,0,4,4,free agent - successful
+Prem,2026-04-24 12:04:16.526150+00:00,34,LB,free agent,successful,,,FWD,597,Richarlison (4),215,Flemming (0),4,0,4,4,free agent - successful
+Prem,2026-04-24 12:48:18.546610+00:00,34,LB,free agent,successful,,,MID,458,Mainoo (4),808,Rayan (0),4,0,4,4,free agent - successful
+Prem,2026-04-29 11:09:45.824829+00:00,35,TS,waiver,unsuccessful - player in already been picked up,19.0,4.0,FWD,97,Evanilson (5),733,Brobbey (1),5,1,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.824928+00:00,35,TS,waiver,successful,28.0,8.0,DEF,406,Khusanov (3),606,Mavropanos (-1),3,-1,4,4,waiver - successful
+Prem,2026-04-30 16:53:41.370577+00:00,35,MN,waiver,unsuccessful - player out already gone,8.0,2.0,MID,350,Aaronson (1),303,Garner (5),1,5,-4,4,waiver - unsuccessful - player out already gone
+Prem,2026-04-30 16:53:41.370600+00:00,35,MN,waiver,unsuccessful - player in already been picked up,9.0,3.0,FWD,691,Calvert-Lewin (6),337,Raúl (2),6,2,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-30 16:53:41.370640+00:00,35,MN,waiver,unsuccessful - player out already gone,24.0,5.0,DEF,106,Collins (6),636,S.Bueno (10),6,10,-4,4,waiver - unsuccessful - player out already gone
+Prem,2026-05-01 08:30:01.732203+00:00,35,JP,free agent,successful,,,DEF,224,Cucurella (4),672,Hato (0),4,0,4,4,free agent - successful
+Prem,2026-05-08 08:42:41.351623+00:00,36,MN,waiver,unsuccessful - player in already been picked up,19.0,5.0,MID,160,Minteh (9),242,Dewsbury-Hall (5),9,5,4,4,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-08 13:54:02.680137+00:00,36,JP,free agent,successful,,,DEF,292,Mykolenko (0),707,Justin (4),0,4,-4,4,free agent - successful
+Prem,2026-05-14 14:36:39.667902+00:00,37,MN,waiver,successful,1.0,1.0,MID,20,Trossard (3),267,Sarr (7),3,7,-4,4,waiver - successful
+Prem,2026-05-23 15:50:14.096172+00:00,38,JP,free agent,successful,,,DEF,815,Disasi (6),292,Mykolenko (2),6,2,4,4,free agent - successful
+Prem,2025-08-14 19:49:06.481730+00:00,1,AN,free agent,successful,,,DEF,38,Konsa (3),290,Branthwaite (0),3,0,3,3,free agent - successful
+Prem,2025-08-15 15:23:00.551221+00:00,1,JP,free agent,successful,,,MID,418,Doku (3),81,Kluivert (0),3,0,3,3,free agent - successful
+Prem,2025-08-21 18:06:59.259251+00:00,2,AN,waiver,unsuccessful - player out already gone,27.0,10.0,GKP,314,Leno (3),183,Weiss (0),3,0,3,3,waiver - unsuccessful - player out already gone
+Prem,2025-08-28 19:42:39.834907+00:00,3,MN,waiver,unsuccessful - player out already gone,11.0,2.0,MID,241,Caicedo (4),413,Marmoush (7),4,7,-3,3,waiver - unsuccessful - player out already gone
+Prem,2025-09-10 13:18:49.918335+00:00,4,LD,waiver,unsuccessful - player in already been picked up,7.0,1.0,DEF,72,Senesi (3),408,Rúben (6),3,6,-3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-11 11:26:55.138498+00:00,4,MN,waiver,unsuccessful - player out already gone,16.0,4.0,MID,237,Enzo (4),486,Elanga (1),4,1,3,3,waiver - unsuccessful - player out already gone
+Prem,2025-09-11 16:18:05.669336+00:00,4,AN,waiver,successful,8.0,2.0,GKP,728,Donnarumma (6),470,Dúbravka (3),6,3,3,3,waiver - successful
+Prem,2025-09-11 16:18:05.669439+00:00,4,AN,waiver,unsuccessful - player in already been picked up,26.0,7.0,DEF,72,Senesi (3),507,Aina (0),3,0,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-12 09:09:21.983749+00:00,4,JP,waiver,successful,13.0,3.0,MID,18,Madueke (3),238,Estêvão (0),3,0,3,3,waiver - successful
+Prem,2025-09-12 13:49:32.267267+00:00,4,LD,free agent,successful,,,DEF,40,Mings (9),408,Rúben (6),9,6,3,3,free agent - successful
+Prem,2025-09-12 14:18:15.967611+00:00,4,JP,free agent,successful,,,DEF,478,Trippier (8),36,Cash (5),8,5,3,3,free agent - successful
+Prem,2025-09-18 06:18:23.176524+00:00,5,AN,waiver,unsuccessful - player in already been picked up,11.0,3.0,DEF,374,Konaté (4),409,Stones (1),4,1,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-26 05:50:41.811682+00:00,6,JP,waiver,successful,3.0,1.0,DEF,317,Andersen (3),478,Trippier (0),3,0,3,3,waiver - successful
+Prem,2025-10-01 10:44:55.525652+00:00,7,LD,waiver,unsuccessful - player out already gone,8.0,2.0,DEF,261,Richards (3),226,Chalobah (0),3,0,3,3,waiver - unsuccessful - player out already gone
+Prem,2025-10-01 20:01:57.400406+00:00,7,TS,waiver,successful,6.0,1.0,MID,267,Sarr (7),515,Gibbs-White (4),7,4,3,3,waiver - successful
+Prem,2025-11-21 10:11:54.618954+00:00,12,JP,waiver,successful,1.0,1.0,MID,47,Rogers (15),20,Trossard (12),15,12,3,3,waiver - successful
+Prem,2025-11-30 21:40:12.928633+00:00,14,MN,waiver,unsuccessful - player in already been picked up,6.0,3.0,DEF,476,Burn (6),261,Richards (9),6,9,-3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-13 12:19:35.788108+00:00,16,TS,free agent,successful,,,GKP,101,Kelleher (3),502,Sels (0),3,0,3,3,free agent - successful
+Prem,2025-12-19 10:03:24.901098+00:00,17,MN,waiver,unsuccessful - player in already been picked up,19.0,6.0,DEF,72,Senesi (4),317,Andersen (7),4,7,-3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 10:22:00.073239+00:00,17,TS,waiver,unsuccessful - player in already been picked up,7.0,2.0,MID,160,Minteh (3),418,Doku (0),3,0,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-26 08:06:00.724808+00:00,18,LB,free agent,successful,,,MID,301,Alcaraz (3),242,Dewsbury-Hall (0),3,0,3,3,free agent - successful
+Prem,2025-12-29 14:02:55.712498+00:00,19,AN,waiver,successful,4.0,1.0,MID,487,Barnes (2),485,Gordon (5),2,5,-3,3,waiver - successful
+Prem,2025-12-29 15:28:26.422968+00:00,19,TS,waiver,unsuccessful - player out already gone,28.0,15.0,DEF,151,Van Hecke (0),72,Senesi (3),0,3,-3,3,waiver - unsuccessful - player out already gone
+Prem,2026-01-01 11:52:36.754957+00:00,20,MN,waiver,successful,2.0,1.0,DEF,568,Pedro Porro (4),374,Konaté (1),4,1,3,3,waiver - successful
+Prem,2026-01-02 08:22:00.036260+00:00,20,AN,waiver,unsuccessful - player in already been picked up,11.0,3.0,DEF,568,Pedro Porro (4),371,Kerkez (1),4,1,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-02 10:08:26.113943+00:00,20,TS,waiver,successful,5.0,2.0,DEF,477,Livramento (1),437,Martinez (4),1,4,-3,3,waiver - successful
+Prem,2026-01-05 15:17:09.264976+00:00,21,LB,waiver,successful,2.0,1.0,MID,236,Neto (5),664,Stach (2),5,2,3,3,waiver - successful
+Prem,2026-01-15 13:10:19.482534+00:00,22,LD,waiver,unsuccessful - player in already been picked up,9.0,2.0,MID,487,Barnes (3),381,M.Salah (0),3,0,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-31 07:53:52.257263+00:00,24,AN,free agent,successful,,,FWD,526,Igor Jesus (2),31,G.Jesus (5),2,5,-3,3,free agent - successful
+Prem,2026-02-05 18:09:47.104005+00:00,25,LD,waiver,successful,2.0,1.0,FWD,100,Kroupi.Jr (2),337,Raúl (5),2,5,-3,3,waiver - successful
+Prem,2026-02-08 16:41:08.288651+00:00,26,AN,waiver,successful,6.0,2.0,DEF,402,Aït-Nouri (9),38,Konsa (6),9,6,3,3,waiver - successful
+Prem,2026-02-19 10:10:41.666308+00:00,27,MN,waiver,unsuccessful - player in already been picked up,2.0,1.0,MID,390,Gravenberch (3),488,Bruno G. (0),3,0,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-19 10:10:41.666412+00:00,27,MN,waiver,unsuccessful - player in already been picked up,24.0,5.0,MID,90,Scott (5),303,Garner (2),5,2,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-25 10:54:08.856742+00:00,28,AN,waiver,unsuccessful - player in already been picked up,7.0,2.0,MID,266,Eze (2),83,O.Dango (5),2,5,-3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-03-01 23:05:18.833791+00:00,29,LB,waiver,successful,2.0,1.0,MID,120,Schade (3),236,Neto (0),3,0,3,3,waiver - successful
+Prem,2026-03-02 21:26:35.376858+00:00,29,TS,free agent,successful,,,GKP,314,Leno (3),670,Roefs (0),3,0,3,3,free agent - successful
+Prem,2026-03-11 20:14:05.483221+00:00,30,MN,waiver,successful,2.0,1.0,DEF,106,Collins (0),295,Keane (3),0,3,-3,3,waiver - successful
+Prem,2026-03-19 22:02:29.147003+00:00,31,MN,free agent,successful,,,DEF,440,Dalot (1),74,Truffert (4),1,4,-3,3,free agent - successful
+Prem,2026-04-09 16:35:23.721702+00:00,32,TS,waiver,successful,16.0,8.0,GKP,341,Darlow (4),673,Ramsdale (1),4,1,3,3,waiver - successful
+Prem,2026-04-09 16:35:23.721769+00:00,32,TS,waiver,unsuccessful - player out already gone,25.0,12.0,DEF,74,Truffert (4),477,Livramento (1),4,1,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:35:23.721784+00:00,32,TS,waiver,unsuccessful - player out already gone,26.0,13.0,DEF,74,Truffert (4),477,Livramento (1),4,1,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:57:03.027157+00:00,32,MN,waiver,successful,17.0,4.0,DEF,295,Keane (0),106,Collins (3),0,3,-3,3,waiver - successful
+Prem,2026-04-14 12:16:38.414335+00:00,33,LD,waiver,unsuccessful - player in already been picked up,8.0,2.0,DEF,74,Truffert (13),568,Pedro Porro (10),13,10,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-15 14:16:07.795814+00:00,33,MN,waiver,unsuccessful - player out already gone,15.0,2.0,MID,169,Gomez (1),26,Zubimendi (4),1,4,-3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-15 14:16:07.795836+00:00,33,MN,waiver,unsuccessful - player out already gone,16.0,3.0,MID,416,Bernardo (7),26,Zubimendi (4),7,4,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-15 14:16:07.795855+00:00,33,MN,waiver,unsuccessful - player out already gone,17.0,4.0,MID,350,Aaronson (7),26,Zubimendi (4),7,4,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-16 21:11:44.261315+00:00,33,AN,waiver,unsuccessful - player out already gone,29.0,8.0,DEF,228,Gusto (3),225,James (0),3,0,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-17 12:22:00.676909+00:00,33,LD,free agent,successful,,,MID,418,Doku (8),457,Casemiro (5),8,5,3,3,free agent - successful
+Prem,2026-04-22 20:54:43.584172+00:00,34,AN,waiver,unsuccessful - player in already been picked up,12.0,4.0,MID,718,Xavi (3),160,Minteh (0),3,0,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-23 08:18:42.396550+00:00,34,LD,waiver,successful,42.0,11.0,GKP,729,Lammens (3),220,Sánchez (0),3,0,3,3,waiver - successful
+Prem,2026-04-23 13:49:29.647385+00:00,34,TS,waiver,successful,10.0,4.0,MID,718,Xavi (3),237,Enzo (0),3,0,3,3,waiver - successful
+Prem,2026-04-24 09:17:08.836886+00:00,34,TS,free agent,successful,,,DEF,606,Mavropanos (4),442,Maguire (7),4,7,-3,3,free agent - successful
+Prem,2026-04-24 11:55:58.225743+00:00,34,LB,free agent,successful,,,MID,646,J.Gomes (3),169,Gomez (0),3,0,3,3,free agent - successful
+Prem,2026-04-28 09:26:12.902060+00:00,35,LB,waiver,unsuccessful - player out already gone,14.0,2.0,DEF,74,Truffert (7),475,Botman (4),7,4,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-28 09:26:12.902083+00:00,35,LB,waiver,unsuccessful - player in already been picked up,15.0,3.0,FWD,691,Calvert-Lewin (6),597,Richarlison (9),6,9,-3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.824999+00:00,35,TS,waiver,successful,36.0,12.0,DEF,258,Mitchell (1),568,Pedro Porro (4),1,4,-3,3,waiver - successful
+Prem,2026-04-29 11:09:45.825056+00:00,35,TS,waiver,unsuccessful - player out already gone,41.0,15.0,DEF,261,Richards (1),568,Pedro Porro (4),1,4,-3,3,waiver - unsuccessful - player out already gone
+Prem,2026-04-30 14:04:14.477192+00:00,35,LD,waiver,unsuccessful - player in already been picked up,22.0,3.0,FWD,97,Evanilson (5),817,Armstrong (2),5,2,3,3,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-01 08:31:34.425269+00:00,35,JP,free agent,successful,,,DEF,707,Justin (2),36,Cash (5),2,5,-3,3,free agent - successful
+Prem,2026-05-08 05:22:35.964513+00:00,36,AN,waiver,successful,20.0,5.0,DEF,723,Canvot (4),293,O'Brien (1),4,1,3,3,waiver - successful
+Prem,2026-05-08 06:51:59.584740+00:00,36,TS,waiver,successful,6.0,1.0,DEF,7,Calafiori (1),261,Richards (4),1,4,-3,3,waiver - successful
+Prem,2026-05-08 08:42:41.351599+00:00,36,MN,waiver,successful,16.0,4.0,FWD,654,Strand Larsen (3),337,Raúl (0),3,0,3,3,waiver - successful
+Prem,2026-05-14 04:58:51.501063+00:00,37,AN,waiver,unsuccessful - player out already gone,6.0,3.0,MID,163,Hinshelwood (3),698,Okafor (0),3,0,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 12:07:26.522598+00:00,37,TS,waiver,successful,9.0,3.0,MID,708,M.Fernandes (4),381,M.Salah (1),4,1,3,3,waiver - successful
+Prem,2026-05-14 14:36:39.668011+00:00,37,MN,waiver,unsuccessful - player out already gone,14.0,4.0,DEF,106,Collins (3),343,Struijk (0),3,0,3,3,waiver - unsuccessful - player out already gone
+Prem,2026-05-22 22:19:30.763057+00:00,38,MN,waiver,unsuccessful - player in already been picked up,18.0,4.0,DEF,7,Calafiori (1),295,Keane (4),1,4,-3,3,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-20 19:47:54.044437+00:00,2,LD,waiver,unsuccessful - player in already been picked up,16.0,2.0,MID,427,Reijnders (2),19,Martinelli (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 18:06:59.259091+00:00,2,AN,waiver,successful,11.0,2.0,MID,21,Rice (6),267,Sarr (8),6,8,-2,2,waiver - successful
+Prem,2025-08-21 18:06:59.259199+00:00,2,AN,waiver,successful,24.0,7.0,DEF,37,Digne (2),38,Konsa (0),2,0,2,2,waiver - successful
+Prem,2025-08-21 18:06:59.259216+00:00,2,AN,waiver,unsuccessful - player out already gone,25.0,8.0,DEF,36,Cash (2),38,Konsa (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2025-08-21 18:40:35.916133+00:00,2,AN,free agent,successful,,,DEF,441,Dorgu (2),145,De Cuyper (0),2,0,2,2,free agent - successful
+Prem,2025-08-27 19:51:50.610053+00:00,3,AN,waiver,successful,10.0,2.0,MID,83,O.Dango (2),21,Rice (4),2,4,-2,2,waiver - successful
+Prem,2025-08-27 19:51:50.610075+00:00,3,AN,waiver,unsuccessful - player out already gone,17.0,3.0,MID,516,Hudson-Odoi (2),21,Rice (4),2,4,-2,2,waiver - unsuccessful - player out already gone
+Prem,2025-08-28 19:42:39.834929+00:00,3,MN,waiver,successful,12.0,3.0,MID,241,Caicedo (4),48,Tielemans (2),4,2,2,2,waiver - successful
+Prem,2025-08-29 09:29:58.452863+00:00,3,LB,waiver,unsuccessful - player in already been picked up,2.0,1.0,DEF,8,J.Timber (2),233,Acheampong (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-29 09:29:58.452908+00:00,3,LB,waiver,successful,3.0,2.0,FWD,561,Mayenda (2),30,Havertz (0),2,0,2,2,waiver - successful
+Prem,2025-08-29 09:55:53.500276+00:00,3,LD,waiver,unsuccessful - player in already been picked up,15.0,3.0,DEF,8,J.Timber (2),11,White (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-29 09:55:53.500329+00:00,3,LD,waiver,unsuccessful - player in already been picked up,22.0,6.0,MID,674,J.Palhinha (1),19,Martinelli (3),1,3,-2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-29 20:00:51.603702+00:00,3,AN,free agent,successful,,,MID,516,Hudson-Odoi (2),417,Cherki (0),2,0,2,2,free agent - successful
+Prem,2025-09-09 08:05:53.439569+00:00,4,TS,waiver,successful,6.0,1.0,DEF,72,Senesi (3),505,Milenković (1),3,1,2,2,waiver - successful
+Prem,2025-09-11 11:26:55.138408+00:00,4,MN,waiver,successful,3.0,1.0,FWD,311,Beto (2),251,N.Jackson (0),2,0,2,2,waiver - successful
+Prem,2025-09-11 11:26:55.138481+00:00,4,MN,waiver,successful,11.0,3.0,MID,387,Szoboszlai (3),486,Elanga (1),3,1,2,2,waiver - successful
+Prem,2025-09-11 16:18:05.669378+00:00,4,AN,waiver,unsuccessful - player in already been picked up,23.0,4.0,DEF,72,Senesi (3),441,Dorgu (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-11 16:18:05.669457+00:00,4,AN,waiver,successful,27.0,8.0,DEF,74,Truffert (2),507,Aina (0),2,0,2,2,waiver - successful
+Prem,2025-09-12 09:09:21.983788+00:00,4,JP,waiver,unsuccessful - player in already been picked up,21.0,5.0,DEF,72,Senesi (3),36,Cash (5),3,5,-2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-14 17:29:58.967954+00:00,5,LB,waiver,successful,2.0,1.0,DEF,408,Rúben (2),225,James (4),2,4,-2,2,waiver - successful
+Prem,2025-09-18 06:18:23.176507+00:00,5,AN,waiver,unsuccessful - player in already been picked up,10.0,2.0,MID,414,Foden (3),516,Hudson-Odoi (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-18 11:18:19.845763+00:00,5,TS,waiver,unsuccessful - player in already been picked up,14.0,3.0,DEF,408,Rúben (2),506,Murillo (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-18 14:28:36.161173+00:00,5,JP,waiver,successful,4.0,1.0,MID,414,Foden (3),18,Madueke (1),3,1,2,2,waiver - successful
+Prem,2025-09-19 07:30:13.226613+00:00,5,LD,waiver,unsuccessful - player in already been picked up,5.0,1.0,MID,414,Foden (3),580,Johnson (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-19 07:30:13.226667+00:00,5,LD,waiver,unsuccessful - player in already been picked up,6.0,2.0,DEF,408,Rúben (2),402,Aït-Nouri (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-19 07:30:13.226689+00:00,5,LD,waiver,successful,7.0,3.0,MID,418,Doku (3),580,Johnson (1),3,1,2,2,waiver - successful
+Prem,2025-09-27 06:10:24.526884+00:00,6,LB,free agent,successful,,,MID,324,Iwobi (2),452,Amad (0),2,0,2,2,free agent - successful
+Prem,2025-09-28 15:05:16.802143+00:00,7,AN,waiver,successful,1.0,1.0,MID,160,Minteh (2),157,Mitoma (0),2,0,2,2,waiver - successful
+Prem,2025-10-01 10:44:55.525596+00:00,7,LD,waiver,successful,5.0,1.0,DEF,38,Konsa (2),226,Chalobah (0),2,0,2,2,waiver - successful
+Prem,2025-10-01 20:01:57.400481+00:00,7,TS,waiver,unsuccessful - player in already been picked up,11.0,2.0,MID,160,Minteh (2),515,Gibbs-White (4),2,4,-2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-16 17:37:56.731042+00:00,8,LD,waiver,successful,9.0,3.0,MID,488,Bruno G. (2),237,Enzo (0),2,0,2,2,waiver - successful
+Prem,2025-10-17 10:53:04.598199+00:00,8,JP,free agent,successful,,,DEF,474,Schär (0),36,Cash (2),0,2,-2,2,free agent - successful
+Prem,2025-10-24 08:04:02.311662+00:00,9,LD,free agent,successful,,,MID,237,Enzo (2),390,Gravenberch (0),2,0,2,2,free agent - successful
+Prem,2025-10-24 14:41:10.866897+00:00,9,LD,free agent,successful,,,MID,236,Neto (8),488,Bruno G. (10),8,10,-2,2,free agent - successful
+Prem,2025-10-24 16:16:08.430777+00:00,9,JP,free agent,successful,,,MID,20,Trossard (3),712,Yeremy (1),3,1,2,2,free agent - successful
+Prem,2025-10-31 06:52:09.368032+00:00,10,JP,waiver,unsuccessful - player out already gone,10.0,3.0,DEF,36,Cash (0),603,Diouf (2),0,2,-2,2,waiver - unsuccessful - player out already gone
+Prem,2025-11-04 07:36:23.617779+00:00,11,LB,waiver,successful,1.0,1.0,MID,390,Gravenberch (2),485,Gordon (0),2,0,2,2,waiver - successful
+Prem,2025-11-07 07:02:33.396481+00:00,11,AN,waiver,unsuccessful - player in already been picked up,7.0,2.0,DEF,374,Konaté (1),683,Thiaw (3),1,3,-2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-11-21 07:41:43.533469+00:00,12,AN,waiver,successful,2.0,1.0,FWD,250,Delap (2),679,Šeško (0),2,0,2,2,waiver - successful
+Prem,2025-11-21 12:20:02.060810+00:00,12,MN,free agent,successful,,,MID,488,Bruno G. (10),674,J.Palhinha (8),10,8,2,2,free agent - successful
+Prem,2025-11-28 13:09:56.913365+00:00,13,LD,waiver,unsuccessful - player out already gone,10.0,3.0,MID,20,Trossard (0),324,Iwobi (2),0,2,-2,2,waiver - unsuccessful - player out already gone
+Prem,2025-11-28 13:09:56.913381+00:00,13,LD,waiver,successful,11.0,4.0,DEF,295,Keane (2),402,Aït-Nouri (0),2,0,2,2,waiver - successful
+Prem,2025-11-30 21:40:12.928666+00:00,14,MN,waiver,successful,8.0,5.0,MID,83,O.Dango (2),241,Caicedo (0),2,0,2,2,waiver - successful
+Prem,2025-12-04 03:12:28.928397+00:00,15,LD,waiver,successful,1.0,1.0,FWD,64,Watkins (2),100,Kroupi.Jr (0),2,0,2,2,waiver - successful
+Prem,2025-12-10 20:43:44.563502+00:00,16,TS,waiver,successful,5.0,1.0,DEF,10,Lewis-Skelly (1),683,Thiaw (3),1,3,-2,2,waiver - successful
+Prem,2025-12-10 20:43:44.563546+00:00,16,TS,waiver,unsuccessful - player out already gone,9.0,2.0,DEF,72,Senesi (1),683,Thiaw (3),1,3,-2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-11 20:33:50.450070+00:00,16,AN,waiver,successful,7.0,2.0,MID,718,Xavi (4),160,Minteh (2),4,2,2,2,waiver - successful
+Prem,2025-12-19 06:18:47.885931+00:00,17,AN,waiver,successful,13.0,3.0,DEF,370,Frimpong (4),145,De Cuyper (6),4,6,-2,2,waiver - successful
+Prem,2025-12-19 09:56:31.072984+00:00,17,LB,waiver,unsuccessful - player in already been picked up,4.0,1.0,MID,329,Wilson (2),299,Ndiaye (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 09:56:31.073054+00:00,17,LB,waiver,successful,5.0,2.0,MID,515,Gibbs-White (2),452,Amad (0),2,0,2,2,waiver - successful
+Prem,2025-12-19 09:56:31.073094+00:00,17,LB,waiver,unsuccessful - player out already gone,14.0,3.0,MID,84,Tavernier (2),452,Amad (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-19 10:03:24.900960+00:00,17,MN,waiver,successful,2.0,1.0,MID,329,Wilson (2),83,O.Dango (0),2,0,2,2,waiver - successful
+Prem,2025-12-19 10:03:24.901019+00:00,17,MN,waiver,unsuccessful - player out already gone,10.0,2.0,MID,84,Tavernier (2),83,O.Dango (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-19 10:03:24.901116+00:00,17,MN,waiver,successful,20.0,7.0,DEF,261,Richards (2),258,Mitchell (0),2,0,2,2,waiver - successful
+Prem,2025-12-19 10:22:00.073190+00:00,17,TS,waiver,unsuccessful - player in already been picked up,6.0,1.0,MID,329,Wilson (2),418,Doku (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 10:22:00.073294+00:00,17,TS,waiver,unsuccessful - player out already gone,23.0,5.0,DEF,682,Diakité (2),10,Lewis-Skelly (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-19 11:47:02.251938+00:00,17,LB,free agent,successful,,,MID,516,Hudson-Odoi (2),299,Ndiaye (0),2,0,2,2,free agent - successful
+Prem,2025-12-19 11:47:55.094804+00:00,17,TS,free agent,successful,,,DEF,682,Diakité (2),477,Livramento (0),2,0,2,2,free agent - successful
+Prem,2025-12-19 13:03:05.162120+00:00,17,TS,free agent,successful,,,FWD,526,Igor Jesus (2),654,Strand Larsen (0),2,0,2,2,free agent - successful
+Prem,2025-12-25 13:31:38.007084+00:00,18,MN,waiver,successful,10.0,3.0,MID,241,Caicedo (3),329,Wilson (5),3,5,-2,2,waiver - successful
+Prem,2025-12-25 14:51:06.963177+00:00,18,TS,waiver,unsuccessful - player out already gone,12.0,3.0,DEF,258,Mitchell (2),682,Diakité (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-25 14:51:06.963212+00:00,18,TS,waiver,successful,14.0,5.0,MID,386,Mac Allister (2),387,Szoboszlai (0),2,0,2,2,waiver - successful
+Prem,2025-12-26 08:45:46.627783+00:00,18,LB,free agent,successful,,,MID,664,Stach (4),516,Hudson-Odoi (2),4,2,2,2,free agent - successful
+Prem,2025-12-28 13:57:24.292099+00:00,19,LD,waiver,successful,1.0,1.0,FWD,30,Havertz (0),679,Šeško (2),0,2,-2,2,waiver - successful
+Prem,2025-12-28 20:29:51.918333+00:00,19,LB,waiver,successful,3.0,1.0,MID,329,Wilson (2),301,Alcaraz (0),2,0,2,2,waiver - successful
+Prem,2025-12-29 15:28:26.422564+00:00,19,TS,waiver,successful,6.0,2.0,MID,387,Szoboszlai (3),386,Mac Allister (1),3,1,2,2,waiver - successful
+Prem,2025-12-29 15:28:26.422620+00:00,19,TS,waiver,unsuccessful - player out already gone,15.0,3.0,MID,120,Schade (3),386,Mac Allister (1),3,1,2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 15:28:26.422933+00:00,19,TS,waiver,unsuccessful - player out already gone,26.0,13.0,DEF,505,Milenković (1),72,Senesi (3),1,3,-2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 15:28:26.422951+00:00,19,TS,waiver,unsuccessful - player out already gone,27.0,14.0,DEF,506,Murillo (1),72,Senesi (3),1,3,-2,2,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 16:17:33.156352+00:00,19,MN,waiver,successful,2.0,1.0,DEF,440,Dalot (2),113,Van den Berg (0),2,0,2,2,waiver - successful
+Prem,2025-12-29 16:17:33.156444+00:00,19,MN,waiver,unsuccessful - player in already been picked up,12.0,5.0,MID,329,Wilson (2),266,Eze (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-02 05:39:18.188909+00:00,20,LD,waiver,successful,1.0,1.0,DEF,293,O'Brien (0),228,Gusto (2),0,2,-2,2,waiver - successful
+Prem,2026-01-02 10:08:26.113976+00:00,20,TS,waiver,unsuccessful - player out already gone,9.0,4.0,DEF,151,Van Hecke (6),437,Martinez (4),6,4,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-01-16 10:58:15.761952+00:00,22,MN,waiver,successful,3.0,1.0,DEF,374,Konaté (2),403,Gvardiol (0),2,0,2,2,waiver - successful
+Prem,2026-01-16 10:58:15.762067+00:00,22,MN,waiver,successful,18.0,5.0,FWD,752,Mané (2),597,Richarlison (0),2,0,2,2,waiver - successful
+Prem,2026-01-16 13:08:11.166640+00:00,22,LB,free agent,successful,,,MID,718,Xavi (2),612,L.Paquetá (0),2,0,2,2,free agent - successful
+Prem,2026-01-23 21:13:56.193715+00:00,23,JP,free agent,successful,,,MID,299,Ndiaye (2),419,Grealish (0),2,0,2,2,free agent - successful
+Prem,2026-01-25 20:24:12.155022+00:00,24,TS,waiver,unsuccessful - player in already been picked up,7.0,1.0,DEF,38,Konsa (2),317,Andersen (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-28 07:51:14.188223+00:00,24,LD,waiver,successful,8.0,2.0,DEF,442,Maguire (2),575,Van de Ven (0),2,0,2,2,waiver - successful
+Prem,2026-01-29 17:11:13.159825+00:00,24,MN,waiver,successful,9.0,2.0,DEF,295,Keane (2),568,Pedro Porro (0),2,0,2,2,waiver - successful
+Prem,2026-01-29 17:11:13.159867+00:00,24,MN,waiver,unsuccessful - player out already gone,13.0,4.0,DEF,258,Mitchell (2),568,Pedro Porro (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-01-30 04:24:45.307270+00:00,24,AN,waiver,successful,4.0,1.0,DEF,38,Konsa (2),370,Frimpong (0),2,0,2,2,waiver - successful
+Prem,2026-01-30 09:43:13.179482+00:00,24,JP,waiver,successful,5.0,1.0,DEF,440,Dalot (2),11,White (0),2,0,2,2,waiver - successful
+Prem,2026-02-08 16:41:08.288711+00:00,26,AN,waiver,unsuccessful - player in already been picked up,16.0,5.0,DEF,694,Mukiele (2),569,Romero (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-09 07:18:03.580905+00:00,26,LB,waiver,successful,3.0,1.0,MID,19,Martinelli (3),236,Neto (1),3,1,2,2,waiver - successful
+Prem,2026-02-09 16:00:15.109686+00:00,26,TS,waiver,successful,4.0,1.0,DEF,261,Richards (0),148,F.Kadıoğlu (2),0,2,-2,2,waiver - successful
+Prem,2026-02-19 19:58:46.037254+00:00,27,JP,waiver,successful,6.0,1.0,MID,485,Gordon (2),17,Ødegaard (4),2,4,-2,2,waiver - successful
+Prem,2026-02-19 19:58:46.037323+00:00,27,JP,waiver,unsuccessful - player out already gone,13.0,3.0,MID,515,Gibbs-White (2),17,Ødegaard (4),2,4,-2,2,waiver - unsuccessful - player out already gone
+Prem,2026-02-20 12:26:07.541930+00:00,27,TS,waiver,successful,8.0,2.0,MID,387,Szoboszlai (3),18,Madueke (1),3,1,2,2,waiver - successful
+Prem,2026-02-20 12:26:07.542010+00:00,27,TS,waiver,successful,18.0,5.0,DEF,290,Branthwaite (2),257,Lacroix (0),2,0,2,2,waiver - successful
+Prem,2026-02-20 20:53:19.778916+00:00,27,LB,free agent,successful,,,MID,808,Rayan (3),19,Martinelli (1),3,1,2,2,free agent - successful
+Prem,2026-02-23 06:47:26.776315+00:00,28,LD,waiver,successful,1.0,1.0,MID,266,Eze (2),457,Casemiro (4),2,4,-2,2,waiver - successful
+Prem,2026-02-25 17:40:43.413337+00:00,28,TS,waiver,unsuccessful - player out already gone,9.0,2.0,DEF,77,Hill (2),694,Mukiele (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-03-02 20:13:19.668951+00:00,29,TS,free agent,successful,,,DEF,290,Branthwaite (6),77,Hill (8),6,8,-2,2,free agent - successful
+Prem,2026-03-13 09:31:39.435888+00:00,30,JP,waiver,successful,4.0,1.0,MID,267,Sarr (3),414,Foden (1),3,1,2,2,waiver - successful
+Prem,2026-03-13 11:20:24.481339+00:00,30,TS,waiver,successful,5.0,1.0,DEF,224,Cucurella (2),290,Branthwaite (0),2,0,2,2,waiver - successful
+Prem,2026-03-19 21:57:59.210744+00:00,31,MN,free agent,successful,,,MID,646,J.Gomes (0),84,Tavernier (2),0,2,-2,2,free agent - successful
+Prem,2026-03-20 16:04:54.705821+00:00,31,LD,free agent,successful,,,FWD,597,Richarlison (2),30,Havertz (0),2,0,2,2,free agent - successful
+Prem,2026-04-09 16:35:23.721626+00:00,32,TS,waiver,unsuccessful - player out already gone,10.0,3.0,DEF,77,Hill (3),317,Andersen (1),3,1,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:35:23.721641+00:00,32,TS,waiver,successful,11.0,4.0,DEF,77,Hill (3),477,Livramento (1),3,1,2,2,waiver - successful
+Prem,2026-04-09 16:35:23.721798+00:00,32,TS,waiver,unsuccessful - player out already gone,27.0,14.0,DEF,74,Truffert (4),370,Frimpong (6),4,6,-2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-09 16:35:23.721811+00:00,32,TS,waiver,successful,28.0,15.0,MID,84,Tavernier (2),237,Enzo (0),2,0,2,2,waiver - successful
+Prem,2026-04-09 16:57:03.027142+00:00,32,MN,waiver,successful,12.0,3.0,MID,303,Garner (3),386,Mac Allister (1),3,1,2,2,waiver - successful
+Prem,2026-04-09 16:57:03.027201+00:00,32,MN,waiver,unsuccessful - player out already gone,23.0,7.0,MID,160,Minteh (3),386,Mac Allister (1),3,1,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-14 12:16:38.414356+00:00,33,LD,waiver,successful,9.0,3.0,MID,236,Neto (4),390,Gravenberch (2),4,2,2,2,waiver - successful
+Prem,2026-04-15 14:16:07.795758+00:00,33,MN,waiver,successful,3.0,1.0,MID,421,Rodrigo (2),26,Zubimendi (4),2,4,-2,2,waiver - successful
+Prem,2026-04-15 14:16:07.795943+00:00,33,MN,waiver,unsuccessful - player in already been picked up,25.0,9.0,DEF,230,Fofana (2),374,Konaté (4),2,4,-2,2,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-15 14:16:07.795960+00:00,33,MN,waiver,successful,26.0,10.0,DEF,714,A.Jimenez (2),374,Konaté (4),2,4,-2,2,waiver - successful
+Prem,2026-04-16 10:26:34.118321+00:00,33,LB,waiver,successful,21.0,2.0,MID,173,Wieffer (2),593,P.M.Sarr (0),2,0,2,2,waiver - successful
+Prem,2026-04-16 21:11:44.261141+00:00,33,AN,waiver,successful,2.0,1.0,FWD,499,Isak (2),666,Ekitiké (0),2,0,2,2,waiver - successful
+Prem,2026-04-16 21:11:44.261260+00:00,33,AN,waiver,unsuccessful - player in already been picked up,13.0,5.0,MID,237,Enzo (4),487,Barnes (2),4,2,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-16 21:11:44.261279+00:00,33,AN,waiver,successful,14.0,6.0,MID,160,Minteh (4),487,Barnes (2),4,2,2,2,waiver - successful
+Prem,2026-04-16 21:11:44.261297+00:00,33,AN,waiver,successful,22.0,7.0,DEF,230,Fofana (2),225,James (0),2,0,2,2,waiver - successful
+Prem,2026-04-17 10:57:27.496493+00:00,33,AN,free agent,successful,,,FWD,250,Delap (4),525,Wood (2),4,2,2,2,free agent - successful
+Prem,2026-04-17 10:58:32.696403+00:00,33,AN,free agent,successful,,,FWD,525,Wood (2),250,Delap (4),2,4,-2,2,free agent - successful
+Prem,2026-04-18 05:32:07.943512+00:00,33,AN,free agent,successful,,,FWD,250,Delap (4),525,Wood (2),4,2,2,2,free agent - successful
+Prem,2026-04-22 20:54:43.584153+00:00,34,AN,waiver,successful,9.0,3.0,MID,120,Schade (2),160,Minteh (0),2,0,2,2,waiver - successful
+Prem,2026-04-22 20:54:43.584192+00:00,34,AN,waiver,unsuccessful - player out already gone,13.0,5.0,MID,488,Bruno G. (2),160,Minteh (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 08:18:42.396253+00:00,34,LD,waiver,successful,7.0,2.0,MID,54,McGinn (2),236,Neto (0),2,0,2,2,waiver - successful
+Prem,2026-04-23 08:18:42.396580+00:00,34,LD,waiver,successful,43.0,12.0,FWD,817,Armstrong (2),100,Kroupi.Jr (0),2,0,2,2,waiver - successful
+Prem,2026-04-23 13:49:29.647577+00:00,34,TS,waiver,unsuccessful - player out already gone,38.0,14.0,MID,708,M.Fernandes (2),237,Enzo (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 19:20:19.705069+00:00,34,MN,free agent,successful,,,DEF,636,S.Bueno (2),714,A.Jimenez (0),2,0,2,2,free agent - successful
+Prem,2026-04-29 11:09:45.824788+00:00,35,TS,waiver,unsuccessful - player out already gone,17.0,2.0,MID,416,Bernardo (2),718,Xavi (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-29 11:09:45.824981+00:00,35,TS,waiver,unsuccessful - player out already gone,35.0,11.0,DEF,258,Mitchell (1),606,Mavropanos (-1),1,-1,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-04-29 11:09:45.825038+00:00,35,TS,waiver,unsuccessful - player out already gone,40.0,14.0,DEF,261,Richards (1),606,Mavropanos (-1),1,-1,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-05-01 08:27:22.000801+00:00,35,JP,free agent,successful,,,MID,237,Enzo (2),485,Gordon (0),2,0,2,2,free agent - successful
+Prem,2026-05-08 05:22:35.964474+00:00,36,AN,waiver,successful,11.0,3.0,MID,387,Szoboszlai (2),382,Wirtz (0),2,0,2,2,waiver - successful
+Prem,2026-05-08 05:22:35.964494+00:00,36,AN,waiver,successful,17.0,4.0,MID,580,Johnson (4),120,Schade (2),4,2,2,2,waiver - successful
+Prem,2026-05-08 06:51:59.584788+00:00,36,TS,waiver,unsuccessful - player out already gone,12.0,2.0,DEF,10,Lewis-Skelly (6),261,Richards (4),6,4,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 04:58:51.501045+00:00,37,AN,waiver,unsuccessful - player out already gone,5.0,2.0,MID,584,Tel (2),698,Okafor (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 04:58:51.501172+00:00,37,AN,waiver,unsuccessful - player out already gone,18.0,9.0,MID,163,Hinshelwood (3),580,Johnson (1),3,1,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 04:58:51.501211+00:00,37,AN,waiver,successful,20.0,11.0,GKP,469,Pope (4),32,Martinez (2),4,2,2,2,waiver - successful
+Prem,2026-05-14 12:07:26.522466+00:00,37,TS,waiver,successful,3.0,1.0,DEF,660,Mosquera (6),7,Calafiori (8),6,8,-2,2,waiver - successful
+Prem,2026-05-14 12:07:26.522544+00:00,37,TS,waiver,unsuccessful - player in already been picked up,8.0,2.0,MID,20,Trossard (3),416,Bernardo (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-14 14:36:39.668067+00:00,37,MN,waiver,unsuccessful - player out already gone,21.0,7.0,DEF,318,Bassey (2),343,Struijk (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Prem,2026-05-15 09:06:47.645623+00:00,37,JP,free agent,successful,,,MID,17,Ødegaard (3),303,Garner (1),3,1,2,2,free agent - successful
+Prem,2026-05-23 11:43:51.008151+00:00,38,LB,waiver,successful,4.0,1.0,DEF,73,Smith (2),257,Lacroix (0),2,0,2,2,waiver - successful
+Prem,2026-05-23 13:11:08.395113+00:00,38,TS,waiver,successful,13.0,2.0,DEF,539,O'Nien (6),660,Mosquera (4),6,4,2,2,waiver - successful
+Prem,2026-05-24 10:15:25.900801+00:00,38,LD,free agent,successful,,,GKP,470,Dúbravka (0),139,Verbruggen (2),0,2,-2,2,free agent - successful
+Prem,2025-08-19 07:47:41.440765+00:00,2,LB,waiver,successful,12.0,2.0,DEF,410,Lewis (1),610,Wan-Bissaka (0),1,0,1,1,waiver - successful
+Prem,2025-08-20 19:47:54.044475+00:00,2,LD,waiver,unsuccessful - player in already been picked up,17.0,3.0,DEF,410,Lewis (1),372,Robertson (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-20 19:47:54.044496+00:00,2,LD,waiver,unsuccessful - player out already gone,18.0,4.0,DEF,409,Stones (1),372,Robertson (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2025-08-21 08:35:17.224063+00:00,2,MN,waiver,unsuccessful - player in already been picked up,3.0,1.0,MID,427,Reijnders (2),413,Marmoush (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 08:35:17.224114+00:00,2,MN,waiver,unsuccessful - player in already been picked up,4.0,2.0,FWD,679,Šeško (1),178,Welbeck (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 15:24:17.668085+00:00,2,JP,waiver,unsuccessful - player in already been picked up,6.0,1.0,MID,427,Reijnders (2),418,Doku (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 18:06:59.259181+00:00,2,AN,waiver,unsuccessful - player out already gone,23.0,6.0,DEF,441,Dorgu (2),10,Lewis-Skelly (1),2,1,1,1,waiver - unsuccessful - player out already gone
+Prem,2025-08-21 19:11:55.173348+00:00,2,LB,free agent,successful,,,DEF,233,Acheampong (0),507,Aina (1),0,1,-1,1,free agent - successful
+Prem,2025-08-27 19:51:50.609997+00:00,3,AN,waiver,successful,1.0,1.0,DEF,8,J.Timber (2),37,Digne (1),2,1,1,1,waiver - successful
+Prem,2025-08-28 16:37:15.675868+00:00,3,JP,waiver,unsuccessful - player in already been picked up,7.0,1.0,DEF,8,J.Timber (2),191,Estève (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-28 16:37:15.675940+00:00,3,JP,waiver,unsuccessful - player out already gone,13.0,3.0,DEF,36,Cash (0),191,Estève (1),0,1,-1,1,waiver - unsuccessful - player out already gone
+Prem,2025-08-28 19:42:39.834949+00:00,3,MN,waiver,unsuccessful - player in already been picked up,20.0,4.0,MID,674,J.Palhinha (1),48,Tielemans (2),1,2,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-29 09:55:53.500255+00:00,3,LD,waiver,unsuccessful - player out already gone,14.0,2.0,MID,18,Madueke (2),19,Martinelli (3),2,3,-1,1,waiver - unsuccessful - player out already gone
+Prem,2025-08-29 09:55:53.500312+00:00,3,LD,waiver,unsuccessful - player in already been picked up,21.0,5.0,DEF,575,Van de Ven (1),11,White (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-29 20:36:38.351469+00:00,3,JP,free agent,successful,,,DEF,36,Cash (0),575,Van de Ven (1),0,1,-1,1,free agent - successful
+Prem,2025-09-11 11:26:55.138462+00:00,4,MN,waiver,unsuccessful - player out already gone,10.0,2.0,FWD,136,Thiago (1),251,N.Jackson (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2025-09-11 16:18:05.669403+00:00,4,AN,waiver,unsuccessful - player out already gone,24.0,5.0,DEF,74,Truffert (2),441,Dorgu (1),2,1,1,1,waiver - unsuccessful - player out already gone
+Prem,2025-09-11 16:18:05.669421+00:00,4,AN,waiver,unsuccessful - player out already gone,25.0,6.0,DEF,682,Diakité (0),441,Dorgu (1),0,1,-1,1,waiver - unsuccessful - player out already gone
+Prem,2025-09-12 09:09:21.983769+00:00,4,JP,waiver,unsuccessful - player in already been picked up,20.0,4.0,DEF,260,Guéhi (6),36,Cash (5),6,5,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-12 10:20:49.724517+00:00,4,LB,free agent,successful,,,FWD,136,Thiago (1),250,Delap (0),1,0,1,1,free agent - successful
+Prem,2025-09-18 06:18:23.176543+00:00,5,AN,waiver,successful,12.0,4.0,DEF,38,Konsa (2),409,Stones (1),2,1,1,1,waiver - successful
+Prem,2025-09-18 11:18:19.845658+00:00,5,TS,waiver,unsuccessful - player in already been picked up,8.0,1.0,MID,414,Foden (3),515,Gibbs-White (2),3,2,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-09-18 14:28:36.161216+00:00,5,JP,waiver,successful,13.0,2.0,GKP,314,Leno (1),182,Trafford (0),1,0,1,1,waiver - successful
+Prem,2025-09-19 20:26:52.728767+00:00,5,MN,free agent,successful,,,MID,26,Zubimendi (2),387,Szoboszlai (1),2,1,1,1,free agent - successful
+Prem,2025-09-30 16:41:27.947702+00:00,7,LB,waiver,successful,3.0,1.0,MID,485,Gordon (3),324,Iwobi (2),3,2,1,1,waiver - successful
+Prem,2025-10-01 10:44:55.525694+00:00,7,LD,waiver,successful,10.0,4.0,MID,54,McGinn (3),236,Neto (2),3,2,1,1,waiver - successful
+Prem,2025-10-01 20:01:57.400508+00:00,7,TS,waiver,unsuccessful - player in already been picked up,12.0,3.0,MID,485,Gordon (3),515,Gibbs-White (4),3,4,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-02 21:48:54.988196+00:00,7,JP,free agent,successful,,,MID,712,Yeremy (1),669,Ndoye (2),1,2,-1,1,free agent - successful
+Prem,2025-10-03 06:28:33.921928+00:00,7,LD,free agent,successful,,,DEF,37,Digne (1),40,Mings (0),1,0,1,1,free agent - successful
+Prem,2025-10-12 17:16:51.407641+00:00,8,AN,waiver,successful,5.0,2.0,DEF,475,Botman (1),575,Van de Ven (0),1,0,1,1,waiver - successful
+Prem,2025-10-16 17:37:56.731019+00:00,8,LD,waiver,unsuccessful - player in already been picked up,8.0,2.0,DEF,226,Chalobah (6),37,Digne (5),6,5,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-17 08:53:28.137287+00:00,8,TS,waiver,successful,4.0,1.0,GKP,367,Mamardashvili (1),32,Martinez (2),1,2,-1,1,waiver - successful
+Prem,2025-10-24 14:34:02.069172+00:00,9,LD,free agent,successful,,,MID,200,Anthony (2),54,McGinn (3),2,3,-1,1,free agent - successful
+Prem,2025-10-31 06:52:09.368046+00:00,10,JP,waiver,unsuccessful - player in already been picked up,11.0,4.0,DEF,477,Livramento (0),682,Diakité (1),0,1,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-31 08:20:59.410765+00:00,10,MN,waiver,unsuccessful - player in already been picked up,4.0,1.0,DEF,575,Van de Ven (2),569,Romero (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-31 08:20:59.410825+00:00,10,MN,waiver,unsuccessful - player out already gone,12.0,3.0,DEF,36,Cash (0),569,Romero (1),0,1,-1,1,waiver - unsuccessful - player out already gone
+Prem,2025-10-31 14:22:21.447011+00:00,10,LD,free agent,successful,,,MID,324,Iwobi (3),418,Doku (2),3,2,1,1,free agent - successful
+Prem,2025-10-31 14:23:04.013429+00:00,10,JP,free agent,successful,,,DEF,36,Cash (0),682,Diakité (1),0,1,-1,1,free agent - successful
+Prem,2025-11-04 07:36:23.617833+00:00,11,LB,waiver,successful,6.0,2.0,MID,387,Szoboszlai (1),47,Rogers (2),1,2,-1,1,waiver - successful
+Prem,2025-11-07 07:02:33.396419+00:00,11,AN,waiver,successful,4.0,1.0,MID,417,Cherki (1),81,Kluivert (2),1,2,-1,1,waiver - successful
+Prem,2025-11-08 22:04:45.182225+00:00,12,LB,waiver,successful,3.0,1.0,FWD,215,Flemming (2),217,Foster (1),2,1,1,1,waiver - successful
+Prem,2025-11-17 18:03:04.480868+00:00,12,TS,waiver,successful,4.0,1.0,MID,418,Doku (2),267,Sarr (3),2,3,-1,1,waiver - successful
+Prem,2025-11-21 07:41:43.533585+00:00,12,AN,waiver,successful,7.0,4.0,DEF,473,Hall (2),475,Botman (1),2,1,1,1,waiver - successful
+Prem,2025-11-27 12:20:01.254102+00:00,13,LB,waiver,unsuccessful - player out already gone,12.0,3.0,DEF,508,N.Williams (1),233,Acheampong (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2025-11-28 12:51:29.103706+00:00,13,AN,waiver,unsuccessful - player in already been picked up,8.0,3.0,DEF,506,Murillo (0),74,Truffert (1),0,1,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-11-28 13:09:56.913298+00:00,13,LD,waiver,successful,1.0,1.0,MID,267,Sarr (1),324,Iwobi (2),1,2,-1,1,waiver - successful
+Prem,2025-11-28 13:09:56.913346+00:00,13,LD,waiver,successful,5.0,2.0,FWD,671,Wilson (2),666,Ekitiké (1),2,1,1,1,waiver - successful
+Prem,2025-11-29 20:17:55.118271+00:00,14,AN,waiver,successful,2.0,1.0,FWD,666,Ekitiké (1),735,Kolo Muani (2),1,2,-1,1,waiver - successful
+Prem,2025-11-30 21:40:12.928557+00:00,14,MN,waiver,successful,3.0,1.0,GKP,139,Verbruggen (1),101,Kelleher (2),1,2,-1,1,waiver - successful
+Prem,2025-12-02 10:56:58.052983+00:00,14,TS,free agent,successful,,,DEF,683,Thiaw (1),72,Senesi (0),1,0,1,1,free agent - successful
+Prem,2025-12-05 09:12:22.691386+00:00,15,TS,waiver,unsuccessful - player in already been picked up,3.0,1.0,FWD,64,Watkins (2),654,Strand Larsen (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-11 20:33:50.450134+00:00,16,AN,waiver,unsuccessful - player out already gone,12.0,5.0,DEF,370,Frimpong (0),37,Digne (1),0,1,-1,1,waiver - unsuccessful - player out already gone
+Prem,2025-12-12 07:08:17.127310+00:00,16,LB,waiver,successful,4.0,2.0,MID,455,Mount (2),387,Szoboszlai (3),2,3,-1,1,waiver - successful
+Prem,2025-12-12 17:15:21.119945+00:00,16,AN,free agent,successful,,,FWD,284,Nketiah (1),250,Delap (0),1,0,1,1,free agent - successful
+Prem,2025-12-19 09:47:38.251704+00:00,17,LD,waiver,successful,1.0,1.0,MID,381,M.Salah (0),22,Merino (1),0,1,-1,1,waiver - successful
+Prem,2025-12-19 10:03:24.901041+00:00,17,MN,waiver,successful,11.0,3.0,DEF,374,Konaté (1),476,Burn (0),1,0,1,1,waiver - successful
+Prem,2025-12-19 10:22:00.073261+00:00,17,TS,waiver,successful,8.0,3.0,MID,387,Szoboszlai (1),418,Doku (0),1,0,1,1,waiver - successful
+Prem,2025-12-19 10:22:00.073309+00:00,17,TS,waiver,unsuccessful - player in already been picked up,24.0,6.0,DEF,374,Konaté (1),477,Livramento (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-19 14:32:50.222389+00:00,17,JP,free agent,successful,,,DEF,683,Thiaw (1),11,White (0),1,0,1,1,free agent - successful
+Prem,2025-12-26 11:16:50.682884+00:00,18,AN,free agent,successful,,,FWD,135,Wissa (1),283,Mateta (2),1,2,-1,1,free agent - successful
+Prem,2025-12-28 20:29:51.918383+00:00,19,LB,waiver,successful,14.0,2.0,DEF,441,Dorgu (2),508,N.Williams (1),2,1,1,1,waiver - successful
+Prem,2025-12-29 15:28:26.422484+00:00,19,TS,waiver,unsuccessful - player in already been picked up,5.0,1.0,MID,329,Wilson (2),386,Mac Allister (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-29 15:28:26.422879+00:00,19,TS,waiver,unsuccessful - player in already been picked up,24.0,11.0,DEF,474,Schär (4),72,Senesi (3),4,3,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-29 15:28:26.422907+00:00,19,TS,waiver,successful,25.0,12.0,DEF,437,Martinez (2),72,Senesi (3),2,3,-1,1,waiver - successful
+Prem,2025-12-29 16:17:33.156414+00:00,19,MN,waiver,unsuccessful - player in already been picked up,10.0,3.0,MID,427,Reijnders (1),266,Eze (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-29 16:17:33.156473+00:00,19,MN,waiver,unsuccessful - player in already been picked up,19.0,7.0,MID,329,Wilson (2),241,Caicedo (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-30 11:40:06.444936+00:00,19,JP,free agent,successful,,,MID,580,Johnson (0),419,Grealish (1),0,1,-1,1,free agent - successful
+Prem,2026-01-02 08:22:00.036179+00:00,20,AN,waiver,successful,3.0,1.0,MID,418,Doku (1),160,Minteh (0),1,0,1,1,waiver - successful
+Prem,2026-01-02 08:22:00.036236+00:00,20,AN,waiver,successful,7.0,2.0,MID,485,Gordon (2),487,Barnes (1),2,1,1,1,waiver - successful
+Prem,2026-01-02 10:08:26.113898+00:00,20,TS,waiver,unsuccessful - player in already been picked up,4.0,1.0,MID,418,Doku (1),387,Szoboszlai (2),1,2,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-02 15:23:00.684257+00:00,20,AN,free agent,successful,,,DEF,569,Romero (2),371,Kerkez (1),2,1,1,1,free agent - successful
+Prem,2026-01-05 15:29:40.398190+00:00,21,MN,waiver,successful,7.0,2.0,MID,125,Janelt (7),120,Schade (6),7,6,1,1,waiver - successful
+Prem,2026-01-05 17:14:15.766729+00:00,21,JP,waiver,successful,4.0,1.0,MID,419,Grealish (-1),582,Kudus (0),-1,0,-1,1,waiver - successful
+Prem,2026-01-15 11:10:09.882097+00:00,22,TS,waiver,unsuccessful - player in already been picked up,6.0,1.0,DEF,374,Konaté (2),684,Alderete (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-15 11:10:09.882143+00:00,22,TS,waiver,successful,7.0,2.0,DEF,258,Mitchell (0),684,Alderete (1),0,1,-1,1,waiver - successful
+Prem,2026-01-15 13:10:19.482483+00:00,22,LD,waiver,successful,2.0,1.0,MID,266,Eze (1),390,Gravenberch (2),1,2,-1,1,waiver - successful
+Prem,2026-01-15 16:42:01.860314+00:00,22,JP,waiver,unsuccessful - player out already gone,13.0,2.0,FWD,596,Solanke (1),499,Isak (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-01-15 16:42:01.860337+00:00,22,JP,waiver,unsuccessful - player out already gone,14.0,3.0,FWD,792,Taty (1),499,Isak (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-01-17 07:24:34.725265+00:00,22,AN,free agent,successful,,,MID,160,Minteh (1),418,Doku (2),1,2,-1,1,free agent - successful
+Prem,2026-01-21 10:00:26.379120+00:00,23,JP,waiver,successful,3.0,1.0,FWD,596,Solanke (2),679,Šeško (1),2,1,1,1,waiver - successful
+Prem,2026-01-22 13:36:19.497926+00:00,23,MN,waiver,successful,2.0,1.0,DEF,228,Gusto (1),374,Konaté (0),1,0,1,1,waiver - successful
+Prem,2026-01-22 13:36:19.498003+00:00,23,MN,waiver,successful,6.0,2.0,DEF,151,Van Hecke (1),295,Keane (0),1,0,1,1,waiver - successful
+Prem,2026-01-22 13:36:19.498115+00:00,23,MN,waiver,unsuccessful - player out already gone,10.0,5.0,FWD,671,Wilson (1),752,Mané (2),1,2,-1,1,waiver - unsuccessful - player out already gone
+Prem,2026-01-31 07:10:03.377162+00:00,24,MN,free agent,successful,,,DEF,258,Mitchell (2),106,Collins (1),2,1,1,1,free agent - successful
+Prem,2026-02-05 14:54:21.082158+00:00,25,TS,waiver,successful,5.0,1.0,MID,18,Madueke (1),515,Gibbs-White (2),1,2,-1,1,waiver - successful
+Prem,2026-02-05 14:54:21.082200+00:00,25,TS,waiver,successful,6.0,2.0,DEF,148,F.Kadıoğlu (2),694,Mukiele (1),2,1,1,1,waiver - successful
+Prem,2026-02-05 17:57:43.444031+00:00,25,MN,waiver,unsuccessful - player in already been picked up,3.0,1.0,FWD,100,Kroupi.Jr (2),178,Welbeck (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-06 11:11:13.594852+00:00,25,MN,free agent,successful,,,DEF,720,Hincapie (1),228,Gusto (2),1,2,-1,1,free agent - successful
+Prem,2026-02-06 14:27:12.286867+00:00,25,TS,free agent,successful,,,FWD,654,Strand Larsen (1),283,Mateta (0),1,0,1,1,free agent - successful
+Prem,2026-02-08 16:41:08.288601+00:00,26,AN,waiver,successful,2.0,1.0,FWD,31,G.Jesus (0),526,Igor Jesus (1),0,1,-1,1,waiver - successful
+Prem,2026-02-08 16:41:08.288673+00:00,26,AN,waiver,successful,11.0,3.0,DEF,440,Dalot (1),569,Romero (0),1,0,1,1,waiver - successful
+Prem,2026-02-09 09:27:25.512849+00:00,26,MN,waiver,successful,1.0,1.0,DEF,374,Konaté (6),151,Van Hecke (5),6,5,1,1,waiver - successful
+Prem,2026-02-09 09:27:25.512904+00:00,26,MN,waiver,successful,5.0,2.0,GKP,67,Petrović (3),139,Verbruggen (2),3,2,1,1,waiver - successful
+Prem,2026-02-09 09:27:25.512946+00:00,26,MN,waiver,successful,14.0,4.0,FWD,337,Raúl (1),178,Welbeck (2),1,2,-1,1,waiver - successful
+Prem,2026-02-19 19:58:46.037303+00:00,27,JP,waiver,unsuccessful - player in already been picked up,12.0,2.0,MID,387,Szoboszlai (3),17,Ødegaard (4),3,4,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-19 19:58:46.037341+00:00,27,JP,waiver,unsuccessful - player in already been picked up,14.0,4.0,MID,387,Szoboszlai (3),26,Zubimendi (2),3,2,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-20 05:17:35.603956+00:00,27,AN,waiver,successful,4.0,1.0,FWD,250,Delap (1),31,G.Jesus (0),1,0,1,1,waiver - successful
+Prem,2026-02-20 12:26:07.541959+00:00,27,TS,waiver,unsuccessful - player in already been picked up,16.0,3.0,MID,485,Gordon (2),18,Madueke (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-25 07:33:08.296727+00:00,28,LB,waiver,successful,8.0,2.0,FWD,806,Abraham (1),691,Calvert-Lewin (2),1,2,-1,1,waiver - successful
+Prem,2026-03-01 23:05:18.833841+00:00,29,LB,waiver,successful,4.0,2.0,FWD,215,Flemming (0),806,Abraham (1),0,1,-1,1,waiver - successful
+Prem,2026-03-02 18:54:12.424947+00:00,29,MN,free agent,successful,,,DEF,295,Keane (1),257,Lacroix (0),1,0,1,1,free agent - successful
+Prem,2026-03-02 18:55:54.298664+00:00,29,MN,free agent,successful,,,MID,84,Tavernier (2),90,Scott (3),2,3,-1,1,free agent - successful
+Prem,2026-03-03 17:39:22.152350+00:00,29,LB,free agent,successful,,,DEF,318,Bassey (1),441,Dorgu (0),1,0,1,1,free agent - successful
+Prem,2026-03-11 20:14:05.483283+00:00,30,MN,waiver,unsuccessful - player in already been picked up,7.0,3.0,DEF,106,Collins (0),38,Konsa (1),0,1,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-03-11 20:14:05.483328+00:00,30,MN,waiver,successful,11.0,6.0,FWD,526,Igor Jesus (2),310,Barry (1),2,1,1,1,waiver - successful
+Prem,2026-03-11 20:14:05.483342+00:00,30,MN,waiver,unsuccessful - player in already been picked up,14.0,7.0,FWD,691,Calvert-Lewin (0),310,Barry (1),0,1,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-03-13 11:20:24.481385+00:00,30,TS,waiver,successful,9.0,2.0,FWD,691,Calvert-Lewin (0),654,Strand Larsen (1),0,1,-1,1,waiver - successful
+Prem,2026-03-17 20:50:21.478703+00:00,31,LB,waiver,successful,2.0,1.0,MID,593,P.M.Sarr (2),120,Schade (3),2,3,-1,1,waiver - successful
+Prem,2026-03-18 18:05:12.716842+00:00,31,LD,waiver,successful,1.0,1.0,MID,457,Casemiro (1),20,Trossard (0),1,0,1,1,waiver - successful
+Prem,2026-03-19 09:37:37.271259+00:00,31,JP,waiver,successful,3.0,1.0,GKP,314,Leno (3),565,Vicario (2),3,2,1,1,waiver - successful
+Prem,2026-03-19 09:37:37.271318+00:00,31,JP,waiver,unsuccessful - player in already been picked up,6.0,2.0,DEF,477,Livramento (1),408,Rúben (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-03-19 09:37:37.271340+00:00,31,JP,waiver,unsuccessful - player in already been picked up,7.0,3.0,MID,457,Casemiro (1),267,Sarr (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-03-19 15:47:07.842653+00:00,31,TS,waiver,successful,8.0,2.0,GKP,673,Ramsdale (2),139,Verbruggen (3),2,3,-1,1,waiver - successful
+Prem,2026-03-19 21:59:29.270767+00:00,31,MN,free agent,successful,,,MID,386,Mac Allister (1),646,J.Gomes (0),1,0,1,1,free agent - successful
+Prem,2026-03-20 12:23:47.298147+00:00,31,JP,free agent,successful,,,DEF,575,Van de Ven (1),226,Chalobah (0),1,0,1,1,free agent - successful
+Prem,2026-03-20 16:06:04.466060+00:00,31,LD,free agent,successful,,,DEF,568,Pedro Porro (1),261,Richards (0),1,0,1,1,free agent - successful
+Prem,2026-03-24 07:18:51.781041+00:00,32,AN,waiver,successful,2.0,1.0,DEF,507,Aina (2),402,Aït-Nouri (1),2,1,1,1,waiver - successful
+Prem,2026-04-02 03:37:17.166570+00:00,32,LD,waiver,successful,1.0,1.0,FWD,311,Beto (7),100,Kroupi.Jr (6),7,6,1,1,waiver - successful
+Prem,2026-04-09 16:35:23.721562+00:00,32,TS,waiver,successful,5.0,1.0,DEF,224,Cucurella (0),317,Andersen (1),0,1,-1,1,waiver - successful
+Prem,2026-04-09 16:35:23.721687+00:00,32,TS,waiver,unsuccessful - player in already been picked up,15.0,7.0,DEF,151,Van Hecke (5),370,Frimpong (6),5,6,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-16 10:26:34.118343+00:00,33,LB,waiver,unsuccessful - player in already been picked up,27.0,3.0,DEF,230,Fofana (2),6,Saliba (3),2,3,-1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-16 21:11:44.261197+00:00,33,AN,waiver,unsuccessful - player in already been picked up,10.0,2.0,FWD,283,Mateta (1),666,Ekitiké (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-16 21:11:44.261219+00:00,33,AN,waiver,unsuccessful - player in already been picked up,11.0,3.0,FWD,283,Mateta (1),135,Wissa (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-16 21:11:44.261332+00:00,33,AN,waiver,unsuccessful - player out already gone,30.0,9.0,MID,238,Estêvão (1),487,Barnes (2),1,2,-1,1,waiver - unsuccessful - player out already gone
+Prem,2026-04-17 07:32:23.284781+00:00,33,JP,waiver,successful,5.0,2.0,FWD,283,Mateta (1),596,Solanke (2),1,2,-1,1,waiver - successful
+Prem,2026-04-17 10:49:06.944407+00:00,33,AN,free agent,successful,,,FWD,715,Woltemade (1),135,Wissa (0),1,0,1,1,free agent - successful
+Prem,2026-04-17 10:51:09.664188+00:00,33,AN,free agent,successful,,,FWD,525,Wood (2),735,Kolo Muani (1),2,1,1,1,free agent - successful
+Prem,2026-04-17 12:22:47.023439+00:00,33,LD,free agent,successful,,,DEF,694,Mukiele (-1),442,Maguire (0),-1,0,-1,1,free agent - successful
+Prem,2026-04-18 06:09:45.927679+00:00,33,JP,free agent,successful,,,DEF,672,Hato (2),575,Van de Ven (1),2,1,1,1,free agent - successful
+Prem,2026-04-22 20:54:43.584069+00:00,34,AN,waiver,successful,3.0,1.0,FWD,596,Solanke (1),250,Delap (0),1,0,1,1,waiver - successful
+Prem,2026-04-22 20:54:43.584266+00:00,34,AN,waiver,unsuccessful - player out already gone,21.0,9.0,DEF,370,Frimpong (1),226,Chalobah (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-04-22 20:54:43.584303+00:00,34,AN,waiver,successful,23.0,11.0,DEF,293,O'Brien (1),342,Bogle (0),1,0,1,1,waiver - successful
+Prem,2026-04-22 20:54:43.584356+00:00,34,AN,waiver,unsuccessful - player out already gone,31.0,14.0,DEF,370,Frimpong (1),342,Bogle (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-04-22 20:54:43.584373+00:00,34,AN,waiver,unsuccessful - player out already gone,32.0,15.0,DEF,371,Kerkez (1),342,Bogle (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 08:18:42.396491+00:00,34,LD,waiver,unsuccessful - player out already gone,40.0,9.0,MID,390,Gravenberch (1),236,Neto (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 08:18:42.396522+00:00,34,LD,waiver,unsuccessful - player out already gone,41.0,10.0,MID,452,Amad (1),236,Neto (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 13:49:29.647344+00:00,34,TS,waiver,unsuccessful - player in already been picked up,5.0,2.0,FWD,596,Solanke (1),691,Calvert-Lewin (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-24 12:03:41.547159+00:00,34,LB,free agent,successful,,,MID,390,Gravenberch (1),173,Wieffer (0),1,0,1,1,free agent - successful
+Prem,2026-04-28 09:26:12.902128+00:00,35,LB,waiver,successful,26.0,5.0,MID,664,Stach (10),458,Mainoo (9),10,9,1,1,waiver - successful
+Prem,2026-04-28 20:10:41.208306+00:00,35,AN,waiver,successful,13.0,5.0,DEF,370,Frimpong (1),507,Aina (0),1,0,1,1,waiver - successful
+Prem,2026-04-28 20:10:41.208434+00:00,35,AN,waiver,unsuccessful - player in already been picked up,38.0,12.0,DEF,74,Truffert (7),293,O'Brien (6),7,6,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.824909+00:00,35,TS,waiver,unsuccessful - player in already been picked up,27.0,7.0,FWD,525,Wood (1),30,Havertz (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-30 14:04:14.477167+00:00,35,LD,waiver,successful,7.0,2.0,MID,517,Anderson (1),381,M.Salah (0),1,0,1,1,waiver - successful
+Prem,2026-04-30 16:53:41.370498+00:00,35,MN,waiver,successful,2.0,1.0,MID,488,Bruno G. (6),303,Garner (5),6,5,1,1,waiver - successful
+Prem,2026-05-07 16:16:06.290961+00:00,36,LD,waiver,successful,15.0,4.0,DEF,568,Pedro Porro (1),374,Konaté (2),1,2,-1,1,waiver - successful
+Prem,2026-05-08 05:22:35.964386+00:00,36,AN,waiver,successful,3.0,1.0,FWD,500,Osula (2),499,Isak (1),2,1,1,1,waiver - successful
+Prem,2026-05-08 06:51:59.584838+00:00,36,TS,waiver,unsuccessful - player in already been picked up,21.0,5.0,FWD,100,Kroupi.Jr (2),30,Havertz (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-08 15:00:55.760317+00:00,36,TS,free agent,successful,,,MID,381,M.Salah (0),119,Mbeumo (1),0,1,-1,1,free agent - successful
+Prem,2026-05-08 19:48:12.601999+00:00,36,JP,free agent,successful,,,MID,303,Garner (1),350,Aaronson (2),1,2,-1,1,free agent - successful
+Prem,2026-05-14 04:58:51.501079+00:00,37,AN,waiver,successful,7.0,4.0,DEF,476,Burn (1),11,White (0),1,0,1,1,waiver - successful
+Prem,2026-05-14 04:58:51.501123+00:00,37,AN,waiver,successful,13.0,7.0,DEF,293,O'Brien (0),440,Dalot (1),0,1,-1,1,waiver - successful
+Prem,2026-05-14 04:58:51.501137+00:00,37,AN,waiver,successful,16.0,8.0,MID,584,Tel (2),580,Johnson (1),2,1,1,1,waiver - successful
+Prem,2026-05-14 04:58:51.501196+00:00,37,AN,waiver,unsuccessful - player out already gone,19.0,10.0,DEF,145,De Cuyper (2),440,Dalot (1),2,1,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 14:36:39.668030+00:00,37,MN,waiver,successful,15.0,5.0,DEF,106,Collins (3),148,F.Kadıoğlu (2),3,2,1,1,waiver - successful
+Prem,2026-05-20 07:23:34.422238+00:00,38,AN,waiver,successful,3.0,1.0,DEF,145,De Cuyper (0),293,O'Brien (1),0,1,-1,1,waiver - successful
+Prem,2026-05-20 07:23:34.422331+00:00,38,AN,waiver,successful,16.0,4.0,DEF,440,Dalot (0),370,Frimpong (1),0,1,-1,1,waiver - successful
+Prem,2026-05-20 07:23:34.422349+00:00,38,AN,waiver,unsuccessful - player out already gone,20.0,5.0,DEF,37,Digne (0),370,Frimpong (1),0,1,-1,1,waiver - unsuccessful - player out already gone
+Prem,2026-05-20 07:23:34.422367+00:00,38,AN,waiver,unsuccessful - player out already gone,21.0,6.0,DEF,636,S.Bueno (2),370,Frimpong (1),2,1,1,1,waiver - unsuccessful - player out already gone
+Prem,2026-05-23 13:11:08.395135+00:00,38,TS,waiver,successful,17.0,3.0,MID,814,Angulo (1),544,Diarra (0),1,0,1,1,waiver - successful
+Prem,2026-05-23 13:49:34.232726+00:00,38,MN,free agent,successful,,,DEF,77,Hill (3),295,Keane (4),3,4,-1,1,free agent - successful
+Prem,2026-05-23 13:49:59.444938+00:00,38,MN,free agent,successful,,,DEF,191,Estève (0),151,Van Hecke (1),0,1,-1,1,free agent - successful
+Prem,2026-05-23 19:25:57.967470+00:00,38,AN,free agent,successful,,,MID,413,Marmoush (0),417,Cherki (1),0,1,-1,1,free agent - successful
+Prem,2026-05-24 07:25:37.769260+00:00,38,AN,free agent,successful,,,DEF,409,Stones (3),694,Mukiele (4),3,4,-1,1,free agent - successful
+Prem,2025-08-19 07:47:41.440788+00:00,2,LB,waiver,unsuccessful - player out already gone,20.0,3.0,DEF,233,Acheampong (0),610,Wan-Bissaka (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-08-21 07:08:55.949792+00:00,2,TS,waiver,unsuccessful - player in already been picked up,8.0,1.0,MID,427,Reijnders (2),515,Gibbs-White (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 15:24:17.668167+00:00,2,JP,waiver,unsuccessful - player in already been picked up,14.0,4.0,FWD,679,Šeško (1),596,Solanke (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-21 18:06:59.259043+00:00,2,AN,waiver,successful,1.0,1.0,FWD,679,Šeško (1),337,Raúl (1),1,1,0,0,waiver - successful
+Prem,2025-08-21 18:06:59.259113+00:00,2,AN,waiver,successful,19.0,3.0,DEF,409,Stones (1),10,Lewis-Skelly (1),1,1,0,0,waiver - successful
+Prem,2025-08-21 18:06:59.259132+00:00,2,AN,waiver,unsuccessful - player in already been picked up,21.0,4.0,DEF,410,Lewis (1),10,Lewis-Skelly (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-08-28 16:37:15.675918+00:00,3,JP,waiver,successful,8.0,2.0,DEF,575,Van de Ven (1),191,Estève (1),1,1,0,0,waiver - successful
+Prem,2025-08-29 09:55:53.500200+00:00,3,LD,waiver,successful,9.0,1.0,MID,236,Neto (3),19,Martinelli (3),3,3,0,0,waiver - successful
+Prem,2025-09-11 11:26:55.138513+00:00,4,MN,waiver,unsuccessful - player out already gone,17.0,5.0,MID,21,Rice (1),486,Elanga (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-09-11 16:18:05.669474+00:00,4,AN,waiver,unsuccessful - player out already gone,28.0,9.0,DEF,682,Diakité (0),507,Aina (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-09-18 06:18:23.176463+00:00,5,AN,waiver,successful,3.0,1.0,MID,81,Kluivert (1),516,Hudson-Odoi (1),1,1,0,0,waiver - successful
+Prem,2025-09-21 19:03:05.585946+00:00,6,AN,waiver,successful,2.0,1.0,DEF,473,Hall (0),474,Schär (0),0,0,0,0,waiver - successful
+Prem,2025-09-21 19:03:05.586007+00:00,6,AN,waiver,successful,4.0,2.0,DEF,411,O'Reilly (2),38,Konsa (2),2,2,0,0,waiver - successful
+Prem,2025-09-26 05:50:41.811727+00:00,6,JP,waiver,successful,5.0,2.0,DEF,36,Cash (2),573,Spence (2),2,2,0,0,waiver - successful
+Prem,2025-09-28 13:54:31.453604+00:00,7,JP,waiver,unsuccessful - player in already been picked up,4.0,1.0,MID,160,Minteh (2),669,Ndoye (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-10-02 06:27:51.092016+00:00,7,MN,waiver,successful,7.0,2.0,GKP,101,Kelleher (3),502,Sels (3),3,3,0,0,waiver - successful
+Prem,2025-10-12 17:16:51.407662+00:00,8,AN,waiver,unsuccessful - player out already gone,10.0,3.0,DEF,474,Schär (0),575,Van de Ven (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-10-16 22:40:56.613781+00:00,8,JP,waiver,unsuccessful - player out already gone,6.0,2.0,DEF,603,Diouf (1),317,Andersen (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-10-20 15:01:11.652304+00:00,9,TS,waiver,successful,3.0,1.0,GKP,502,Sels (2),367,Mamardashvili (2),2,2,0,0,waiver - successful
+Prem,2025-10-23 17:29:53.846758+00:00,9,LB,waiver,successful,2.0,1.0,DEF,233,Acheampong (2),258,Mitchell (2),2,2,0,0,waiver - successful
+Prem,2025-10-24 16:10:28.677804+00:00,9,JP,free agent,successful,,,DEF,682,Diakité (0),370,Frimpong (0),0,0,0,0,free agent - successful
+Prem,2025-10-24 16:39:26.588025+00:00,9,JP,free agent,successful,,,DEF,603,Diouf (1),474,Schär (1),1,1,0,0,free agent - successful
+Prem,2025-10-31 06:52:09.367965+00:00,10,JP,waiver,successful,3.0,1.0,DEF,575,Van de Ven (2),603,Diouf (2),2,2,0,0,waiver - successful
+Prem,2025-10-31 08:11:08.270843+00:00,10,LD,waiver,successful,2.0,1.0,MID,84,Tavernier (2),200,Anthony (2),2,2,0,0,waiver - successful
+Prem,2025-11-05 21:07:45.908051+00:00,11,LD,waiver,unsuccessful - player in already been picked up,2.0,1.0,MID,390,Gravenberch (2),84,Tavernier (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-11-07 10:43:17.052233+00:00,11,JP,waiver,successful,3.0,1.0,DEF,374,Konaté (1),371,Kerkez (1),1,1,0,0,waiver - successful
+Prem,2025-11-21 07:41:43.533615+00:00,12,AN,waiver,unsuccessful - player out already gone,8.0,5.0,FWD,596,Solanke (0),679,Šeško (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-11-27 12:20:01.254027+00:00,13,LB,waiver,successful,3.0,1.0,MID,53,Malen (3),390,Gravenberch (3),3,3,0,0,waiver - successful
+Prem,2025-11-27 12:20:01.254080+00:00,13,LB,waiver,successful,6.0,2.0,DEF,506,Murillo (0),233,Acheampong (0),0,0,0,0,waiver - successful
+Prem,2025-11-28 11:27:34.811967+00:00,13,JP,waiver,successful,2.0,1.0,GKP,565,Vicario (1),314,Leno (1),1,1,0,0,waiver - successful
+Prem,2025-11-28 12:51:29.103616+00:00,13,AN,waiver,successful,4.0,1.0,DEF,660,Mosquera (1),74,Truffert (1),1,1,0,0,waiver - successful
+Prem,2025-11-28 12:51:29.103678+00:00,13,AN,waiver,unsuccessful - player out already gone,7.0,2.0,DEF,508,N.Williams (1),74,Truffert (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-11-28 15:38:23.101114+00:00,13,AN,free agent,successful,,,FWD,735,Kolo Muani (1),64,Watkins (1),1,1,0,0,free agent - successful
+Prem,2025-12-09 03:30:13.727064+00:00,16,LD,waiver,successful,6.0,2.0,DEF,575,Van de Ven (1),151,Van Hecke (1),1,1,0,0,waiver - successful
+Prem,2025-12-11 20:33:50.450016+00:00,16,AN,waiver,successful,2.0,1.0,MID,485,Gordon (1),487,Barnes (1),1,1,0,0,waiver - successful
+Prem,2025-12-11 20:33:50.450114+00:00,16,AN,waiver,unsuccessful - player in already been picked up,11.0,4.0,DEF,575,Van de Ven (1),37,Digne (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-12 07:08:17.127261+00:00,16,LB,waiver,unsuccessful - player in already been picked up,3.0,1.0,MID,485,Gordon (1),53,Malen (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2025-12-12 07:08:17.127332+00:00,16,LB,waiver,successful,8.0,3.0,MID,242,Dewsbury-Hall (1),53,Malen (1),1,1,0,0,waiver - successful
+Prem,2025-12-20 10:42:39.803903+00:00,17,MN,free agent,successful,,,DEF,113,Van den Berg (7),317,Andersen (7),7,7,0,0,free agent - successful
+Prem,2025-12-25 10:01:37.775628+00:00,18,AN,waiver,successful,4.0,1.0,FWD,31,G.Jesus (1),284,Nketiah (1),1,1,0,0,waiver - successful
+Prem,2025-12-25 10:01:37.775683+00:00,18,AN,waiver,unsuccessful - player out already gone,11.0,2.0,FWD,135,Wissa (1),284,Nketiah (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-12-25 14:37:23.581154+00:00,18,LD,waiver,successful,2.0,1.0,FWD,679,Šeško (1),671,Wilson (1),1,1,0,0,waiver - successful
+Prem,2025-12-28 13:57:24.292173+00:00,19,LD,waiver,successful,8.0,3.0,MID,427,Reijnders (1),236,Neto (1),1,1,0,0,waiver - successful
+Prem,2025-12-29 15:28:26.422656+00:00,19,TS,waiver,unsuccessful - player out already gone,16.0,4.0,MID,489,J.Murphy (1),386,Mac Allister (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Prem,2025-12-29 16:17:33.156429+00:00,19,MN,waiver,unsuccessful - player in already been picked up,11.0,4.0,MID,427,Reijnders (1),241,Caicedo (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-02 17:01:22.111168+00:00,20,LB,free agent,successful,,,MID,612,L.Paquetá (0),455,Mount (0),0,0,0,0,free agent - successful
+Prem,2026-01-15 05:08:23.848827+00:00,22,AN,waiver,successful,4.0,1.0,MID,487,Barnes (3),485,Gordon (3),3,3,0,0,waiver - successful
+Prem,2026-01-15 16:42:01.860258+00:00,22,JP,waiver,successful,5.0,1.0,FWD,679,Šeško (0),499,Isak (0),0,0,0,0,waiver - successful
+Prem,2026-01-16 10:58:15.762029+00:00,22,MN,waiver,successful,12.0,3.0,MID,120,Schade (1),125,Janelt (1),1,1,0,0,waiver - successful
+Prem,2026-01-16 10:58:15.762048+00:00,22,MN,waiver,unsuccessful - player in already been picked up,17.0,4.0,FWD,679,Šeško (0),597,Richarlison (0),0,0,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-01-24 10:04:22.065586+00:00,23,AN,free agent,successful,,,FWD,31,G.Jesus (1),250,Delap (1),1,1,0,0,free agent - successful
+Prem,2026-02-09 16:00:15.109739+00:00,26,TS,waiver,unsuccessful - player out already gone,8.0,2.0,DEF,694,Mukiele (2),148,F.Kadıoğlu (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-02-09 16:00:15.109761+00:00,26,TS,waiver,successful,9.0,3.0,DEF,694,Mukiele (2),317,Andersen (2),2,2,0,0,waiver - successful
+Prem,2026-02-19 19:58:46.037358+00:00,27,JP,waiver,unsuccessful - player in already been picked up,15.0,5.0,MID,83,O.Dango (2),26,Zubimendi (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-20 05:17:35.603998+00:00,27,AN,waiver,successful,10.0,2.0,MID,83,O.Dango (2),267,Sarr (2),2,2,0,0,waiver - successful
+Prem,2026-02-20 12:26:07.542028+00:00,27,TS,waiver,unsuccessful - player out already gone,20.0,6.0,DEF,370,Frimpong (0),257,Lacroix (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-02-20 12:26:07.542047+00:00,27,TS,waiver,unsuccessful - player in already been picked up,21.0,7.0,DEF,74,Truffert (6),261,Richards (6),6,6,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-02-20 16:32:34.139584+00:00,27,JP,free agent,successful,,,MID,515,Gibbs-White (2),26,Zubimendi (2),2,2,0,0,free agent - successful
+Prem,2026-02-23 06:47:26.776367+00:00,28,LD,waiver,successful,6.0,2.0,DEF,720,Hincapie (0),7,Calafiori (0),0,0,0,0,waiver - successful
+Prem,2026-02-25 07:33:08.296676+00:00,28,LB,waiver,successful,4.0,1.0,DEF,40,Mings (0),230,Fofana (0),0,0,0,0,waiver - successful
+Prem,2026-02-25 17:40:43.413272+00:00,28,TS,waiver,successful,5.0,1.0,DEF,317,Andersen (0),694,Mukiele (0),0,0,0,0,waiver - successful
+Prem,2026-03-10 08:24:51.229581+00:00,30,LB,waiver,successful,3.0,1.0,DEF,257,Lacroix (9),318,Bassey (9),9,9,0,0,waiver - successful
+Prem,2026-03-11 20:14:05.483313+00:00,30,MN,waiver,unsuccessful - player out already gone,10.0,5.0,DEF,113,Van den Berg (1),38,Konsa (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-03-13 11:20:24.481422+00:00,30,TS,waiver,successful,13.0,4.0,GKP,139,Verbruggen (7),314,Leno (7),7,7,0,0,waiver - successful
+Prem,2026-03-19 15:47:07.842566+00:00,31,TS,waiver,successful,4.0,1.0,DEF,477,Livramento (1),224,Cucurella (1),1,1,0,0,waiver - successful
+Prem,2026-03-20 03:38:51.054909+00:00,31,LD,free agent,successful,,,MID,414,Foden (0),266,Eze (0),0,0,0,0,free agent - successful
+Prem,2026-03-20 16:03:08.449176+00:00,31,LD,free agent,successful,,,DEF,261,Richards (0),720,Hincapie (0),0,0,0,0,free agent - successful
+Prem,2026-04-09 16:35:23.721754+00:00,32,TS,waiver,successful,20.0,11.0,DEF,148,F.Kadıoğlu (6),370,Frimpong (6),6,6,0,0,waiver - successful
+Prem,2026-04-09 16:57:03.027123+00:00,32,MN,waiver,successful,8.0,2.0,MID,26,Zubimendi (2),324,Iwobi (2),2,2,0,0,waiver - successful
+Prem,2026-04-09 16:57:03.027222+00:00,32,MN,waiver,unsuccessful - player out already gone,24.0,8.0,MID,646,J.Gomes (2),324,Iwobi (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-04-17 07:32:23.284731+00:00,33,JP,waiver,unsuccessful - player in already been picked up,4.0,1.0,FWD,499,Isak (2),596,Solanke (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-17 10:50:08.159028+00:00,33,AN,free agent,successful,,,FWD,735,Kolo Muani (1),715,Woltemade (1),1,1,0,0,free agent - successful
+Prem,2026-04-18 05:33:49.871422+00:00,33,AN,free agent,successful,,,DEF,226,Chalobah (2),230,Fofana (2),2,2,0,0,free agent - successful
+Prem,2026-04-23 13:49:29.647455+00:00,34,TS,waiver,unsuccessful - player out already gone,25.0,8.0,DEF,694,Mukiele (0),224,Cucurella (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-04-23 13:49:29.647490+00:00,34,TS,waiver,successful,26.0,9.0,DEF,694,Mukiele (0),148,F.Kadıoğlu (0),0,0,0,0,waiver - successful
+Prem,2026-04-23 13:49:29.647508+00:00,34,TS,waiver,unsuccessful - player in already been picked up,34.0,10.0,DEF,694,Mukiele (0),77,Hill (0),0,0,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-04-29 11:09:45.824872+00:00,35,TS,waiver,successful,21.0,6.0,FWD,525,Wood (1),733,Brobbey (1),1,1,0,0,waiver - successful
+Prem,2026-05-01 08:30:48.212536+00:00,35,JP,free agent,successful,,,MID,350,Aaronson (1),267,Sarr (1),1,1,0,0,free agent - successful
+Prem,2026-05-07 16:16:06.290896+00:00,36,LD,waiver,successful,7.0,2.0,FWD,100,Kroupi.Jr (2),817,Armstrong (2),2,2,0,0,waiver - successful
+Prem,2026-05-08 06:51:59.584806+00:00,36,TS,waiver,successful,13.0,3.0,DEF,10,Lewis-Skelly (6),258,Mitchell (6),6,6,0,0,waiver - successful
+Prem,2026-05-08 08:42:41.351473+00:00,36,MN,waiver,successful,2.0,1.0,DEF,36,Cash (1),38,Konsa (1),1,1,0,0,waiver - successful
+Prem,2026-05-14 04:58:51.501094+00:00,37,AN,waiver,unsuccessful - player in already been picked up,11.0,5.0,DEF,476,Burn (1),440,Dalot (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-14 04:58:51.501108+00:00,37,AN,waiver,unsuccessful - player out already gone,12.0,6.0,DEF,293,O'Brien (0),11,White (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 14:36:39.667961+00:00,37,MN,waiver,successful,4.0,2.0,MID,390,Gravenberch (2),242,Dewsbury-Hall (2),2,2,0,0,waiver - successful
+Prem,2026-05-14 14:36:39.667991+00:00,37,MN,waiver,successful,10.0,3.0,DEF,374,Konaté (0),343,Struijk (0),0,0,0,0,waiver - successful
+Prem,2026-05-14 14:36:39.668049+00:00,37,MN,waiver,successful,17.0,6.0,DEF,403,Gvardiol (0),36,Cash (0),0,0,0,0,waiver - successful
+Prem,2026-05-14 14:36:39.668084+00:00,37,MN,waiver,unsuccessful - player out already gone,22.0,8.0,DEF,318,Bassey (2),148,F.Kadıoğlu (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Prem,2026-05-14 14:36:39.668121+00:00,37,MN,waiver,unsuccessful - player in already been picked up,24.0,10.0,DEF,293,O'Brien (0),36,Cash (0),0,0,0,0,waiver - unsuccessful - player in already been picked up
+Prem,2026-05-14 19:40:49.244396+00:00,37,LD,free agent,successful,,,FWD,30,Havertz (8),100,Kroupi.Jr (8),8,8,0,0,free agent - successful
+Prem,2026-05-20 07:23:34.422312+00:00,38,AN,waiver,successful,10.0,3.0,DEF,473,Hall (1),476,Burn (1),1,1,0,0,waiver - successful
+Prem,2026-05-22 22:19:30.763076+00:00,38,MN,waiver,successful,19.0,5.0,DEF,475,Botman (3),106,Collins (3),3,3,0,0,waiver - successful
+Prem,2026-05-22 22:19:30.763095+00:00,38,MN,waiver,successful,22.0,6.0,FWD,100,Kroupi.Jr (2),654,Strand Larsen (2),2,2,0,0,waiver - successful
+Conf,2025-11-25 12:52:33.609867+00:00,13,AC,waiver,successful,5.0,2.0,MID,414,Foden (15),241,Caicedo (-2),15,-2,17,17,waiver - successful
+Conf,2025-11-20 18:47:55.353159+00:00,12,PV,waiver,successful,6.0,2.0,DEF,407,Matheus N. (1),506,Murillo (17),1,17,-16,16,waiver - successful
+Conf,2025-11-20 18:47:55.353180+00:00,12,PV,waiver,unsuccessful - player in already been picked up,11.0,3.0,DEF,411,O'Reilly (1),506,Murillo (17),1,17,-16,16,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-05 10:05:27.304251+00:00,21,CR,waiver,successful,2.0,1.0,DEF,106,Collins (13),224,Cucurella (-3),13,-3,16,16,waiver - successful
+Conf,2025-08-28 11:35:34.513948+00:00,3,HC,waiver,successful,4.0,1.0,DEF,370,Frimpong (0),260,Guéhi (15),0,15,-15,15,waiver - successful
+Conf,2026-04-15 19:58:14.951630+00:00,33,PV,waiver,successful,21.0,10.0,DEF,406,Khusanov (15),408,Rúben (0),15,0,15,15,waiver - successful
+Conf,2026-04-17 09:49:48.933767+00:00,33,AC,waiver,unsuccessful - player out already gone,13.0,2.0,MID,698,Okafor (16),386,Mac Allister (1),16,1,15,15,waiver - unsuccessful - player out already gone
+Conf,2026-04-17 09:49:48.933785+00:00,33,AC,waiver,successful,14.0,3.0,MID,698,Okafor (16),324,Iwobi (1),16,1,15,15,waiver - successful
+Conf,2025-10-17 09:36:16.183942+00:00,8,PV,waiver,successful,5.0,3.0,DEF,694,Mukiele (17),374,Konaté (3),17,3,14,14,waiver - successful
+Conf,2025-12-12 15:49:40.349699+00:00,16,PV,free agent,successful,,,MID,329,Wilson (16),83,O.Dango (2),16,2,14,14,free agent - successful
+Conf,2025-08-21 18:06:02.400981+00:00,2,CR,waiver,unsuccessful - player in already been picked up,8.0,3.0,DEF,7,Calafiori (13),38,Konsa (0),13,0,13,13,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-28 11:35:34.514002+00:00,3,HC,waiver,unsuccessful - player in already been picked up,11.0,2.0,DEF,8,J.Timber (2),260,Guéhi (15),2,15,-13,13,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-14 09:36:38.823271+00:00,22,IR,waiver,successful,8.0,3.0,DEF,374,Konaté (2),441,Dorgu (15),2,15,-13,13,waiver - successful
+Conf,2026-02-07 16:23:41.860950+00:00,26,HC,waiver,successful,2.0,1.0,DEF,443,Shaw (2),720,Hincapie (15),2,15,-13,13,waiver - successful
+Conf,2026-04-13 22:32:18.276115+00:00,33,CR,waiver,successful,5.0,1.0,DEF,74,Truffert (13),7,Calafiori (0),13,0,13,13,waiver - successful
+Conf,2026-04-14 06:27:15.339326+00:00,33,BP,waiver,unsuccessful - player in already been picked up,6.0,2.0,DEF,74,Truffert (13),531,Ballard (0),13,0,13,13,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-15 19:58:14.951466+00:00,33,PV,waiver,unsuccessful - player out already gone,9.0,2.0,MID,698,Okafor (16),83,O.Dango (3),16,3,13,13,waiver - unsuccessful - player out already gone
+Conf,2026-04-30 17:11:53.263622+00:00,35,PV,waiver,successful,3.0,2.0,MID,418,Doku (15),390,Gravenberch (2),15,2,13,13,waiver - successful
+Conf,2025-08-21 14:50:46.621331+00:00,2,HC,waiver,unsuccessful - player in already been picked up,12.0,4.0,DEF,7,Calafiori (13),10,Lewis-Skelly (1),13,1,12,12,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-28 21:00:09.743408+00:00,3,CR,waiver,successful,12.0,2.0,MID,237,Enzo (12),414,Foden (0),12,0,12,12,waiver - successful
+Conf,2026-04-17 09:49:48.933801+00:00,33,AC,waiver,unsuccessful - player in already been picked up,22.0,4.0,MID,417,Cherki (13),386,Mac Allister (1),13,1,12,12,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-21 17:58:05.818962+00:00,2,AC,waiver,successful,4.0,1.0,DEF,7,Calafiori (13),8,J.Timber (24),13,24,-11,11,waiver - successful
+Conf,2025-08-29 10:09:29.089042+00:00,3,IR,free agent,successful,,,DEF,257,Lacroix (11),233,Acheampong (0),11,0,11,11,free agent - successful
+Conf,2025-12-21 19:46:51.440975+00:00,18,AC,waiver,successful,6.0,1.0,MID,390,Gravenberch (11),242,Dewsbury-Hall (0),11,0,11,11,waiver - successful
+Conf,2026-01-29 20:44:52.917753+00:00,24,BP,waiver,unsuccessful - player out already gone,13.0,4.0,DEF,374,Konaté (11),568,Pedro Porro (0),11,0,11,11,waiver - unsuccessful - player out already gone
+Conf,2026-02-03 15:27:47.243889+00:00,25,IR,waiver,successful,2.0,1.0,DEF,440,Dalot (12),531,Ballard (1),12,1,11,11,waiver - successful
+Conf,2026-02-09 13:24:29.003446+00:00,26,IR,waiver,successful,1.0,1.0,DEF,371,Kerkez (0),683,Thiaw (11),0,11,-11,11,waiver - successful
+Conf,2026-04-30 21:58:58.923530+00:00,35,CR,free agent,successful,,,DEF,402,Aït-Nouri (0),694,Mukiele (11),0,11,-11,11,free agent - successful
+Conf,2025-10-17 09:36:16.183847+00:00,8,PV,waiver,successful,1.0,1.0,MID,236,Neto (12),200,Anthony (2),12,2,10,10,waiver - successful
+Conf,2025-11-12 08:20:10.100995+00:00,12,CR,waiver,successful,4.0,1.0,MID,20,Trossard (12),582,Kudus (2),12,2,10,10,waiver - successful
+Conf,2025-12-29 18:42:30.897665+00:00,19,CR,free agent,successful,,,MID,120,Schade (3),20,Trossard (13),3,13,-10,10,free agent - successful
+Conf,2026-01-16 10:46:49.100284+00:00,22,CR,waiver,successful,10.0,3.0,GKP,101,Kelleher (1),220,Sánchez (11),1,11,-10,10,waiver - successful
+Conf,2026-02-06 10:02:01.235531+00:00,25,IR,free agent,successful,,,MID,26,Zubimendi (10),485,Gordon (0),10,0,10,10,free agent - successful
+Conf,2026-02-10 08:34:49.699171+00:00,26,PV,free agent,successful,,,MID,18,Madueke (13),157,Mitoma (3),13,3,10,10,free agent - successful
+Conf,2026-04-10 10:43:30.558210+00:00,32,IR,free agent,successful,,,FWD,283,Mateta (12),596,Solanke (2),12,2,10,10,free agent - successful
+Conf,2026-04-15 19:58:14.951417+00:00,33,PV,waiver,successful,3.0,1.0,MID,417,Cherki (13),83,O.Dango (3),13,3,10,10,waiver - successful
+Conf,2026-04-17 21:53:50.189589+00:00,33,CR,free agent,successful,,,DEF,344,Bijol (10),442,Maguire (0),10,0,10,10,free agent - successful
+Conf,2026-04-27 22:31:38.723246+00:00,35,CR,waiver,successful,5.0,1.0,DEF,72,Senesi (14),684,Alderete (4),14,4,10,10,waiver - successful
+Conf,2025-08-14 16:10:45.943336+00:00,1,IR,waiver,successful,1.0,1.0,GKP,565,Vicario (9),32,Martinez (0),9,0,9,9,waiver - successful
+Conf,2025-09-10 11:13:38.397777+00:00,4,PV,waiver,successful,10.0,2.0,DEF,374,Konaté (9),507,Aina (0),9,0,9,9,waiver - successful
+Conf,2025-09-12 06:38:32.728336+00:00,4,HC,waiver,unsuccessful - player in already been picked up,3.0,1.0,FWD,715,Woltemade (9),596,Solanke (0),9,0,9,9,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-12 08:07:08.433911+00:00,4,CR,waiver,unsuccessful - player in already been picked up,15.0,4.0,FWD,715,Woltemade (9),654,Strand Larsen (0),9,0,9,9,waiver - unsuccessful - player in already been picked up
+Conf,2025-11-20 18:47:55.353216+00:00,12,PV,waiver,successful,13.0,5.0,GKP,67,Petrović (1),287,Pickford (10),1,10,-9,9,waiver - successful
+Conf,2025-12-05 14:27:17.118084+00:00,15,PV,free agent,successful,,,FWD,666,Ekitiké (13),671,Wilson (4),13,4,9,9,free agent - successful
+Conf,2025-12-24 09:05:28.738620+00:00,18,IR,waiver,successful,2.0,1.0,FWD,337,Raúl (9),499,Isak (0),9,0,9,9,waiver - successful
+Conf,2025-12-24 09:05:28.738670+00:00,18,IR,waiver,successful,7.0,2.0,DEF,371,Kerkez (2),575,Van de Ven (11),2,11,-9,9,waiver - successful
+Conf,2026-01-24 09:41:28.353285+00:00,23,CR,free agent,successful,,,FWD,310,Barry (9),30,Havertz (0),9,0,9,9,free agent - successful
+Conf,2026-04-17 14:21:08.346686+00:00,33,HC,free agent,successful,,,MID,84,Tavernier (9),593,P.M.Sarr (0),9,0,9,9,free agent - successful
+Conf,2026-04-23 11:28:07.164845+00:00,34,CR,waiver,unsuccessful - player in already been picked up,10.0,2.0,DEF,720,Hincapie (9),74,Truffert (0),9,0,9,9,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-23 16:46:57.060024+00:00,34,HC,waiver,successful,1.0,1.0,DEF,720,Hincapie (9),77,Hill (0),9,0,9,9,waiver - successful
+Conf,2026-04-28 01:45:43.725859+00:00,35,AC,waiver,successful,4.0,1.0,MID,698,Okafor (10),615,Summerville (1),10,1,9,9,waiver - successful
+Conf,2026-04-30 17:11:53.263542+00:00,35,PV,waiver,unsuccessful - player in already been picked up,2.0,1.0,MID,16,Saka (11),390,Gravenberch (2),11,2,9,9,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-05 12:49:49.339565+00:00,4,IR,waiver,unsuccessful - player in already been picked up,12.0,3.0,DEF,260,Guéhi (6),575,Van de Ven (14),6,14,-8,8,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-18 16:21:03.069414+00:00,5,AC,waiver,successful,3.0,1.0,FWD,560,Isidor (9),500,Osula (1),9,1,8,8,waiver - successful
+Conf,2025-10-02 10:57:08.406931+00:00,7,IR,waiver,successful,2.0,1.0,DEF,683,Thiaw (8),477,Livramento (0),8,0,8,8,waiver - successful
+Conf,2025-10-02 19:48:19.094501+00:00,7,IR,free agent,successful,,,DEF,473,Hall (0),683,Thiaw (8),0,8,-8,8,free agent - successful
+Conf,2025-12-25 18:23:55.368665+00:00,18,CR,waiver,unsuccessful - player in already been picked up,4.0,1.0,FWD,337,Raúl (9),654,Strand Larsen (1),9,1,8,8,waiver - unsuccessful - player in already been picked up
+Conf,2025-12-29 18:37:50.793037+00:00,19,CR,free agent,successful,,,MID,427,Reijnders (1),237,Enzo (9),1,9,-8,8,free agent - successful
+Conf,2026-01-14 09:36:38.823290+00:00,22,IR,waiver,successful,14.0,4.0,DEF,569,Romero (8),403,Gvardiol (0),8,0,8,8,waiver - successful
+Conf,2026-01-23 19:37:29.352578+00:00,23,AC,free agent,successful,,,FWD,31,G.Jesus (1),526,Igor Jesus (9),1,9,-8,8,free agent - successful
+Conf,2026-01-29 20:44:52.917714+00:00,24,BP,waiver,successful,5.0,2.0,MID,515,Gibbs-White (8),418,Doku (0),8,0,8,8,waiver - successful
+Conf,2026-02-04 16:21:10.756740+00:00,25,HC,waiver,successful,12.0,4.0,MID,708,M.Fernandes (8),238,Estêvão (0),8,0,8,8,waiver - successful
+Conf,2026-02-24 12:46:11.544323+00:00,28,IR,waiver,successful,2.0,1.0,FWD,178,Welbeck (9),250,Delap (1),9,1,8,8,waiver - successful
+Conf,2026-03-10 23:56:44.658208+00:00,30,AC,waiver,successful,4.0,1.0,MID,386,Mac Allister (8),488,Bruno G. (0),8,0,8,8,waiver - successful
+Conf,2026-04-09 17:29:36.170760+00:00,32,PV,waiver,unsuccessful - player out already gone,5.0,2.0,MID,242,Dewsbury-Hall (9),390,Gravenberch (1),9,1,8,8,waiver - unsuccessful - player out already gone
+Conf,2026-04-14 06:27:15.339256+00:00,33,BP,waiver,successful,1.0,1.0,GKP,139,Verbruggen (8),366,A.Becker (0),8,0,8,8,waiver - successful
+Conf,2026-04-22 21:23:24.782857+00:00,34,AC,waiver,successful,3.0,1.0,MID,242,Dewsbury-Hall (8),237,Enzo (0),8,0,8,8,waiver - successful
+Conf,2026-04-23 21:53:48.526800+00:00,34,AC,free agent,successful,,,DEF,257,Lacroix (3),317,Andersen (11),3,11,-8,8,free agent - successful
+Conf,2026-04-24 17:12:55.315497+00:00,34,CR,free agent,successful,,,DEF,568,Pedro Porro (8),72,Senesi (0),8,0,8,8,free agent - successful
+Conf,2026-04-30 17:11:53.263646+00:00,35,PV,waiver,unsuccessful - player in already been picked up,7.0,3.0,MID,698,Okafor (10),390,Gravenberch (2),10,2,8,8,waiver - unsuccessful - player in already been picked up
+Conf,2026-05-22 08:35:06.296222+00:00,38,PV,waiver,successful,3.0,1.0,FWD,215,Flemming (9),337,Raúl (1),9,1,8,8,waiver - successful
+Conf,2026-05-23 07:11:34.191611+00:00,38,BP,waiver,successful,10.0,3.0,DEF,570,Danso (8),11,White (0),8,0,8,8,waiver - successful
+Conf,2025-08-20 07:43:09.246625+00:00,2,IR,waiver,successful,15.0,4.0,GKP,32,Martinez (2),565,Vicario (9),2,9,-7,7,waiver - successful
+Conf,2025-09-05 12:49:49.339487+00:00,4,IR,waiver,successful,2.0,1.0,FWD,715,Woltemade (9),679,Šeško (2),9,2,7,7,waiver - successful
+Conf,2025-11-21 14:28:14.496383+00:00,12,IR,free agent,successful,,,MID,84,Tavernier (7),81,Kluivert (0),7,0,7,7,free agent - successful
+Conf,2025-12-01 07:00:58.842667+00:00,14,HC,waiver,unsuccessful - player out already gone,7.0,2.0,MID,417,Cherki (0),427,Reijnders (7),0,7,-7,7,waiver - unsuccessful - player out already gone
+Conf,2025-12-05 09:36:29.827868+00:00,15,PV,waiver,successful,1.0,1.0,MID,427,Reijnders (1),299,Ndiaye (8),1,8,-7,7,waiver - successful
+Conf,2026-01-02 13:57:30.658843+00:00,20,AC,free agent,successful,,,MID,237,Enzo (11),273,Wharton (4),11,4,7,7,free agent - successful
+Conf,2026-01-19 07:31:36.629250+00:00,23,CR,waiver,successful,5.0,1.0,DEF,441,Dorgu (8),107,Lewis-Potter (1),8,1,7,7,waiver - successful
+Conf,2026-01-21 04:29:51.875526+00:00,23,BP,waiver,unsuccessful - player in already been picked up,20.0,5.0,GKP,220,Sánchez (3),32,Martinez (10),3,10,-7,7,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-23 09:03:55.851559+00:00,23,HC,waiver,unsuccessful - player in already been picked up,16.0,3.0,DEF,441,Dorgu (8),11,White (1),8,1,7,7,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-23 09:10:20.454907+00:00,23,IR,waiver,unsuccessful - player in already been picked up,21.0,4.0,DEF,441,Dorgu (8),257,Lacroix (1),8,1,7,7,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-20 10:22:40.360848+00:00,27,PV,waiver,successful,3.0,1.0,DEF,38,Konsa (7),224,Cucurella (0),7,0,7,7,waiver - successful
+Conf,2026-03-13 09:47:46.364975+00:00,30,PV,waiver,successful,8.0,4.0,GKP,673,Ramsdale (7),469,Pope (0),7,0,7,7,waiver - successful
+Conf,2026-04-15 19:58:14.951612+00:00,33,PV,waiver,unsuccessful - player in already been picked up,20.0,9.0,GKP,139,Verbruggen (8),673,Ramsdale (1),8,1,7,7,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-23 10:42:17.553384+00:00,34,PV,waiver,unsuccessful - player out already gone,14.0,7.0,DEF,442,Maguire (7),406,Khusanov (0),7,0,7,7,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 10:42:17.553420+00:00,34,PV,waiver,successful,16.0,9.0,GKP,670,Roefs (0),502,Sels (7),0,7,-7,7,waiver - successful
+Conf,2026-04-24 14:01:20.862328+00:00,34,IR,free agent,successful,,,DEF,442,Maguire (7),343,Struijk (0),7,0,7,7,free agent - successful
+Conf,2026-05-06 07:44:02.162379+00:00,36,IR,waiver,successful,2.0,1.0,MID,416,Bernardo (7),382,Wirtz (0),7,0,7,7,waiver - successful
+Conf,2025-08-27 19:12:11.434016+00:00,3,IR,waiver,unsuccessful - player in already been picked up,14.0,3.0,DEF,476,Burn (6),233,Acheampong (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-28 17:55:41.298793+00:00,3,PV,waiver,unsuccessful - player in already been picked up,10.0,4.0,DEF,476,Burn (6),441,Dorgu (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-10 11:13:38.397801+00:00,4,PV,waiver,unsuccessful - player in already been picked up,16.0,3.0,DEF,260,Guéhi (6),507,Aina (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-12 06:38:32.728415+00:00,4,HC,waiver,successful,4.0,2.0,GKP,728,Donnarumma (6),399,Ederson M. (0),6,0,6,6,waiver - successful
+Conf,2025-09-12 08:07:08.433819+00:00,4,CR,waiver,unsuccessful - player in already been picked up,8.0,1.0,DEF,260,Guéhi (6),508,N.Williams (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Conf,2025-11-21 12:35:25.654263+00:00,12,BP,free agent,successful,,,DEF,261,Richards (6),476,Burn (0),6,0,6,6,free agent - successful
+Conf,2025-12-06 01:12:34.429053+00:00,15,AC,free agent,successful,,,FWD,691,Calvert-Lewin (6),365,Nmecha (0),6,0,6,6,free agent - successful
+Conf,2025-12-08 21:32:31.920873+00:00,16,CR,waiver,successful,3.0,1.0,DEF,11,White (1),508,N.Williams (7),1,7,-6,6,waiver - successful
+Conf,2025-12-16 08:03:02.001858+00:00,17,HC,waiver,successful,3.0,1.0,DEF,694,Mukiele (6),475,Botman (0),6,0,6,6,waiver - successful
+Conf,2026-01-01 21:57:29.857956+00:00,20,CR,waiver,successful,3.0,1.0,MID,303,Garner (4),427,Reijnders (10),4,10,-6,6,waiver - successful
+Conf,2026-01-14 19:32:23.660505+00:00,22,HC,waiver,successful,5.0,1.0,DEF,11,White (6),720,Hincapie (0),6,0,6,6,waiver - successful
+Conf,2026-01-21 22:36:39.917702+00:00,23,AC,waiver,unsuccessful - player in already been picked up,7.0,1.0,DEF,225,James (6),7,Calafiori (0),6,0,6,6,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-26 08:37:11.943217+00:00,24,IR,waiver,successful,2.0,1.0,FWD,661,Gyökeres (7),715,Woltemade (1),7,1,6,6,waiver - successful
+Conf,2026-01-30 07:14:16.731962+00:00,24,HC,waiver,successful,8.0,2.0,DEF,720,Hincapie (6),11,White (0),6,0,6,6,waiver - successful
+Conf,2026-01-30 07:14:16.732005+00:00,24,HC,waiver,unsuccessful - player in already been picked up,11.0,4.0,MID,515,Gibbs-White (8),580,Johnson (2),8,2,6,6,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-20 10:22:40.360894+00:00,27,PV,waiver,unsuccessful - player out already gone,5.0,2.0,DEF,74,Truffert (6),224,Cucurella (0),6,0,6,6,waiver - unsuccessful - player out already gone
+Conf,2026-02-24 06:14:58.807619+00:00,28,PV,waiver,unsuccessful - player out already gone,7.0,3.0,MID,83,O.Dango (5),236,Neto (-1),5,-1,6,6,waiver - unsuccessful - player out already gone
+Conf,2026-03-19 09:14:09.948874+00:00,31,CR,waiver,successful,3.0,1.0,MID,303,Garner (6),267,Sarr (0),6,0,6,6,waiver - successful
+Conf,2026-03-21 22:46:05.843185+00:00,32,CR,waiver,successful,4.0,1.0,FWD,311,Beto (7),310,Barry (1),7,1,6,6,waiver - successful
+Conf,2026-04-10 13:51:38.761657+00:00,32,BP,free agent,successful,,,DEF,148,F.Kadıoğlu (6),226,Chalobah (0),6,0,6,6,free agent - successful
+Conf,2026-04-15 19:58:14.951508+00:00,33,PV,waiver,unsuccessful - player out already gone,11.0,4.0,MID,84,Tavernier (9),83,O.Dango (3),9,3,6,6,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 10:42:17.553366+00:00,34,PV,waiver,successful,13.0,6.0,DEF,575,Van de Ven (6),406,Khusanov (0),6,0,6,6,waiver - successful
+Conf,2026-05-08 06:36:24.949623+00:00,36,BP,waiver,successful,1.0,1.0,DEF,10,Lewis-Skelly (6),531,Ballard (0),6,0,6,6,waiver - successful
+Conf,2026-05-22 08:35:06.296299+00:00,38,PV,waiver,successful,11.0,3.0,DEF,575,Van de Ven (6),38,Konsa (0),6,0,6,6,waiver - successful
+Conf,2025-08-14 19:53:40.123317+00:00,1,HC,free agent,successful,,,FWD,136,Thiago (6),679,Šeško (1),6,1,5,5,free agent - successful
+Conf,2025-09-12 08:07:08.433892+00:00,4,CR,waiver,unsuccessful - player in already been picked up,14.0,3.0,GKP,728,Donnarumma (6),502,Sels (1),6,1,5,5,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-27 16:01:59.243748+00:00,7,AC,waiver,successful,3.0,1.0,MID,267,Sarr (7),236,Neto (2),7,2,5,5,waiver - successful
+Conf,2025-10-26 17:27:41.652576+00:00,10,BP,waiver,unsuccessful - player out already gone,5.0,2.0,FWD,178,Welbeck (6),597,Richarlison (1),6,1,5,5,waiver - unsuccessful - player out already gone
+Conf,2025-10-30 18:59:48.861105+00:00,10,PV,waiver,successful,4.0,2.0,GKP,314,Leno (7),627,Johnstone (2),7,2,5,5,waiver - successful
+Conf,2025-11-21 12:33:59.040204+00:00,12,BP,free agent,successful,,,FWD,597,Richarlison (6),735,Kolo Muani (1),6,1,5,5,free agent - successful
+Conf,2025-12-01 08:46:51.767476+00:00,14,IR,waiver,successful,2.0,1.0,GKP,287,Pickford (7),565,Vicario (2),7,2,5,5,waiver - successful
+Conf,2025-12-11 13:57:12.625145+00:00,16,IR,waiver,successful,1.0,1.0,DEF,317,Andersen (2),371,Kerkez (7),2,7,-5,5,waiver - successful
+Conf,2025-12-23 23:32:06.997159+00:00,18,HC,waiver,successful,3.0,1.0,DEF,74,Truffert (1),568,Pedro Porro (6),1,6,-5,5,waiver - successful
+Conf,2025-12-29 18:57:15.379951+00:00,19,AC,free agent,successful,,,DEF,575,Van de Ven (6),228,Gusto (1),6,1,5,5,free agent - successful
+Conf,2026-01-01 22:30:45.420355+00:00,20,PV,waiver,unsuccessful - player out already gone,9.0,3.0,DEF,473,Hall (6),374,Konaté (1),6,1,5,5,waiver - unsuccessful - player out already gone
+Conf,2026-01-15 21:12:40.052080+00:00,22,BP,waiver,unsuccessful - player in already been picked up,13.0,3.0,DEF,374,Konaté (2),225,James (7),2,7,-5,5,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-16 10:10:34.395638+00:00,22,PV,waiver,unsuccessful - player out already gone,11.0,2.0,MID,241,Caicedo (5),612,L.Paquetá (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Conf,2026-01-21 04:29:51.875513+00:00,23,BP,waiver,unsuccessful - player in already been picked up,19.0,4.0,DEF,225,James (6),568,Pedro Porro (1),6,1,5,5,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-23 09:03:55.851578+00:00,23,HC,waiver,unsuccessful - player in already been picked up,17.0,4.0,DEF,225,James (6),11,White (1),6,1,5,5,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-23 09:10:20.454810+00:00,23,IR,waiver,successful,2.0,1.0,DEF,225,James (6),257,Lacroix (1),6,1,5,5,waiver - successful
+Conf,2026-01-29 20:44:52.917662+00:00,24,BP,waiver,successful,1.0,1.0,FWD,100,Kroupi.Jr (7),596,Solanke (12),7,12,-5,5,waiver - successful
+Conf,2026-02-09 13:24:29.003502+00:00,26,IR,waiver,successful,4.0,2.0,MID,808,Rayan (6),160,Minteh (1),6,1,5,5,waiver - successful
+Conf,2026-02-24 06:14:58.807691+00:00,28,PV,waiver,successful,15.0,7.0,MID,83,O.Dango (5),18,Madueke (0),5,0,5,5,waiver - successful
+Conf,2026-02-24 06:14:58.807707+00:00,28,PV,waiver,unsuccessful - player out already gone,17.0,8.0,MID,390,Gravenberch (5),18,Madueke (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Conf,2026-02-24 12:46:11.544390+00:00,28,IR,waiver,unsuccessful - player in already been picked up,10.0,3.0,DEF,683,Thiaw (1),225,James (6),1,6,-5,5,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-15 13:47:46.492067+00:00,33,HC,waiver,successful,8.0,2.0,DEF,606,Mavropanos (6),720,Hincapie (1),6,1,5,5,waiver - successful
+Conf,2026-04-23 10:42:17.553438+00:00,34,PV,waiver,unsuccessful - player out already gone,17.0,10.0,GKP,681,Hermansen (2),502,Sels (7),2,7,-5,5,waiver - unsuccessful - player out already gone
+Conf,2026-04-27 22:31:38.723330+00:00,35,CR,waiver,unsuccessful - player in already been picked up,10.0,3.0,MID,698,Okafor (10),303,Garner (5),10,5,5,5,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-30 17:11:53.263705+00:00,35,PV,waiver,unsuccessful - player out already gone,15.0,6.0,FWD,97,Evanilson (5),596,Solanke (0),5,0,5,5,waiver - unsuccessful - player out already gone
+Conf,2026-05-06 05:29:32.736733+00:00,36,PV,waiver,successful,8.0,2.0,FWD,337,Raúl (0),215,Flemming (5),0,5,-5,5,waiver - successful
+Conf,2026-05-08 09:38:12.057119+00:00,36,AC,waiver,successful,5.0,1.0,DEF,74,Truffert (9),257,Lacroix (4),9,4,5,5,waiver - successful
+Conf,2025-08-21 19:13:53.542928+00:00,2,BP,free agent,successful,,,FWD,597,Richarlison (4),178,Welbeck (0),4,0,4,4,free agent - successful
+Conf,2025-09-02 21:01:10.786940+00:00,4,BP,waiver,unsuccessful - player in already been picked up,5.0,1.0,GKP,728,Donnarumma (6),101,Kelleher (2),6,2,4,4,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-19 09:51:07.205823+00:00,5,CR,waiver,successful,5.0,1.0,DEF,261,Richards (4),506,Murillo (0),4,0,4,4,waiver - successful
+Conf,2025-10-30 18:59:48.861125+00:00,10,PV,waiver,unsuccessful - player out already gone,6.0,3.0,GKP,253,Henderson (6),627,Johnstone (2),6,2,4,4,waiver - unsuccessful - player out already gone
+Conf,2025-10-31 15:21:00.378980+00:00,10,AC,free agent,successful,,,FWD,178,Welbeck (6),100,Kroupi.Jr (2),6,2,4,4,free agent - successful
+Conf,2025-11-05 19:36:26.212480+00:00,11,PV,waiver,successful,1.0,1.0,MID,22,Merino (5),20,Trossard (9),5,9,-4,4,waiver - successful
+Conf,2025-11-20 18:47:55.353198+00:00,12,PV,waiver,unsuccessful - player in already been picked up,12.0,4.0,GKP,253,Henderson (6),287,Pickford (10),6,10,-4,4,waiver - unsuccessful - player in already been picked up
+Conf,2025-11-20 18:47:55.353233+00:00,12,PV,waiver,unsuccessful - player in already been picked up,15.0,6.0,GKP,67,Petrović (1),314,Leno (5),1,5,-4,4,waiver - unsuccessful - player in already been picked up
+Conf,2025-12-04 07:34:30.102555+00:00,15,AC,waiver,successful,3.0,1.0,DEF,151,Van Hecke (5),694,Mukiele (1),5,1,4,4,waiver - successful
+Conf,2025-12-30 10:26:13.234926+00:00,19,CR,free agent,successful,,,DEF,440,Dalot (2),107,Lewis-Potter (6),2,6,-4,4,free agent - successful
+Conf,2026-01-02 08:30:31.274139+00:00,20,IR,waiver,successful,2.0,1.0,DEF,36,Cash (5),371,Kerkez (1),5,1,4,4,waiver - successful
+Conf,2026-01-02 08:32:56.886273+00:00,20,HC,waiver,unsuccessful - player in already been picked up,5.0,1.0,DEF,36,Cash (5),720,Hincapie (1),5,1,4,4,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-14 09:36:38.823194+00:00,22,IR,waiver,successful,2.0,1.0,FWD,250,Delap (4),310,Barry (8),4,8,-4,4,waiver - successful
+Conf,2026-01-14 09:36:38.823249+00:00,22,IR,waiver,unsuccessful - player in already been picked up,7.0,2.0,DEF,568,Pedro Porro (4),403,Gvardiol (0),4,0,4,4,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-23 09:03:55.851597+00:00,23,HC,waiver,unsuccessful - player out already gone,18.0,5.0,MID,515,Gibbs-White (6),485,Gordon (2),6,2,4,4,waiver - unsuccessful - player out already gone
+Conf,2026-02-03 22:16:20.475790+00:00,25,BP,waiver,successful,1.0,1.0,FWD,30,Havertz (5),178,Welbeck (1),5,1,4,4,waiver - successful
+Conf,2026-02-24 06:14:58.807555+00:00,28,PV,waiver,successful,1.0,1.0,MID,413,Marmoush (3),236,Neto (-1),3,-1,4,4,waiver - successful
+Conf,2026-03-02 06:34:54.280502+00:00,29,CR,waiver,successful,2.0,1.0,DEF,402,Aït-Nouri (4),40,Mings (0),4,0,4,4,waiver - successful
+Conf,2026-03-02 06:34:54.280560+00:00,29,CR,waiver,successful,3.0,2.0,GKP,729,Lammens (2),101,Kelleher (6),2,6,-4,4,waiver - successful
+Conf,2026-03-10 23:56:44.658284+00:00,30,AC,waiver,successful,10.0,3.0,DEF,225,James (2),7,Calafiori (6),2,6,-4,4,waiver - successful
+Conf,2026-03-13 11:40:48.965752+00:00,30,HC,waiver,successful,3.0,1.0,DEF,720,Hincapie (4),694,Mukiele (0),4,0,4,4,waiver - successful
+Conf,2026-03-19 19:48:57.658001+00:00,31,AC,free agent,successful,,,DEF,317,Andersen (4),225,James (0),4,0,4,4,free agent - successful
+Conf,2026-04-29 19:48:26.307632+00:00,35,BP,waiver,successful,1.0,1.0,MID,16,Saka (11),20,Trossard (7),11,7,4,4,waiver - successful
+Conf,2026-04-29 19:48:26.307683+00:00,35,BP,waiver,successful,6.0,2.0,DEF,11,White (6),295,Keane (2),6,2,4,4,waiver - successful
+Conf,2026-05-08 07:48:08.069698+00:00,36,HC,waiver,unsuccessful - player in already been picked up,3.0,1.0,MID,416,Bernardo (7),266,Eze (3),7,3,4,4,waiver - unsuccessful - player in already been picked up
+Conf,2026-05-22 08:35:06.296277+00:00,38,PV,waiver,successful,8.0,2.0,GKP,670,Roefs (2),314,Leno (6),2,6,-4,4,waiver - successful
+Conf,2025-08-20 07:43:09.246643+00:00,2,IR,waiver,unsuccessful - player out already gone,17.0,5.0,GKP,67,Petrović (6),565,Vicario (9),6,9,-3,3,waiver - unsuccessful - player out already gone
+Conf,2025-08-27 19:12:11.433994+00:00,3,IR,waiver,successful,7.0,2.0,GKP,565,Vicario (3),32,Martinez (0),3,0,3,3,waiver - successful
+Conf,2025-09-10 11:13:38.397821+00:00,4,PV,waiver,unsuccessful - player in already been picked up,17.0,4.0,DEF,72,Senesi (3),507,Aina (0),3,0,3,3,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-12 08:07:08.433870+00:00,4,CR,waiver,successful,9.0,2.0,DEF,72,Senesi (3),508,N.Williams (0),3,0,3,3,waiver - successful
+Conf,2025-09-27 18:10:53.685843+00:00,7,HC,waiver,successful,4.0,1.0,DEF,475,Botman (6),505,Milenković (3),6,3,3,3,waiver - successful
+Conf,2025-10-17 09:36:16.183962+00:00,8,PV,waiver,unsuccessful - player out already gone,7.0,4.0,DEF,343,Struijk (0),374,Konaté (3),0,3,-3,3,waiver - unsuccessful - player out already gone
+Conf,2025-10-30 18:59:48.861058+00:00,10,PV,waiver,successful,1.0,1.0,MID,20,Trossard (6),612,L.Paquetá (9),6,9,-3,3,waiver - successful
+Conf,2025-11-15 13:17:01.963430+00:00,12,IR,waiver,successful,2.0,1.0,MID,81,Kluivert (0),324,Iwobi (3),0,3,-3,3,waiver - successful
+Conf,2025-11-15 13:17:01.963491+00:00,12,IR,waiver,successful,8.0,3.0,GKP,253,Henderson (6),469,Pope (3),6,3,3,3,waiver - successful
+Conf,2025-11-29 09:46:50.220151+00:00,13,HC,free agent,successful,,,DEF,660,Mosquera (1),230,Fofana (4),1,4,-3,3,free agent - successful
+Conf,2025-12-01 15:18:16.093077+00:00,14,AC,waiver,successful,4.0,1.0,MID,487,Barnes (3),267,Sarr (0),3,0,3,3,waiver - successful
+Conf,2025-12-04 12:37:48.476396+00:00,15,HC,waiver,successful,2.0,1.0,DEF,720,Hincapie (3),660,Mosquera (0),3,0,3,3,waiver - successful
+Conf,2025-12-06 21:53:47.837289+00:00,16,BP,waiver,successful,2.0,1.0,GKP,32,Martinez (0),101,Kelleher (3),0,3,-3,3,waiver - successful
+Conf,2025-12-12 15:47:09.123184+00:00,16,PV,free agent,successful,,,MID,417,Cherki (6),427,Reijnders (3),6,3,3,3,free agent - successful
+Conf,2025-12-28 23:01:50.258990+00:00,19,HC,waiver,successful,3.0,1.0,DEF,370,Frimpong (6),74,Truffert (3),6,3,3,3,waiver - successful
+Conf,2025-12-30 11:40:46.576969+00:00,19,HC,free agent,successful,,,MID,580,Johnson (0),582,Kudus (3),0,3,-3,3,free agent - successful
+Conf,2026-01-01 22:30:45.420283+00:00,20,PV,waiver,successful,4.0,1.0,MID,612,L.Paquetá (0),157,Mitoma (3),0,3,-3,3,waiver - successful
+Conf,2026-01-05 09:57:54.633560+00:00,21,IR,waiver,successful,1.0,1.0,FWD,310,Barry (2),337,Raúl (5),2,5,-3,3,waiver - successful
+Conf,2026-01-05 09:57:54.633619+00:00,21,IR,waiver,successful,3.0,2.0,MID,490,Joelinton (8),84,Tavernier (5),8,5,3,3,waiver - successful
+Conf,2026-01-15 21:12:40.052058+00:00,22,BP,waiver,successful,6.0,2.0,DEF,568,Pedro Porro (4),225,James (7),4,7,-3,3,waiver - successful
+Conf,2026-01-16 10:10:34.395563+00:00,22,PV,waiver,successful,4.0,1.0,MID,487,Barnes (3),612,L.Paquetá (0),3,0,3,3,waiver - successful
+Conf,2026-01-29 12:30:06.960026+00:00,24,AC,waiver,successful,4.0,1.0,MID,615,Summerville (7),390,Gravenberch (4),7,4,3,3,waiver - successful
+Conf,2026-02-03 10:52:27.049353+00:00,25,CR,waiver,successful,4.0,1.0,MID,457,Casemiro (3),120,Schade (0),3,0,3,3,waiver - successful
+Conf,2026-02-07 16:23:41.861000+00:00,26,HC,waiver,unsuccessful - player in already been picked up,5.0,2.0,MID,808,Rayan (6),299,Ndiaye (9),6,9,-3,3,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-24 06:14:58.807599+00:00,28,PV,waiver,unsuccessful - player out already gone,6.0,2.0,MID,485,Gordon (2),236,Neto (-1),2,-1,3,3,waiver - unsuccessful - player out already gone
+Conf,2026-03-12 22:24:36.334521+00:00,30,CR,waiver,unsuccessful - player in already been picked up,5.0,1.0,DEF,720,Hincapie (4),442,Maguire (1),4,1,3,3,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-02 23:11:59.783231+00:00,32,AC,waiver,successful,6.0,2.0,MID,517,Anderson (4),414,Foden (1),4,1,3,3,waiver - successful
+Conf,2026-04-10 16:34:01.340421+00:00,32,AC,free agent,successful,,,MID,615,Summerville (3),237,Enzo (0),3,0,3,3,free agent - successful
+Conf,2026-04-14 06:27:15.339361+00:00,33,BP,waiver,successful,7.0,3.0,MID,90,Scott (5),17,Ødegaard (2),5,2,3,3,waiver - successful
+Conf,2026-04-14 06:27:15.339391+00:00,33,BP,waiver,successful,15.0,4.0,MID,87,Christie (4),452,Amad (1),4,1,3,3,waiver - successful
+Conf,2026-04-15 13:47:46.492092+00:00,33,HC,waiver,unsuccessful - player in already been picked up,16.0,3.0,MID,90,Scott (5),266,Eze (2),5,2,3,3,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-17 09:49:48.933720+00:00,33,AC,waiver,successful,4.0,1.0,MID,237,Enzo (4),386,Mac Allister (1),4,1,3,3,waiver - successful
+Conf,2026-04-23 11:28:07.164870+00:00,34,CR,waiver,successful,11.0,3.0,DEF,815,Disasi (3),74,Truffert (0),3,0,3,3,waiver - successful
+Conf,2026-04-24 08:07:36.931964+00:00,34,BP,free agent,successful,,,MID,718,Xavi (3),90,Scott (0),3,0,3,3,free agent - successful
+Conf,2026-04-27 22:31:38.723307+00:00,35,CR,waiver,unsuccessful - player out already gone,9.0,2.0,DEF,74,Truffert (7),684,Alderete (4),7,4,3,3,waiver - unsuccessful - player out already gone
+Conf,2026-05-06 05:29:32.736674+00:00,36,PV,waiver,successful,4.0,1.0,GKP,567,Kinsky (3),670,Roefs (6),3,6,-3,3,waiver - successful
+Conf,2026-05-06 05:29:32.736775+00:00,36,PV,waiver,unsuccessful - player out already gone,13.0,4.0,FWD,597,Richarlison (2),215,Flemming (5),2,5,-3,3,waiver - unsuccessful - player out already gone
+Conf,2026-05-06 05:29:32.736795+00:00,36,PV,waiver,successful,14.0,5.0,DEF,7,Calafiori (1),707,Justin (4),1,4,-3,3,waiver - successful
+Conf,2026-05-15 08:26:22.679432+00:00,37,BP,free agent,successful,,,MID,20,Trossard (3),18,Madueke (0),3,0,3,3,free agent - successful
+Conf,2026-05-23 07:11:34.191590+00:00,38,BP,waiver,successful,6.0,2.0,MID,584,Tel (3),20,Trossard (0),3,0,3,3,waiver - successful
+Conf,2026-05-23 17:28:35.803194+00:00,38,BP,free agent,successful,,,GKP,502,Sels (3),32,Martinez (0),3,0,3,3,free agent - successful
+Conf,2025-08-21 18:06:02.400889+00:00,2,CR,waiver,successful,3.0,1.0,FWD,654,Strand Larsen (2),30,Havertz (0),2,0,2,2,waiver - successful
+Conf,2025-08-21 20:00:03.957696+00:00,2,AC,free agent,successful,,,DEF,36,Cash (2),370,Frimpong (0),2,0,2,2,free agent - successful
+Conf,2025-08-29 15:50:31.314871+00:00,3,PV,free agent,successful,,,DEF,569,Romero (2),441,Dorgu (0),2,0,2,2,free agent - successful
+Conf,2025-09-05 12:49:49.339542+00:00,4,IR,waiver,unsuccessful - player in already been picked up,11.0,2.0,GKP,728,Donnarumma (6),565,Vicario (8),6,8,-2,2,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-10 11:13:38.397841+00:00,4,PV,waiver,successful,18.0,5.0,MID,81,Kluivert (1),487,Barnes (3),1,3,-2,2,waiver - successful
+Conf,2025-09-10 11:13:38.397860+00:00,4,PV,waiver,unsuccessful - player out already gone,19.0,6.0,MID,83,O.Dango (1),487,Barnes (3),1,3,-2,2,waiver - unsuccessful - player out already gone
+Conf,2025-09-10 11:13:38.397878+00:00,4,PV,waiver,unsuccessful - player out already gone,20.0,7.0,MID,389,Elliott (1),487,Barnes (3),1,3,-2,2,waiver - unsuccessful - player out already gone
+Conf,2025-09-10 11:13:38.397898+00:00,4,PV,waiver,unsuccessful - player out already gone,21.0,8.0,MID,386,Mac Allister (1),487,Barnes (3),1,3,-2,2,waiver - unsuccessful - player out already gone
+Conf,2025-09-11 21:39:34.387045+00:00,4,AC,waiver,successful,7.0,1.0,DEF,260,Guéhi (6),474,Schär (8),6,8,-2,2,waiver - successful
+Conf,2025-09-12 06:38:32.728502+00:00,4,HC,waiver,unsuccessful - player out already gone,13.0,3.0,GKP,67,Petrović (2),399,Ederson M. (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2025-09-19 06:26:13.618962+00:00,5,HC,waiver,unsuccessful - player in already been picked up,9.0,3.0,MID,414,Foden (3),486,Elanga (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-19 09:29:47.653538+00:00,5,PV,waiver,successful,1.0,1.0,MID,414,Foden (3),81,Kluivert (1),3,1,2,2,waiver - successful
+Conf,2025-10-17 09:36:16.183919+00:00,8,PV,waiver,unsuccessful - player in already been picked up,4.0,2.0,DEF,683,Thiaw (1),374,Konaté (3),1,3,-2,2,waiver - unsuccessful - player in already been picked up
+Conf,2025-10-23 11:36:28.939683+00:00,9,IR,waiver,successful,2.0,1.0,MID,324,Iwobi (1),718,Xavi (3),1,3,-2,2,waiver - successful
+Conf,2025-10-23 16:42:09.690727+00:00,9,PV,waiver,successful,1.0,1.0,DEF,233,Acheampong (2),569,Romero (0),2,0,2,2,waiver - successful
+Conf,2025-10-31 12:51:45.085747+00:00,10,CR,waiver,successful,3.0,1.0,FWD,560,Isidor (2),525,Wood (0),2,0,2,2,waiver - successful
+Conf,2025-11-02 21:07:16.216088+00:00,11,HC,waiver,successful,2.0,1.0,DEF,230,Fofana (6),505,Milenković (4),6,4,2,2,waiver - successful
+Conf,2025-11-20 18:47:55.353250+00:00,12,PV,waiver,successful,16.0,7.0,GKP,32,Martinez (3),314,Leno (5),3,5,-2,2,waiver - successful
+Conf,2025-11-20 22:04:05.557514+00:00,12,BP,waiver,successful,9.0,2.0,MID,418,Doku (2),157,Mitoma (0),2,0,2,2,waiver - successful
+Conf,2025-11-25 12:52:33.609818+00:00,13,AC,waiver,successful,3.0,1.0,DEF,694,Mukiele (0),228,Gusto (2),0,2,-2,2,waiver - successful
+Conf,2025-11-28 11:04:18.985067+00:00,13,PV,waiver,successful,1.0,1.0,FWD,671,Wilson (2),679,Šeško (0),2,0,2,2,waiver - successful
+Conf,2025-11-28 11:04:18.985113+00:00,13,PV,waiver,successful,4.0,2.0,MID,390,Gravenberch (3),413,Marmoush (1),3,1,2,2,waiver - successful
+Conf,2025-11-28 11:04:18.985131+00:00,13,PV,waiver,unsuccessful - player out already gone,6.0,3.0,MID,120,Schade (3),413,Marmoush (1),3,1,2,2,waiver - unsuccessful - player out already gone
+Conf,2025-11-28 11:04:18.985146+00:00,13,PV,waiver,successful,7.0,4.0,GKP,469,Pope (0),67,Petrović (2),0,2,-2,2,waiver - successful
+Conf,2025-11-30 22:14:58.007969+00:00,14,PV,waiver,successful,1.0,1.0,GKP,729,Lammens (2),469,Pope (0),2,0,2,2,waiver - successful
+Conf,2025-12-01 08:46:51.767524+00:00,14,IR,waiver,unsuccessful - player in already been picked up,5.0,2.0,MID,487,Barnes (3),84,Tavernier (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2025-12-01 21:16:42.864696+00:00,14,HC,free agent,successful,,,FWD,135,Wissa (0),250,Delap (2),0,2,-2,2,free agent - successful
+Conf,2025-12-05 09:36:29.827916+00:00,15,PV,waiver,successful,4.0,2.0,GKP,314,Leno (2),32,Martinez (4),2,4,-2,2,waiver - successful
+Conf,2025-12-12 20:02:19.565307+00:00,16,AC,free agent,successful,,,MID,26,Zubimendi (1),515,Gibbs-White (3),1,3,-2,2,free agent - successful
+Conf,2025-12-19 10:19:25.902870+00:00,17,IR,waiver,successful,1.0,1.0,MID,84,Tavernier (2),452,Amad (0),2,0,2,2,waiver - successful
+Conf,2025-12-21 19:46:51.441025+00:00,18,AC,waiver,unsuccessful - player out already gone,9.0,2.0,MID,386,Mac Allister (2),242,Dewsbury-Hall (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2025-12-25 18:23:55.368716+00:00,18,CR,waiver,successful,5.0,2.0,DEF,107,Lewis-Potter (2),11,White (0),2,0,2,2,waiver - successful
+Conf,2025-12-27 22:10:18.193364+00:00,19,AC,waiver,successful,4.0,1.0,FWD,526,Igor Jesus (2),31,G.Jesus (4),2,4,-2,2,waiver - successful
+Conf,2026-01-01 21:57:29.858009+00:00,20,CR,waiver,successful,7.0,2.0,DEF,107,Lewis-Potter (0),440,Dalot (2),0,2,-2,2,waiver - successful
+Conf,2026-01-14 09:36:38.823308+00:00,22,IR,waiver,unsuccessful - player in already been picked up,16.0,5.0,MID,487,Barnes (3),160,Minteh (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-15 21:12:40.052008+00:00,22,BP,waiver,successful,1.0,1.0,FWD,337,Raúl (2),597,Richarlison (0),2,0,2,2,waiver - successful
+Conf,2026-01-16 10:10:34.395687+00:00,22,PV,waiver,unsuccessful - player out already gone,15.0,4.0,DEF,531,Ballard (4),292,Mykolenko (6),4,6,-2,2,waiver - unsuccessful - player out already gone
+Conf,2026-01-16 10:46:49.100265+00:00,22,CR,waiver,unsuccessful - player in already been picked up,9.0,2.0,FWD,337,Raúl (2),560,Isidor (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-21 04:29:51.875480+00:00,23,BP,waiver,unsuccessful - player in already been picked up,9.0,2.0,DEF,441,Dorgu (8),411,O'Reilly (6),8,6,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-21 04:29:51.875498+00:00,23,BP,waiver,successful,10.0,3.0,MID,452,Amad (2),419,Grealish (0),2,0,2,2,waiver - successful
+Conf,2026-01-21 22:36:39.917747+00:00,23,AC,waiver,successful,8.0,2.0,GKP,341,Darlow (2),665,Perri (0),2,0,2,2,waiver - successful
+Conf,2026-01-22 19:19:50.878219+00:00,23,PV,waiver,unsuccessful - player in already been picked up,3.0,1.0,DEF,225,James (6),224,Cucurella (4),6,4,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-22 19:19:50.878295+00:00,23,PV,waiver,successful,4.0,2.0,GKP,220,Sánchez (3),565,Vicario (1),3,1,2,2,waiver - successful
+Conf,2026-01-22 19:19:50.878355+00:00,23,PV,waiver,unsuccessful - player out already gone,22.0,5.0,MID,84,Tavernier (0),487,Barnes (2),0,2,-2,2,waiver - unsuccessful - player out already gone
+Conf,2026-01-23 09:03:55.851536+00:00,23,HC,waiver,unsuccessful - player out already gone,15.0,2.0,MID,84,Tavernier (0),485,Gordon (2),0,2,-2,2,waiver - unsuccessful - player out already gone
+Conf,2026-01-23 09:10:20.454860+00:00,23,IR,waiver,unsuccessful - player in already been picked up,11.0,2.0,GKP,220,Sánchez (3),253,Henderson (1),3,1,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-23 09:10:20.454884+00:00,23,IR,waiver,successful,12.0,3.0,MID,547,E.Le Fée (2),490,Joelinton (0),2,0,2,2,waiver - successful
+Conf,2026-01-23 15:06:55.536480+00:00,23,IR,free agent,successful,,,DEF,531,Ballard (2),374,Konaté (0),2,0,2,2,free agent - successful
+Conf,2026-01-26 08:37:11.943288+00:00,24,IR,waiver,successful,7.0,3.0,DEF,257,Lacroix (2),569,Romero (0),2,0,2,2,waiver - successful
+Conf,2026-01-29 20:44:52.917734+00:00,24,BP,waiver,successful,9.0,3.0,DEF,506,Murillo (2),568,Pedro Porro (0),2,0,2,2,waiver - successful
+Conf,2026-01-30 07:14:16.731910+00:00,24,HC,waiver,successful,3.0,1.0,MID,238,Estêvão (0),580,Johnson (2),0,2,-2,2,waiver - successful
+Conf,2026-01-30 07:14:16.731985+00:00,24,HC,waiver,unsuccessful - player out already gone,10.0,3.0,MID,808,Rayan (4),580,Johnson (2),4,2,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-01-30 19:20:37.692835+00:00,24,CR,free agent,successful,,,DEF,508,N.Williams (-2),441,Dorgu (0),-2,0,-2,2,free agent - successful
+Conf,2026-02-03 15:27:47.243961+00:00,25,IR,waiver,successful,7.0,3.0,MID,485,Gordon (0),547,E.Le Fée (2),0,2,-2,2,waiver - successful
+Conf,2026-02-20 12:52:33.428804+00:00,27,BP,waiver,successful,1.0,1.0,DEF,531,Ballard (4),506,Murillo (2),4,2,2,2,waiver - successful
+Conf,2026-02-24 06:14:58.807652+00:00,28,PV,waiver,unsuccessful - player out already gone,13.0,5.0,MID,83,O.Dango (5),417,Cherki (3),5,3,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-02-24 06:14:58.807668+00:00,28,PV,waiver,unsuccessful - player out already gone,14.0,6.0,MID,390,Gravenberch (5),417,Cherki (3),5,3,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-02-26 07:29:26.063892+00:00,28,HC,waiver,successful,3.0,1.0,MID,266,Eze (2),299,Ndiaye (4),2,4,-2,2,waiver - successful
+Conf,2026-02-26 20:32:44.297412+00:00,28,IR,free agent,successful,,,DEF,74,Truffert (4),225,James (6),4,6,-2,2,free agent - successful
+Conf,2026-03-10 23:56:44.658262+00:00,30,AC,waiver,unsuccessful - player out already gone,9.0,2.0,MID,517,Anderson (2),488,Bruno G. (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-03-19 10:21:59.722773+00:00,31,HC,waiver,successful,4.0,2.0,GKP,220,Sánchez (2),182,Trafford (0),2,0,2,2,waiver - successful
+Conf,2026-04-01 10:47:37.096009+00:00,32,IR,waiver,successful,1.0,1.0,DEF,37,Digne (2),322,Tete (0),2,0,2,2,waiver - successful
+Conf,2026-04-15 19:58:14.951526+00:00,33,PV,waiver,successful,12.0,5.0,FWD,596,Solanke (2),666,Ekitiké (0),2,0,2,2,waiver - successful
+Conf,2026-04-15 19:58:14.951544+00:00,33,PV,waiver,unsuccessful - player out already gone,17.0,6.0,FWD,792,Taty (2),666,Ekitiké (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-15 19:58:14.951561+00:00,33,PV,waiver,unsuccessful - player out already gone,18.0,7.0,FWD,525,Wood (2),666,Ekitiké (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-15 19:58:14.951594+00:00,33,PV,waiver,unsuccessful - player in already been picked up,19.0,8.0,FWD,499,Isak (2),666,Ekitiké (0),2,0,2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-04-22 21:23:24.782925+00:00,34,AC,waiver,unsuccessful - player out already gone,8.0,2.0,MID,547,E.Le Fée (2),237,Enzo (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 10:42:17.553234+00:00,34,PV,waiver,successful,2.0,1.0,MID,17,Ødegaard (3),16,Saka (1),3,1,2,2,waiver - successful
+Conf,2026-04-23 10:42:17.553290+00:00,34,PV,waiver,unsuccessful - player out already gone,5.0,2.0,MID,718,Xavi (3),16,Saka (1),3,1,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 10:42:17.553348+00:00,34,PV,waiver,unsuccessful - player out already gone,12.0,5.0,FWD,733,Brobbey (2),97,Evanilson (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 18:48:25.270414+00:00,34,HC,free agent,successful,,,GKP,681,Hermansen (2),220,Sánchez (0),2,0,2,2,free agent - successful
+Conf,2026-04-23 21:52:29.400198+00:00,34,AC,free agent,successful,,,MID,547,E.Le Fée (2),784,Groß (0),2,0,2,2,free agent - successful
+Conf,2026-04-24 07:17:53.147593+00:00,34,BP,free agent,successful,,,MID,488,Bruno G. (2),354,Ampadu (0),2,0,2,2,free agent - successful
+Conf,2026-04-27 22:31:38.723370+00:00,35,CR,waiver,successful,12.0,5.0,DEF,406,Khusanov (3),815,Disasi (1),3,1,2,2,waiver - successful
+Conf,2026-04-30 17:11:53.263666+00:00,35,PV,waiver,successful,8.0,4.0,FWD,215,Flemming (2),596,Solanke (0),2,0,2,2,waiver - successful
+Conf,2026-04-30 17:11:53.263723+00:00,35,PV,waiver,unsuccessful - player out already gone,16.0,7.0,FWD,337,Raúl (2),596,Solanke (0),2,0,2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-30 17:11:53.263774+00:00,35,PV,waiver,unsuccessful - player out already gone,20.0,10.0,DEF,402,Aït-Nouri (0),575,Van de Ven (2),0,2,-2,2,waiver - unsuccessful - player out already gone
+Conf,2026-04-30 21:44:53.248906+00:00,35,AC,free agent,successful,,,MID,784,Groß (2),547,E.Le Fée (4),2,4,-2,2,free agent - successful
+Conf,2026-05-06 05:29:32.736756+00:00,36,PV,waiver,unsuccessful - player out already gone,12.0,3.0,FWD,654,Strand Larsen (3),215,Flemming (5),3,5,-2,2,waiver - unsuccessful - player out already gone
+Conf,2026-05-06 05:29:32.736813+00:00,36,PV,waiver,unsuccessful - player in already been picked up,15.0,6.0,DEF,683,Thiaw (2),707,Justin (4),2,4,-2,2,waiver - unsuccessful - player in already been picked up
+Conf,2026-05-20 05:59:27.280233+00:00,38,CR,waiver,successful,4.0,1.0,FWD,500,Osula (2),679,Šeško (0),2,0,2,2,waiver - successful
+Conf,2026-05-20 05:59:27.280281+00:00,38,CR,waiver,successful,9.0,2.0,MID,808,Rayan (2),303,Garner (4),2,4,-2,2,waiver - successful
+Conf,2026-05-20 05:59:27.280302+00:00,38,CR,waiver,successful,12.0,3.0,MID,83,O.Dango (2),457,Casemiro (0),2,0,2,2,waiver - successful
+Conf,2026-05-20 05:59:27.280329+00:00,38,CR,waiver,successful,14.0,4.0,DEF,73,Smith (2),406,Khusanov (0),2,0,2,2,waiver - successful
+Conf,2026-05-21 06:18:41.775815+00:00,38,HC,waiver,successful,7.0,2.0,DEF,660,Mosquera (4),720,Hincapie (2),4,2,2,2,waiver - successful
+Conf,2026-05-22 08:35:06.296320+00:00,38,PV,waiver,successful,13.0,4.0,GKP,183,Weiss (3),567,Kinsky (5),3,5,-2,2,waiver - successful
+Conf,2026-05-23 07:11:34.191538+00:00,38,BP,waiver,successful,1.0,1.0,FWD,597,Richarlison (2),30,Havertz (4),2,4,-2,2,waiver - successful
+Conf,2025-08-11 21:12:57.055778+00:00,1,HC,waiver,successful,2.0,1.0,FWD,679,Šeško (1),654,Strand Larsen (2),1,2,-1,1,waiver - successful
+Conf,2025-08-19 20:39:06.329457+00:00,2,PV,waiver,successful,1.0,1.0,DEF,441,Dorgu (2),473,Hall (1),2,1,1,1,waiver - successful
+Conf,2025-08-20 07:43:09.246605+00:00,2,IR,waiver,unsuccessful - player in already been picked up,14.0,3.0,DEF,410,Lewis (1),292,Mykolenko (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-21 14:50:46.621224+00:00,2,HC,waiver,successful,5.0,1.0,MID,427,Reijnders (2),417,Cherki (1),2,1,1,1,waiver - successful
+Conf,2025-08-21 14:50:46.621278+00:00,2,HC,waiver,unsuccessful - player in already been picked up,10.0,2.0,FWD,679,Šeško (1),136,Thiago (2),1,2,-1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-21 14:50:46.621349+00:00,2,HC,waiver,successful,13.0,5.0,DEF,260,Guéhi (2),10,Lewis-Skelly (1),2,1,1,1,waiver - successful
+Conf,2025-08-21 17:58:05.819015+00:00,2,AC,waiver,successful,9.0,2.0,DEF,410,Lewis (1),290,Branthwaite (0),1,0,1,1,waiver - successful
+Conf,2025-08-21 19:52:37.630894+00:00,2,AC,free agent,successful,,,FWD,338,Muniz (0),362,Piroe (1),0,1,-1,1,free agent - successful
+Conf,2025-08-22 12:31:50.755279+00:00,2,IR,free agent,successful,,,MID,517,Anderson (2),81,Kluivert (1),2,1,1,1,free agent - successful
+Conf,2025-08-27 19:12:11.433938+00:00,3,IR,waiver,successful,1.0,1.0,DEF,575,Van de Ven (1),11,White (0),1,0,1,1,waiver - successful
+Conf,2025-08-28 00:04:22.691016+00:00,3,AC,waiver,successful,6.0,1.0,FWD,500,Osula (2),338,Muniz (1),2,1,1,1,waiver - successful
+Conf,2025-08-28 00:04:22.691076+00:00,3,AC,waiver,successful,13.0,2.0,MID,669,Ndoye (1),20,Trossard (0),1,0,1,1,waiver - successful
+Conf,2025-08-28 00:04:22.691132+00:00,3,AC,waiver,successful,15.0,3.0,DEF,573,Spence (1),36,Cash (0),1,0,1,1,waiver - successful
+Conf,2025-08-28 17:55:41.298705+00:00,3,PV,waiver,successful,2.0,1.0,MID,487,Barnes (1),485,Gordon (0),1,0,1,1,waiver - successful
+Conf,2025-08-28 17:55:41.298758+00:00,3,PV,waiver,unsuccessful - player in already been picked up,8.0,2.0,DEF,575,Van de Ven (1),441,Dorgu (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-28 17:55:41.298777+00:00,3,PV,waiver,unsuccessful - player out already gone,9.0,3.0,MID,52,J.Ramsey (1),485,Gordon (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Conf,2025-08-28 21:00:09.743355+00:00,3,CR,waiver,successful,5.0,1.0,DEF,8,J.Timber (2),38,Konsa (1),2,1,1,1,waiver - successful
+Conf,2025-09-02 21:01:10.786997+00:00,4,BP,waiver,unsuccessful - player in already been picked up,6.0,2.0,FWD,735,Kolo Muani (0),597,Richarlison (1),0,1,-1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-18 08:48:21.073491+00:00,5,IR,waiver,successful,2.0,1.0,MID,718,Xavi (1),267,Sarr (0),1,0,1,1,waiver - successful
+Conf,2025-09-18 16:21:03.069461+00:00,5,AC,waiver,successful,7.0,2.0,MID,418,Doku (3),515,Gibbs-White (2),3,2,1,1,waiver - successful
+Conf,2025-09-19 06:26:13.618873+00:00,5,HC,waiver,successful,4.0,1.0,MID,485,Gordon (0),486,Elanga (1),0,1,-1,1,waiver - successful
+Conf,2025-09-19 09:29:47.653582+00:00,5,PV,waiver,successful,6.0,2.0,FWD,679,Šeško (1),735,Kolo Muani (0),1,0,1,1,waiver - successful
+Conf,2025-09-19 09:29:47.653607+00:00,5,PV,waiver,unsuccessful - player out already gone,12.0,3.0,FWD,178,Welbeck (1),735,Kolo Muani (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Conf,2025-09-19 09:51:07.205927+00:00,5,CR,waiver,successful,11.0,3.0,GKP,670,Roefs (2),502,Sels (3),2,3,-1,1,waiver - successful
+Conf,2025-09-26 00:20:53.025799+00:00,6,AC,waiver,successful,2.0,1.0,DEF,36,Cash (2),410,Lewis (1),2,1,1,1,waiver - successful
+Conf,2025-09-26 05:18:17.662577+00:00,6,CR,waiver,successful,3.0,1.0,DEF,74,Truffert (3),261,Richards (4),3,4,-1,1,waiver - successful
+Conf,2025-10-02 10:57:08.407018+00:00,7,IR,waiver,successful,6.0,3.0,MID,160,Minteh (2),517,Anderson (1),2,1,1,1,waiver - successful
+Conf,2025-10-15 15:57:50.587349+00:00,8,AC,waiver,successful,3.0,1.0,MID,241,Caicedo (1),669,Ndoye (0),1,0,1,1,waiver - successful
+Conf,2025-10-17 07:10:55.074995+00:00,8,IR,waiver,successful,2.0,1.0,DEF,683,Thiaw (1),473,Hall (0),1,0,1,1,waiver - successful
+Conf,2025-10-17 09:36:16.183981+00:00,8,PV,waiver,successful,8.0,5.0,GKP,627,Johnstone (1),67,Petrović (2),1,2,-1,1,waiver - successful
+Conf,2025-10-20 20:55:52.747314+00:00,9,AC,waiver,successful,3.0,1.0,FWD,100,Kroupi.Jr (6),560,Isidor (7),6,7,-1,1,waiver - successful
+Conf,2025-10-22 15:19:24.908927+00:00,9,HC,waiver,successful,7.0,2.0,DEF,505,Milenković (1),370,Frimpong (0),1,0,1,1,waiver - successful
+Conf,2025-10-23 16:42:09.690824+00:00,9,PV,waiver,unsuccessful - player out already gone,8.0,4.0,MID,81,Kluivert (2),414,Foden (1),2,1,1,1,waiver - unsuccessful - player out already gone
+Conf,2025-10-23 16:42:09.690848+00:00,9,PV,waiver,successful,9.0,5.0,DEF,506,Murillo (1),694,Mukiele (2),1,2,-1,1,waiver - successful
+Conf,2025-10-23 16:42:09.690867+00:00,9,PV,waiver,unsuccessful - player in already been picked up,10.0,6.0,DEF,505,Milenković (1),694,Mukiele (2),1,2,-1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-10-23 16:42:09.690885+00:00,9,PV,waiver,unsuccessful - player out already gone,11.0,7.0,DEF,508,N.Williams (1),694,Mukiele (2),1,2,-1,1,waiver - unsuccessful - player out already gone
+Conf,2025-10-23 20:02:19.388813+00:00,9,AC,free agent,successful,,,MID,515,Gibbs-White (2),418,Doku (1),2,1,1,1,free agent - successful
+Conf,2025-10-26 17:27:41.652525+00:00,10,BP,waiver,successful,2.0,1.0,FWD,735,Kolo Muani (2),597,Richarlison (1),2,1,1,1,waiver - successful
+Conf,2025-10-30 18:59:48.861147+00:00,10,PV,waiver,unsuccessful - player out already gone,7.0,4.0,GKP,729,Lammens (1),627,Johnstone (2),1,2,-1,1,waiver - unsuccessful - player out already gone
+Conf,2025-11-12 08:20:10.101050+00:00,12,CR,waiver,unsuccessful - player in already been picked up,10.0,2.0,DEF,411,O'Reilly (1),74,Truffert (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-11-15 13:17:01.963473+00:00,12,IR,waiver,unsuccessful - player out already gone,7.0,2.0,MID,418,Doku (2),324,Iwobi (3),2,3,-1,1,waiver - unsuccessful - player out already gone
+Conf,2025-11-20 19:08:45.704800+00:00,12,AC,waiver,unsuccessful - player in already been picked up,5.0,1.0,DEF,411,O'Reilly (1),573,Spence (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-11-20 22:04:05.557461+00:00,12,BP,waiver,successful,3.0,1.0,DEF,411,O'Reilly (1),478,Trippier (0),1,0,1,1,waiver - successful
+Conf,2025-11-22 05:04:50.786897+00:00,12,AC,free agent,successful,,,DEF,228,Gusto (1),573,Spence (0),1,0,1,1,free agent - successful
+Conf,2025-11-28 10:51:01.828587+00:00,13,BP,waiver,successful,2.0,1.0,FWD,735,Kolo Muani (1),135,Wissa (0),1,0,1,1,waiver - successful
+Conf,2025-11-28 11:04:18.985160+00:00,13,PV,waiver,unsuccessful - player out already gone,8.0,5.0,GKP,287,Pickford (1),67,Petrović (2),1,2,-1,1,waiver - unsuccessful - player out already gone
+Conf,2025-12-01 08:46:51.767554+00:00,14,IR,waiver,successful,6.0,3.0,MID,452,Amad (2),84,Tavernier (1),2,1,1,1,waiver - successful
+Conf,2025-12-01 20:22:04.256441+00:00,14,AC,free agent,successful,,,FWD,365,Nmecha (2),666,Ekitiké (1),2,1,1,1,free agent - successful
+Conf,2025-12-06 10:15:43.652392+00:00,15,PV,free agent,successful,,,MID,83,O.Dango (4),390,Gravenberch (5),4,5,-1,1,free agent - successful
+Conf,2025-12-09 12:16:31.192332+00:00,16,AC,waiver,unsuccessful - player in already been picked up,4.0,1.0,DEF,11,White (1),7,Calafiori (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-12-17 12:34:34.249417+00:00,17,AC,waiver,unsuccessful - player in already been picked up,4.0,1.0,MID,84,Tavernier (2),26,Zubimendi (3),2,3,-1,1,waiver - unsuccessful - player in already been picked up
+Conf,2025-12-17 12:34:34.249479+00:00,17,AC,waiver,successful,6.0,3.0,FWD,31,G.Jesus (1),178,Welbeck (0),1,0,1,1,waiver - successful
+Conf,2025-12-17 12:34:34.249493+00:00,17,AC,waiver,successful,7.0,4.0,DEF,228,Gusto (-1),151,Van Hecke (0),-1,0,-1,1,waiver - successful
+Conf,2025-12-20 09:26:06.181171+00:00,17,PV,free agent,successful,,,GKP,469,Pope (0),729,Lammens (1),0,1,-1,1,free agent - successful
+Conf,2025-12-25 13:50:29.365117+00:00,18,BP,waiver,successful,1.0,1.0,FWD,178,Welbeck (1),735,Kolo Muani (2),1,2,-1,1,waiver - successful
+Conf,2025-12-26 12:16:28.086147+00:00,18,CR,free agent,successful,,,FWD,30,Havertz (0),654,Strand Larsen (1),0,1,-1,1,free agent - successful
+Conf,2025-12-28 19:05:42.500900+00:00,19,IR,waiver,successful,1.0,1.0,DEF,441,Dorgu (2),317,Andersen (3),2,3,-1,1,waiver - successful
+Conf,2025-12-29 06:30:27.104622+00:00,19,PV,waiver,successful,2.0,1.0,GKP,729,Lammens (3),314,Leno (2),3,2,1,1,waiver - successful
+Conf,2026-01-01 22:30:45.420334+00:00,20,PV,waiver,successful,8.0,2.0,DEF,292,Mykolenko (0),374,Konaté (1),0,1,-1,1,waiver - successful
+Conf,2026-01-02 07:28:18.458262+00:00,20,BP,waiver,successful,1.0,1.0,MID,20,Trossard (1),266,Eze (0),1,0,1,1,waiver - successful
+Conf,2026-01-16 10:10:34.395667+00:00,22,PV,waiver,successful,12.0,3.0,DEF,224,Cucurella (5),292,Mykolenko (6),5,6,-1,1,waiver - successful
+Conf,2026-01-21 04:29:51.875437+00:00,23,BP,waiver,successful,1.0,1.0,FWD,596,Solanke (2),661,Gyökeres (1),2,1,1,1,waiver - successful
+Conf,2026-01-26 08:37:11.943269+00:00,24,IR,waiver,unsuccessful - player out already gone,6.0,2.0,FWD,526,Igor Jesus (2),715,Woltemade (1),2,1,1,1,waiver - unsuccessful - player out already gone
+Conf,2026-02-04 16:21:10.756640+00:00,25,HC,waiver,successful,3.0,1.0,FWD,654,Strand Larsen (1),135,Wissa (2),1,2,-1,1,waiver - successful
+Conf,2026-02-04 16:21:10.756698+00:00,25,HC,waiver,successful,8.0,2.0,DEF,374,Konaté (1),370,Frimpong (0),1,0,1,1,waiver - successful
+Conf,2026-02-04 16:21:10.756721+00:00,25,HC,waiver,unsuccessful - player in already been picked up,11.0,3.0,FWD,806,Abraham (1),135,Wissa (2),1,2,-1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-09 14:17:42.998962+00:00,26,CR,waiver,successful,3.0,1.0,DEF,442,Maguire (2),473,Hall (1),2,1,1,1,waiver - successful
+Conf,2026-02-15 07:29:03.907109+00:00,27,CR,waiver,successful,4.0,1.0,DEF,40,Mings (2),106,Collins (1),2,1,1,1,waiver - successful
+Conf,2026-02-19 11:14:12.852331+00:00,27,IR,waiver,successful,2.0,1.0,FWD,596,Solanke (1),283,Mateta (0),1,0,1,1,waiver - successful
+Conf,2026-02-23 22:02:13.744408+00:00,28,CR,waiver,successful,4.0,1.0,GKP,67,Petrović (3),670,Roefs (2),3,2,1,1,waiver - successful
+Conf,2026-02-24 06:14:58.807636+00:00,28,PV,waiver,successful,8.0,4.0,MID,485,Gordon (2),417,Cherki (3),2,3,-1,1,waiver - successful
+Conf,2026-02-24 06:14:58.807723+00:00,28,PV,waiver,unsuccessful - player in already been picked up,18.0,9.0,GKP,67,Petrović (3),220,Sánchez (2),3,2,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-25 22:29:09.569425+00:00,28,AC,waiver,successful,5.0,1.0,DEF,683,Thiaw (1),575,Van de Ven (0),1,0,1,1,waiver - successful
+Conf,2026-02-26 07:29:26.063934+00:00,28,HC,waiver,successful,12.0,2.0,DEF,77,Hill (2),443,Shaw (1),2,1,1,1,waiver - successful
+Conf,2026-02-26 07:29:26.063952+00:00,28,HC,waiver,unsuccessful - player in already been picked up,16.0,3.0,DEF,77,Hill (2),295,Keane (1),2,1,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-03-06 11:06:46.292069+00:00,30,IR,waiver,successful,1.0,1.0,GKP,101,Kelleher (1),253,Henderson (0),1,0,1,1,waiver - successful
+Conf,2026-03-13 09:47:46.364883+00:00,30,PV,waiver,successful,2.0,1.0,MID,390,Gravenberch (2),413,Marmoush (3),2,3,-1,1,waiver - successful
+Conf,2026-03-13 09:47:46.364935+00:00,30,PV,waiver,unsuccessful - player out already gone,6.0,2.0,MID,517,Anderson (2),413,Marmoush (3),2,3,-1,1,waiver - unsuccessful - player out already gone
+Conf,2026-03-16 02:17:38.662653+00:00,31,AC,waiver,successful,2.0,1.0,FWD,597,Richarlison (2),806,Abraham (1),2,1,1,1,waiver - successful
+Conf,2026-03-16 02:17:38.662694+00:00,31,AC,waiver,successful,5.0,2.0,MID,324,Iwobi (1),615,Summerville (0),1,0,1,1,waiver - successful
+Conf,2026-03-19 09:14:09.948948+00:00,31,CR,waiver,unsuccessful - player in already been picked up,6.0,2.0,MID,324,Iwobi (1),267,Sarr (0),1,0,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-03-19 09:14:09.948997+00:00,31,CR,waiver,unsuccessful - player out already gone,8.0,4.0,DEF,473,Hall (1),402,Aït-Nouri (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Conf,2026-03-20 11:44:38.179284+00:00,31,CR,free agent,successful,,,DEF,473,Hall (1),370,Frimpong (0),1,0,1,1,free agent - successful
+Conf,2026-03-20 11:45:13.929992+00:00,31,IR,free agent,successful,,,DEF,476,Burn (3),74,Truffert (4),3,4,-1,1,free agent - successful
+Conf,2026-04-09 17:29:36.170709+00:00,32,PV,waiver,successful,2.0,1.0,MID,299,Ndiaye (2),390,Gravenberch (1),2,1,1,1,waiver - successful
+Conf,2026-04-10 11:26:15.381702+00:00,32,CR,free agent,successful,,,DEF,7,Calafiori (0),473,Hall (1),0,1,-1,1,free agent - successful
+Conf,2026-04-15 13:47:46.492008+00:00,33,HC,waiver,successful,2.0,1.0,FWD,499,Isak (2),654,Strand Larsen (1),2,1,1,1,waiver - successful
+Conf,2026-04-15 19:58:14.951488+00:00,33,PV,waiver,unsuccessful - player out already gone,10.0,3.0,MID,160,Minteh (4),83,O.Dango (3),4,3,1,1,waiver - unsuccessful - player out already gone
+Conf,2026-04-17 09:49:48.933817+00:00,33,AC,waiver,successful,23.0,5.0,DEF,508,N.Williams (2),683,Thiaw (1),2,1,1,1,waiver - successful
+Conf,2026-04-17 14:23:51.975531+00:00,33,PV,free agent,successful,,,GKP,502,Sels (2),673,Ramsdale (1),2,1,1,1,free agent - successful
+Conf,2026-04-17 14:50:12.139982+00:00,33,IR,free agent,successful,,,DEF,714,A.Jimenez (2),476,Burn (1),2,1,1,1,free agent - successful
+Conf,2026-04-23 10:42:17.553330+00:00,34,PV,waiver,successful,7.0,4.0,FWD,792,Taty (1),97,Evanilson (0),1,0,1,1,waiver - successful
+Conf,2026-04-23 10:42:17.553403+00:00,34,PV,waiver,unsuccessful - player out already gone,15.0,8.0,DEF,292,Mykolenko (1),406,Khusanov (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Conf,2026-04-24 17:23:37.407787+00:00,34,PV,free agent,successful,,,MID,390,Gravenberch (1),485,Gordon (0),1,0,1,1,free agent - successful
+Conf,2026-04-27 22:31:38.723352+00:00,35,CR,waiver,unsuccessful - player out already gone,11.0,4.0,DEF,406,Khusanov (3),684,Alderete (4),3,4,-1,1,waiver - unsuccessful - player out already gone
+Conf,2026-04-29 19:48:26.307706+00:00,35,BP,waiver,successful,13.0,3.0,MID,18,Madueke (1),718,Xavi (0),1,0,1,1,waiver - successful
+Conf,2026-04-29 19:48:26.307725+00:00,35,BP,waiver,unsuccessful - player out already gone,19.0,4.0,DEF,343,Struijk (1),295,Keane (2),1,2,-1,1,waiver - unsuccessful - player out already gone
+Conf,2026-04-30 17:11:53.263684+00:00,35,PV,waiver,unsuccessful - player out already gone,14.0,5.0,FWD,525,Wood (1),596,Solanke (0),1,0,1,1,waiver - unsuccessful - player out already gone
+Conf,2026-04-30 17:11:53.263740+00:00,35,PV,waiver,unsuccessful - player in already been picked up,17.0,8.0,DEF,406,Khusanov (3),575,Van de Ven (2),3,2,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-05-08 06:36:24.949672+00:00,36,BP,waiver,successful,6.0,2.0,FWD,97,Evanilson (1),733,Brobbey (2),1,2,-1,1,waiver - successful
+Conf,2026-05-08 09:38:12.057191+00:00,36,AC,waiver,unsuccessful - player in already been picked up,9.0,2.0,MID,416,Bernardo (7),784,Groß (6),7,6,1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-05-14 09:20:44.081961+00:00,37,AC,waiver,successful,2.0,1.0,MID,414,Foden (1),698,Okafor (0),1,0,1,1,waiver - successful
+Conf,2026-05-14 09:20:44.082018+00:00,37,AC,waiver,unsuccessful - player in already been picked up,4.0,2.0,MID,242,Dewsbury-Hall (2),784,Groß (3),2,3,-1,1,waiver - unsuccessful - player in already been picked up
+Conf,2026-05-14 13:09:59.642219+00:00,37,IR,waiver,successful,1.0,1.0,MID,242,Dewsbury-Hall (2),808,Rayan (3),2,3,-1,1,waiver - successful
+Conf,2026-05-14 13:09:59.642277+00:00,37,IR,waiver,successful,3.0,2.0,DEF,224,Cucurella (1),36,Cash (0),1,0,1,1,waiver - successful
+Conf,2026-05-14 13:09:59.642299+00:00,37,IR,waiver,successful,5.0,3.0,DEF,106,Collins (3),37,Digne (4),3,4,-1,1,waiver - successful
+Conf,2026-05-14 21:14:32.913777+00:00,37,AC,free agent,successful,,,MID,121,Damsgaard (2),784,Groß (3),2,3,-1,1,free agent - successful
+Conf,2026-05-14 21:51:50.631050+00:00,37,CR,free agent,successful,,,DEF,107,Lewis-Potter (1),402,Aït-Nouri (0),1,0,1,1,free agent - successful
+Conf,2026-05-21 06:18:41.775756+00:00,38,HC,waiver,successful,2.0,1.0,MID,708,M.Fernandes (9),84,Tavernier (10),9,10,-1,1,waiver - successful
+Conf,2026-05-22 10:58:00.461098+00:00,38,AC,waiver,successful,5.0,1.0,MID,200,Anthony (2),121,Damsgaard (1),2,1,1,1,waiver - successful
+Conf,2026-05-24 06:19:38.517084+00:00,38,CR,free agent,successful,,,MID,613,Souček (3),83,O.Dango (2),3,2,1,1,free agent - successful
+Conf,2026-05-24 12:46:44.342144+00:00,38,CR,free agent,successful,,,MID,163,Hinshelwood (2),613,Souček (3),2,3,-1,1,free agent - successful
+Conf,2025-08-20 07:43:09.246531+00:00,2,IR,waiver,successful,2.0,1.0,FWD,679,Šeško (1),337,Raúl (1),1,1,0,0,waiver - successful
+Conf,2025-08-20 07:43:09.246582+00:00,2,IR,waiver,successful,6.0,2.0,DEF,233,Acheampong (0),292,Mykolenko (0),0,0,0,0,waiver - successful
+Conf,2025-08-21 14:50:46.621312+00:00,2,HC,waiver,unsuccessful - player in already been picked up,11.0,3.0,FWD,654,Strand Larsen (2),136,Thiago (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-21 17:58:05.819038+00:00,2,AC,waiver,unsuccessful - player in already been picked up,16.0,3.0,DEF,233,Acheampong (0),290,Branthwaite (0),0,0,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-21 18:06:02.400951+00:00,2,CR,waiver,unsuccessful - player in already been picked up,7.0,2.0,DEF,233,Acheampong (0),38,Konsa (0),0,0,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-08-25 20:55:56.715732+00:00,3,BP,waiver,successful,3.0,1.0,DEF,476,Burn (6),374,Konaté (6),6,6,0,0,waiver - successful
+Conf,2025-09-10 11:13:38.397696+00:00,4,PV,waiver,successful,1.0,1.0,FWD,735,Kolo Muani (0),250,Delap (0),0,0,0,0,waiver - successful
+Conf,2025-09-19 06:26:13.618939+00:00,5,HC,waiver,unsuccessful - player in already been picked up,8.0,2.0,MID,718,Xavi (1),486,Elanga (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-09-19 09:51:07.205892+00:00,5,CR,waiver,unsuccessful - player out already gone,10.0,2.0,DEF,474,Schär (0),506,Murillo (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Conf,2025-09-25 11:09:51.922208+00:00,6,PV,waiver,successful,1.0,1.0,GKP,67,Petrović (3),253,Henderson (3),3,3,0,0,waiver - successful
+Conf,2025-10-01 20:37:58.525932+00:00,7,PV,waiver,successful,1.0,1.0,MID,200,Anthony (1),580,Johnson (1),1,1,0,0,waiver - successful
+Conf,2025-10-02 10:57:08.406994+00:00,7,IR,waiver,unsuccessful - player in already been picked up,5.0,2.0,MID,200,Anthony (1),517,Anderson (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-10-15 15:57:50.587419+00:00,8,AC,waiver,unsuccessful - player out already gone,6.0,2.0,MID,698,Okafor (0),669,Ndoye (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Conf,2025-10-22 15:19:24.908876+00:00,9,HC,waiver,successful,4.0,1.0,FWD,250,Delap (0),596,Solanke (0),0,0,0,0,waiver - successful
+Conf,2025-10-23 16:42:09.690781+00:00,9,PV,waiver,unsuccessful - player in already been picked up,5.0,2.0,MID,324,Iwobi (1),414,Foden (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-10-23 16:42:09.690805+00:00,9,PV,waiver,successful,6.0,3.0,MID,612,L.Paquetá (1),414,Foden (1),1,1,0,0,waiver - successful
+Conf,2025-11-15 13:17:01.963507+00:00,12,IR,waiver,unsuccessful - player in already been picked up,14.0,4.0,DEF,411,O'Reilly (1),371,Kerkez (1),1,1,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2025-11-20 18:47:55.353108+00:00,12,PV,waiver,successful,1.0,1.0,DEF,374,Konaté (0),233,Acheampong (0),0,0,0,0,waiver - successful
+Conf,2025-11-29 11:01:57.189259+00:00,13,CR,free agent,successful,,,DEF,508,N.Williams (1),74,Truffert (1),1,1,0,0,free agent - successful
+Conf,2025-12-01 07:00:58.842621+00:00,14,HC,waiver,successful,3.0,1.0,MID,582,Kudus (7),427,Reijnders (7),7,7,0,0,waiver - successful
+Conf,2025-12-01 07:00:58.842693+00:00,14,HC,waiver,successful,8.0,3.0,DEF,295,Keane (0),402,Aït-Nouri (0),0,0,0,0,waiver - successful
+Conf,2025-12-09 12:16:31.192381+00:00,16,AC,waiver,successful,5.0,2.0,MID,242,Dewsbury-Hall (1),487,Barnes (1),1,1,0,0,waiver - successful
+Conf,2025-12-17 12:34:34.249462+00:00,17,AC,waiver,successful,5.0,2.0,MID,273,Wharton (3),26,Zubimendi (3),3,3,0,0,waiver - successful
+Conf,2025-12-19 08:37:59.519722+00:00,17,PV,waiver,successful,2.0,1.0,MID,157,Mitoma (1),22,Merino (1),1,1,0,0,waiver - successful
+Conf,2025-12-25 18:23:55.368740+00:00,18,CR,waiver,unsuccessful - player out already gone,8.0,3.0,DEF,531,Ballard (0),11,White (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Conf,2025-12-27 22:10:18.193433+00:00,19,AC,waiver,successful,5.0,2.0,DEF,151,Van Hecke (0),36,Cash (0),0,0,0,0,waiver - successful
+Conf,2026-01-01 22:30:45.420374+00:00,20,PV,waiver,successful,10.0,4.0,GKP,565,Vicario (2),729,Lammens (2),2,2,0,0,waiver - successful
+Conf,2026-01-01 22:30:45.420392+00:00,20,PV,waiver,unsuccessful - player out already gone,11.0,5.0,GKP,101,Kelleher (2),729,Lammens (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-01-01 23:58:51.251586+00:00,20,AC,waiver,unsuccessful - player in already been picked up,6.0,1.0,MID,303,Garner (4),273,Wharton (4),4,4,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-16 10:46:49.100220+00:00,22,CR,waiver,successful,3.0,1.0,FWD,679,Šeško (0),560,Isidor (0),0,0,0,0,waiver - successful
+Conf,2026-01-22 19:19:50.878317+00:00,23,PV,waiver,unsuccessful - player in already been picked up,13.0,3.0,MID,299,Ndiaye (2),487,Barnes (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2026-01-22 19:19:50.878336+00:00,23,PV,waiver,successful,14.0,4.0,MID,157,Mitoma (2),487,Barnes (2),2,2,0,0,waiver - successful
+Conf,2026-01-23 09:03:55.851482+00:00,23,HC,waiver,successful,6.0,1.0,MID,299,Ndiaye (2),485,Gordon (2),2,2,0,0,waiver - successful
+Conf,2026-01-30 07:14:16.732023+00:00,24,HC,waiver,unsuccessful - player in already been picked up,12.0,5.0,DEF,257,Lacroix (2),258,Mitchell (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-01 14:06:02.298853+00:00,25,AC,waiver,successful,5.0,1.0,FWD,806,Abraham (1),31,G.Jesus (1),1,1,0,0,waiver - successful
+Conf,2026-02-03 10:52:27.049406+00:00,25,CR,waiver,successful,9.0,2.0,DEF,473,Hall (0),508,N.Williams (0),0,0,0,0,waiver - successful
+Conf,2026-02-03 15:27:47.243941+00:00,25,IR,waiver,unsuccessful - player out already gone,6.0,2.0,DEF,374,Konaté (1),531,Ballard (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-02-03 15:27:47.243978+00:00,25,IR,waiver,unsuccessful - player out already gone,10.0,4.0,MID,90,Scott (2),547,E.Le Fée (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-02-15 07:29:03.907180+00:00,27,CR,waiver,successful,6.0,2.0,MID,267,Sarr (2),303,Garner (2),2,2,0,0,waiver - successful
+Conf,2026-02-24 06:14:58.807738+00:00,28,PV,waiver,successful,19.0,10.0,GKP,314,Leno (2),220,Sánchez (2),2,2,0,0,waiver - successful
+Conf,2026-02-24 12:46:11.544370+00:00,28,IR,waiver,unsuccessful - player in already been picked up,9.0,2.0,MID,485,Gordon (2),26,Zubimendi (2),2,2,0,0,waiver - unsuccessful - player in already been picked up
+Conf,2026-02-24 12:46:11.544405+00:00,28,IR,waiver,unsuccessful - player out already gone,11.0,4.0,FWD,715,Woltemade (1),250,Delap (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-02-28 14:02:32.604406+00:00,29,HC,waiver,successful,1.0,1.0,DEF,443,Shaw (1),295,Keane (1),1,1,0,0,waiver - successful
+Conf,2026-03-13 09:47:46.364956+00:00,30,PV,waiver,unsuccessful - player out already gone,7.0,3.0,MID,84,Tavernier (3),413,Marmoush (3),3,3,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-03-19 09:14:09.948973+00:00,31,CR,waiver,successful,7.0,3.0,DEF,370,Frimpong (0),402,Aït-Nouri (0),0,0,0,0,waiver - successful
+Conf,2026-03-19 10:21:59.722715+00:00,31,HC,waiver,successful,1.0,1.0,MID,593,P.M.Sarr (2),708,M.Fernandes (2),2,2,0,0,waiver - successful
+Conf,2026-03-20 13:17:15.301358+00:00,31,IR,free agent,successful,,,DEF,322,Tete (0),257,Lacroix (0),0,0,0,0,free agent - successful
+Conf,2026-04-02 23:11:59.783185+00:00,32,AC,waiver,successful,3.0,1.0,FWD,526,Igor Jesus (2),597,Richarlison (2),2,2,0,0,waiver - successful
+Conf,2026-04-22 21:23:24.782948+00:00,34,AC,waiver,unsuccessful - player out already gone,9.0,3.0,MID,784,Groß (0),237,Enzo (0),0,0,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 10:42:17.553312+00:00,34,PV,waiver,unsuccessful - player out already gone,6.0,3.0,MID,452,Amad (1),16,Saka (1),1,1,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-04-23 11:28:07.164796+00:00,34,CR,waiver,successful,4.0,1.0,DEF,694,Mukiele (0),344,Bijol (0),0,0,0,0,waiver - successful
+Conf,2026-04-23 17:50:40.279914+00:00,34,IR,free agent,successful,,,DEF,226,Chalobah (0),714,A.Jimenez (0),0,0,0,0,free agent - successful
+Conf,2026-04-23 21:52:07.416403+00:00,34,AC,free agent,successful,,,MID,784,Groß (0),698,Okafor (0),0,0,0,0,free agent - successful
+Conf,2026-04-24 07:14:24.739839+00:00,34,BP,free agent,successful,,,DEF,295,Keane (1),261,Richards (1),1,1,0,0,free agent - successful
+Conf,2026-04-24 07:15:43.326965+00:00,34,BP,free agent,successful,,,MID,354,Ampadu (0),87,Christie (0),0,0,0,0,free agent - successful
+Conf,2026-04-24 07:19:29.265448+00:00,34,BP,free agent,successful,,,FWD,733,Brobbey (2),337,Raúl (2),2,2,0,0,free agent - successful
+Conf,2026-04-24 14:00:17.195871+00:00,34,IR,free agent,successful,,,DEF,343,Struijk (0),226,Chalobah (0),0,0,0,0,free agent - successful
+Conf,2026-04-24 16:41:54.546702+00:00,34,CR,free agent,successful,,,DEF,684,Alderete (0),8,J.Timber (0),0,0,0,0,free agent - successful
+Conf,2026-04-30 17:11:53.263757+00:00,35,PV,waiver,successful,18.0,9.0,DEF,707,Justin (2),575,Van de Ven (2),2,2,0,0,waiver - successful
+Conf,2026-04-30 21:39:11.374291+00:00,35,AC,free agent,successful,,,MID,237,Enzo (2),242,Dewsbury-Hall (2),2,2,0,0,free agent - successful
+Conf,2026-05-06 07:44:02.162454+00:00,36,IR,waiver,successful,7.0,2.0,DEF,683,Thiaw (2),371,Kerkez (2),2,2,0,0,waiver - successful
+Conf,2026-05-06 07:44:02.162477+00:00,36,IR,waiver,unsuccessful - player out already gone,11.0,3.0,DEF,476,Burn (2),371,Kerkez (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-05-08 06:36:24.949690+00:00,36,BP,waiver,unsuccessful - player out already gone,10.0,3.0,FWD,597,Richarlison (2),733,Brobbey (2),2,2,0,0,waiver - unsuccessful - player out already gone
+Conf,2026-05-08 19:16:10.048807+00:00,36,IR,free agent,successful,,,GKP,253,Henderson (3),101,Kelleher (3),3,3,0,0,free agent - successful

@@ -1,0 +1,1403 @@
+,added,event,person,kind,result,index,position,player_in,player_out,player_in_points_scored_in_week,player_in_points_scored_after,player_out_points_scored_in_week,player_out_points_scored_after,net_points_of_trade,net_points_of_trade_per_week,net_points_of_trade_in_week,points_actually_scored,points_not_realised,net_points_banked
+0,2024-08-15T22:13:32.766328Z,1,JP,free agent,successful,,DEF,Wan-Bissaka,De Ligt,0,118,1,68,50,1.3157894736842106,-1,1.0,117.0,-67.0
+1,2025-02-24T11:21:41.174865Z,27,JP,waiver,unsuccessful - player in already been picked up,11.0,DEF,Wan-Bissaka,Huijsen,7,41,1,35,6,0.5,6,0.0,41.0,-35.0
+2,2025-02-24T11:21:41.174898Z,27,JP,waiver,unsuccessful - player out already gone,16.0,DEF,Cash,Huijsen,0,35,1,35,0,0.0,-1,0.0,35.0,-35.0
+3,2025-02-24T11:21:41.174881Z,27,JP,waiver,successful,12.0,DEF,Dorgu,Huijsen,-3,16,1,35,-19,-1.5833333333333333,-4,-3.0,19.0,-38.0
+4,2025-02-24T12:27:33.387395Z,27,CR,waiver,successful,7.0,DEF,Wan-Bissaka,Tarkowski,7,41,2,16,25,2.0833333333333335,5,9.0,32.0,-7.0
+5,2024-12-07T09:53:34.244478Z,15,JP,free agent,successful,,DEF,Cash,Robertson,0,55,0,44,11,0.4583333333333333,0,0.0,55.0,-44.0
+6,2025-02-24T11:21:41.174849Z,27,JP,waiver,unsuccessful - player out already gone,10.0,MID,Johnson,Smith Rowe,2,33,0,24,9,0.75,2,0.0,33.0,-24.0
+7,2025-02-24T11:21:41.174782Z,27,JP,waiver,successful,5.0,MID,M.Asensio,Smith Rowe,1,26,0,24,2,0.16666666666666666,1,4.0,22.0,-20.0
+8,2025-02-24T11:21:41.174829Z,27,JP,waiver,unsuccessful - player in already been picked up,9.0,MID,B.Fernandes,Smith Rowe,10,58,0,24,34,2.8333333333333335,10,0.0,58.0,-24.0
+9,2025-02-25T03:42:41.581937Z,27,LD,free agent,successful,,MID,Johnson,Trossard,2,33,3,59,-26,-2.1666666666666665,-1,4.0,29.0,-55.0
+10,2025-02-23T19:18:40.657851Z,27,AN,waiver,successful,5.0,MID,Neto,Trossard,11,50,3,59,-9,-0.75,8,23.0,27.0,-36.0
+11,2025-02-23T19:18:40.657944Z,27,AN,waiver,unsuccessful - player out already gone,12.0,MID,Nkunku,Trossard,12,19,3,59,-40,-3.3333333333333335,9,0.0,19.0,-59.0
+12,2025-02-23T19:18:40.657902Z,27,AN,waiver,unsuccessful - player in already been picked up,10.0,MID,Szoboszlai,Trossard,11,44,3,59,-15,-1.25,8,0.0,44.0,-59.0
+13,2025-02-24T13:12:54.709337Z,27,IR,waiver,unsuccessful - player in already been picked up,13.0,MID,M.Asensio,Merino,1,26,3,38,-12,-1.0,-2,0.0,26.0,-38.0
+14,2025-02-25T16:48:54.229310Z,27,IR,free agent,successful,,MID,Nkunku,Merino,12,19,3,38,-19,-1.5833333333333333,9,15.0,4.0,-23.0
+15,2025-02-22T20:21:12.329606Z,27,BP,waiver,unsuccessful - player in already been picked up,2.0,MID,M.Asensio,De Bruyne,1,26,0,40,-14,-1.1666666666666667,1,0.0,26.0,-40.0
+16,2025-02-22T19:44:39.635796Z,27,AC,waiver,successful,1.0,MID,M.Asensio,Iwobi,1,26,1,45,-19,-1.5833333333333333,0,1.0,25.0,-44.0
+17,2025-02-24T06:09:37.170001Z,27,LD,waiver,successful,6.0,MID,Neto,Iwobi,11,50,1,45,5,0.4166666666666667,10,17.0,33.0,-28.0
+18,2025-02-24T17:49:34.591686Z,27,TS,waiver,unsuccessful - player in already been picked up,3.0,MID,B.Fernandes,Rogers,10,58,7,58,0,0.0,3,0.0,58.0,-58.0
+19,2025-02-24T17:49:34.591731Z,27,TS,waiver,successful,4.0,MID,De Bruyne,Rogers,0,40,7,58,-18,-1.5,-7,0.0,40.0,-58.0
+20,2025-02-24T16:59:03.745051Z,27,HC,waiver,successful,1.0,MID,B.Fernandes,Semenyo,10,58,1,57,1,0.08333333333333333,9,55.0,3.0,-2.0
+21,2024-08-21T10:28:53.125933Z,2,JP,waiver,successful,2.0,MID,Doku,Neto,2,85,4,103,-18,-0.4864864864864865,-2,4.0,81.0,-99.0
+22,2025-05-02T15:11:14.515922Z,35,JP,free agent,successful,,MID,Schade,Neto,14,29,5,16,13,3.25,9,27.0,2.0,11.0
+23,2025-05-01T20:40:15.351819Z,35,AN,waiver,successful,18.0,MID,Savinho,Neto,0,2,5,16,-14,-3.5,-5,1.0,1.0,-15.0
+24,2024-08-21T10:28:53.125982Z,2,JP,waiver,successful,5.0,FWD,Nketiah,G.Jesus,0,53,0,42,11,0.2972972972972973,0,6.0,47.0,-36.0
+25,2024-08-21T10:28:53.126005Z,2,JP,waiver,unsuccessful - player out already gone,8.0,FWD,Wood,G.Jesus,1,191,0,42,149,4.027027027027027,1,0.0,191.0,-42.0
+26,2024-08-20T19:07:53.414647Z,2,MN,waiver,unsuccessful - player in already been picked up,7.0,FWD,Wood,Gakpo,1,191,1,127,64,1.7297297297297298,0,0.0,191.0,-127.0
+27,2024-08-20T19:07:53.414676Z,2,MN,waiver,unsuccessful - player out already gone,8.0,FWD,Vardy,Gakpo,2,120,1,127,-7,-0.1891891891891892,1,0.0,120.0,-127.0
+28,2024-08-20T19:07:53.414586Z,2,MN,waiver,successful,2.0,FWD,Welbeck,Gakpo,9,113,1,127,-14,-0.3783783783783784,8,83.0,30.0,-44.0
+29,2024-08-23T09:41:46.992137Z,2,LB,waiver,successful,4.0,FWD,Wood,João Pedro,1,191,8,124,67,1.8108108108108107,-7,189.0,2.0,65.0
+30,2024-08-23T09:41:46.992185Z,2,LB,waiver,unsuccessful - player out already gone,11.0,FWD,Vardy,João Pedro,2,120,8,124,-4,-0.10810810810810811,-6,0.0,120.0,-124.0
+31,2024-08-24T08:22:25.612869Z,2,JP,free agent,successful,,MID,Martinelli,Rice,3,122,2,124,-2,-0.05405405405405406,1,41.0,81.0,-83.0
+32,2024-10-04T09:20:09.150378Z,7,JP,waiver,unsuccessful - player in already been picked up,3.0,MID,Martinelli,Rogers,6,97,3,136,-39,-1.21875,3,0.0,97.0,-136.0
+33,2024-10-04T11:56:10.778225Z,7,JP,free agent,successful,,MID,Trossard,Rogers,1,130,3,136,-6,-0.1875,-2,28.0,102.0,-108.0
+34,2024-10-01T09:26:40.238530Z,7,CR,waiver,successful,2.0,MID,Martinelli,Szoboszlai,6,97,1,122,-25,-0.78125,5,19.0,78.0,-103.0
+35,2024-10-04T07:22:07.234577Z,7,HC,waiver,unsuccessful - player out already gone,5.0,MID,Trossard,Sterling,1,130,1,24,106,3.3125,0,0.0,130.0,-24.0
+36,2024-10-04T07:22:07.234555Z,7,HC,waiver,successful,4.0,MID,Barnes,Sterling,3,95,1,24,71,2.21875,2,8.0,87.0,-16.0
+37,2024-10-04T07:22:07.234596Z,7,HC,waiver,unsuccessful - player out already gone,6.0,MID,Johnson,Sterling,7,108,1,24,84,2.625,6,0.0,108.0,-24.0
+38,2024-11-27T20:15:46.574778Z,13,JP,waiver,successful,1.0,MID,Maddison,Rogers,2,65,2,114,-49,-1.8846153846153846,0,31.0,34.0,-83.0
+39,2024-11-26T05:48:37.046210Z,13,LD,waiver,unsuccessful - player in already been picked up,4.0,MID,Maddison,Barnes,2,65,2,80,-15,-0.5769230769230769,0,0.0,65.0,-80.0
+40,2024-11-26T05:48:37.046265Z,13,LD,waiver,successful,5.0,MID,Trossard,Barnes,12,118,2,80,38,1.4615384615384615,10,56.0,62.0,-24.0
+41,2024-11-23T20:40:46.791939Z,13,CR,waiver,unsuccessful - player in already been picked up,2.0,MID,Maddison,Semenyo,2,65,0,118,-53,-2.0384615384615383,2,0.0,65.0,-118.0
+42,2024-11-26T08:53:27.405080Z,13,TS,waiver,unsuccessful - player in already been picked up,3.0,MID,Maddison,Neto,2,65,3,79,-14,-0.5384615384615384,-1,0.0,65.0,-79.0
+43,2024-12-25T09:03:03.265910Z,18,JP,waiver,successful,4.0,MID,Martinelli,Sancho,3,65,2,44,21,1.0,1,37.0,28.0,-7.0
+44,2024-12-24T07:38:26.322131Z,18,HC,waiver,unsuccessful - player in already been picked up,6.0,MID,Martinelli,Mitoma,3,65,3,80,-15,-0.7142857142857143,0,0.0,65.0,-80.0
+45,2024-11-01T07:49:13.567024Z,10,JP,waiver,successful,2.0,MID,Rashford,Sancho,2,68,0,67,1,0.034482758620689655,2,19.0,49.0,-48.0
+46,2024-10-31T13:31:17.921245Z,10,AN,waiver,unsuccessful - player in already been picked up,6.0,MID,Barnes,Sancho,1,89,0,67,22,0.7586206896551724,1,0.0,89.0,-67.0
+47,2024-11-01T11:38:52.770349Z,10,AN,free agent,successful,,MID,Neto,Sancho,2,90,0,67,23,0.7931034482758621,2,45.0,45.0,-22.0
+48,2025-03-31T16:19:30.201402Z,30,JP,waiver,successful,7.0,MID,Martinelli,Nwaneri,5,32,6,20,12,1.3333333333333333,-1,11.0,21.0,-9.0
+49,2025-03-31T16:19:30.201423Z,30,JP,waiver,unsuccessful - player out already gone,13.0,MID,Rashford,Nwaneri,8,21,6,20,1,0.1111111111111111,2,0.0,21.0,-20.0
+50,2025-03-31T17:47:35.384062Z,30,HC,free agent,successful,,MID,Rashford,Hudson-Odoi,8,21,0,8,13,1.4444444444444444,8,21.0,0.0,13.0
+51,2025-03-31T15:31:13.336250Z,30,AN,waiver,unsuccessful - player in already been picked up,29.0,MID,Rashford,Neto,8,21,2,35,-14,-1.5555555555555556,6,0.0,21.0,-35.0
+52,2025-03-31T15:31:13.336232Z,30,AN,waiver,unsuccessful - player in already been picked up,28.0,MID,Rashford,Maddison,8,21,2,15,6,0.6666666666666666,6,0.0,21.0,-15.0
+53,2025-03-31T15:31:13.336096Z,30,AN,waiver,unsuccessful - player out already gone,19.0,MID,Barnes,Maddison,5,57,2,15,42,4.666666666666667,3,0.0,57.0,-15.0
+54,2025-03-31T15:31:13.336054Z,30,AN,waiver,unsuccessful - player out already gone,13.0,MID,Gordon,Maddison,0,11,2,15,-4,-0.4444444444444444,-2,0.0,11.0,-15.0
+55,2025-03-31T15:31:13.336000Z,30,AN,waiver,successful,5.0,MID,Eze,Maddison,2,62,2,15,47,5.222222222222222,0,27.0,35.0,12.0
+56,2025-03-31T12:17:39.150053Z,30,IR,waiver,unsuccessful - player in already been picked up,31.0,MID,Rashford,J.Gomes,8,21,2,17,4,0.4444444444444444,6,0.0,21.0,-17.0
+57,2025-03-31T12:17:39.149961Z,30,IR,waiver,unsuccessful - player in already been picked up,17.0,MID,Gordon,J.Gomes,0,11,2,17,-6,-0.6666666666666666,-2,0.0,11.0,-17.0
+58,2025-03-31T12:17:39.150036Z,30,IR,waiver,unsuccessful - player in already been picked up,30.0,MID,Eze,J.Gomes,2,62,2,17,45,5.0,0,0.0,62.0,-17.0
+59,2025-03-31T12:17:39.150071Z,30,IR,waiver,successful,32.0,MID,O.Dango,J.Gomes,2,12,2,17,-5,-0.5555555555555556,0,2.0,10.0,-15.0
+60,2025-03-31T13:16:05.972092Z,30,BP,waiver,successful,2.0,MID,Rashford,Garnacho,8,21,1,28,-7,-0.7777777777777778,7,21.0,0.0,-7.0
+61,2025-01-13T11:36:41.731683Z,21,JP,waiver,unsuccessful - player in already been picked up,13.0,MID,Savinho,Maddison,5,39,1,34,5,0.2777777777777778,4,0.0,39.0,-34.0
+62,2025-01-14T16:50:14.794747Z,21,JP,free agent,successful,,MID,Kudus,Maddison,2,55,1,34,21,1.1666666666666667,1,4.0,51.0,-30.0
+63,2025-01-13T12:49:44.819838Z,21,LD,waiver,successful,8.0,MID,Savinho,Madueke,5,39,2,41,-2,-0.1111111111111111,3,8.0,31.0,-33.0
+64,2025-01-13T12:49:44.819860Z,21,LD,waiver,unsuccessful - player out already gone,14.0,MID,Bruno G.,Madueke,6,67,2,41,26,1.4444444444444444,4,0.0,67.0,-41.0
+65,2025-01-13T17:55:56.819555Z,21,AN,waiver,successful,3.0,MID,Kudus,Mitoma,2,55,10,75,-20,-1.1111111111111112,-8,33.0,22.0,-42.0
+66,2025-01-13T09:50:04.390937Z,21,HC,waiver,unsuccessful - player in already been picked up,19.0,MID,Bowen,Mitoma,0,103,10,75,28,1.5555555555555556,-10,0.0,103.0,-75.0
+67,2025-01-13T09:50:04.390956Z,21,HC,waiver,unsuccessful - player in already been picked up,20.0,MID,Gibbs-White,Mitoma,1,83,10,75,8,0.4444444444444444,-9,0.0,83.0,-75.0
+68,2025-01-13T17:55:56.819701Z,21,AN,waiver,unsuccessful - player out already gone,12.0,MID,Adingra,Mitoma,3,29,10,75,-46,-2.5555555555555554,-7,0.0,29.0,-75.0
+69,2025-05-14T13:14:58.568433Z,37,JP,waiver,successful,9.0,MID,Martinelli,Foden,3,5,0,1,4,2.0,3,5.0,0.0,4.0
+70,2025-05-14T13:14:58.568456Z,37,JP,waiver,unsuccessful - player out already gone,14.0,MID,Neto,Foden,3,9,0,1,8,4.0,3,0.0,9.0,-1.0
+71,2025-05-14T13:14:58.568495Z,37,JP,waiver,unsuccessful - player out already gone,16.0,MID,M.Asensio,Foden,3,4,0,1,3,1.5,3,0.0,4.0,-1.0
+72,2025-05-14T17:34:16.914288Z,37,AN,waiver,successful,5.0,MID,Martinelli,Savinho,3,5,0,1,4,2.0,3,5.0,0.0,4.0
+73,2025-05-14T17:34:16.914383Z,37,AN,waiver,unsuccessful - player in already been picked up,20.0,MID,Enzo,Savinho,3,6,0,1,5,2.5,3,0.0,6.0,-1.0
+74,2025-05-14T17:34:16.914341Z,37,AN,waiver,unsuccessful - player out already gone,18.0,MID,Ødegaard,Savinho,6,13,0,1,12,6.0,6,0.0,13.0,-1.0
+75,2025-05-14T20:38:10.391244Z,37,PV,waiver,unsuccessful - player in already been picked up,14.0,MID,Martinelli,Ramsey,3,5,0,1,4,2.0,3,0.0,5.0,-1.0
+76,2025-05-14T20:38:10.391264Z,37,PV,waiver,unsuccessful - player out already gone,15.0,MID,Ødegaard,Ramsey,6,13,0,1,12,6.0,6,0.0,13.0,-1.0
+77,2025-05-14T20:38:10.391222Z,37,PV,waiver,unsuccessful - player in already been picked up,13.0,MID,McNeil,Ramsey,6,7,0,1,6,3.0,6,0.0,7.0,-1.0
+78,2025-05-14T20:38:10.391166Z,37,PV,waiver,successful,4.0,MID,Enciso,Ramsey,2,2,0,1,1,0.5,2,2.0,0.0,1.0
+79,2025-05-13T10:05:25.774280Z,37,IR,waiver,unsuccessful - player in already been picked up,38.0,MID,Martinelli,Doku,3,5,1,4,1,0.5,2,0.0,5.0,-4.0
+80,2025-05-13T10:05:25.774347Z,37,IR,waiver,unsuccessful - player in already been picked up,40.0,MID,Neto,Doku,3,9,1,4,5,2.5,2,0.0,9.0,-4.0
+81,2025-05-16T08:33:55.800399Z,37,IR,free agent,successful,,MID,Gordon,Doku,2,3,1,4,-1,-0.5,1,1.0,2.0,-3.0
+82,2025-05-13T10:05:25.774314Z,37,IR,waiver,unsuccessful - player in already been picked up,39.0,MID,Ødegaard,Doku,6,13,1,4,9,4.5,5,0.0,13.0,-4.0
+83,2025-05-13T10:05:25.774019Z,37,IR,waiver,unsuccessful - player in already been picked up,27.0,MID,Martinelli,B.Fernandes,3,5,1,8,-3,-1.5,2,0.0,5.0,-8.0
+84,2025-05-13T10:05:25.774053Z,37,IR,waiver,unsuccessful - player in already been picked up,28.0,MID,Neto,B.Fernandes,3,9,1,8,1,0.5,2,0.0,9.0,-8.0
+85,2025-05-13T10:05:25.773986Z,37,IR,waiver,unsuccessful - player in already been picked up,26.0,MID,Ødegaard,B.Fernandes,6,13,1,8,5,2.5,5,0.0,13.0,-8.0
+86,2025-05-13T10:05:25.773910Z,37,IR,waiver,successful,12.0,MID,McNeil,B.Fernandes,6,7,1,8,-1,-0.5,5,6.0,1.0,-2.0
+87,2025-05-13T10:05:25.773950Z,37,IR,waiver,unsuccessful - player out already gone,25.0,MID,Harrison,B.Fernandes,1,4,1,8,-4,-2.0,0,1.0,3.0,-7.0
+88,2025-05-13T10:05:25.774177Z,37,IR,waiver,unsuccessful - player in already been picked up,35.0,MID,Martinelli,Bernardo,3,5,11,14,-9,-4.5,-8,0.0,5.0,-14.0
+89,2025-05-13T10:05:25.774247Z,37,IR,waiver,unsuccessful - player in already been picked up,37.0,MID,Neto,Bernardo,3,9,11,14,-5,-2.5,-8,0.0,9.0,-14.0
+90,2025-05-13T10:05:25.774214Z,37,IR,waiver,unsuccessful - player in already been picked up,36.0,MID,Ødegaard,Bernardo,6,13,11,14,-1,-0.5,-5,0.0,13.0,-14.0
+91,2025-05-13T10:05:25.774113Z,37,IR,waiver,successful,29.0,MID,Harrison,Bernardo,1,4,11,14,-10,-5.0,-10,1.0,3.0,-13.0
+92,2025-05-15T09:31:31.680951Z,37,MN,waiver,unsuccessful - player in already been picked up,22.0,MID,Martinelli,Matheus N.,3,5,5,11,-6,-3.0,-2,0.0,5.0,-11.0
+93,2025-05-15T05:53:05.760134Z,37,LD,waiver,successful,2.0,MID,J.Murphy,Matheus N.,2,4,5,11,-7,-3.5,-3,4.0,0.0,-7.0
+94,2025-05-15T09:31:31.680987Z,37,MN,waiver,unsuccessful - player out already gone,32.0,MID,Thomas,Matheus N.,3,5,5,11,-6,-3.0,-2,0.0,5.0,-11.0
+95,2025-05-15T09:31:31.680931Z,37,MN,waiver,successful,8.0,MID,Kluivert,Matheus N.,1,4,5,11,-7,-3.5,-4,3.0,1.0,-8.0
+96,2025-05-15T09:31:31.680909Z,37,MN,waiver,unsuccessful - player in already been picked up,7.0,MID,Martinelli,Gündogan,3,5,6,20,-15,-7.5,-3,0.0,5.0,-20.0
+97,2025-05-15T09:31:31.680969Z,37,MN,waiver,successful,23.0,MID,Ødegaard,Gündogan,6,13,6,20,-7,-3.5,0,13.0,0.0,-7.0
+98,2025-05-14T17:34:16.914401Z,37,AN,waiver,successful,21.0,MID,Neto,Iwobi,3,9,2,3,6,3.0,1,3.0,6.0,0.0
+99,2024-08-26T15:07:10.772456Z,3,JP,waiver,successful,4.0,DEF,J.Timber,Wan-Bissaka,1,107,1,117,-10,-0.2777777777777778,0,60.0,47.0,-57.0
+100,2024-08-29T17:08:35.234559Z,3,LD,waiver,unsuccessful - player in already been picked up,10.0,DEF,J.Timber,Zinchenko,1,107,1,34,73,2.0277777777777777,0,0.0,107.0,-34.0
+101,2024-08-29T17:08:35.234580Z,3,LD,waiver,successful,11.0,DEF,Romero,Zinchenko,1,33,1,34,-1,-0.027777777777777776,0,14.0,19.0,-20.0
+102,2024-08-29T17:08:35.234616Z,3,LD,waiver,unsuccessful - player out already gone,16.0,DEF,Konsa,Zinchenko,2,100,1,34,66,1.8333333333333333,1,0.0,100.0,-34.0
+103,2024-08-28T17:15:38.739604Z,3,AN,waiver,successful,10.0,DEF,J.Timber,Mazraoui,1,107,1,76,31,0.8611111111111112,0,0.0,107.0,-76.0
+104,2024-11-01T07:49:13.567066Z,10,JP,waiver,successful,4.0,DEF,J.Timber,Calafiori,1,93,0,25,68,2.3448275862068964,1,59.0,34.0,34.0
+105,2024-11-01T07:49:13.567084Z,10,JP,waiver,unsuccessful - player out already gone,7.0,DEF,De Ligt,Calafiori,2,41,0,25,16,0.5517241379310345,2,0.0,41.0,-25.0
+106,2024-10-28T06:49:01.515091Z,10,BP,waiver,successful,7.0,DEF,Keane,Calafiori,1,17,0,25,-8,-0.27586206896551724,1,1.0,16.0,-24.0
+107,2024-11-01T11:34:10.630258Z,10,AN,free agent,successful,,DEF,J.Timber,Estupiñan,1,93,1,60,33,1.1379310344827587,0,0.0,93.0,-60.0
+108,2025-04-17T13:33:46.032674Z,33,JP,waiver,successful,7.0,MID,Trossard,Elanga,24,40,4,22,18,3.0,20,24.0,16.0,2.0
+109,2025-04-18T05:09:28.662032Z,33,LD,waiver,unsuccessful - player in already been picked up,11.0,MID,Trossard,Bruno G.,24,40,1,17,23,3.8333333333333335,23,0.0,40.0,-17.0
+110,2025-04-18T05:09:28.661977Z,33,LD,waiver,unsuccessful - player in already been picked up,4.0,MID,Martinelli,Bruno G.,10,24,1,17,7,1.1666666666666667,9,0.0,24.0,-17.0
+111,2025-04-18T15:51:05.505915Z,33,LD,free agent,successful,,MID,Rice,Bruno G.,8,30,1,17,13,2.1666666666666665,7,10.0,20.0,-7.0
+112,2025-04-18T12:06:06.253483Z,33,TS,waiver,unsuccessful - player in already been picked up,14.0,MID,Trossard,J.Murphy,24,40,2,18,22,3.6666666666666665,22,0.0,40.0,-18.0
+113,2025-04-18T12:06:06.253462Z,33,TS,waiver,unsuccessful - player in already been picked up,13.0,MID,De Bruyne,J.Murphy,5,23,2,18,5,0.8333333333333334,3,0.0,23.0,-18.0
+114,2025-04-04T15:39:31.752306Z,31,JP,free agent,successful,,DEF,Romero,Digne,2,4,0,8,-4,-0.5,2,2.0,2.0,-6.0
+115,2025-04-18T16:31:36.102101Z,33,JP,free agent,successful,,MID,M.Asensio,Barnes,3,10,5,17,-7,-1.1666666666666667,-2,3.0,7.0,-14.0
+116,2025-04-17T13:33:46.032622Z,33,JP,waiver,unsuccessful - player in already been picked up,6.0,MID,De Bruyne,Barnes,5,23,5,17,6,1.0,0,0.0,23.0,-17.0
+117,2025-04-18T05:09:28.661925Z,33,LD,waiver,unsuccessful - player in already been picked up,3.0,MID,De Bruyne,Tonali,5,23,2,22,1,0.16666666666666666,3,0.0,23.0,-22.0
+118,2025-04-18T05:09:28.662010Z,33,LD,waiver,successful,5.0,MID,Ødegaard,Tonali,11,37,2,22,15,2.5,9,37.0,0.0,15.0
+119,2025-04-17T17:43:45.736708Z,33,CR,waiver,successful,2.0,MID,De Bruyne,Kluivert,5,23,2,11,12,2.0,3,23.0,0.0,12.0
+120,2025-04-17T15:51:25.576823Z,33,HC,waiver,unsuccessful - player in already been picked up,9.0,MID,De Bruyne,Diogo J.,5,23,1,5,18,3.0,4,0.0,23.0,-5.0
+121,2025-04-18T11:16:45.352701Z,33,AN,waiver,unsuccessful - player in already been picked up,26.0,MID,De Bruyne,Joelinton,5,23,1,1,22,3.6666666666666665,4,0.0,23.0,-1.0
+122,2025-04-18T11:16:45.352644Z,33,AN,waiver,unsuccessful - player in already been picked up,19.0,MID,Rice,Joelinton,8,30,1,1,29,4.833333333333333,7,0.0,30.0,-1.0
+123,2025-04-18T11:16:45.352719Z,33,AN,waiver,unsuccessful - player out already gone,27.0,MID,Savinho,Joelinton,3,5,1,1,4,0.6666666666666666,2,0.0,5.0,-1.0
+124,2025-04-18T11:16:45.352682Z,33,AN,waiver,unsuccessful - player out already gone,25.0,MID,Semenyo,Joelinton,3,36,1,1,35,5.833333333333333,2,0.0,36.0,-1.0
+125,2025-04-18T11:16:45.352664Z,33,AN,waiver,successful,20.0,MID,Iwobi,Joelinton,8,20,1,1,19,3.1666666666666665,7,17.0,3.0,16.0
+126,2025-04-18T11:21:56.463697Z,33,IR,waiver,unsuccessful - player in already been picked up,4.0,MID,De Bruyne,Grealish,5,23,0,1,22,3.6666666666666665,5,0.0,23.0,-1.0
+127,2025-04-18T11:21:56.463748Z,33,IR,waiver,successful,5.0,MID,Rice,Grealish,8,30,0,1,29,4.833333333333333,8,10.0,20.0,9.0
+128,2025-04-18T11:21:56.463770Z,33,IR,waiver,unsuccessful - player out already gone,15.0,MID,Kovačić,Grealish,8,16,0,1,15,2.5,8,0.0,16.0,-1.0
+129,2025-04-18T11:21:56.463806Z,33,IR,waiver,unsuccessful - player out already gone,17.0,MID,Lewis-Skelly,Grealish,3,10,0,1,9,1.5,3,0.0,10.0,-1.0
+130,2025-04-17T21:01:33.434328Z,33,MN,waiver,unsuccessful - player in already been picked up,22.0,MID,De Bruyne,Mitoma,5,23,6,23,0,0.0,-1,0.0,23.0,-23.0
+131,2025-04-17T21:01:33.434221Z,33,MN,waiver,unsuccessful - player in already been picked up,10.0,MID,Rice,Mitoma,8,30,6,23,7,1.1666666666666667,2,0.0,30.0,-23.0
+132,2025-04-17T21:01:33.434284Z,33,MN,waiver,successful,11.0,MID,Gündogan,Mitoma,8,31,6,23,8,1.3333333333333333,2,11.0,20.0,-12.0
+133,2025-04-17T21:01:33.434308Z,33,MN,waiver,unsuccessful - player out already gone,21.0,MID,Kovačić,Mitoma,8,16,6,23,-7,-1.1666666666666667,2,0.0,16.0,-23.0
+134,2025-04-17T21:01:33.434347Z,33,MN,waiver,unsuccessful - player out already gone,23.0,MID,Thomas,Mitoma,2,11,6,23,-12,-2.0,-4,0.0,11.0,-23.0
+135,2025-04-18T05:38:06.354727Z,33,BP,waiver,successful,2.0,MID,De Bruyne,Son,5,23,0,3,20,3.3333333333333335,5,23.0,0.0,20.0
+136,2025-04-15T09:30:21.791291Z,33,LB,waiver,unsuccessful - player in already been picked up,7.0,MID,De Bruyne,Enzo,5,23,5,27,-4,-0.6666666666666666,0,0.0,23.0,-27.0
+137,2025-04-18T14:12:57.190554Z,33,LB,free agent,successful,,MID,Savinho,Enzo,3,5,5,27,-22,-3.6666666666666665,-2,3.0,2.0,-24.0
+138,2025-03-14T15:34:45.753668Z,29,JP,free agent,successful,,MID,Elanga,I.Sarr,16,51,0,36,15,1.5,16,45.0,6.0,9.0
+139,2025-05-24T09:14:24.335073Z,38,JP,waiver,unsuccessful - player in already been picked up,15.0,DEF,Konsa,J.Timber,1,1,0,0,1,1.0,1,0.0,1.0,0.0
+140,2025-05-24T09:14:24.335132Z,38,JP,waiver,unsuccessful - player in already been picked up,21.0,DEF,Akanji,J.Timber,6,6,0,0,6,6.0,6,0.0,6.0,0.0
+141,2025-05-24T09:14:24.335114Z,38,JP,waiver,successful,17.0,DEF,Huijsen,J.Timber,4,4,0,0,4,4.0,4,4.0,0.0,4.0
+142,2025-05-23T08:47:52.974554Z,38,IR,waiver,unsuccessful - player in already been picked up,17.0,DEF,Burn,J.Timber,2,2,0,0,2,2.0,2,0.0,2.0,0.0
+143,2025-05-24T09:14:24.335093Z,38,JP,waiver,unsuccessful - player in already been picked up,16.0,DEF,Konsa,Lacroix,1,1,2,2,-1,-1.0,-1,0.0,1.0,-2.0
+144,2025-05-24T09:14:24.335046Z,38,JP,waiver,successful,9.0,DEF,Kiwior,Lacroix,2,2,2,2,0,0.0,0,2.0,0.0,0.0
+145,2025-05-23T08:47:52.974573Z,38,IR,waiver,unsuccessful - player in already been picked up,18.0,DEF,Burn,Lacroix,2,2,2,2,0,0.0,0,0.0,2.0,-2.0
+146,2025-05-24T10:31:27.738959Z,38,CR,waiver,successful,1.0,DEF,Konsa,Sessegnon,1,1,1,1,0,0.0,0,1.0,0.0,0.0
+147,2025-05-24T12:11:41.559769Z,38,AN,waiver,unsuccessful - player in already been picked up,37.0,DEF,Burn,Sessegnon,2,2,1,1,1,1.0,1,0.0,2.0,-1.0
+148,2025-05-24T12:11:41.559740Z,38,AN,waiver,successful,30.0,DEF,Bradley,Sessegnon,1,1,1,1,0,0.0,0,1.0,0.0,0.0
+149,2025-05-24T12:11:41.559800Z,38,AN,waiver,unsuccessful - player out already gone,38.0,DEF,Robertson,Sessegnon,2,2,1,1,1,1.0,1,0.0,2.0,-1.0
+150,2025-05-24T12:11:41.559711Z,38,AN,waiver,unsuccessful - player in already been picked up,29.0,DEF,Estupiñan,Sessegnon,0,0,1,1,-1,-1.0,-1,0.0,0.0,-1.0
+151,2025-05-24T12:11:41.559693Z,38,AN,waiver,unsuccessful - player in already been picked up,28.0,DEF,White,Sessegnon,5,5,1,1,4,4.0,4,0.0,5.0,-1.0
+152,2025-05-24T12:11:41.559828Z,38,AN,waiver,unsuccessful - player in already been picked up,39.0,DEF,Konsa,Digne,1,1,0,0,1,1.0,1,0.0,1.0,0.0
+153,2025-05-24T12:11:41.559932Z,38,AN,waiver,unsuccessful - player in already been picked up,50.0,DEF,Burn,Digne,2,2,0,0,2,2.0,2,0.0,2.0,0.0
+154,2025-05-24T12:11:41.559892Z,38,AN,waiver,successful,41.0,DEF,Pau,Digne,0,0,0,0,0,0.0,0,0.0,0.0,0.0
+155,2025-05-24T12:11:41.559859Z,38,AN,waiver,unsuccessful - player in already been picked up,40.0,DEF,Bradley,Digne,1,1,0,0,1,1.0,1,1.0,0.0,1.0
+156,2025-05-24T12:11:41.559914Z,38,AN,waiver,unsuccessful - player out already gone,49.0,DEF,Robertson,Digne,2,2,0,0,2,2.0,2,0.0,2.0,0.0
+157,2025-05-23T13:37:50.738349Z,38,PV,waiver,successful,23.0,DEF,Konsa,Aina,1,1,1,1,0,0.0,0,0.0,1.0,-1.0
+158,2025-05-23T13:37:50.738327Z,38,PV,waiver,unsuccessful - player in already been picked up,22.0,DEF,Burn,Aina,2,2,1,1,1,1.0,1,0.0,2.0,-1.0
+159,2025-05-22T12:43:06.496512Z,38,MN,waiver,unsuccessful - player in already been picked up,32.0,DEF,Konsa,Van den Berg,1,1,2,2,-1,-1.0,-1,0.0,1.0,-2.0
+160,2025-05-22T12:43:06.496623Z,38,MN,waiver,unsuccessful - player in already been picked up,45.0,DEF,Pau,Van den Berg,0,0,2,2,-2,-2.0,-2,0.0,0.0,-2.0
+161,2025-05-22T12:43:06.496548Z,38,MN,waiver,successful,34.0,DEF,Van Hecke,Van den Berg,2,2,2,2,0,0.0,0,2.0,0.0,0.0
+162,2025-05-22T12:43:06.496530Z,38,MN,waiver,unsuccessful - player in already been picked up,33.0,DEF,Konsa,Milenković,1,1,2,2,-1,-1.0,-1,0.0,1.0,-2.0
+163,2025-05-22T12:43:06.496566Z,38,MN,waiver,unsuccessful - player in already been picked up,42.0,DEF,Van Hecke,Milenković,2,2,2,2,0,0.0,0,2.0,0.0,0.0
+164,2024-09-27T10:14:46.981273Z,6,JP,free agent,successful,,DEF,Calafiori,J.Timber,0,28,4,99,-71,-2.1515151515151514,-4,2.0,26.0,-97.0
+165,2025-05-24T10:31:27.739036Z,38,CR,waiver,successful,6.0,DEF,Akanji,O'Brien,6,6,6,6,0,0.0,0,6.0,0.0,0.0
+166,2025-05-23T11:53:54.625463Z,38,LD,waiver,unsuccessful - player in already been picked up,18.0,DEF,Huijsen,Virgil,4,4,1,1,3,3.0,3,0.0,4.0,-1.0
+167,2025-05-23T16:51:55.791073Z,38,TS,waiver,unsuccessful - player out already gone,13.0,DEF,Huijsen,Mykolenko,4,4,9,9,-5,-5.0,-5,0.0,4.0,-9.0
+168,2025-05-23T16:51:55.791013Z,38,TS,waiver,unsuccessful - player in already been picked up,11.0,DEF,Kiwior,Mykolenko,2,2,9,9,-7,-7.0,-7,0.0,2.0,-9.0
+169,2025-05-23T16:51:55.790994Z,38,TS,waiver,successful,8.0,DEF,Calafiori,Mykolenko,0,0,9,9,-9,-9.0,-9,0.0,0.0,-9.0
+170,2025-05-19T06:02:17.719743Z,38,BP,waiver,successful,16.0,DEF,Calafiori,Mykolenko,0,0,9,9,-9,-9.0,-9,0.0,0.0,-9.0
+171,2025-05-23T16:51:55.791053Z,38,TS,waiver,unsuccessful - player in already been picked up,12.0,DEF,Kiwior,N.Williams,2,2,2,2,0,0.0,0,0.0,2.0,-2.0
+172,2025-05-25T13:03:28.556899Z,38,TS,free agent,successful,,DEF,Trippier,N.Williams,1,1,2,2,-1,-1.0,-1,0.0,1.0,-2.0
+173,2024-12-12T14:59:42.679774Z,16,JP,waiver,successful,3.0,MID,Sancho,Rashford,2,49,0,41,8,0.34782608695652173,2,5.0,44.0,-36.0
+174,2024-11-22T07:20:57.863620Z,12,JP,waiver,successful,5.0,MID,Garnacho,Rashford,2,66,8,65,1,0.037037037037037035,-6,2.0,64.0,-63.0
+175,2024-11-08T10:52:27.324656Z,11,JP,waiver,successful,2.0,FWD,Strand Larsen,Darwin,2,102,7,50,52,1.8571428571428572,-5,28.0,74.0,-22.0
+176,2025-02-24T11:21:41.174915Z,27,JP,waiver,successful,17.0,FWD,Evanilson,Welbeck,1,50,7,42,8,0.6666666666666666,-6,39.0,11.0,-3.0
+177,2025-02-23T18:22:42.077623Z,27,PV,waiver,successful,4.0,FWD,Evanilson,Ferguson,1,50,1,6,44,3.6666666666666665,0,42.0,8.0,36.0
+178,2025-01-31T07:57:34.954765Z,24,JP,waiver,successful,3.0,FWD,Ndiaye,Welbeck,9,42,1,51,-9,-0.6,8,9.0,33.0,-42.0
+179,2025-01-31T05:55:33.160526Z,24,LD,waiver,unsuccessful - player in already been picked up,13.0,FWD,Ndiaye,Højlund,9,42,1,35,7,0.4666666666666667,8,0.0,42.0,-35.0
+180,2025-01-31T05:55:33.160408Z,24,LD,waiver,successful,5.0,FWD,Darwin,Højlund,2,21,1,35,-14,-0.9333333333333333,1,4.0,17.0,-31.0
+181,2025-01-24T09:49:35.074796Z,23,JP,waiver,unsuccessful - player in already been picked up,3.0,MID,Mitoma,Kudus,2,53,2,51,2,0.125,0,0.0,53.0,-51.0
+182,2025-01-24T09:49:35.074850Z,23,JP,waiver,successful,4.0,MID,Mac Allister,Kudus,3,64,2,51,13,0.8125,1,17.0,47.0,-34.0
+183,2025-01-24T11:00:13.512262Z,23,CR,waiver,successful,2.0,MID,Mitoma,J.Murphy,2,53,6,85,-32,-2.0,-4,3.0,50.0,-82.0
+184,2025-01-24T11:00:13.512313Z,23,CR,waiver,unsuccessful - player out already gone,8.0,MID,Kluivert,J.Murphy,13,50,6,85,-35,-2.1875,7,0.0,50.0,-85.0
+185,2025-01-17T10:40:57.822102Z,22,JP,waiver,unsuccessful - player in already been picked up,3.0,MID,Elanga,Kudus,2,78,2,53,25,1.4705882352941178,0,0.0,78.0,-53.0
+186,2025-01-16T06:41:43.231540Z,22,CR,waiver,successful,2.0,MID,Elanga,Gibbs-White,2,78,5,82,-4,-0.23529411764705882,-3,4.0,74.0,-78.0
+187,2025-01-17T10:58:54.895931Z,22,HC,waiver,unsuccessful - player in already been picked up,7.0,MID,Elanga,Mitoma,2,78,12,65,13,0.7647058823529411,-10,0.0,78.0,-65.0
+188,2025-01-17T10:58:54.895875Z,22,HC,waiver,successful,1.0,MID,Maddison,Mitoma,2,33,12,65,-32,-1.8823529411764706,-10,11.0,22.0,-54.0
+189,2025-01-21T16:03:01.754354Z,23,LB,waiver,successful,5.0,MID,Mac Allister,Schade,3,64,11,77,-13,-0.8125,-8,17.0,47.0,-60.0
+190,2025-01-21T16:03:01.754406Z,23,LB,waiver,unsuccessful - player out already gone,11.0,MID,Madueke,Schade,9,32,11,77,-45,-2.8125,-2,0.0,32.0,-77.0
+191,2025-01-21T16:03:01.754428Z,23,LB,waiver,unsuccessful - player out already gone,12.0,MID,Eze,Schade,2,77,11,77,0,0.0,-9,0.0,77.0,-77.0
+192,2024-09-12T07:13:22.417812Z,4,JP,waiver,successful,3.0,MID,Rogers,Martinelli,2,155,3,118,37,1.0571428571428572,-1,15.0,140.0,-103.0
+193,2025-04-11T08:27:57.786430Z,32,JP,waiver,successful,7.0,MID,Barnes,Martinelli,27,44,2,26,18,2.5714285714285716,25,27.0,17.0,1.0
+194,2025-04-11T08:27:57.786484Z,32,JP,waiver,unsuccessful - player out already gone,9.0,MID,Tonali,Martinelli,15,37,2,26,11,1.5714285714285714,13,0.0,37.0,-26.0
+195,2025-02-12T19:55:30.571190Z,25,JP,waiver,unsuccessful - player in already been picked up,5.0,MID,Rashford,Martinelli,9,41,0,36,5,0.35714285714285715,9,0.0,41.0,-36.0
+196,2025-02-12T19:55:30.571232Z,25,JP,waiver,successful,6.0,MID,Tielemans,Martinelli,12,55,0,36,19,1.3571428571428572,12,12.0,43.0,-24.0
+197,2025-02-13T17:16:06.155687Z,25,PV,waiver,successful,3.0,MID,Nwaneri,Martinelli,9,36,0,36,0,0.0,9,11.0,25.0,-25.0
+198,2025-02-13T17:16:06.155776Z,25,PV,waiver,unsuccessful - player out already gone,8.0,MID,Johnson,Martinelli,1,48,0,36,12,0.8571428571428571,1,0.0,48.0,-36.0
+199,2025-02-10T14:54:02.707675Z,25,LD,waiver,unsuccessful - player in already been picked up,7.0,MID,Rashford,Bruno G.,9,41,1,48,-7,-0.5,8,0.0,41.0,-48.0
+200,2025-02-10T01:14:17.185821Z,25,MN,waiver,unsuccessful - player in already been picked up,6.0,MID,Rashford,Bruno G.,9,41,1,48,-7,-0.5,8,0.0,41.0,-48.0
+201,2025-02-14T12:26:45.424458Z,25,MN,free agent,successful,,MID,Schade,Bruno G.,9,64,1,48,16,1.1428571428571428,8,8.0,56.0,-40.0
+202,2025-02-03T19:35:05.814628Z,25,HC,waiver,successful,1.0,MID,Rashford,Diogo J.,9,41,8,27,14,1.0,1,32.0,9.0,5.0
+203,2025-02-02T20:40:45.668407Z,25,AN,waiver,successful,4.0,MID,Rashford,Smith Rowe,9,41,9,34,7,0.5,0,19.0,22.0,-15.0
+204,2025-02-02T20:40:45.668544Z,25,AN,waiver,unsuccessful - player out already gone,13.0,MID,Savinho,Smith Rowe,6,29,9,34,-5,-0.35714285714285715,-3,0.0,29.0,-34.0
+205,2025-02-14T08:50:15.497782Z,25,IR,free agent,successful,,MID,Tielemans,Tel,12,55,3,42,13,0.9285714285714286,9,12.0,43.0,-30.0
+206,2025-04-11T12:51:29.411001Z,32,LD,free agent,successful,,MID,Tonali,Doku,15,37,1,17,20,2.857142857142857,14,15.0,22.0,-2.0
+207,2024-10-24T16:05:34.801475Z,9,JP,waiver,successful,3.0,MID,Rogers,Trossard,1,127,2,126,1,0.03333333333333333,-1,3.0,124.0,-123.0
+208,2024-10-24T16:05:34.801554Z,9,JP,waiver,unsuccessful - player out already gone,6.0,MID,Rashford,Trossard,1,69,2,126,-57,-1.9,-1,0.0,69.0,-126.0
+209,2024-10-18T09:00:13.153678Z,8,JP,waiver,unsuccessful - player in already been picked up,3.0,MID,Johnson,Trossard,2,101,3,129,-28,-0.9032258064516129,-1,0.0,101.0,-129.0
+210,2024-10-15T16:57:53.558892Z,8,AN,waiver,successful,7.0,MID,Grealish,Trossard,1,24,3,129,-105,-3.3870967741935485,-2,1.0,23.0,-128.0
+211,2024-10-15T16:57:53.558944Z,8,AN,waiver,unsuccessful - player out already gone,14.0,MID,Buonanotte,Trossard,6,47,3,129,-82,-2.6451612903225805,3,0.0,47.0,-129.0
+212,2024-10-15T13:34:55.286058Z,8,HC,waiver,successful,1.0,MID,Johnson,Barnes,2,101,1,92,9,0.2903225806451613,1,36.0,65.0,-56.0
+213,2025-04-25T08:37:06.340885Z,34,JP,waiver,successful,33.0,MID,Neto,Trossard,3,19,0,16,3,0.6,3,3.0,16.0,-13.0
+214,2025-04-25T08:37:06.340902Z,34,JP,waiver,unsuccessful - player in already been picked up,42.0,MID,Iwobi,Trossard,5,12,0,16,-4,-0.8,5,0.0,12.0,-16.0
+215,2025-04-25T08:37:06.340868Z,34,JP,waiver,unsuccessful - player in already been picked up,32.0,MID,Kluivert,Trossard,2,9,0,16,-7,-1.4,2,0.0,9.0,-16.0
+216,2025-04-25T08:37:06.340851Z,34,JP,waiver,unsuccessful - player in already been picked up,31.0,MID,Elanga,Trossard,2,18,0,16,2,0.4,2,16.0,2.0,0.0
+217,2025-04-25T08:37:06.340745Z,34,JP,waiver,unsuccessful - player out already gone,13.0,MID,Neto,M.Asensio,3,19,0,7,12,2.4,3,3.0,16.0,-4.0
+218,2025-04-25T08:37:06.340763Z,34,JP,waiver,unsuccessful - player in already been picked up,14.0,MID,Iwobi,M.Asensio,5,12,0,7,5,1.0,5,0.0,12.0,-7.0
+219,2025-04-25T08:37:06.340726Z,34,JP,waiver,unsuccessful - player in already been picked up,12.0,MID,Kluivert,M.Asensio,2,9,0,7,2,0.4,2,0.0,9.0,-7.0
+220,2025-04-25T08:37:06.340649Z,34,JP,waiver,successful,4.0,MID,Elanga,M.Asensio,2,18,0,7,11,2.2,2,16.0,2.0,9.0
+221,2025-04-25T08:37:06.340703Z,34,JP,waiver,unsuccessful - player out already gone,11.0,MID,Mitoma,M.Asensio,6,17,0,7,10,2.0,6,0.0,17.0,-7.0
+222,2025-04-24T21:02:02.972451Z,34,AN,waiver,successful,34.0,MID,Neto,Ødegaard,3,19,0,26,-7,-1.4,3,6.0,13.0,-20.0
+223,2025-04-24T21:02:02.972303Z,34,AN,waiver,unsuccessful - player in already been picked up,20.0,MID,Mitoma,Ødegaard,6,17,0,26,-9,-1.8,6,0.0,17.0,-26.0
+224,2025-04-24T21:02:02.972280Z,34,AN,waiver,unsuccessful - player in already been picked up,19.0,MID,Semenyo,Ødegaard,9,33,0,26,7,1.4,9,0.0,33.0,-26.0
+225,2025-04-24T21:02:02.972382Z,34,AN,waiver,unsuccessful - player out already gone,30.0,MID,Neto,Eze,3,19,0,35,-16,-3.2,3,6.0,13.0,-29.0
+226,2025-04-25T08:54:18.634444Z,34,TS,waiver,unsuccessful - player in already been picked up,20.0,MID,Kluivert,Eze,2,9,0,35,-26,-5.2,2,0.0,9.0,-35.0
+227,2025-04-24T21:02:02.972346Z,34,AN,waiver,unsuccessful - player in already been picked up,22.0,MID,Mitoma,Eze,6,17,0,35,-18,-3.6,6,0.0,17.0,-35.0
+228,2025-04-24T21:02:02.972364Z,34,AN,waiver,successful,23.0,MID,Bruno G.,Eze,3,16,0,35,-19,-3.8,3,0.0,16.0,-35.0
+229,2025-04-24T21:02:02.972399Z,34,AN,waiver,unsuccessful - player in already been picked up,31.0,MID,Hudson-Odoi,Eze,1,3,0,35,-32,-6.4,1,0.0,3.0,-35.0
+230,2025-04-25T08:54:18.634480Z,34,TS,waiver,unsuccessful - player in already been picked up,34.0,MID,Semenyo,Eze,9,33,0,35,-2,-0.4,9,27.0,6.0,-8.0
+231,2025-04-24T21:02:02.972322Z,34,AN,waiver,unsuccessful - player in already been picked up,21.0,MID,Semenyo,Eze,9,33,0,35,-2,-0.4,9,0.0,33.0,-35.0
+232,2025-04-24T21:02:02.972434Z,34,AN,waiver,unsuccessful - player out already gone,33.0,MID,Andreas,Eze,1,5,0,35,-30,-6.0,1,0.0,5.0,-35.0
+233,2025-04-21T06:22:14.230692Z,34,BP,waiver,unsuccessful - player out already gone,10.0,MID,Neto,Rashford,3,19,0,0,19,3.8,3,0.0,19.0,0.0
+234,2025-04-25T10:14:25.785338Z,34,HC,free agent,successful,,MID,Mitoma,Rashford,6,17,0,0,17,3.4,6,6.0,11.0,6.0
+235,2025-04-21T06:22:14.230651Z,34,BP,waiver,successful,3.0,MID,Mitoma,Rashford,6,17,0,0,17,3.4,6,6.0,11.0,6.0
+236,2025-04-21T06:22:14.230710Z,34,BP,waiver,unsuccessful - player in already been picked up,11.0,MID,Semenyo,Rashford,9,33,0,0,33,6.6,9,0.0,33.0,0.0
+237,2025-04-21T06:22:14.230673Z,34,BP,waiver,unsuccessful - player out already gone,9.0,MID,O’Reilly,Rashford,0,2,0,0,2,0.4,0,0.0,2.0,0.0
+238,2025-04-25T07:57:38.706260Z,34,LD,waiver,successful,3.0,MID,Iwobi,Gündogan,5,12,0,23,-11,-2.2,5,11.0,1.0,-12.0
+239,2025-04-25T08:54:18.634390Z,34,TS,waiver,unsuccessful - player in already been picked up,18.0,MID,Iwobi,I.Sarr,5,12,0,22,-10,-2.0,5,0.0,12.0,-22.0
+240,2025-04-25T08:54:18.634425Z,34,TS,waiver,unsuccessful - player in already been picked up,19.0,MID,Kluivert,I.Sarr,2,9,0,22,-13,-2.6,2,0.0,9.0,-22.0
+241,2025-04-25T08:54:18.634462Z,34,TS,waiver,successful,21.0,MID,Semenyo,I.Sarr,9,33,0,22,11,2.2,9,27.0,6.0,5.0
+242,2025-04-25T10:15:52.700095Z,34,IR,free agent,successful,,MID,Andreas,I.Sarr,1,5,0,22,-17,-3.4,1,1.0,4.0,-21.0
+243,2025-04-25T08:15:28.161464Z,34,HC,waiver,unsuccessful - player in already been picked up,22.0,MID,Iwobi,Diogo J.,5,12,1,4,8,1.6,4,0.0,12.0,-4.0
+244,2025-04-25T08:15:28.161442Z,34,HC,waiver,successful,6.0,MID,Barnes,Diogo J.,3,12,1,4,8,1.6,2,5.0,7.0,1.0
+245,2025-04-25T08:15:28.161384Z,34,HC,waiver,successful,1.0,MID,Kluivert,Martinelli,2,9,0,14,-5,-1.0,2,5.0,4.0,-9.0
+246,2025-04-24T08:32:34.817407Z,34,PV,waiver,unsuccessful - player out already gone,14.0,MID,Bruno G.,Martinelli,3,16,0,14,2,0.4,3,0.0,16.0,-14.0
+247,2025-04-24T08:32:34.817326Z,34,PV,waiver,successful,5.0,MID,Hudson-Odoi,Martinelli,1,3,0,14,-11,-2.2,1,1.0,2.0,-13.0
+248,2025-04-24T08:32:34.817427Z,34,PV,waiver,unsuccessful - player out already gone,15.0,MID,Joelinton,Martinelli,0,0,0,14,-14,-2.8,0,0.0,0.0,-14.0
+249,2025-04-24T08:32:34.817377Z,34,PV,waiver,unsuccessful - player out already gone,13.0,MID,Gordon,Martinelli,1,8,0,14,-6,-1.2,1,0.0,8.0,-14.0
+250,2025-04-25T07:57:38.706306Z,34,LD,waiver,unsuccessful - player in already been picked up,8.0,MID,Elanga,Merino,2,18,0,7,11,2.2,2,0.0,18.0,-7.0
+251,2025-04-25T07:57:38.706391Z,34,LD,waiver,successful,29.0,MID,Bruno G.,Merino,3,16,0,7,9,1.8,3,5.0,11.0,-2.0
+252,2024-09-17T09:56:31.878846Z,5,JP,waiver,successful,2.0,MID,Sancho,Doku,4,83,2,81,2,0.058823529411764705,2,20.0,63.0,-61.0
+253,2024-09-20T08:01:52.679185Z,5,AN,waiver,successful,7.0,MID,Amad,Doku,3,113,2,81,32,0.9411764705882353,1,4.0,109.0,-77.0
+254,2024-09-17T09:56:31.878888Z,5,JP,waiver,unsuccessful - player in already been picked up,7.0,FWD,Calvert-Lewin,Cunha,2,41,8,167,-126,-3.7058823529411766,-6,0.0,41.0,-167.0
+255,2024-09-19T19:30:42.932830Z,5,TS,waiver,successful,3.0,FWD,Calvert-Lewin,Muniz,2,41,4,79,-38,-1.1176470588235294,-2,9.0,32.0,-70.0
+256,2024-09-19T19:30:42.932883Z,5,TS,waiver,unsuccessful - player in already been picked up,8.0,FWD,Vardy,Muniz,2,109,4,79,30,0.8823529411764706,-2,0.0,109.0,-79.0
+257,2024-10-24T16:05:34.801531Z,9,JP,waiver,successful,5.0,FWD,Strand Larsen,Cunha,1,111,9,146,-35,-1.1666666666666667,-8,29.0,82.0,-117.0
+258,2025-02-12T19:55:30.571250Z,25,JP,waiver,unsuccessful - player in already been picked up,10.0,DEF,Digne,Branthwaite,5,26,2,30,-4,-0.2857142857142857,3,0.0,26.0,-30.0
+259,2025-02-12T19:55:30.571265Z,25,JP,waiver,successful,11.0,DEF,Murillo,Branthwaite,1,44,2,30,14,1.0,-1,0.0,44.0,-30.0
+260,2025-02-13T13:18:29.275488Z,25,TS,waiver,successful,9.0,DEF,Digne,Schär,5,26,0,60,-34,-2.4285714285714284,5,5.0,21.0,-55.0
+261,2025-04-04T08:36:29.634557Z,31,JP,waiver,successful,5.0,DEF,Digne,Alexander-Arnold,0,8,0,13,-5,-0.625,0,0.0,8.0,-13.0
+262,2025-04-04T08:36:29.634495Z,31,JP,waiver,unsuccessful - player in already been picked up,4.0,DEF,Burn,Alexander-Arnold,6,40,0,13,27,3.375,6,0.0,40.0,-13.0
+263,2025-04-04T08:36:29.634579Z,31,JP,waiver,unsuccessful - player out already gone,10.0,DEF,Udogie,Alexander-Arnold,0,-2,0,13,-15,-1.875,0,0.0,-2.0,-13.0
+264,2025-04-04T07:13:47.933388Z,31,PV,waiver,unsuccessful - player in already been picked up,13.0,DEF,Digne,Gabriel,0,8,0,0,8,1.0,0,0.0,8.0,0.0
+265,2025-04-04T07:58:22.398519Z,31,TS,waiver,successful,3.0,DEF,Burn,Gabriel,6,40,0,0,40,5.0,6,13.0,27.0,13.0
+266,2025-04-04T07:58:22.398553Z,31,TS,waiver,unsuccessful - player out already gone,8.0,DEF,Kiwior,Gabriel,2,28,0,0,28,3.5,2,0.0,28.0,0.0
+267,2025-04-04T07:13:47.933426Z,31,PV,waiver,unsuccessful - player out already gone,15.0,DEF,Kiwior,Gabriel,2,28,0,0,28,3.5,2,0.0,28.0,0.0
+268,2025-04-04T07:13:47.933408Z,31,PV,waiver,unsuccessful - player out already gone,14.0,DEF,Spence,Gabriel,5,8,0,0,8,1.0,5,0.0,8.0,0.0
+269,2025-04-04T07:13:47.933365Z,31,PV,waiver,successful,6.0,DEF,Van de Ven,Gabriel,0,1,0,0,1,0.125,0,0.0,1.0,0.0
+270,2025-04-03T08:54:53.612580Z,31,IR,waiver,unsuccessful - player in already been picked up,7.0,DEF,Digne,Zabarnyi,0,8,1,28,-20,-2.5,-1,0.0,8.0,-28.0
+271,2025-04-03T08:54:53.612682Z,31,IR,waiver,successful,19.0,DEF,Konsa,Zabarnyi,1,38,1,28,10,1.25,0,10.0,28.0,-18.0
+272,2025-04-03T08:54:53.612518Z,31,IR,waiver,successful,3.0,DEF,Digne,Khusanov,0,8,0,0,8,1.0,0,0.0,8.0,0.0
+273,2025-04-04T09:59:30.374776Z,31,HC,waiver,unsuccessful - player in already been picked up,12.0,DEF,Burn,Huijsen,6,40,4,33,7,0.875,2,0.0,40.0,-33.0
+274,2025-02-20T22:02:02.126814Z,26,JP,free agent,successful,,MID,Smith Rowe,Mac Allister,1,25,3,47,-22,-1.6923076923076923,-2,1.0,24.0,-46.0
+275,2025-02-20T11:10:32.992303Z,26,JP,waiver,unsuccessful - player in already been picked up,17.0,MID,Maddison,Mac Allister,4,21,3,47,-26,-2.0,1,0.0,21.0,-47.0
+276,2025-02-20T11:10:32.992287Z,26,JP,waiver,unsuccessful - player in already been picked up,16.0,MID,O.Dango,Mac Allister,2,18,3,47,-29,-2.230769230769231,-1,0.0,18.0,-47.0
+277,2025-02-20T11:10:32.992271Z,26,JP,waiver,unsuccessful - player in already been picked up,15.0,MID,Nwaneri,Mac Allister,2,27,3,47,-20,-1.5384615384615385,-1,7.0,20.0,-40.0
+278,2025-02-20T13:36:02.393794Z,26,LB,waiver,unsuccessful - player in already been picked up,17.0,MID,Savinho,Mac Allister,2,23,3,47,-24,-1.8461538461538463,-1,0.0,23.0,-47.0
+279,2025-02-20T13:36:02.393817Z,26,LB,waiver,successful,18.0,MID,Enzo,Mac Allister,7,60,3,47,13,1.0,4,33.0,27.0,-14.0
+280,2025-02-17T08:26:04.799472Z,26,IR,waiver,unsuccessful - player out already gone,10.0,MID,Smith Rowe,Tielemans,1,25,2,43,-18,-1.3846153846153846,-1,0.0,25.0,-43.0
+281,2025-02-20T11:10:32.992254Z,26,JP,waiver,unsuccessful - player in already been picked up,14.0,MID,Maddison,Tielemans,4,21,2,43,-22,-1.6923076923076923,2,0.0,21.0,-43.0
+282,2025-02-20T11:10:32.992234Z,26,JP,waiver,successful,6.0,MID,Nwaneri,Tielemans,2,27,2,43,-16,-1.2307692307692308,0,7.0,20.0,-36.0
+283,2025-02-20T11:10:32.992186Z,26,JP,waiver,unsuccessful - player in already been picked up,5.0,MID,Mitoma,Tielemans,8,40,2,43,-3,-0.23076923076923078,6,0.0,40.0,-43.0
+284,2025-02-17T08:26:04.799377Z,26,IR,waiver,successful,2.0,MID,Merino,Tielemans,2,40,2,43,-3,-0.23076923076923078,0,2.0,38.0,-41.0
+285,2025-02-17T08:26:04.799453Z,26,IR,waiver,unsuccessful - player in already been picked up,9.0,MID,Minteh,Tielemans,6,38,2,43,-5,-0.38461538461538464,4,0.0,38.0,-43.0
+286,2025-02-20T13:36:02.393837Z,26,LB,waiver,unsuccessful - player out already gone,24.0,MID,Smith Rowe,Amad,1,25,0,22,3,0.23076923076923078,1,0.0,25.0,-22.0
+287,2025-02-20T12:07:08.274204Z,26,LD,waiver,unsuccessful - player in already been picked up,7.0,MID,O.Dango,Amad,2,18,0,22,-4,-0.3076923076923077,2,0.0,18.0,-22.0
+288,2025-02-20T12:07:08.274256Z,26,LD,waiver,successful,8.0,MID,Schade,Amad,3,55,0,22,33,2.5384615384615383,3,6.0,49.0,-16.0
+289,2025-02-20T13:36:02.393741Z,26,LB,waiver,successful,6.0,MID,I.Sarr,Amad,3,65,0,22,43,3.3076923076923075,3,3.0,62.0,-19.0
+290,2025-02-20T08:27:23.953949Z,26,CR,waiver,successful,3.0,MID,Maddison,Madueke,4,21,0,20,1,0.07692307692307693,4,5.0,16.0,-15.0
+291,2025-02-20T08:27:23.953871Z,26,CR,waiver,unsuccessful - player in already been picked up,2.0,MID,O.Dango,Madueke,2,18,0,20,-2,-0.15384615384615385,2,0.0,18.0,-20.0
+292,2025-02-20T08:27:23.953973Z,26,CR,waiver,unsuccessful - player in already been picked up,10.0,MID,Nwaneri,Madueke,2,27,0,20,7,0.5384615384615384,2,0.0,27.0,-20.0
+293,2025-02-16T20:35:30.986738Z,26,AN,waiver,successful,16.0,MID,Savinho,Madueke,2,23,0,20,3,0.23076923076923078,2,7.0,16.0,-13.0
+294,2025-02-16T20:35:30.986679Z,26,AN,waiver,unsuccessful - player in already been picked up,4.0,MID,Merino,Madueke,2,40,0,20,20,1.5384615384615385,2,0.0,40.0,-20.0
+295,2025-02-20T10:44:39.239291Z,26,HC,waiver,unsuccessful - player in already been picked up,9.0,MID,Maddison,Semenyo,4,21,2,59,-38,-2.923076923076923,2,0.0,21.0,-59.0
+296,2025-02-20T10:44:39.239241Z,26,HC,waiver,successful,1.0,MID,O.Dango,De Bruyne,2,18,2,42,-24,-1.8461538461538463,0,4.0,14.0,-38.0
+297,2025-02-20T10:03:25.071663Z,26,TS,waiver,unsuccessful - player in already been picked up,12.0,MID,Nwaneri,Kulusevski,2,27,9,17,10,0.7692307692307693,-7,0.0,27.0,-17.0
+298,2025-02-20T10:03:25.071638Z,26,TS,waiver,unsuccessful - player in already been picked up,11.0,MID,Nwaneri,B.Fernandes,2,27,10,68,-41,-3.1538461538461537,-8,0.0,27.0,-68.0
+299,2025-02-20T10:03:25.071585Z,26,TS,waiver,successful,4.0,MID,Mitoma,B.Fernandes,8,40,10,68,-28,-2.1538461538461537,-2,13.0,27.0,-55.0
+300,2024-11-27T20:15:46.574841Z,13,JP,waiver,successful,8.0,GKP,Sels,Vicario,6,98,0,29,69,2.6538461538461537,6,19.0,79.0,-10.0
+301,2025-02-21T16:43:34.719034Z,26,JP,free agent,successful,,GKP,Verbruggen,Vicario,6,32,3,20,12,0.9230769230769231,3,11.0,21.0,-9.0
+302,2024-12-26T09:36:59.127538Z,18,JP,free agent,successful,,GKP,Arrizabalaga,Sels,8,64,8,79,-15,-0.7142857142857143,0,10.0,54.0,-69.0
+303,2025-04-25T10:21:38.624068Z,34,JP,free agent,successful,,GKP,Sánchez,Martinez,9,25,0,21,4,0.8,9,9.0,16.0,-12.0
+304,2025-04-25T08:37:06.340799Z,34,JP,waiver,unsuccessful - player in already been picked up,16.0,GKP,Leno,Martinez,2,14,0,21,-7,-1.4,2,0.0,14.0,-21.0
+305,2025-04-25T08:37:06.340781Z,34,JP,waiver,unsuccessful - player in already been picked up,15.0,GKP,Pope,Martinez,6,21,0,21,0,0.0,6,0.0,21.0,-21.0
+306,2025-04-25T07:57:38.706341Z,34,LD,waiver,successful,10.0,GKP,Leno,Henderson,2,14,0,12,2,0.4,2,4.0,10.0,-8.0
+307,2025-04-25T09:44:14.833797Z,34,CR,waiver,successful,7.0,GKP,Pope,Pickford,6,21,4,26,-5,-1.0,2,6.0,15.0,-20.0
+308,2025-01-25T12:31:33.872156Z,23,JP,free agent,successful,,FWD,Welbeck,Solanke,2,53,0,25,28,1.75,2,2.0,51.0,-23.0
+309,2025-01-24T14:13:39.453401Z,23,IR,free agent,successful,,FWD,Calvert-Lewin,Solanke,1,5,0,25,-20,-1.25,1,1.0,4.0,-24.0
+310,2025-01-24T09:26:01.041154Z,23,IR,waiver,unsuccessful - player in already been picked up,7.0,FWD,Darwin,Solanke,1,22,0,25,-3,-0.1875,1,0.0,22.0,-25.0
+311,2025-02-20T11:10:32.992320Z,26,JP,waiver,successful,18.0,FWD,Welbeck,Ferguson,0,42,1,7,35,2.6923076923076925,-1,0.0,42.0,-7.0
+312,2025-02-20T12:07:08.274277Z,26,LD,waiver,unsuccessful - player in already been picked up,19.0,FWD,Welbeck,Darwin,0,42,0,17,25,1.9230769230769231,0,0.0,42.0,-17.0
+313,2025-02-20T12:07:08.274311Z,26,LD,waiver,successful,20.0,FWD,João Pedro,Darwin,12,45,0,17,28,2.1538461538461537,12,45.0,0.0,28.0
+314,2025-05-24T09:14:24.335151Z,38,JP,waiver,unsuccessful - player in already been picked up,22.0,FWD,Welbeck,Raúl,0,0,2,2,-2,-2.0,-2,0.0,0.0,-2.0
+315,2025-05-24T09:14:24.335170Z,38,JP,waiver,unsuccessful - player in already been picked up,23.0,FWD,Havertz,Raúl,1,1,2,2,-1,-1.0,-1,0.0,1.0,-2.0
+316,2025-05-23T11:53:54.625355Z,38,LD,waiver,successful,2.0,FWD,Welbeck,Vardy,0,0,0,0,0,0.0,0,0.0,0.0,0.0
+317,2025-05-23T22:22:30.275324Z,38,LB,waiver,successful,24.0,FWD,Havertz,Vardy,1,1,0,0,1,1.0,1,1.0,0.0,1.0
+318,2025-05-23T16:51:55.790915Z,38,TS,waiver,unsuccessful - player in already been picked up,3.0,FWD,Welbeck,Delap,0,0,0,0,0,0.0,0,0.0,0.0,0.0
+319,2025-05-23T16:51:55.790971Z,38,TS,waiver,successful,4.0,FWD,Havertz,Delap,1,1,0,0,1,1.0,1,1.0,0.0,1.0
+320,2024-11-22T07:20:57.863565Z,12,JP,waiver,successful,1.0,FWD,Wissa,Raúl,2,131,2,99,32,1.1851851851851851,0,108.0,23.0,9.0
+321,2025-03-31T16:19:30.201353Z,30,JP,waiver,unsuccessful - player in already been picked up,6.0,FWD,Mateta,Raúl,1,27,2,29,-2,-0.2222222222222222,-1,0.0,27.0,-29.0
+322,2025-03-16T20:23:55.286915Z,30,CR,waiver,unsuccessful - player in already been picked up,4.0,FWD,Mateta,Delap,1,27,9,24,3,0.3333333333333333,-8,0.0,27.0,-24.0
+323,2025-03-16T20:23:55.286984Z,30,CR,waiver,successful,5.0,FWD,N.Jackson,Delap,1,13,9,24,-11,-1.2222222222222223,-8,13.0,0.0,-11.0
+324,2025-03-31T16:52:53.591406Z,30,TS,waiver,unsuccessful - player in already been picked up,2.0,FWD,Mateta,Strand Larsen,1,27,9,45,-18,-2.0,-8,0.0,27.0,-45.0
+325,2025-03-31T07:29:56.707312Z,30,HC,waiver,successful,1.0,FWD,Mateta,Solanke,1,27,2,21,6,0.6666666666666666,-1,27.0,0.0,6.0
+326,2025-05-24T12:11:41.559950Z,38,AN,waiver,unsuccessful - player in already been picked up,51.0,FWD,Havertz,Cunha,1,1,2,2,-1,-1.0,-1,0.0,1.0,-2.0
+327,2025-05-24T12:11:41.559968Z,38,AN,waiver,unsuccessful - player in already been picked up,52.0,FWD,Havertz,Richarlison,1,1,1,1,0,0.0,0,0.0,1.0,-1.0
+328,2025-04-12T06:16:44.316387Z,32,JP,free agent,successful,,DEF,Kiwior,Romero,2,26,3,2,24,3.4285714285714284,-1,15.0,11.0,13.0
+329,2025-04-08T04:57:55.431633Z,32,PV,waiver,successful,3.0,DEF,Kiwior,Van de Ven,2,26,0,1,25,3.5714285714285716,2,15.0,11.0,14.0
+330,2025-04-08T04:57:55.431688Z,32,PV,waiver,unsuccessful - player out already gone,6.0,DEF,White,Van de Ven,0,19,0,1,18,2.5714285714285716,0,5.0,14.0,4.0
+331,2025-04-25T08:37:06.340816Z,34,JP,waiver,successful,17.0,DEF,Robinson,Kiwior,0,4,0,11,-7,-1.4,0,0.0,4.0,-11.0
+332,2025-04-25T08:37:06.340833Z,34,JP,waiver,unsuccessful - player in already been picked up,30.0,DEF,Sessegnon,Kiwior,11,14,0,11,3,0.6,11,0.0,14.0,-11.0
+333,2025-04-24T08:32:34.817446Z,34,PV,waiver,unsuccessful - player in already been picked up,16.0,DEF,Sessegnon,Kiwior,11,14,0,11,3,0.6,11,0.0,14.0,-11.0
+334,2025-04-24T08:32:34.817464Z,34,PV,waiver,successful,17.0,DEF,N.Semedo,Kiwior,6,10,0,11,-1,-0.2,6,6.0,4.0,-5.0
+335,2025-04-24T08:32:34.817499Z,34,PV,waiver,unsuccessful - player in already been picked up,27.0,DEF,Bassey,Kiwior,2,5,0,11,-6,-1.2,2,0.0,5.0,-11.0
+336,2025-04-24T08:32:34.817481Z,34,PV,waiver,unsuccessful - player out already gone,26.0,DEF,Mykolenko,Kiwior,2,27,0,11,16,3.2,2,0.0,27.0,-11.0
+337,2025-04-25T08:54:18.634498Z,34,TS,waiver,unsuccessful - player in already been picked up,35.0,DEF,Robinson,Rúben,0,4,0,25,-21,-4.2,0,0.0,4.0,-25.0
+338,2025-04-25T08:54:18.634516Z,34,TS,waiver,unsuccessful - player in already been picked up,36.0,DEF,Sessegnon,Rúben,11,14,0,25,-11,-2.2,11,0.0,14.0,-25.0
+339,2025-04-25T10:31:24.666952Z,34,TS,free agent,successful,,DEF,N.Semedo,Rúben,6,10,0,25,-15,-3.0,6,6.0,4.0,-19.0
+340,2025-04-25T08:15:28.161483Z,34,HC,waiver,unsuccessful - player in already been picked up,23.0,DEF,Robinson,White,0,4,0,13,-9,-1.8,0,0.0,4.0,-13.0
+341,2025-04-25T10:13:16.962986Z,34,HC,free agent,successful,,DEF,Andersen,White,2,6,0,13,-7,-1.4,2,2.0,4.0,-11.0
+342,2025-04-25T07:57:38.706358Z,34,LD,waiver,unsuccessful - player in already been picked up,27.0,DEF,Sessegnon,Lewis,11,14,0,7,7,1.4,11,0.0,14.0,-7.0
+343,2025-04-25T11:05:10.139931Z,34,LD,free agent,successful,,DEF,Burn,Lewis,13,29,0,7,22,4.4,13,29.0,0.0,22.0
+344,2025-04-25T09:44:14.833737Z,34,CR,waiver,successful,2.0,DEF,Sessegnon,Wan-Bissaka,11,14,1,26,-12,-2.4,10,13.0,1.0,-13.0
+345,2025-04-25T09:44:14.833879Z,34,CR,waiver,unsuccessful - player out already gone,25.0,DEF,Toti,Wan-Bissaka,5,9,1,26,-17,-3.4,4,5.0,4.0,-21.0
+346,2025-04-25T09:44:14.833957Z,34,CR,waiver,unsuccessful - player out already gone,39.0,DEF,Bradley,Wan-Bissaka,0,7,1,26,-19,-3.8,-1,0.0,7.0,-26.0
+347,2025-04-25T10:24:25.752103Z,34,BP,free agent,successful,,DEF,Mykolenko,Wan-Bissaka,2,27,1,26,1,0.2,1,18.0,9.0,-8.0
+348,2025-04-21T06:22:14.230597Z,34,BP,waiver,unsuccessful - player in already been picked up,2.0,DEF,Alexander-Arnold,Wan-Bissaka,5,7,1,26,-19,-3.8,4,0.0,7.0,-26.0
+349,2025-04-24T21:02:02.972226Z,34,AN,waiver,successful,8.0,DEF,Sessegnon,Kilman,11,14,1,11,3,0.6,10,13.0,1.0,2.0
+350,2025-04-24T21:02:02.972417Z,34,AN,waiver,unsuccessful - player in already been picked up,32.0,DEF,Bassey,Kilman,2,5,1,11,-6,-1.2,1,0.0,5.0,-11.0
+351,2025-04-21T06:22:14.230746Z,34,BP,waiver,unsuccessful - player in already been picked up,24.0,DEF,Sessegnon,Mitchell,11,14,0,16,-2,-0.4,11,0.0,14.0,-16.0
+352,2025-04-25T10:35:34.776373Z,34,BP,free agent,successful,,DEF,Collins,Mitchell,11,23,0,16,7,1.4,11,23.0,0.0,7.0
+353,2025-04-25T07:41:59.008737Z,34,LB,waiver,unsuccessful - player in already been picked up,29.0,DEF,Sessegnon,Tarkowski,11,14,0,0,14,2.8,11,0.0,14.0,0.0
+354,2025-04-25T10:40:16.051251Z,34,LB,free agent,successful,,DEF,Smith,Tarkowski,1,9,0,0,9,1.8,1,7.0,2.0,7.0
+355,2025-05-14T13:14:58.568476Z,37,JP,waiver,unsuccessful - player out already gone,15.0,DEF,Guéhi,Robinson,0,0,1,2,-2,-1.0,-1,0.0,0.0,-2.0
+356,2025-05-14T13:14:58.568382Z,37,JP,waiver,successful,4.0,DEF,Lacroix,Robinson,1,3,1,2,1,0.5,0,1.0,2.0,-1.0
+357,2025-05-14T17:34:16.914419Z,37,AN,waiver,successful,31.0,DEF,Digne,Robinson,0,0,1,2,-2,-1.0,-1,0.0,0.0,-2.0
+358,2025-05-14T17:34:16.914437Z,37,AN,waiver,unsuccessful - player in already been picked up,41.0,DEF,Saliba,Robinson,1,1,1,2,-1,-0.5,0,0.0,1.0,-2.0
+359,2025-05-16T08:33:20.948288Z,37,IR,free agent,successful,,DEF,Lacroix,Mazraoui,1,3,1,2,1,0.5,0,1.0,2.0,-1.0
+360,2025-05-13T10:05:25.773840Z,37,IR,waiver,unsuccessful - player in already been picked up,11.0,DEF,Saliba,Mazraoui,1,1,1,2,-1,-0.5,0,0.0,1.0,-2.0
+361,2024-10-18T09:00:13.153745Z,8,JP,waiver,successful,4.0,FWD,Raúl,Nketiah,7,115,2,46,69,2.225806451612903,5,71.0,44.0,25.0
+362,2024-10-18T10:33:45.184559Z,8,PV,free agent,successful,,FWD,Wissa,Nketiah,1,157,2,46,111,3.5806451612903225,-1,157.0,0.0,111.0
+363,2024-10-07T20:31:51.300900Z,8,PV,waiver,unsuccessful - player in already been picked up,3.0,FWD,Delap,Nketiah,2,101,2,46,55,1.7741935483870968,0,0.0,101.0,-46.0
+364,2024-12-28T21:07:40.902553Z,19,JP,free agent,successful,,FWD,Raúl,Strand Larsen,9,82,6,74,8,0.4,3,55.0,27.0,-19.0
+365,2024-11-01T20:20:40.956219Z,10,JP,free agent,successful,,FWD,Darwin,Strand Larsen,2,52,8,110,-58,-2.0,-6,2.0,50.0,-108.0
+366,2024-12-25T09:03:03.265860Z,18,JP,waiver,unsuccessful - player in already been picked up,3.0,FWD,G.Jesus,Strand Larsen,2,16,2,76,-60,-2.857142857142857,0,0.0,16.0,-76.0
+367,2024-12-22T09:14:13.873740Z,18,BP,waiver,successful,7.0,FWD,Duran,Strand Larsen,-2,0,2,76,-76,-3.619047619047619,-4,-1.0,1.0,-77.0
+368,2024-12-24T07:38:26.322072Z,18,HC,waiver,successful,1.0,FWD,G.Jesus,Welbeck,2,16,0,56,-40,-1.9047619047619047,2,16.0,0.0,-40.0
+369,2024-12-23T15:04:24.558189Z,18,MN,waiver,unsuccessful - player in already been picked up,16.0,FWD,Duran,Welbeck,-2,0,0,56,-56,-2.6666666666666665,-2,0.0,0.0,-56.0
+370,2024-12-24T12:35:33.316740Z,18,IR,waiver,unsuccessful - player in already been picked up,10.0,FWD,G.Jesus,Darwin,2,16,2,35,-19,-0.9047619047619048,0,0.0,16.0,-35.0
+371,2024-12-24T12:35:33.316758Z,18,IR,waiver,unsuccessful - player in already been picked up,11.0,FWD,Duran,Darwin,-2,0,2,35,-35,-1.6666666666666667,-4,0.0,0.0,-35.0
+372,2024-12-22T09:14:13.873668Z,18,BP,waiver,successful,2.0,FWD,G.Jesus,Armstrong,2,16,2,11,5,0.23809523809523808,0,16.0,0.0,5.0
+373,2024-12-22T09:14:13.873719Z,18,BP,waiver,unsuccessful - player out already gone,6.0,FWD,Duran,Armstrong,-2,0,2,11,-11,-0.5238095238095238,-4,-1.0,1.0,-12.0
+374,2025-03-12T22:27:30.874364Z,29,JP,waiver,successful,3.0,MID,I.Sarr,M.Asensio,0,36,0,25,11,1.1,0,0.0,36.0,-25.0
+375,2025-03-13T01:30:57.135903Z,29,AC,waiver,successful,2.0,MID,Hudson-Odoi,M.Asensio,3,11,0,25,-14,-1.4,3,5.0,6.0,-20.0
+376,2024-11-27T20:15:46.574823Z,13,JP,waiver,successful,6.0,MID,Rashford,Garnacho,14,57,1,64,-7,-0.2692307692307692,13,16.0,41.0,-48.0
+377,2025-01-17T10:40:57.822157Z,22,JP,waiver,successful,4.0,DEF,Murillo,Pedro Porro,1,50,1,28,22,1.2941176470588236,0,1.0,49.0,-27.0
+378,2025-01-17T08:17:58.263213Z,22,LD,waiver,unsuccessful - player in already been picked up,8.0,DEF,Murillo,Mazraoui,1,50,1,36,14,0.8235294117647058,0,0.0,50.0,-36.0
+379,2025-01-17T08:17:58.263163Z,22,LD,waiver,successful,6.0,DEF,Robertson,Mazraoui,1,36,1,36,0,0.0,0,15.0,21.0,-21.0
+380,2025-01-17T08:17:58.263254Z,22,LD,waiver,unsuccessful - player out already gone,10.0,DEF,Robinson,Mazraoui,8,32,1,36,-4,-0.23529411764705882,7,0.0,32.0,-36.0
+381,2025-01-17T09:57:58.977551Z,22,IR,waiver,unsuccessful - player in already been picked up,3.0,DEF,James,Mazraoui,6,42,1,36,6,0.35294117647058826,5,0.0,42.0,-36.0
+382,2025-01-17T09:57:58.977639Z,22,IR,waiver,successful,9.0,DEF,Mykolenko,Mazraoui,1,63,1,36,27,1.588235294117647,0,14.0,49.0,-22.0
+383,2025-01-17T10:57:38.108388Z,22,TS,waiver,unsuccessful - player in already been picked up,5.0,DEF,Murillo,Calafiori,1,50,0,13,37,2.176470588235294,1,0.0,50.0,-13.0
+384,2025-03-06T22:35:23.082310Z,28,JP,waiver,successful,2.0,DEF,Livramento,Dorgu,7,47,0,19,28,2.5454545454545454,7,45.0,2.0,26.0
+385,2025-03-06T22:35:23.082354Z,28,JP,waiver,unsuccessful - player out already gone,7.0,DEF,Pedro Porro,Dorgu,1,6,0,19,-13,-1.1818181818181819,1,0.0,6.0,-19.0
+386,2025-03-06T22:35:23.082420Z,28,JP,waiver,unsuccessful - player out already gone,14.0,DEF,Pedro Porro,Hall,1,6,0,0,6,0.5454545454545454,1,0.0,6.0,0.0
+387,2025-03-06T22:35:23.082405Z,28,JP,waiver,unsuccessful - player out already gone,13.0,DEF,Murillo,Hall,8,37,0,0,37,3.3636363636363638,8,0.0,37.0,0.0
+388,2025-03-06T22:35:23.082390Z,28,JP,waiver,successful,8.0,DEF,Milenković,Hall,6,42,0,0,42,3.8181818181818183,6,31.0,11.0,31.0
+389,2025-03-05T21:05:47.158452Z,28,AN,waiver,successful,8.0,DEF,Calafiori,Hall,1,3,0,0,3,0.2727272727272727,1,1.0,2.0,1.0
+390,2025-03-05T21:05:47.158470Z,28,AN,waiver,unsuccessful - player out already gone,12.0,DEF,Khusanov,Hall,2,1,0,0,1,0.09090909090909091,2,0.0,1.0,0.0
+391,2024-12-12T14:59:42.679706Z,16,JP,waiver,unsuccessful - player in already been picked up,2.0,DEF,Robertson,Cash,-3,44,1,55,-11,-0.4782608695652174,-4,0.0,44.0,-55.0
+392,2024-12-13T14:30:41.794795Z,16,JP,free agent,successful,,DEF,Gomez,Cash,1,4,1,55,-51,-2.217391304347826,0,0.0,4.0,-55.0
+393,2024-12-10T17:19:15.559191Z,16,LD,waiver,unsuccessful - player in already been picked up,5.0,DEF,Robertson,Romero,-3,44,0,14,30,1.3043478260869565,-3,0.0,44.0,-14.0
+394,2024-12-10T17:19:15.559248Z,16,LD,waiver,successful,6.0,DEF,Muñoz,Romero,1,92,0,14,78,3.391304347826087,1,0.0,92.0,-14.0
+395,2024-12-08T20:10:00.911979Z,16,CR,waiver,unsuccessful - player in already been picked up,4.0,DEF,Robertson,Mazraoui,-3,44,2,44,0,0.0,-5,0.0,44.0,-44.0
+396,2024-12-13T13:52:00.173763Z,16,IR,free agent,successful,,DEF,Livramento,Mazraoui,6,74,2,44,30,1.3043478260869565,4,38.0,36.0,-6.0
+397,2024-12-08T09:00:43.974726Z,16,HC,waiver,successful,1.0,DEF,Robertson,Konaté,-3,44,0,60,-16,-0.6956521739130435,-3,6.0,38.0,-54.0
+398,2024-12-13T13:49:33.868445Z,16,IR,free agent,successful,,DEF,Gomez,Trippier,1,4,1,57,-53,-2.3043478260869565,0,4.0,0.0,-53.0
+399,2025-01-31T17:41:00.885205Z,24,JP,free agent,successful,,DEF,Branthwaite,Murillo,10,40,5,49,-9,-0.6,5,10.0,30.0,-39.0
+400,2025-02-01T10:11:00.389200Z,24,AN,free agent,successful,,DEF,Branthwaite,Estupiñan,10,40,0,24,16,1.0666666666666667,10,0.0,40.0,-24.0
+401,2025-02-14T16:03:02.544713Z,25,JP,free agent,successful,,DEF,A. Garcia,Murillo,3,7,1,44,-37,-2.642857142857143,2,3.0,4.0,-41.0
+402,2024-12-20T08:28:21.515108Z,17,JP,waiver,successful,2.0,DEF,Hall,Gomez,7,50,1,3,47,2.1363636363636362,6,26.0,24.0,23.0
+403,2024-12-19T20:10:41.692604Z,17,CR,waiver,unsuccessful - player in already been picked up,7.0,DEF,Hall,Mazraoui,7,50,1,42,8,0.36363636363636365,6,0.0,50.0,-42.0
+404,2024-12-20T07:52:22.438412Z,17,TS,waiver,unsuccessful - player in already been picked up,4.0,DEF,Hall,Livramento,7,50,6,68,-18,-0.8181818181818182,1,0.0,50.0,-68.0
+405,2024-12-20T18:09:35.955687Z,17,TS,free agent,successful,,DEF,Castagne,Livramento,6,40,6,68,-28,-1.2727272727272727,0,7.0,33.0,-61.0
+406,2025-03-15T10:09:07.433839Z,29,JP,free agent,successful,,GKP,Arrizabalaga,Verbruggen,1,35,0,21,14,1.4,1,2.0,33.0,-19.0
+407,2025-03-12T10:42:16.808989Z,29,IR,waiver,successful,27.0,GKP,Arrizabalaga,Jørgensen,1,35,0,0,35,3.5,1,2.0,33.0,2.0
+408,2025-03-13T16:48:17.287861Z,29,TS,waiver,successful,12.0,GKP,Pope,Jørgensen,0,46,0,0,46,4.6,0,24.0,22.0,24.0
+409,2025-03-13T16:48:17.287944Z,29,TS,waiver,unsuccessful - player out already gone,21.0,GKP,Vicario,Jørgensen,1,11,0,0,11,1.1,1,0.0,11.0,0.0
+410,2025-01-02T20:43:28.476544Z,20,JP,waiver,successful,2.0,GKP,Arrizabalaga,Henderson,0,54,2,71,-17,-0.8947368421052632,-2,2.0,52.0,-69.0
+411,2025-02-21T14:46:17.509194Z,26,JP,free agent,successful,,GKP,Vicario,Henderson,3,20,6,47,-27,-2.076923076923077,-3,0.0,20.0,-47.0
+412,2025-02-16T20:35:30.986796Z,26,AN,waiver,successful,27.0,GKP,Vicario,Jørgensen,3,20,2,8,12,0.9230769230769231,1,6.0,14.0,-2.0
+413,2025-05-01T20:52:12.935951Z,35,JP,waiver,successful,5.0,GKP,Pickford,Sánchez,2,22,2,16,6,1.5,0,6.0,16.0,-10.0
+414,2025-05-02T07:49:04.843114Z,35,IR,free agent,successful,,GKP,Vicario,Sánchez,2,3,2,16,-13,-3.25,0,2.0,1.0,-14.0
+415,2025-05-01T20:38:42.521405Z,35,CR,waiver,unsuccessful - player in already been picked up,17.0,GKP,Pickford,Pope,2,22,2,15,7,1.75,0,0.0,22.0,-15.0
+416,2025-05-01T22:18:39.003196Z,35,TS,waiver,unsuccessful - player in already been picked up,6.0,GKP,Pickford,Ortega Moreno,2,22,0,0,22,5.5,2,0.0,22.0,0.0
+417,2025-05-01T22:44:17.325178Z,35,TS,free agent,successful,,GKP,Flekken,Ortega Moreno,1,15,0,0,15,3.75,1,1.0,14.0,1.0
+418,2025-05-01T20:49:12.644589Z,35,HC,waiver,unsuccessful - player in already been picked up,16.0,GKP,Pickford,Kelleher,2,22,0,0,22,5.5,2,0.0,22.0,0.0
+419,2024-12-28T07:23:28.412504Z,19,JP,waiver,successful,3.0,GKP,Henderson,Arrizabalaga,2,73,2,56,17,0.85,0,4.0,69.0,-52.0
+420,2025-01-13T11:36:41.731631Z,21,JP,waiver,successful,6.0,GKP,Kinsky,Arrizabalaga,2,17,0,54,-37,-2.0555555555555554,2,3.0,14.0,-51.0
+421,2025-01-13T17:55:56.819683Z,21,AN,waiver,successful,11.0,GKP,Kinsky,Arrizabalaga,2,17,0,54,-37,-2.0555555555555554,2,2.0,15.0,-52.0
+422,2025-04-18T16:32:10.080834Z,33,JP,free agent,successful,,GKP,Martinez,Arrizabalaga,4,25,6,21,4,0.6666666666666666,-2,4.0,21.0,-17.0
+423,2025-02-12T19:55:30.571280Z,25,JP,waiver,successful,12.0,GKP,Henderson,Muric,2,49,0,0,49,3.5,2,2.0,47.0,2.0
+424,2025-02-12T19:55:30.571295Z,25,JP,waiver,successful,13.0,FWD,Ferguson,Ndiaye,1,8,0,33,-25,-1.7857142857142858,1,1.0,7.0,-32.0
+425,2025-01-31T07:57:34.954818Z,24,JP,waiver,successful,10.0,GKP,Muric,Kinsky,1,1,7,12,-11,-0.7333333333333333,-6,1.0,0.0,-11.0
+426,2025-02-20T11:10:32.992335Z,26,JP,waiver,unsuccessful - player in already been picked up,23.0,DEF,Pedro Porro,A. Garcia,1,9,1,4,5,0.38461538461538464,0,0.0,9.0,-4.0
+427,2025-02-20T11:10:32.992350Z,26,JP,waiver,successful,24.0,DEF,Huijsen,A. Garcia,2,37,1,4,33,2.5384615384615383,1,6.0,31.0,2.0
+428,2025-02-20T10:03:25.071694Z,26,TS,waiver,successful,13.0,DEF,Pedro Porro,Digne,1,9,0,21,-12,-0.9230769230769231,1,1.0,8.0,-20.0
+429,2025-02-20T10:03:25.071725Z,26,TS,waiver,unsuccessful - player out already gone,21.0,DEF,Lamptey,Digne,6,10,0,21,-11,-0.8461538461538461,6,6.0,4.0,-15.0
+430,2025-05-24T09:14:24.334978Z,38,JP,waiver,successful,5.0,MID,Gordon,Schade,1,1,2,2,-1,-1.0,-1,1.0,0.0,-1.0
+431,2024-11-26T05:48:37.046288Z,13,LD,waiver,successful,7.0,DEF,Wan-Bissaka,Mazraoui,6,85,1,47,38,1.4615384615384615,5,0.0,85.0,-47.0
+432,2024-10-09T11:05:13.265783Z,8,LD,waiver,successful,6.0,DEF,Van de Ven,Mazraoui,1,7,1,62,-55,-1.7741935483870968,0,2.0,5.0,-60.0
+433,2024-10-09T11:05:13.265829Z,8,LD,waiver,unsuccessful - player out already gone,8.0,DEF,Collins,Mazraoui,1,102,1,62,40,1.2903225806451613,0,0.0,102.0,-62.0
+434,2024-10-10T19:56:50.137145Z,8,MN,waiver,successful,11.0,DEF,Collins,Pau,1,102,2,41,61,1.967741935483871,-1,2.0,100.0,-39.0
+435,2024-12-03T14:33:02.792382Z,14,LD,free agent,successful,,DEF,Wan-Bissaka,Stones,1,79,0,9,70,2.8,1,19.0,60.0,10.0
+436,2024-12-03T06:37:54.041196Z,14,BP,free agent,successful,,DEF,Wan-Bissaka,J.Timber,1,79,14,83,-4,-0.16,-13,41.0,38.0,-42.0
+437,2024-12-02T15:51:49.600943Z,14,LB,waiver,unsuccessful - player out already gone,6.0,DEF,Wan-Bissaka,James,1,79,0,49,30,1.2,1,0.0,79.0,-49.0
+438,2024-12-02T15:51:49.600901Z,14,LB,waiver,successful,3.0,DEF,Cucurella,James,2,102,0,49,53,2.12,2,27.0,75.0,-22.0
+439,2025-05-09T04:57:06.586712Z,36,LD,waiver,unsuccessful - player out already gone,7.0,DEF,Wan-Bissaka,Robertson,12,18,4,6,12,4.0,8,0.0,18.0,-6.0
+440,2025-05-09T04:57:06.586692Z,36,LD,waiver,successful,5.0,DEF,Collins,Robertson,8,11,4,6,5,1.6666666666666667,4,9.0,2.0,3.0
+441,2025-03-13T13:05:41.627586Z,29,LD,waiver,successful,5.0,DEF,Murillo,Robertson,1,29,0,15,14,1.4,1,26.0,3.0,11.0
+442,2025-03-13T15:29:13.353679Z,29,CR,waiver,unsuccessful - player in already been picked up,8.0,DEF,Murillo,Lacroix,1,29,0,21,8,0.8,1,0.0,29.0,-21.0
+443,2025-03-14T10:29:53.910415Z,29,BP,waiver,successful,1.0,DEF,Murillo,Lacroix,1,29,0,21,8,0.8,1,24.0,5.0,3.0
+444,2025-03-13T16:48:17.287784Z,29,TS,waiver,unsuccessful - player in already been picked up,9.0,DEF,Murillo,Tsimikas,1,29,0,11,18,1.8,1,0.0,29.0,-11.0
+445,2025-03-13T16:48:17.287739Z,29,TS,waiver,successful,4.0,DEF,N.Williams,Tsimikas,1,26,0,11,15,1.5,1,17.0,9.0,6.0
+446,2025-03-13T16:48:17.287884Z,29,TS,waiver,unsuccessful - player out already gone,16.0,DEF,Khusanov,Tsimikas,-1,-1,0,11,-12,-1.2,-1,-1.0,0.0,-12.0
+447,2025-03-13T16:48:17.287914Z,29,TS,waiver,unsuccessful - player out already gone,19.0,DEF,Toti,Tsimikas,2,28,0,11,17,1.7,2,0.0,28.0,-11.0
+448,2025-03-13T16:48:17.287803Z,29,TS,waiver,unsuccessful - player in already been picked up,10.0,DEF,Murillo,Colwill,1,29,1,38,-9,-0.9,0,0.0,29.0,-38.0
+449,2025-03-13T16:48:17.287899Z,29,TS,waiver,successful,17.0,DEF,Khusanov,Colwill,-1,-1,1,38,-39,-3.9,-2,-1.0,0.0,-39.0
+450,2025-03-13T16:48:17.287929Z,29,TS,waiver,unsuccessful - player out already gone,20.0,DEF,Toti,Colwill,2,28,1,38,-10,-1.0,1,0.0,28.0,-38.0
+451,2025-03-14T12:38:04.024784Z,29,AN,waiver,unsuccessful - player in already been picked up,22.0,DEF,Murillo,Udogie,1,29,1,1,28,2.8,0,0.0,29.0,-1.0
+452,2025-03-14T12:38:04.024798Z,29,AN,waiver,successful,23.0,DEF,Estupiñan,Udogie,7,19,1,1,18,1.8,6,9.0,10.0,8.0
+453,2025-03-14T12:08:43.868456Z,29,PV,waiver,unsuccessful - player in already been picked up,3.0,DEF,Murillo,N.Semedo,1,29,2,27,2,0.2,-1,0.0,29.0,-27.0
+454,2025-03-12T10:42:16.808831Z,29,IR,waiver,unsuccessful - player in already been picked up,5.0,DEF,Murillo,Digne,1,29,0,14,15,1.5,1,0.0,29.0,-14.0
+455,2025-03-12T10:42:16.808953Z,29,IR,waiver,unsuccessful - player out already gone,19.0,DEF,Khusanov,Digne,-1,-1,0,14,-15,-1.5,-1,-1.0,0.0,-15.0
+456,2025-03-12T10:42:16.808909Z,29,IR,waiver,successful,8.0,DEF,Dalot,Digne,11,23,0,14,9,0.9,11,11.0,12.0,-3.0
+457,2025-03-12T10:42:16.808938Z,29,IR,waiver,unsuccessful - player out already gone,18.0,DEF,Mazraoui,Digne,6,22,0,14,8,0.8,6,7.0,15.0,-7.0
+458,2025-03-12T10:42:16.808876Z,29,IR,waiver,unsuccessful - player in already been picked up,6.0,DEF,Murillo,C.Richards,1,29,0,15,14,1.4,1,0.0,29.0,-15.0
+459,2025-03-12T10:42:16.808924Z,29,IR,waiver,unsuccessful - player in already been picked up,17.0,DEF,Dalot,C.Richards,11,23,0,15,8,0.8,11,11.0,12.0,-4.0
+460,2025-03-14T13:52:40.289700Z,29,IR,free agent,successful,,DEF,Mazraoui,C.Richards,6,22,0,15,7,0.7,6,7.0,15.0,-8.0
+461,2025-03-14T12:04:19.069600Z,29,MN,waiver,unsuccessful - player in already been picked up,12.0,DEF,Murillo,Mykolenko,1,29,2,38,-9,-0.9,-1,0.0,29.0,-38.0
+462,2025-03-13T01:30:57.135945Z,29,AC,waiver,unsuccessful - player in already been picked up,15.0,DEF,Murillo,James,1,29,2,32,-3,-0.3,-1,0.0,29.0,-32.0
+463,2025-03-15T13:26:18.408828Z,29,TS,free agent,successful,,DEF,Rúben,James,1,47,2,32,15,1.5,-1,16.0,31.0,-16.0
+464,2025-03-14T14:57:56.459677Z,29,AC,free agent,successful,,DEF,Colwill,James,1,38,2,32,6,0.6,-1,9.0,29.0,-23.0
+465,2025-05-23T11:53:54.625444Z,38,LD,waiver,successful,10.0,DEF,Zabarnyi,Robertson,11,11,2,2,9,9.0,9,11.0,0.0,9.0
+466,2024-08-16T07:35:24.559390Z,1,LD,free agent,successful,,MID,Bruno G.,Rodrigo,3,135,0,3,132,3.473684210526316,3,24.0,111.0,21.0
+467,2024-12-31T16:39:59.408094Z,20,LD,waiver,unsuccessful - player out already gone,11.0,MID,Bruno G.,Bowen,6,73,0,103,-30,-1.5789473684210527,6,0.0,73.0,-103.0
+468,2024-12-31T16:39:59.408036Z,20,LD,waiver,successful,7.0,MID,Amad,Bowen,9,58,0,103,-45,-2.3684210526315788,9,27.0,31.0,-76.0
+469,2024-12-31T16:39:59.408079Z,20,LD,waiver,unsuccessful - player out already gone,10.0,MID,Joelinton,Bowen,1,31,0,103,-72,-3.789473684210526,1,0.0,31.0,-103.0
+470,2025-01-03T10:38:22.079117Z,20,IR,waiver,unsuccessful - player out already gone,18.0,MID,Joelinton,Enzo,1,31,1,70,-39,-2.0526315789473686,0,0.0,31.0,-70.0
+471,2025-01-03T10:38:22.079079Z,20,IR,waiver,successful,10.0,MID,Smith Rowe,Enzo,1,52,1,70,-18,-0.9473684210526315,0,1.0,51.0,-69.0
+472,2025-01-03T10:38:22.079182Z,20,IR,waiver,unsuccessful - player out already gone,23.0,MID,Jones,Enzo,2,33,1,70,-37,-1.9473684210526316,1,0.0,33.0,-70.0
+473,2025-01-03T10:38:22.079100Z,20,IR,waiver,unsuccessful - player out already gone,17.0,MID,Eze,Enzo,5,94,1,70,24,1.263157894736842,4,0.0,94.0,-70.0
+474,2025-01-03T10:38:22.079134Z,20,IR,waiver,unsuccessful - player out already gone,19.0,MID,Merino,Enzo,4,61,1,70,-9,-0.47368421052631576,3,0.0,61.0,-70.0
+475,2025-01-10T09:07:20.719515Z,21,MN,waiver,successful,4.0,MID,Bruno G.,I.Sarr,6,67,6,81,-14,-0.7777777777777778,0,19.0,48.0,-62.0
+476,2025-01-24T08:03:01.034756Z,23,LD,waiver,successful,6.0,MID,Bruno G.,Diogo J.,2,52,0,28,24,1.5,2,19.0,33.0,-9.0
+477,2025-03-13T13:05:41.627643Z,29,LD,waiver,unsuccessful - player in already been picked up,13.0,MID,Gibbs-White,Diogo J.,5,41,0,15,26,2.6,5,0.0,41.0,-15.0
+478,2025-03-13T13:05:41.627704Z,29,LD,waiver,successful,18.0,MID,Damsgaard,Diogo J.,2,25,0,15,10,1.0,2,3.0,22.0,-12.0
+479,2025-03-13T15:29:13.353624Z,29,CR,waiver,successful,2.0,MID,Gibbs-White,Maddison,5,41,1,16,25,2.5,4,40.0,1.0,24.0
+480,2025-03-14T12:01:53.996508Z,29,HC,waiver,unsuccessful - player in already been picked up,6.0,MID,Gibbs-White,Rashford,5,41,0,21,20,2.0,5,0.0,41.0,-21.0
+481,2025-03-14T14:51:35.521223Z,29,HC,free agent,successful,,MID,Hudson-Odoi,Rashford,3,11,0,21,-10,-1.0,3,3.0,8.0,-18.0
+482,2025-04-11T12:52:56.845719Z,32,LD,free agent,successful,,MID,Bruno G.,Enzo,10,27,2,29,-2,-0.2857142857142857,8,15.0,12.0,-14.0
+483,2025-04-10T21:26:02.486798Z,32,AN,waiver,unsuccessful - player out already gone,8.0,MID,Bruno G.,Gordon,10,27,2,11,16,2.2857142857142856,8,0.0,27.0,-11.0
+484,2025-04-10T21:26:02.486715Z,32,AN,waiver,successful,4.0,MID,Joelinton,Gordon,11,12,2,11,1,0.14285714285714285,9,11.0,1.0,0.0
+485,2025-04-10T21:26:02.486831Z,32,AN,waiver,unsuccessful - player in already been picked up,9.0,MID,Trossard,Gordon,2,42,2,11,31,4.428571428571429,0,0.0,42.0,-11.0
+486,2025-04-10T21:26:02.486862Z,32,AN,waiver,unsuccessful - player out already gone,10.0,MID,Tielemans,Gordon,6,27,2,11,16,2.2857142857142856,4,26.0,1.0,15.0
+487,2025-04-10T21:26:02.486890Z,32,AN,waiver,unsuccessful - player out already gone,11.0,MID,Rice,Gordon,5,35,2,11,24,3.4285714285714284,3,0.0,35.0,-11.0
+488,2025-02-21T17:05:51.197986Z,26,LD,free agent,successful,,MID,Szoboszlai,Bruno G.,13,57,2,47,10,0.7692307692307693,11,13.0,44.0,-34.0
+489,2025-05-09T04:57:06.586749Z,36,LD,waiver,successful,11.0,MID,Doku,Bruno G.,1,5,7,11,-6,-2.0,-6,2.0,3.0,-9.0
+490,2025-04-17T15:51:25.576769Z,33,HC,waiver,successful,1.0,MID,Martinelli,Maddison,10,24,0,4,20,3.3333333333333335,10,10.0,14.0,6.0
+491,2024-08-29T17:08:35.234508Z,3,LD,waiver,successful,5.0,MID,Madueke,Bruno G.,2,100,1,130,-30,-0.8333333333333334,1,57.0,43.0,-73.0
+492,2024-08-29T17:08:35.234599Z,3,LD,waiver,unsuccessful - player out already gone,15.0,MID,Trossard,Bruno G.,1,144,1,130,14,0.3888888888888889,0,0.0,144.0,-130.0
+493,2024-08-27T08:22:01.669268Z,3,MN,waiver,successful,4.0,MID,Smith Rowe,Bruno G.,2,101,1,130,-29,-0.8055555555555556,1,35.0,66.0,-95.0
+494,2024-08-30T05:39:01.576877Z,3,CR,waiver,unsuccessful - player in already been picked up,8.0,MID,Madueke,Bailey,2,100,1,44,56,1.5555555555555556,1,0.0,100.0,-44.0
+495,2024-08-30T05:39:01.576900Z,3,CR,waiver,successful,9.0,MID,Semenyo,Bailey,6,152,1,44,108,3.0,5,32.0,120.0,-12.0
+496,2024-08-28T17:15:38.739582Z,3,AN,waiver,successful,7.0,MID,Madueke,Kudus,2,100,2,101,-1,-0.027777777777777776,0,17.0,83.0,-84.0
+497,2024-08-30T05:39:01.576919Z,3,CR,waiver,unsuccessful - player in already been picked up,13.0,MID,Semenyo,Kudus,6,152,2,101,51,1.4166666666666667,4,32.0,120.0,-69.0
+498,2024-08-30T05:39:01.576821Z,3,CR,waiver,successful,3.0,MID,Souček,Kudus,1,113,2,101,12,0.3333333333333333,-1,0.0,113.0,-101.0
+499,2024-08-28T17:15:38.739641Z,3,AN,waiver,unsuccessful - player out already gone,12.0,MID,Amad,Kudus,1,120,2,101,19,0.5277777777777778,-1,0.0,120.0,-101.0
+500,2024-08-30T09:34:03.471731Z,3,BP,waiver,unsuccessful - player in already been picked up,8.0,MID,Madueke,Johnson,2,100,4,132,-32,-0.8888888888888888,-2,0.0,100.0,-132.0
+501,2025-04-15T09:30:21.791346Z,33,LB,waiver,unsuccessful - player in already been picked up,8.0,MID,Rice,Szoboszlai,8,30,3,27,3,0.5,5,0.0,30.0,-27.0
+502,2025-04-15T09:30:21.791368Z,33,LB,waiver,successful,9.0,MID,McGinn,Szoboszlai,3,16,3,27,-11,-1.8333333333333333,0,3.0,13.0,-24.0
+503,2025-04-03T08:02:02.808485Z,31,LD,waiver,successful,11.0,MID,Szoboszlai,Iwobi,1,29,13,35,-6,-0.75,-12,1.0,28.0,-34.0
+504,2025-03-28T13:16:22.511445Z,30,LD,waiver,unsuccessful - player in already been picked up,8.0,MID,I.Sarr,Iwobi,2,36,1,36,0,0.0,1,0.0,36.0,-36.0
+505,2025-03-31T14:45:29.268199Z,30,LB,waiver,successful,15.0,MID,Tonali,Iwobi,10,50,1,36,14,1.5555555555555556,9,30.0,20.0,-6.0
+506,2025-03-31T16:52:53.591467Z,30,TS,waiver,successful,3.0,MID,I.Sarr,Savinho,2,36,9,15,21,2.3333333333333335,-7,22.0,14.0,7.0
+507,2025-03-31T16:52:53.591490Z,30,TS,waiver,unsuccessful - player out already gone,11.0,MID,Rogers,Savinho,10,48,9,15,33,3.6666666666666665,1,48.0,0.0,33.0
+508,2025-03-31T16:52:53.591620Z,30,TS,waiver,unsuccessful - player out already gone,20.0,MID,Kulusevski,Savinho,0,7,9,15,-8,-0.8888888888888888,-9,0.0,7.0,-15.0
+509,2025-04-04T13:57:51.064330Z,31,LD,free agent,successful,,MID,Enzo,Neto,2,31,1,33,-2,-0.25,1,0.0,31.0,-33.0
+510,2025-04-04T18:12:19.344582Z,31,AN,free agent,successful,,MID,Ødegaard,Neto,1,38,1,33,5,0.625,0,12.0,26.0,-21.0
+511,2025-03-28T13:16:22.511500Z,30,LD,waiver,successful,9.0,MID,Doku,Johnson,3,21,0,29,-8,-0.8888888888888888,3,6.0,15.0,-23.0
+512,2025-05-09T04:57:06.586731Z,36,LD,waiver,successful,8.0,MID,Matheus N.,Johnson,0,11,0,3,8,2.6666666666666665,0,0.0,11.0,-3.0
+513,2024-12-28T04:16:11.135893Z,19,LD,waiver,unsuccessful - player in already been picked up,4.0,DEF,Aina,Estupiñan,8,47,0,37,10,0.5,8,0.0,47.0,-37.0
+514,2024-12-28T04:15:01.344322Z,19,CR,waiver,unsuccessful - player in already been picked up,6.0,DEF,Aina,Guéhi,8,47,0,63,-16,-0.8,8,0.0,47.0,-63.0
+515,2024-12-28T13:11:14.999741Z,19,CR,free agent,successful,,DEF,Muñoz,Guéhi,2,85,0,63,22,1.1,2,62.0,23.0,-1.0
+516,2024-12-28T11:38:55.592594Z,19,HC,waiver,successful,1.0,DEF,Aina,Dalot,8,47,1,42,5,0.25,7,34.0,13.0,-8.0
+517,2024-12-31T16:39:59.407973Z,20,LD,waiver,successful,4.0,DEF,N.Williams,Estupiñan,6,64,2,37,27,1.4210526315789473,4,3.0,61.0,-34.0
+518,2024-12-31T16:39:59.408018Z,20,LD,waiver,unsuccessful - player out already gone,6.0,DEF,Young,Estupiñan,2,30,2,37,-7,-0.3684210526315789,0,0.0,30.0,-37.0
+519,2025-01-03T10:49:15.172475Z,20,PV,waiver,unsuccessful - player out already gone,11.0,DEF,N.Williams,Gusto,6,64,2,33,31,1.631578947368421,4,0.0,64.0,-33.0
+520,2025-01-03T10:49:15.172397Z,20,PV,waiver,successful,4.0,DEF,Burn,Gusto,1,58,2,33,25,1.3157894736842106,-1,8.0,50.0,-25.0
+521,2025-04-11T12:49:54.315120Z,32,LD,free agent,successful,,DEF,James,Guéhi,0,20,-2,14,6,0.8571428571428571,2,0.0,20.0,-14.0
+522,2025-03-13T13:05:41.627722Z,29,LD,waiver,unsuccessful - player in already been picked up,22.0,DEF,Pedro Porro,Guéhi,0,5,0,15,-10,-1.0,0,0.0,5.0,-15.0
+523,2025-03-13T13:05:41.627684Z,29,LD,waiver,successful,15.0,DEF,Pedro Porro,Gusto,0,5,1,20,-15,-1.5,-1,0.0,5.0,-20.0
+524,2025-03-13T13:05:41.627665Z,29,LD,waiver,unsuccessful - player in already been picked up,14.0,DEF,N.Williams,Gusto,1,26,1,20,6,0.6,0,0.0,26.0,-20.0
+525,2024-10-28T13:13:57.590425Z,10,LD,waiver,successful,6.0,DEF,Aït-Nouri,Van de Ven,1,96,0,5,91,3.1379310344827585,1,9.0,87.0,4.0
+526,2025-04-18T05:09:28.662050Z,33,LD,waiver,successful,12.0,DEF,Lewis,James,0,7,1,20,-13,-2.1666666666666665,-1,0.0,7.0,-20.0
+527,2025-04-25T07:57:38.706325Z,34,LD,waiver,unsuccessful - player in already been picked up,9.0,MID,Barnes,Rice,3,12,0,22,-10,-2.0,3,0.0,12.0,-22.0
+528,2025-04-25T11:08:32.599817Z,34,LD,free agent,successful,,MID,Hudson-Odoi,Rice,1,3,0,22,-19,-3.8,1,1.0,2.0,-21.0
+529,2025-04-25T10:12:52.172903Z,34,IR,free agent,successful,,MID,Joelinton,Rice,0,0,0,22,-22,-4.4,0,0.0,0.0,-22.0
+530,2025-04-25T09:44:14.833849Z,34,CR,waiver,unsuccessful - player in already been picked up,24.0,MID,Barnes,Gibbs-White,3,12,1,28,-16,-3.2,2,0.0,12.0,-28.0
+531,2025-03-14T18:01:58.873577Z,29,LD,free agent,successful,,MID,Iwobi,Szoboszlai,3,39,0,32,7,0.7,3,14.0,25.0,-18.0
+532,2025-04-11T06:09:31.312673Z,32,LD,waiver,successful,6.0,MID,Son,Szoboszlai,0,3,1,28,-25,-3.5714285714285716,-1,0.0,3.0,-28.0
+533,2025-01-13T12:49:44.819880Z,21,LD,waiver,successful,15.0,DEF,Mazraoui,Wan-Bissaka,2,38,3,60,-22,-1.2222222222222223,-1,2.0,36.0,-58.0
+534,2025-01-13T18:56:09.591417Z,21,IR,free agent,successful,,DEF,Mazraoui,Diop,2,38,0,7,31,1.7222222222222223,2,9.0,29.0,2.0
+535,2024-11-29T04:56:20.637901Z,13,LD,free agent,successful,,DEF,Murillo,Wan-Bissaka,7,85,6,85,0,0.0,1,34.0,51.0,-51.0
+536,2025-01-17T08:17:58.263235Z,22,LD,waiver,unsuccessful - player in already been picked up,9.0,MID,Maddison,I.Sarr,2,33,3,75,-42,-2.4705882352941178,-1,0.0,33.0,-75.0
+537,2025-02-21T17:04:16.519384Z,26,LD,free agent,successful,,MID,Diogo J.,I.Sarr,0,19,3,65,-46,-3.5384615384615383,-3,4.0,15.0,-61.0
+538,2025-04-03T08:02:02.808435Z,31,LD,waiver,successful,6.0,MID,Savinho,Damsgaard,0,6,3,22,-16,-2.0,-3,3.0,3.0,-19.0
+539,2025-04-04T13:21:44.766855Z,31,AN,free agent,successful,,MID,Savinho,Doku,0,6,1,18,-12,-1.5,-1,1.0,5.0,-17.0
+540,2025-02-19T20:25:17.826190Z,26,PV,waiver,unsuccessful - player in already been picked up,12.0,FWD,João Pedro,Richarlison,12,45,0,15,30,2.3076923076923075,12,0.0,45.0,-15.0
+541,2025-02-19T20:25:17.826222Z,26,PV,waiver,unsuccessful - player out already gone,13.0,FWD,Zirkzee,Richarlison,2,10,0,15,-5,-0.38461538461538464,2,0.0,10.0,-15.0
+542,2025-02-19T20:25:17.826241Z,26,PV,waiver,unsuccessful - player out already gone,14.0,FWD,Darwin,Richarlison,0,17,0,15,2,0.15384615384615385,0,0.0,17.0,-15.0
+543,2025-02-19T20:25:17.826136Z,26,PV,waiver,successful,3.0,FWD,Ferguson,Richarlison,1,7,0,15,-8,-0.6153846153846154,1,1.0,6.0,-14.0
+544,2025-02-17T08:26:04.799429Z,26,IR,waiver,unsuccessful - player in already been picked up,8.0,FWD,João Pedro,Muniz,12,45,1,31,14,1.0769230769230769,11,0.0,45.0,-31.0
+545,2025-02-20T07:19:30.485819Z,26,MN,waiver,unsuccessful - player in already been picked up,7.0,FWD,João Pedro,Strand Larsen,12,45,1,61,-16,-1.2307692307692308,11,0.0,45.0,-61.0
+546,2025-02-15T15:30:03.051319Z,26,AC,waiver,successful,1.0,FWD,João Pedro,Havertz,12,45,0,1,44,3.3846153846153846,12,33.0,12.0,32.0
+547,2024-12-31T16:39:59.408065Z,20,LD,waiver,unsuccessful - player out already gone,9.0,MID,Semenyo,Saka,3,94,0,20,74,3.8947368421052633,3,0.0,94.0,-20.0
+548,2024-12-31T16:39:59.408051Z,20,LD,waiver,successful,8.0,MID,Kluivert,Saka,3,83,0,20,63,3.3157894736842106,3,3.0,80.0,-17.0
+549,2024-09-10T13:15:18.147394Z,4,LD,waiver,successful,4.0,DEF,Mazraoui,Trippier,6,75,1,71,4,0.11428571428571428,5,16.0,59.0,-55.0
+550,2024-09-01T14:40:47.063420Z,4,BP,waiver,successful,1.0,DEF,Dunk,Trippier,6,34,1,71,-37,-1.0571428571428572,5,6.0,28.0,-65.0
+551,2024-11-23T09:37:24.494642Z,12,LD,free agent,successful,,DEF,Mazraoui,White,2,49,0,23,26,0.9629629629629629,2,4.0,45.0,-19.0
+552,2025-05-01T06:31:19.161858Z,35,LD,waiver,successful,10.0,MID,Johnson,Savinho,0,3,0,2,1,0.25,0,0.0,3.0,-2.0
+553,2025-01-31T05:55:33.160482Z,24,LD,waiver,successful,12.0,MID,Iwobi,Savinho,2,51,5,34,17,1.1333333333333333,-3,16.0,35.0,-18.0
+554,2025-01-31T05:55:33.160459Z,24,LD,waiver,unsuccessful - player in already been picked up,11.0,MID,Kluivert,Savinho,2,37,5,34,3,0.2,-3,0.0,37.0,-34.0
+555,2025-01-31T08:11:17.364339Z,24,CR,waiver,successful,2.0,MID,Kluivert,Eze,2,37,1,75,-38,-2.533333333333333,1,26.0,11.0,-49.0
+556,2025-01-31T08:11:17.364391Z,24,CR,waiver,unsuccessful - player out already gone,8.0,MID,Szoboszlai,Eze,5,66,1,75,-9,-0.6,4,0.0,66.0,-75.0
+557,2025-01-31T11:19:34.301532Z,24,HC,waiver,unsuccessful - player in already been picked up,6.0,MID,Kluivert,Semenyo,2,37,2,65,-28,-1.8666666666666667,0,0.0,37.0,-65.0
+558,2025-05-23T11:53:54.625421Z,38,LD,waiver,successful,7.0,MID,Rice,Doku,2,2,3,3,-1,-1.0,-1,2.0,0.0,-1.0
+559,2025-05-24T12:11:41.559675Z,38,AN,waiver,unsuccessful - player in already been picked up,27.0,MID,Rice,Neto,2,2,6,6,-4,-4.0,-4,0.0,2.0,-6.0
+560,2025-05-24T12:11:41.559566Z,38,AN,waiver,successful,8.0,MID,Mitoma,Neto,4,4,6,6,-2,-2.0,-2,4.0,0.0,-2.0
+561,2025-05-24T12:11:41.559633Z,38,AN,waiver,unsuccessful - player in already been picked up,25.0,MID,Trossard,Neto,4,4,6,6,-2,-2.0,-2,0.0,4.0,-6.0
+562,2025-05-24T12:11:41.559655Z,38,AN,waiver,unsuccessful - player out already gone,26.0,MID,Son,Neto,0,0,6,6,-6,-6.0,-6,0.0,0.0,-6.0
+563,2025-05-23T08:47:52.974531Z,38,IR,waiver,successful,4.0,MID,Rice,McNeil,2,2,1,1,1,1.0,1,2.0,0.0,1.0
+564,2025-05-23T08:47:52.974591Z,38,IR,waiver,unsuccessful - player out already gone,19.0,MID,Tonali,McNeil,2,2,1,1,1,1.0,1,0.0,2.0,-1.0
+565,2025-05-22T12:43:06.496456Z,38,MN,waiver,unsuccessful - player in already been picked up,11.0,MID,Rice,Anderson,2,2,1,1,1,1.0,1,0.0,2.0,-1.0
+566,2025-05-22T12:43:06.496433Z,38,MN,waiver,unsuccessful - player in already been picked up,10.0,MID,Mitoma,Anderson,4,4,1,1,3,3.0,3,0.0,4.0,-1.0
+567,2025-05-22T12:43:06.496584Z,38,MN,waiver,unsuccessful - player in already been picked up,43.0,MID,Tavernier,Anderson,4,4,1,1,3,3.0,3,0.0,4.0,-1.0
+568,2025-05-22T12:43:06.496373Z,38,MN,waiver,unsuccessful - player in already been picked up,9.0,MID,Trossard,Anderson,4,4,1,1,3,3.0,3,0.0,4.0,-1.0
+569,2025-05-22T12:43:06.496494Z,38,MN,waiver,unsuccessful - player out already gone,31.0,MID,Thomas,Anderson,2,2,1,1,1,1.0,1,0.0,2.0,-1.0
+570,2025-05-22T12:43:06.496475Z,38,MN,waiver,successful,12.0,MID,Souček,Anderson,2,2,1,1,1,1.0,1,2.0,0.0,1.0
+571,2025-05-22T12:43:06.496602Z,38,MN,waiver,unsuccessful - player out already gone,44.0,MID,Ayari,Anderson,1,1,1,1,0,0.0,0,0.0,1.0,-1.0
+572,2025-01-03T12:52:49.386379Z,20,LD,free agent,successful,,FWD,Strand Larsen,Cunha,2,68,0,67,1,0.05263157894736842,2,2.0,66.0,-65.0
+573,2025-01-24T08:03:01.034822Z,23,LD,waiver,unsuccessful - player in already been picked up,10.0,FWD,Calvert-Lewin,Højlund,1,5,1,36,-31,-1.9375,0,0.0,5.0,-36.0
+574,2025-01-24T10:46:45.835903Z,23,PV,waiver,successful,3.0,FWD,Richarlison,Højlund,5,22,1,36,-14,-0.875,4,7.0,15.0,-29.0
+575,2025-01-24T11:32:20.278818Z,23,HC,waiver,successful,1.0,FWD,Calvert-Lewin,Delap,1,5,1,49,-44,-2.75,0,1.0,4.0,-48.0
+576,2025-05-01T06:31:19.161794Z,35,LD,waiver,successful,4.0,FWD,Gakpo,Delap,2,20,1,4,16,4.0,1,20.0,0.0,16.0
+577,2024-09-17T20:12:39.009609Z,5,LD,waiver,successful,4.0,FWD,Vardy,João Pedro,2,109,1,108,1,0.029411764705882353,1,41.0,68.0,-67.0
+578,2025-04-25T11:07:22.885002Z,34,LD,free agent,successful,,FWD,Vardy,João Pedro,0,22,0,0,22,4.4,0,22.0,0.0,22.0
+579,2025-04-25T07:57:38.706374Z,34,LD,waiver,unsuccessful - player in already been picked up,28.0,FWD,Welbeck,João Pedro,2,17,0,0,17,3.4,2,0.0,17.0,0.0
+580,2025-04-25T08:54:18.634338Z,34,TS,waiver,successful,5.0,FWD,Welbeck,Muniz,2,17,0,0,17,3.4,2,3.0,14.0,3.0
+581,2025-04-25T08:54:18.634534Z,34,TS,waiver,unsuccessful - player out already gone,37.0,FWD,Solanke,Muniz,6,14,0,0,14,2.8,6,0.0,14.0,0.0
+582,2025-04-25T10:12:00.987689Z,34,IR,free agent,successful,,FWD,Højlund,Muniz,9,15,0,0,15,3.0,9,9.0,6.0,9.0
+583,2025-04-11T06:09:31.312618Z,32,LD,waiver,unsuccessful - player in already been picked up,5.0,FWD,Cunha,João Pedro,7,35,13,12,23,3.2857142857142856,-6,0.0,35.0,-12.0
+584,2025-04-06T17:59:38.408476Z,32,CR,waiver,unsuccessful - player in already been picked up,2.0,FWD,Cunha,Haaland,7,35,0,10,25,3.5714285714285716,7,0.0,35.0,-10.0
+585,2025-04-07T20:35:21.235299Z,32,TS,waiver,unsuccessful - player in already been picked up,3.0,FWD,Cunha,Strand Larsen,7,35,6,30,5,0.7142857142857143,1,0.0,35.0,-30.0
+586,2025-04-07T20:35:21.235344Z,32,TS,waiver,successful,4.0,FWD,Muniz,Strand Larsen,1,1,6,30,-29,-4.142857142857143,-5,0.0,1.0,-30.0
+587,2025-04-10T22:48:06.356244Z,32,HC,waiver,successful,1.0,FWD,Cunha,Solanke,7,35,2,17,18,2.5714285714285716,5,35.0,0.0,18.0
+588,2025-04-11T14:00:43.722154Z,32,AN,free agent,successful,,FWD,Wilson,Solanke,2,9,2,17,-8,-1.1428571428571428,0,2.0,7.0,-15.0
+589,2025-03-13T13:05:41.627740Z,29,LD,waiver,unsuccessful - player in already been picked up,23.0,GKP,Onana,Martinez,7,26,0,38,-12,-1.2,7,0.0,26.0,-38.0
+590,2025-03-14T18:01:11.852693Z,29,LD,free agent,successful,,GKP,José Sá,Martinez,2,29,0,38,-9,-0.9,2,2.0,27.0,-36.0
+591,2025-03-14T12:01:53.996530Z,29,HC,waiver,successful,7.0,GKP,Onana,Kelleher,7,26,0,8,18,1.8,7,9.0,17.0,1.0
+592,2024-10-28T13:13:57.590353Z,10,LD,waiver,successful,3.0,FWD,Cunha,Vardy,6,137,5,90,47,1.6206896551724137,1,70.0,67.0,-20.0
+593,2024-10-28T13:13:57.590403Z,10,LD,waiver,unsuccessful - player in already been picked up,5.0,FWD,Wissa,Vardy,2,146,5,90,56,1.9310344827586208,-3,0.0,146.0,-90.0
+594,2024-11-01T08:15:48.387150Z,10,TS,waiver,successful,1.0,FWD,Wissa,Calvert-Lewin,2,146,2,32,114,3.9310344827586206,0,2.0,144.0,-30.0
+595,2024-11-21T18:32:56.542965Z,12,LD,waiver,successful,4.0,MID,Barnes,Bernardo,1,81,1,77,4,0.14814814814814814,0,1.0,80.0,-76.0
+596,2024-11-21T18:32:56.542913Z,12,LD,waiver,unsuccessful - player in already been picked up,3.0,MID,Neto,Bernardo,0,79,1,77,2,0.07407407407407407,-1,0.0,79.0,-77.0
+597,2024-11-18T09:43:31.800808Z,12,TS,waiver,successful,2.0,MID,Neto,Maddison,0,79,16,81,-2,-0.07407407407407407,-16,0.0,79.0,-81.0
+598,2024-12-10T17:19:15.559270Z,16,LD,waiver,unsuccessful - player in already been picked up,7.0,DEF,Muñoz,Murillo,1,92,2,77,15,0.6521739130434783,-1,0.0,92.0,-77.0
+599,2024-12-13T11:53:02.521094Z,16,MN,waiver,successful,7.0,DEF,Muñoz,Digne,1,92,2,47,45,1.9565217391304348,-1,1.0,91.0,-46.0
+600,2024-12-13T11:53:02.521112Z,16,MN,waiver,unsuccessful - player out already gone,12.0,DEF,Robinson,Digne,6,57,2,47,10,0.43478260869565216,4,36.0,21.0,-11.0
+601,2025-02-24T06:09:37.170046Z,27,LD,waiver,successful,13.0,DEF,Gusto,N.Williams,6,26,9,41,-15,-1.25,-3,6.0,20.0,-35.0
+602,2025-01-14T04:39:49.371105Z,21,LD,free agent,successful,,DEF,Guéhi,Robinson,15,61,7,39,22,1.2222222222222223,8,46.0,15.0,7.0
+603,2025-01-13T17:55:56.819646Z,21,AN,waiver,unsuccessful - player out already gone,9.0,DEF,Guéhi,Trippier,15,61,1,49,12,0.6666666666666666,14,0.0,61.0,-49.0
+604,2025-01-13T17:55:56.819605Z,21,AN,waiver,successful,7.0,DEF,Livramento,Trippier,6,59,1,49,10,0.5555555555555556,5,18.0,41.0,-31.0
+605,2025-01-13T17:55:56.819627Z,21,AN,waiver,unsuccessful - player in already been picked up,8.0,DEF,N.Williams,Trippier,2,58,1,49,9,0.5,1,0.0,58.0,-49.0
+606,2025-01-13T12:49:44.819785Z,21,LD,waiver,unsuccessful - player in already been picked up,7.0,FWD,Cunha,Strand Larsen,1,67,2,66,1,0.05555555555555555,-1,0.0,67.0,-66.0
+607,2025-01-14T10:01:43.179935Z,21,LD,free agent,successful,,FWD,Højlund,Strand Larsen,1,38,2,66,-28,-1.5555555555555556,-1,2.0,36.0,-64.0
+608,2025-01-11T09:59:47.350762Z,21,CR,waiver,unsuccessful - player in already been picked up,2.0,FWD,Cunha,Havertz,1,67,1,23,44,2.4444444444444446,0,0.0,67.0,-23.0
+609,2025-01-13T11:30:50.257830Z,21,TS,waiver,unsuccessful - player in already been picked up,4.0,FWD,Cunha,João Pedro,1,67,1,51,16,0.8888888888888888,0,0.0,67.0,-51.0
+610,2025-01-13T09:50:04.390821Z,21,HC,waiver,successful,1.0,FWD,Cunha,Evanilson,1,67,0,50,17,0.9444444444444444,1,58.0,9.0,8.0
+611,2025-05-02T11:20:59.081955Z,35,LD,free agent,successful,,MID,A.Doucoure,Hudson-Odoi,0,9,0,2,7,1.75,0,0.0,9.0,-2.0
+612,2025-04-28T09:55:12.587394Z,35,IR,waiver,successful,23.0,MID,A.Doucoure,Joelinton,0,9,0,0,9,2.25,0,0.0,9.0,0.0
+613,2025-04-28T09:55:12.587424Z,35,IR,waiver,unsuccessful - player out already gone,25.0,MID,Bernardo,Joelinton,3,20,0,0,20,5.0,3,0.0,20.0,0.0
+614,2025-04-28T20:21:57.583700Z,35,MN,waiver,unsuccessful - player out already gone,12.0,MID,A.Doucoure,Mac Allister,0,9,4,5,4,1.0,-4,0.0,9.0,-5.0
+615,2025-04-28T20:21:57.583646Z,35,MN,waiver,successful,5.0,MID,Anderson,Mac Allister,2,6,4,5,1,0.25,-2,5.0,1.0,0.0
+616,2025-03-28T13:16:22.511522Z,30,LD,waiver,successful,14.0,DEF,Robertson,Pedro Porro,7,15,0,5,10,1.1111111111111112,7,0.0,15.0,-5.0
+617,2024-12-20T04:08:21.713875Z,17,LD,waiver,successful,6.0,DEF,Estupiñan,Muñoz,1,44,0,91,-47,-2.1363636363636362,1,0.0,44.0,-91.0
+618,2024-12-19T20:18:34.351913Z,17,MN,waiver,successful,8.0,DEF,Guéhi,Muñoz,-1,69,0,91,-22,-1.0,-1,0.0,69.0,-91.0
+619,2024-12-06T11:49:16.288248Z,15,LD,free agent,successful,,DEF,Kerkez,Aït-Nouri,2,88,4,87,1,0.041666666666666664,-2,56.0,32.0,-31.0
+620,2025-05-15T05:53:05.760190Z,37,LD,waiver,successful,6.0,DEF,Robertson,Murillo,0,2,1,3,-1,-0.5,-1,0.0,2.0,-3.0
+621,2024-12-20T04:08:21.713924Z,17,LD,waiver,successful,8.0,DEF,Robinson,Murillo,6,51,5,75,-24,-1.0909090909090908,1,12.0,39.0,-63.0
+622,2024-12-19T20:18:34.351864Z,17,MN,waiver,successful,3.0,DEF,Milenković,Murillo,6,86,5,75,11,0.5,1,59.0,27.0,-16.0
+623,2025-05-23T11:53:54.625482Z,38,LD,waiver,successful,19.0,GKP,Arrizabalaga,Henderson,6,6,2,2,4,4.0,4,6.0,0.0,4.0
+624,2025-04-12T06:06:09.653115Z,32,LD,free agent,successful,,MID,Kamada,Son,2,10,0,3,7,1.0,2,2.0,8.0,-1.0
+625,2025-01-14T04:40:28.495564Z,21,LD,free agent,successful,,MID,I.Sarr,Kluivert,6,81,8,80,1,0.05555555555555555,-2,16.0,65.0,-64.0
+626,2025-03-04T10:47:52.102541Z,28,LD,waiver,successful,5.0,GKP,Henderson,Onana,10,39,3,29,10,0.9090909090909091,7,31.0,8.0,2.0
+627,2025-03-07T10:59:32.452250Z,28,TS,waiver,unsuccessful - player in already been picked up,15.0,GKP,Henderson,Jørgensen,10,39,0,0,39,3.5454545454545454,10,0.0,39.0,0.0
+628,2025-05-02T11:24:25.440160Z,35,LD,free agent,successful,,GKP,Henderson,José Sá,3,12,2,7,5,1.25,1,4.0,8.0,-3.0
+629,2025-05-09T04:57:06.586611Z,36,LD,waiver,successful,2.0,MID,Bernardo,A.Doucoure,3,17,5,9,8,2.6666666666666665,-2,17.0,0.0,8.0
+630,2025-05-09T12:04:07.193163Z,36,IR,waiver,successful,1.0,MID,Bernardo,A.Doucoure,3,17,5,9,8,2.6666666666666665,-2,3.0,14.0,-6.0
+631,2025-05-09T04:57:06.586670Z,36,LD,waiver,unsuccessful - player out already gone,4.0,MID,Kovačić,A.Doucoure,3,5,5,9,-4,-1.3333333333333333,-2,0.0,5.0,-9.0
+632,2025-05-09T12:04:07.193210Z,36,IR,waiver,unsuccessful - player in already been picked up,6.0,MID,Schade,A.Doucoure,11,15,5,9,6,2.0,6,0.0,15.0,-9.0
+633,2025-05-09T12:04:07.193229Z,36,IR,waiver,unsuccessful - player out already gone,7.0,MID,Mount,A.Doucoure,1,7,5,9,-2,-0.6666666666666666,-4,0.0,7.0,-9.0
+634,2025-05-09T12:04:07.193275Z,36,IR,waiver,unsuccessful - player out already gone,24.0,MID,Smith Rowe,A.Doucoure,5,7,5,9,-2,-0.6666666666666666,0,0.0,7.0,-9.0
+635,2025-05-09T05:40:56.551460Z,36,AN,waiver,unsuccessful - player in already been picked up,18.0,MID,Bernardo,Tielemans,3,17,0,1,16,5.333333333333333,3,0.0,17.0,-1.0
+636,2025-05-09T05:40:56.551423Z,36,AN,waiver,unsuccessful - player out already gone,16.0,MID,I.Sarr,Tielemans,6,20,0,1,19,6.333333333333333,6,0.0,20.0,-1.0
+637,2025-05-09T05:40:56.551381Z,36,AN,waiver,unsuccessful - player in already been picked up,14.0,MID,Schade,Tielemans,11,15,0,1,14,4.666666666666667,11,0.0,15.0,-1.0
+638,2025-05-09T05:40:56.551326Z,36,AN,waiver,successful,4.0,MID,Diogo J.,Tielemans,1,2,0,1,1,0.3333333333333333,1,1.0,1.0,0.0
+639,2025-05-09T05:40:56.551403Z,36,AN,waiver,unsuccessful - player out already gone,15.0,MID,Enciso,Tielemans,2,4,0,1,3,1.0,2,0.0,4.0,-1.0
+640,2025-05-09T05:40:56.551441Z,36,AN,waiver,unsuccessful - player out already gone,17.0,MID,Mount,Tielemans,1,7,0,1,6,2.0,1,0.0,7.0,-1.0
+641,2025-05-09T12:14:36.981032Z,36,PV,waiver,unsuccessful - player in already been picked up,11.0,MID,Bernardo,Hudson-Odoi,3,17,0,2,15,5.0,3,0.0,17.0,-2.0
+642,2025-05-09T12:14:36.980957Z,36,PV,waiver,successful,3.0,MID,Kovačić,Hudson-Odoi,3,5,0,2,3,1.0,3,5.0,0.0,3.0
+643,2025-05-09T12:14:36.981009Z,36,PV,waiver,unsuccessful - player out already gone,10.0,MID,Enciso,Hudson-Odoi,2,4,0,2,2,0.6666666666666666,2,0.0,4.0,-2.0
+644,2025-05-09T12:14:36.981051Z,36,PV,waiver,unsuccessful - player out already gone,12.0,MID,McNeil,Hudson-Odoi,4,11,0,2,9,3.0,4,0.0,11.0,-2.0
+645,2025-04-04T13:19:43.794894Z,31,LD,free agent,successful,,FWD,Delap,Beto,8,15,2,24,-9,-1.125,6,10.0,5.0,-14.0
+646,2025-02-13T19:03:04.253531Z,25,LD,free agent,successful,,FWD,Beto,N.Jackson,8,45,0,13,32,2.2857142857142856,8,20.0,25.0,7.0
+647,2025-02-13T01:02:20.479815Z,25,LB,waiver,unsuccessful - player in already been picked up,10.0,FWD,Beto,N.Jackson,8,45,0,13,32,2.2857142857142856,8,0.0,45.0,-13.0
+648,2025-02-14T07:37:30.964288Z,25,LB,free agent,successful,,FWD,Højlund,N.Jackson,2,34,0,13,21,1.5,2,8.0,26.0,-5.0
+649,2025-02-12T20:33:27.010628Z,25,BP,waiver,successful,1.0,FWD,Beto,Darwin,8,45,2,19,26,1.8571428571428572,6,20.0,25.0,1.0
+650,2025-03-07T18:22:35.661060Z,28,LD,free agent,successful,,MID,Merino,Schade,2,35,2,49,-14,-1.2727272727272727,0,26.0,9.0,-23.0
+651,2025-04-18T15:50:37.416201Z,33,LD,free agent,successful,,MID,Gündogan,Kamada,8,31,3,8,23,3.8333333333333335,5,8.0,23.0,0.0
+652,2024-12-24T20:20:50.501115Z,18,CR,waiver,successful,12.0,DEF,Milenković,Mazraoui,6,80,1,41,39,1.8571428571428572,5,31.0,49.0,-10.0
+653,2024-12-24T12:35:33.316777Z,18,IR,waiver,successful,12.0,DEF,Akanji,Mazraoui,2,37,1,41,-4,-0.19047619047619047,1,35.0,2.0,-6.0
+654,2024-12-24T20:20:50.501069Z,18,CR,waiver,unsuccessful - player out already gone,8.0,MID,Bruno G.,Eze,3,79,2,106,-27,-1.2857142857142858,1,0.0,79.0,-106.0
+655,2024-12-24T20:20:50.501026Z,18,CR,waiver,successful,2.0,MID,J.Murphy,Eze,6,104,2,106,-2,-0.09523809523809523,4,16.0,88.0,-90.0
+656,2024-12-24T20:20:50.501086Z,18,CR,waiver,unsuccessful - player out already gone,9.0,MID,I.Sarr,Eze,3,88,2,106,-18,-0.8571428571428571,1,0.0,88.0,-106.0
+657,2024-12-24T12:35:33.316721Z,18,IR,waiver,unsuccessful - player out already gone,9.0,MID,Bruno G.,Rashford,3,79,0,41,38,1.8095238095238095,3,0.0,79.0,-41.0
+658,2024-12-24T12:35:33.316698Z,18,IR,waiver,unsuccessful - player in already been picked up,8.0,MID,Semenyo,Rashford,3,102,0,41,61,2.9047619047619047,3,0.0,102.0,-41.0
+659,2024-12-24T12:35:33.316642Z,18,IR,waiver,successful,3.0,MID,Elanga,Rashford,11,108,0,41,67,3.1904761904761907,11,101.0,7.0,60.0
+660,2025-01-29T06:10:02.890969Z,24,AN,waiver,unsuccessful - player in already been picked up,4.0,MID,Szoboszlai,I.Sarr,5,66,3,70,-4,-0.26666666666666666,2,0.0,66.0,-70.0
+661,2025-01-29T06:10:02.891012Z,24,AN,waiver,successful,5.0,MID,Smith Rowe,I.Sarr,2,36,3,70,-34,-2.2666666666666666,-1,2.0,34.0,-68.0
+662,2025-01-30T17:15:41.972203Z,24,IR,waiver,successful,2.0,MID,Szoboszlai,Joelinton,5,66,1,24,42,2.8,4,5.0,61.0,-19.0
+663,2024-12-22T09:14:13.873777Z,18,BP,waiver,successful,21.0,MID,J.Murphy,Garnacho,6,104,1,57,47,2.238095238095238,5,97.0,7.0,40.0
+664,2024-12-22T09:14:13.873759Z,18,BP,waiver,unsuccessful - player in already been picked up,20.0,MID,I.Sarr,Garnacho,3,88,1,57,31,1.4761904761904763,2,0.0,88.0,-57.0
+665,2024-12-23T08:22:53.409081Z,18,AN,waiver,successful,5.0,MID,I.Sarr,Saka,3,88,0,20,68,3.238095238095238,3,0.0,88.0,-20.0
+666,2024-12-23T08:22:53.409133Z,18,AN,waiver,unsuccessful - player out already gone,18.0,MID,Barnes,Saka,1,68,0,20,48,2.2857142857142856,1,54.0,14.0,34.0
+667,2024-12-23T15:04:24.558168Z,18,MN,waiver,unsuccessful - player in already been picked up,15.0,MID,I.Sarr,Smith Rowe,3,88,0,53,35,1.6666666666666667,3,0.0,88.0,-53.0
+668,2024-12-23T15:04:24.558153Z,18,MN,waiver,unsuccessful - player out already gone,14.0,MID,Barnes,Smith Rowe,1,68,0,53,15,0.7142857142857143,1,0.0,68.0,-53.0
+669,2024-12-23T15:04:24.558135Z,18,MN,waiver,unsuccessful - player in already been picked up,13.0,MID,Semenyo,Smith Rowe,3,102,0,53,49,2.3333333333333335,3,0.0,102.0,-53.0
+670,2024-12-23T15:04:24.558092Z,18,MN,waiver,successful,4.0,MID,Szoboszlai,Smith Rowe,0,83,0,53,30,1.4285714285714286,0,0.0,83.0,-53.0
+671,2025-01-11T09:59:47.350824Z,21,CR,waiver,successful,11.0,MID,Bowen,Enzo,0,103,2,69,34,1.8888888888888888,-2,93.0,10.0,24.0
+672,2025-01-11T09:59:47.350839Z,21,CR,waiver,unsuccessful - player out already gone,17.0,MID,Elanga,Enzo,7,85,2,69,16,0.8888888888888888,5,0.0,85.0,-69.0
+673,2024-08-18T21:19:17.363073Z,2,CR,waiver,successful,4.0,MID,Szoboszlai,Smith Rowe,2,136,10,111,25,0.6756756756756757,-8,12.0,124.0,-99.0
+674,2024-12-19T20:10:41.692548Z,17,CR,waiver,successful,1.0,MID,Amad,Smith Rowe,2,64,0,53,11,0.5,2,2.0,62.0,-51.0
+675,2024-12-20T07:52:22.438354Z,17,TS,waiver,unsuccessful - player in already been picked up,3.0,MID,Amad,Rogers,2,64,14,100,-36,-1.6363636363636365,-12,0.0,64.0,-100.0
+676,2025-01-11T09:59:47.350854Z,21,CR,waiver,successful,18.0,MID,Eze,Iwobi,6,89,15,69,20,1.1111111111111112,-9,14.0,75.0,-55.0
+677,2024-12-02T16:41:23.006830Z,14,CR,waiver,unsuccessful - player in already been picked up,5.0,DEF,Cucurella,Akanji,2,102,1,39,63,2.52,1,0.0,102.0,-39.0
+678,2024-12-02T15:31:41.044895Z,14,HC,waiver,successful,2.0,DEF,Cucurella,Dalot,2,102,1,48,54,2.16,1,60.0,42.0,12.0
+679,2024-12-02T12:47:58.287352Z,14,AN,waiver,unsuccessful - player in already been picked up,4.0,DEF,Cucurella,Alex Moreno,2,102,1,5,97,3.88,1,0.0,102.0,-5.0
+680,2024-12-02T12:47:58.287413Z,14,AN,waiver,successful,5.0,DEF,Gomez,Alex Moreno,1,5,1,5,0,0.0,0,0.0,5.0,-5.0
+681,2024-12-07T08:45:39.446524Z,15,CR,free agent,successful,,DEF,Mazraoui,Akanji,1,45,0,38,7,0.2916666666666667,1,1.0,44.0,-37.0
+682,2025-02-14T16:23:08.042218Z,25,CR,free agent,successful,,DEF,Lacroix,Akanji,1,39,0,17,22,1.5714285714285714,1,19.0,20.0,2.0
+683,2025-02-14T16:49:42.683176Z,25,IR,free agent,successful,,DEF,Zabarnyi,Akanji,2,30,0,17,13,0.9285714285714286,2,2.0,28.0,-15.0
+684,2025-02-12T20:33:27.010680Z,25,BP,waiver,successful,7.0,DEF,Lacroix,Young,1,39,4,23,16,1.1428571428571428,-3,17.0,22.0,-6.0
+685,2025-02-02T19:30:34.370927Z,25,CR,waiver,unsuccessful - player out already gone,8.0,MID,Gibbs-White,Mitoma,5,59,10,50,9,0.6428571428571429,-5,0.0,59.0,-50.0
+686,2025-02-02T19:30:34.370873Z,25,CR,waiver,successful,2.0,MID,Saka,Mitoma,0,20,10,50,-30,-2.142857142857143,-10,20.0,0.0,-30.0
+687,2025-02-13T13:18:29.275415Z,25,TS,waiver,unsuccessful - player in already been picked up,3.0,MID,Saka,Kulusevski,0,20,3,20,0,0.0,-3,0.0,20.0,-20.0
+688,2025-04-25T09:44:14.833905Z,34,CR,waiver,successful,26.0,DEF,Toti,Lacroix,5,9,0,11,-2,-0.4,5,5.0,4.0,-6.0
+689,2025-04-25T09:44:14.833985Z,34,CR,waiver,unsuccessful - player out already gone,40.0,DEF,Bradley,Lacroix,0,7,0,11,-4,-0.8,0,0.0,7.0,-11.0
+690,2025-04-25T09:44:14.833930Z,34,CR,waiver,unsuccessful - player in already been picked up,38.0,DEF,Toti,Saliba,5,9,0,3,6,1.2,5,5.0,4.0,2.0
+691,2025-04-25T09:44:14.834012Z,34,CR,waiver,successful,41.0,DEF,Bradley,Saliba,0,7,0,3,4,0.8,0,0.0,7.0,-3.0
+692,2025-04-25T10:31:07.539033Z,34,LB,free agent,successful,,DEF,Toti,C.Richards,5,9,0,11,-2,-0.4,5,6.0,3.0,-5.0
+693,2025-04-25T07:41:59.008719Z,34,LB,waiver,unsuccessful - player in already been picked up,28.0,DEF,Bassey,C.Richards,2,5,0,11,-6,-1.2,2,0.0,5.0,-11.0
+694,2025-04-25T07:41:59.008624Z,34,LB,waiver,unsuccessful - player in already been picked up,6.0,DEF,Alexander-Arnold,C.Richards,5,7,0,11,-4,-0.8,5,0.0,7.0,-11.0
+695,2025-02-01T10:11:20.869952Z,24,CR,free agent,successful,,MID,Madueke,Elanga,2,23,13,74,-51,-3.4,-11,3.0,20.0,-71.0
+696,2025-05-12T19:31:11.283551Z,37,CR,waiver,successful,5.0,DEF,Cash,Maatsen,5,6,6,7,-1,-0.5,-1,6.0,0.0,-1.0
+697,2025-05-15T16:07:06.367573Z,37,TS,waiver,unsuccessful - player in already been picked up,12.0,DEF,Cash,Trippier,5,6,0,1,5,2.5,5,0.0,6.0,-1.0
+698,2025-05-15T16:07:06.367696Z,37,TS,waiver,unsuccessful - player out already gone,22.0,DEF,Kiwior,Trippier,7,9,0,1,8,4.0,7,0.0,9.0,-1.0
+699,2025-05-15T16:07:06.367661Z,37,TS,waiver,successful,20.0,DEF,White,Trippier,6,11,0,1,10,5.0,6,5.0,6.0,4.0
+700,2025-05-15T16:07:06.367556Z,37,TS,waiver,unsuccessful - player in already been picked up,11.0,DEF,Cash,Alexander-Arnold,5,6,0,1,5,2.5,5,0.0,6.0,-1.0
+701,2025-05-15T16:07:06.367536Z,37,TS,waiver,successful,8.0,DEF,Mykolenko,Alexander-Arnold,8,17,0,1,16,8.0,8,8.0,9.0,7.0
+702,2025-05-15T16:07:06.367679Z,37,TS,waiver,unsuccessful - player out already gone,21.0,DEF,Kiwior,Alexander-Arnold,7,9,0,1,8,4.0,7,0.0,9.0,-1.0
+703,2025-05-15T16:07:06.367644Z,37,TS,waiver,unsuccessful - player out already gone,19.0,DEF,White,Alexander-Arnold,6,11,0,1,10,5.0,6,5.0,6.0,4.0
+704,2025-05-13T10:31:25.487439Z,37,AC,waiver,successful,24.0,DEF,Schär,Alexander-Arnold,2,3,0,1,2,1.0,2,3.0,0.0,2.0
+705,2024-08-30T05:39:01.576965Z,3,CR,waiver,successful,14.0,DEF,Kilman,Quansah,0,69,0,8,61,1.6944444444444444,0,0.0,69.0,-8.0
+706,2024-09-07T07:08:28.702833Z,4,CR,waiver,successful,5.0,MID,Onana,Souček,1,45,1,112,-67,-1.9142857142857144,0,1.0,44.0,-111.0
+707,2024-09-07T12:50:55.572487Z,4,AC,waiver,successful,4.0,MID,Onana,Trossard,1,45,3,143,-98,-2.8,-2,9.0,36.0,-134.0
+708,2024-12-02T16:41:23.006739Z,14,CR,waiver,successful,1.0,MID,Enzo,Martinelli,5,95,3,78,17,0.68,2,26.0,69.0,-52.0
+709,2025-03-31T12:17:39.150000Z,30,IR,waiver,unsuccessful - player in already been picked up,25.0,FWD,N.Jackson,Zirkzee,1,13,2,4,9,1.0,-1,0.0,13.0,-4.0
+710,2025-03-31T12:17:39.150018Z,30,IR,waiver,successful,26.0,FWD,Nketiah,Zirkzee,1,18,2,4,14,1.5555555555555556,-1,1.0,17.0,-3.0
+711,2025-03-31T13:16:05.972147Z,30,BP,waiver,successful,7.0,FWD,N.Jackson,Wilson,1,13,1,11,2,0.2222222222222222,0,10.0,3.0,-1.0
+712,2024-09-20T09:14:50.503443Z,5,CR,waiver,successful,5.0,MID,Smith Rowe,Onana,8,92,2,44,48,1.411764705882353,6,27.0,65.0,-17.0
+713,2024-09-20T09:14:50.503495Z,5,CR,waiver,successful,9.0,DEF,Veltman,Kilman,1,40,0,67,-27,-0.7941176470588235,1,1.0,39.0,-66.0
+714,2024-09-20T09:14:50.503516Z,5,CR,waiver,successful,10.0,GKP,Sels,Ortega Moreno,1,130,0,35,95,2.7941176470588234,1,0.0,130.0,-35.0
+715,2024-09-26T21:21:57.501477Z,6,CR,waiver,successful,2.0,GKP,Sánchez,Sels,2,96,2,129,-33,-1.0,0,0.0,96.0,-129.0
+716,2025-01-02T15:00:44.484194Z,20,CR,waiver,successful,1.0,DEF,Burn,Mykolenko,1,58,2,67,-9,-0.47368421052631576,-1,9.0,49.0,-58.0
+717,2025-01-03T10:38:22.079166Z,20,IR,waiver,unsuccessful - player in already been picked up,22.0,DEF,Burn,Livramento,1,58,2,61,-3,-0.15789473684210525,-1,0.0,58.0,-61.0
+718,2025-01-03T11:44:17.265162Z,20,IR,free agent,successful,,DEF,Botman,Livramento,1,18,2,61,-43,-2.263157894736842,-1,6.0,12.0,-55.0
+719,2025-05-09T17:19:44.408760Z,36,CR,free agent,successful,,DEF,Maatsen,Mykolenko,1,8,8,25,-17,-5.666666666666667,-7,1.0,7.0,-24.0
+720,2024-09-27T15:58:12.094155Z,6,CR,free agent,successful,,DEF,Colwill,Veltman,1,93,0,39,54,1.6363636363636365,1,24.0,69.0,-15.0
+721,2024-09-23T10:02:34.296744Z,6,IR,waiver,successful,14.0,DEF,Colwill,Veltman,1,93,0,39,54,1.6363636363636365,1,2.0,91.0,-37.0
+722,2024-09-23T10:02:34.296703Z,6,IR,waiver,unsuccessful - player in already been picked up,12.0,DEF,J.Timber,Veltman,4,99,0,39,60,1.8181818181818181,4,4.0,95.0,-35.0
+723,2024-09-26T09:38:21.399907Z,6,PV,waiver,unsuccessful - player in already been picked up,24.0,DEF,Colwill,Muñoz,1,93,1,129,-36,-1.0909090909090908,0,0.0,93.0,-129.0
+724,2024-09-26T09:38:21.399870Z,6,PV,waiver,unsuccessful - player in already been picked up,20.0,DEF,J.Timber,Muñoz,4,99,1,129,-30,-0.9090909090909091,3,0.0,99.0,-129.0
+725,2024-09-26T09:38:21.399889Z,6,PV,waiver,successful,21.0,DEF,Mazraoui,Muñoz,0,63,1,129,-66,-2.0,-1,0.0,63.0,-129.0
+726,2024-09-23T10:02:34.296725Z,6,IR,waiver,unsuccessful - player out already gone,13.0,DEF,Colwill,W.Fofana,1,93,0,16,77,2.3333333333333335,1,2.0,91.0,-14.0
+727,2024-09-23T10:02:34.296648Z,6,IR,waiver,successful,5.0,DEF,J.Timber,W.Fofana,4,99,0,16,83,2.515151515151515,4,4.0,95.0,-12.0
+728,2025-01-11T09:59:47.350807Z,21,CR,waiver,successful,3.0,MID,Gibbs-White,Bernardo,1,83,2,43,40,2.2222222222222223,-1,41.0,42.0,-2.0
+729,2025-01-13T11:34:43.929725Z,21,LB,waiver,successful,2.0,MID,Schade,Bernardo,1,79,2,43,36,2.0,-1,15.0,64.0,-28.0
+730,2024-10-05T08:02:36.469847Z,7,CR,free agent,successful,,DEF,Kiwior,Livramento,1,42,1,91,-49,-1.53125,0,1.0,41.0,-90.0
+731,2025-05-01T20:38:42.521438Z,35,CR,waiver,unsuccessful - player out already gone,18.0,DEF,Collins,Toti,1,12,2,4,8,2.0,-1,0.0,12.0,-4.0
+732,2025-05-01T20:38:42.521361Z,35,CR,waiver,successful,3.0,DEF,O'Brien,Toti,0,13,2,4,9,2.25,-2,0.0,13.0,-4.0
+733,2025-05-01T20:49:12.644569Z,35,HC,waiver,unsuccessful - player in already been picked up,15.0,DEF,O'Brien,Huijsen,0,13,8,13,0,0.0,-8,0.0,13.0,-13.0
+734,2025-05-02T05:52:40.776458Z,35,HC,free agent,successful,,DEF,Branthwaite,Huijsen,1,9,8,13,-4,-1.0,-7,9.0,0.0,-4.0
+735,2025-05-01T20:40:15.351724Z,35,AN,waiver,unsuccessful - player in already been picked up,7.0,DEF,O'Brien,S.Bueno,0,13,1,2,11,2.75,-1,0.0,13.0,-2.0
+736,2025-05-01T20:40:15.351672Z,35,AN,waiver,successful,4.0,DEF,Lewis,S.Bueno,1,7,1,2,5,1.25,0,1.0,6.0,-1.0
+737,2025-05-01T20:40:15.351765Z,35,AN,waiver,unsuccessful - player out already gone,9.0,DEF,Zabarnyi,S.Bueno,2,15,1,2,13,3.25,1,0.0,15.0,-2.0
+738,2025-05-01T20:40:15.351746Z,35,AN,waiver,unsuccessful - player out already gone,8.0,DEF,Pedro Porro,S.Bueno,0,-1,1,2,-3,-0.75,-1,0.0,-1.0,-2.0
+739,2025-05-01T20:40:15.351784Z,35,AN,waiver,unsuccessful - player in already been picked up,10.0,DEF,O'Brien,Bradley,0,13,1,7,6,1.5,-1,0.0,13.0,-7.0
+740,2025-05-01T20:38:42.521296Z,35,CR,waiver,unsuccessful - player in already been picked up,2.0,DEF,Rúben,Bradley,7,25,1,7,18,4.5,6,0.0,25.0,-7.0
+741,2025-05-02T17:18:25.136312Z,35,CR,free agent,successful,,DEF,Saliba,Bradley,1,3,1,7,-4,-1.0,0,1.0,2.0,-6.0
+742,2025-05-01T20:40:15.351801Z,35,AN,waiver,successful,11.0,DEF,Zabarnyi,Bradley,2,15,1,7,8,2.0,1,0.0,15.0,-7.0
+743,2025-04-28T09:55:12.587254Z,35,IR,waiver,successful,6.0,DEF,O'Brien,Andersen,0,13,2,4,9,2.25,-2,0.0,13.0,-4.0
+744,2025-05-01T20:49:12.644498Z,35,HC,waiver,successful,1.0,DEF,Rúben,Andersen,7,25,2,4,21,5.25,5,25.0,0.0,21.0
+745,2025-04-28T09:55:12.587276Z,35,IR,waiver,unsuccessful - player in already been picked up,15.0,DEF,Lewis,Andersen,1,7,2,4,3,0.75,-1,0.0,7.0,-4.0
+746,2025-04-28T09:55:12.587495Z,35,IR,waiver,unsuccessful - player out already gone,29.0,DEF,Akanji,Andersen,1,15,2,4,11,2.75,-1,15.0,0.0,11.0
+747,2025-04-28T20:21:57.583722Z,35,MN,waiver,unsuccessful - player in already been picked up,13.0,DEF,O'Brien,Estupiñan,0,13,2,10,3,0.75,-2,0.0,13.0,-10.0
+748,2025-04-28T20:21:57.583776Z,35,MN,waiver,successful,20.0,DEF,Wan-Bissaka,Estupiñan,7,25,2,10,15,3.75,5,25.0,0.0,15.0
+749,2024-10-15T07:25:55.776984Z,8,CR,waiver,successful,5.0,DEF,Guéhi,Kiwior,2,95,0,41,54,1.7419354838709677,2,11.0,84.0,-30.0
+750,2024-10-18T11:33:02.012574Z,8,MN,free agent,successful,,DEF,Guéhi,Udogie,2,95,5,30,65,2.096774193548387,-3,27.0,68.0,-3.0
+751,2024-10-10T19:56:50.137123Z,8,MN,waiver,unsuccessful - player in already been picked up,10.0,DEF,Justin,Udogie,1,41,5,30,11,0.3548387096774194,-4,0.0,41.0,-30.0
+752,2025-04-17T17:43:45.736764Z,33,CR,waiver,successful,10.0,FWD,Strand Larsen,Gakpo,2,24,1,28,-4,-0.6666666666666666,1,12.0,12.0,-16.0
+753,2025-02-14T16:25:31.068174Z,25,CR,free agent,successful,,FWD,Delap,Havertz,8,39,0,1,38,2.7142857142857144,8,6.0,33.0,5.0
+754,2025-02-24T12:27:33.387351Z,27,CR,waiver,successful,2.0,DEF,Aït-Nouri,Milenković,1,50,5,47,3,0.25,-4,48.0,2.0,1.0
+755,2025-02-24T17:49:34.591765Z,27,TS,waiver,unsuccessful - player in already been picked up,14.0,DEF,Aït-Nouri,Pedro Porro,1,50,2,8,42,3.5,-1,0.0,50.0,-8.0
+756,2025-02-24T18:10:47.231759Z,27,TS,free agent,successful,,DEF,N.Semedo,Pedro Porro,4,33,2,8,25,2.0833333333333335,2,14.0,19.0,6.0
+757,2025-04-26T08:58:58.249441Z,34,CR,free agent,successful,,DEF,Agbadou,Muñoz,6,16,0,15,1,0.2,6,6.0,10.0,-9.0
+758,2025-04-25T18:30:14.586700Z,34,MN,free agent,successful,,DEF,Agbadou,Dalot,6,16,0,1,15,3.0,6,6.0,10.0,5.0
+759,2024-12-02T16:41:23.006788Z,14,CR,waiver,successful,3.0,MID,Iwobi,Semenyo,15,97,3,118,-21,-0.84,12,28.0,69.0,-90.0
+760,2024-12-02T16:41:23.006810Z,14,CR,waiver,unsuccessful - player out already gone,4.0,MID,Kluivert,Semenyo,3,101,3,118,-17,-0.68,0,0.0,101.0,-118.0
+761,2025-01-24T11:00:13.512334Z,23,CR,waiver,successful,9.0,DEF,Akanji,Colwill,2,19,0,62,-43,-2.6875,2,8.0,11.0,-54.0
+762,2025-01-31T08:11:17.364413Z,24,CR,waiver,successful,9.0,DEF,Tarkowski,Burn,17,36,0,49,-13,-0.8666666666666667,17,19.0,17.0,-30.0
+763,2025-01-31T08:10:38.252265Z,24,PV,waiver,successful,3.0,DEF,Konsa,Burn,1,54,0,49,5,0.3333333333333333,1,1.0,53.0,-48.0
+764,2025-01-31T08:10:38.252310Z,24,PV,waiver,unsuccessful - player out already gone,7.0,DEF,Dalot,Burn,1,33,0,49,-16,-1.0666666666666667,1,0.0,33.0,-49.0
+765,2024-12-24T20:20:50.501101Z,18,CR,waiver,successful,10.0,DEF,Mykolenko,Rúben,1,69,0,62,7,0.3333333333333333,1,1.0,68.0,-61.0
+766,2025-05-09T17:18:51.446885Z,36,CR,free agent,successful,,GKP,Martinez,Pope,8,12,7,13,-1,-0.3333333333333333,1,12.0,0.0,-1.0
+767,2024-12-28T04:15:01.344304Z,19,CR,waiver,successful,5.0,GKP,Pickford,Sánchez,1,76,0,60,16,0.8,1,13.0,63.0,-47.0
+768,2025-05-01T20:38:42.521385Z,35,CR,waiver,successful,9.0,DEF,Mykolenko,Agbadou,0,25,2,10,15,3.75,-2,0.0,25.0,-10.0
+769,2025-04-28T20:21:57.583758Z,35,MN,waiver,unsuccessful - player out already gone,19.0,DEF,Konsa,Agbadou,6,27,2,10,17,4.25,4,0.0,27.0,-10.0
+770,2025-04-28T20:21:57.583741Z,35,MN,waiver,successful,14.0,DEF,Van den Berg,Agbadou,1,9,2,10,-1,-0.25,-1,7.0,2.0,-3.0
+771,2025-05-12T19:31:11.283572Z,37,CR,waiver,unsuccessful - player in already been picked up,10.0,DEF,Mykolenko,O'Brien,8,17,7,13,4,2.0,1,0.0,17.0,-13.0
+772,2024-12-28T04:15:01.344261Z,19,CR,waiver,successful,2.0,FWD,Gakpo,Mateta,5,71,2,93,-22,-1.1,3,43.0,28.0,-50.0
+773,2024-12-28T07:37:44.524531Z,19,MN,waiver,successful,3.0,FWD,Strand Larsen,Mateta,6,74,2,93,-19,-0.95,4,69.0,5.0,-24.0
+774,2024-12-28T13:24:44.327350Z,19,CR,free agent,successful,,MID,Bernardo,Amad,3,48,2,60,-12,-0.6,1,5.0,43.0,-55.0
+775,2025-05-12T19:31:11.283499Z,37,CR,waiver,successful,1.0,FWD,Beto,N.Jackson,2,4,0,0,4,2.0,2,2.0,2.0,2.0
+776,2025-05-12T05:17:57.037501Z,37,BP,waiver,successful,2.0,FWD,Welbeck,N.Jackson,5,5,0,0,5,2.5,5,5.0,0.0,5.0
+777,2025-05-12T05:17:57.037570Z,37,BP,waiver,unsuccessful - player out already gone,10.0,FWD,Ndiaye,N.Jackson,13,15,0,0,15,7.5,13,0.0,15.0,0.0
+778,2025-05-15T16:07:06.367513Z,37,TS,waiver,unsuccessful - player in already been picked up,7.0,FWD,Beto,Ndiaye,2,4,13,15,-11,-5.5,-11,0.0,4.0,-15.0
+779,2025-05-15T16:07:06.367456Z,37,TS,waiver,successful,3.0,FWD,Delap,Ndiaye,1,1,13,15,-14,-7.0,-12,1.0,0.0,-14.0
+780,2025-05-01T22:18:39.003292Z,35,TS,waiver,unsuccessful - player in already been picked up,12.0,DEF,Rúben,Schär,7,25,6,14,11,2.75,1,0.0,25.0,-14.0
+781,2025-05-01T22:18:39.003273Z,35,TS,waiver,unsuccessful - player in already been picked up,11.0,DEF,Rúben,N.Semedo,7,25,2,4,21,5.25,5,0.0,25.0,-4.0
+782,2025-05-01T22:18:39.003311Z,35,TS,waiver,unsuccessful - player out already gone,13.0,DEF,Saliba,N.Semedo,1,3,2,4,-1,-0.25,-1,0.0,3.0,-4.0
+783,2025-05-01T22:18:39.003251Z,35,TS,waiver,successful,7.0,DEF,Muñoz,N.Semedo,1,15,2,4,11,2.75,-1,15.0,0.0,11.0
+784,2025-05-02T08:34:48.311132Z,35,PV,free agent,successful,,DEF,Konsa,N.Semedo,6,27,2,4,23,5.75,4,0.0,27.0,-4.0
+785,2025-02-20T10:03:25.071784Z,26,TS,waiver,unsuccessful - player out already gone,26.0,DEF,Aït-Nouri,Stones,6,56,0,0,56,4.3076923076923075,6,0.0,56.0,0.0
+786,2025-02-20T10:03:25.071745Z,26,TS,waiver,successful,22.0,DEF,Lamptey,Stones,6,10,0,0,10,0.7692307692307693,6,6.0,4.0,6.0
+787,2025-02-16T20:35:30.986752Z,26,AN,waiver,successful,23.0,DEF,Aït-Nouri,Livramento,6,56,0,48,8,0.6153846153846154,6,21.0,35.0,-27.0
+788,2025-02-16T20:35:30.986767Z,26,AN,waiver,unsuccessful - player out already gone,25.0,DEF,N.Semedo,Livramento,6,39,0,48,-9,-0.6923076923076923,6,0.0,39.0,-48.0
+789,2025-02-19T20:25:17.826278Z,26,PV,waiver,unsuccessful - player out already gone,20.0,DEF,Lamptey,Konsa,6,10,2,53,-43,-3.3076923076923075,4,0.0,10.0,-53.0
+790,2025-02-19T20:25:17.826295Z,26,PV,waiver,unsuccessful - player out already gone,21.0,DEF,Stones,Konsa,0,0,2,53,-53,-4.076923076923077,-2,0.0,0.0,-53.0
+791,2025-02-19T20:25:17.826313Z,26,PV,waiver,unsuccessful - player out already gone,22.0,DEF,Bassey,Konsa,1,17,2,53,-36,-2.769230769230769,-1,0.0,17.0,-53.0
+792,2025-02-19T20:25:17.826259Z,26,PV,waiver,successful,15.0,DEF,Chalobah,Konsa,1,28,2,53,-25,-1.9230769230769231,-1,0.0,28.0,-53.0
+793,2025-04-25T07:41:59.008678Z,34,LB,waiver,successful,7.0,MID,Semenyo,McGinn,9,33,0,13,20,4.0,9,31.0,2.0,18.0
+794,2025-05-23T16:51:55.791091Z,38,TS,waiver,successful,14.0,MID,Mitoma,Enzo,4,4,3,3,1,1.0,1,0.0,4.0,-3.0
+795,2025-05-23T16:51:55.791110Z,38,TS,waiver,unsuccessful - player out already gone,20.0,MID,Tavernier,Enzo,4,4,3,3,1,1.0,1,0.0,4.0,-3.0
+796,2025-05-23T08:47:52.974611Z,38,IR,waiver,successful,20.0,MID,Tavernier,Harrison,4,4,3,3,1,1.0,1,4.0,0.0,1.0
+797,2025-05-23T08:47:52.974476Z,38,IR,waiver,unsuccessful - player in already been picked up,3.0,MID,Trossard,Harrison,4,4,3,3,1,1.0,1,0.0,4.0,-3.0
+798,2024-12-05T18:17:32.492177Z,15,TS,waiver,successful,2.0,MID,Rogers,Neto,2,104,1,76,28,1.1666666666666667,1,74.0,30.0,-2.0
+799,2024-12-06T10:10:32.771783Z,15,IR,waiver,unsuccessful - player out already gone,7.0,MID,Rogers,Iwobi,2,104,2,82,22,0.9166666666666666,0,0.0,104.0,-82.0
+800,2024-12-06T10:10:32.771719Z,15,IR,waiver,successful,4.0,MID,Nkunku,Iwobi,1,30,2,82,-52,-2.1666666666666665,-1,16.0,14.0,-66.0
+801,2024-12-06T10:10:32.771765Z,15,IR,waiver,unsuccessful - player out already gone,6.0,MID,Doku,Iwobi,1,52,2,82,-30,-1.25,-1,0.0,52.0,-82.0
+802,2024-12-06T10:10:32.771798Z,15,IR,waiver,unsuccessful - player out already gone,8.0,MID,Enzo,Iwobi,9,90,2,82,8,0.3333333333333333,7,0.0,90.0,-82.0
+803,2024-12-06T15:54:00.958779Z,15,LB,free agent,successful,,MID,Rogers,Jones,2,104,0,49,55,2.2916666666666665,2,104.0,0.0,55.0
+804,2024-08-31T07:36:53.952723Z,3,TS,free agent,successful,,FWD,Wood,Toney,9,190,0,0,190,5.277777777777778,9,171.0,19.0,171.0
+805,2024-08-30T09:34:03.471668Z,3,BP,waiver,successful,2.0,FWD,João Pedro,Toney,8,116,0,0,116,3.2222222222222223,8,9.0,107.0,9.0
+806,2024-08-30T09:34:03.471755Z,3,BP,waiver,unsuccessful - player out already gone,9.0,FWD,Strand Larsen,Toney,2,137,0,0,137,3.8055555555555554,2,0.0,137.0,0.0
+807,2024-08-23T09:47:32.156814Z,2,TS,waiver,successful,3.0,DEF,Cucurella,Chilwell,0,131,0,13,118,3.189189189189189,0,3.0,128.0,-10.0
+808,2024-08-23T09:47:32.156869Z,2,TS,waiver,unsuccessful - player out already gone,6.0,DEF,James,Chilwell,0,54,0,13,41,1.1081081081081081,0,0.0,54.0,-13.0
+809,2024-08-23T09:47:32.156893Z,2,TS,waiver,unsuccessful - player out already gone,7.0,DEF,Lewis,Chilwell,2,60,0,13,47,1.2702702702702702,2,0.0,60.0,-13.0
+810,2024-08-23T07:53:19.685156Z,2,BP,waiver,successful,6.0,DEF,Lewis,Chilwell,2,60,0,13,47,1.2702702702702702,2,34.0,26.0,21.0
+811,2024-08-20T07:22:56.560479Z,2,AN,waiver,unsuccessful - player in already been picked up,13.0,DEF,Lewis,O'Brien,2,60,0,65,-5,-0.13513513513513514,2,0.0,60.0,-65.0
+812,2024-08-20T07:22:56.560494Z,2,AN,waiver,successful,14.0,DEF,Mazraoui,O'Brien,4,80,0,65,15,0.40540540540540543,4,0.0,80.0,-65.0
+813,2024-08-20T07:22:56.560523Z,2,AN,waiver,unsuccessful - player out already gone,20.0,DEF,Dunk,O'Brien,2,38,0,65,-27,-0.7297297297297297,2,0.0,38.0,-65.0
+814,2024-08-20T19:07:53.414721Z,2,MN,waiver,unsuccessful - player in already been picked up,16.0,DEF,Lewis,Walker,2,60,0,13,47,1.2702702702702702,2,0.0,60.0,-13.0
+815,2024-08-20T19:07:53.414773Z,2,MN,waiver,unsuccessful - player out already gone,19.0,DEF,Burn,Walker,1,110,0,13,97,2.6216216216216215,1,0.0,110.0,-13.0
+816,2024-08-20T19:07:53.414747Z,2,MN,waiver,successful,17.0,DEF,Martinez,Walker,1,61,0,13,48,1.2972972972972974,1,15.0,46.0,2.0
+817,2024-10-17T19:28:47.859157Z,8,TS,waiver,successful,2.0,DEF,James,Cucurella,0,54,0,118,-64,-2.064516129032258,0,12.0,42.0,-106.0
+818,2024-10-18T11:43:36.723270Z,8,BP,free agent,successful,,DEF,Young,Cucurella,6,83,0,118,-35,-1.1290322580645162,6,52.0,31.0,-66.0
+819,2024-10-15T13:34:55.286134Z,8,HC,waiver,unsuccessful - player in already been picked up,9.0,DEF,James,Estupiñan,0,54,1,61,-7,-0.22580645161290322,-1,0.0,54.0,-61.0
+820,2024-10-15T13:34:55.286111Z,8,HC,waiver,successful,7.0,DEF,Digne,Estupiñan,4,65,1,61,4,0.12903225806451613,3,23.0,42.0,-38.0
+821,2025-01-02T17:17:37.999119Z,20,TS,waiver,successful,3.0,DEF,James,Udogie,0,49,0,6,43,2.263157894736842,0,9.0,40.0,3.0
+822,2025-01-02T17:17:37.999179Z,20,TS,waiver,unsuccessful - player out already gone,5.0,DEF,Aït-Nouri,Udogie,1,69,0,6,63,3.3157894736842106,1,0.0,69.0,-6.0
+823,2024-12-31T11:03:52.851348Z,20,LB,waiver,unsuccessful - player in already been picked up,12.0,DEF,Mitchell,Udogie,2,66,0,6,60,3.1578947368421053,2,0.0,66.0,-6.0
+824,2024-12-31T11:03:52.851298Z,20,LB,waiver,successful,5.0,DEF,Chalobah,Udogie,0,39,0,6,33,1.736842105263158,0,0.0,39.0,-6.0
+825,2024-11-22T14:30:05.000287Z,12,TS,free agent,successful,,DEF,Calafiori,James,6,25,0,49,-24,-0.8888888888888888,6,8.0,17.0,-41.0
+826,2025-04-01T16:11:25.559339Z,30,TS,free agent,successful,,MID,Rogers,Mitoma,10,48,2,27,21,2.3333333333333335,8,48.0,0.0,21.0
+827,2024-10-18T15:10:13.928432Z,8,TS,free agent,successful,,MID,Grealish,Mitoma,1,24,1,114,-90,-2.903225806451613,0,1.0,23.0,-113.0
+828,2025-02-14T11:30:54.381627Z,25,TS,free agent,successful,,DEF,White,Calafiori,0,23,1,5,18,1.2857142857142858,-1,6.0,17.0,1.0
+829,2025-01-30T07:33:13.013944Z,24,TS,waiver,successful,4.0,DEF,Stones,Digne,0,7,1,27,-20,-1.3333333333333333,-1,0.0,7.0,-27.0
+830,2025-05-09T10:20:15.799693Z,36,TS,waiver,successful,6.0,MID,Enzo,J.Murphy,1,7,5,9,-2,-0.6666666666666666,-4,3.0,4.0,-6.0
+831,2025-05-09T10:20:15.799737Z,36,TS,waiver,unsuccessful - player out already gone,9.0,MID,O’Reilly,J.Murphy,1,1,5,9,-8,-2.6666666666666665,-4,0.0,1.0,-9.0
+832,2025-05-15T16:07:06.367591Z,37,TS,waiver,successful,13.0,MID,Trossard,I.Sarr,3,7,5,14,-7,-3.5,-2,7.0,0.0,-7.0
+833,2025-05-15T16:07:06.367609Z,37,TS,waiver,unsuccessful - player out already gone,17.0,MID,Gordon,I.Sarr,2,3,5,14,-11,-5.5,-3,0.0,3.0,-14.0
+834,2025-03-15T13:27:47.955597Z,29,TS,free agent,successful,,MID,Savinho,Kulusevski,0,15,0,7,8,0.8,0,0.0,15.0,-7.0
+835,2025-03-14T15:04:14.562103Z,29,BP,free agent,successful,,MID,Merino,Kulusevski,9,33,0,7,26,2.6,9,33.0,0.0,26.0
+836,2025-03-07T10:59:32.452190Z,28,TS,waiver,unsuccessful - player in already been picked up,10.0,MID,Eze,Kulusevski,3,65,0,7,58,5.2727272727272725,3,65.0,0.0,58.0
+837,2025-03-07T10:59:32.452142Z,28,TS,waiver,successful,4.0,MID,Eze,De Bruyne,3,65,1,40,25,2.272727272727273,2,65.0,0.0,25.0
+838,2025-03-07T10:59:32.452089Z,28,TS,waiver,unsuccessful - player in already been picked up,3.0,MID,Semenyo,De Bruyne,1,56,1,40,16,1.4545454545454546,0,0.0,56.0,-40.0
+839,2025-03-07T10:59:32.452164Z,28,TS,waiver,unsuccessful - player out already gone,9.0,MID,Rogers,De Bruyne,3,51,1,40,11,1.0,2,0.0,51.0,-40.0
+840,2025-03-07T09:33:09.819866Z,28,HC,waiver,unsuccessful - player in already been picked up,16.0,MID,Eze,O.Dango,3,65,1,14,51,4.636363636363637,2,0.0,65.0,-14.0
+841,2025-03-07T09:33:09.819773Z,28,HC,waiver,successful,1.0,MID,Semenyo,O.Dango,1,56,1,14,42,3.8181818181818183,0,4.0,52.0,-10.0
+842,2025-05-09T10:20:15.799640Z,36,TS,waiver,successful,3.0,FWD,Ndiaye,Welbeck,1,16,9,14,2,0.6666666666666666,-8,1.0,15.0,-13.0
+843,2025-05-09T05:58:32.055587Z,36,MN,waiver,successful,22.0,FWD,Højlund,Welbeck,2,6,9,14,-8,-2.6666666666666665,-7,2.0,4.0,-12.0
+844,2025-05-15T20:16:33.028062Z,37,AN,free agent,successful,,DEF,Kiwior,White,7,9,6,11,-2,-1.0,1,2.0,7.0,-9.0
+845,2025-05-15T20:15:14.250137Z,37,AN,free agent,successful,,DEF,White,Bradley,6,11,4,5,6,3.0,2,0.0,11.0,-5.0
+846,2025-03-08T08:58:58.226652Z,28,TS,free agent,successful,,DEF,Tsimikas,White,0,11,0,21,-10,-0.9090909090909091,0,0.0,11.0,-21.0
+847,2025-04-21T06:22:14.230781Z,34,BP,waiver,successful,35.0,FWD,Solanke,Beto,6,14,2,20,-6,-1.2,4,14.0,0.0,-6.0
+848,2025-02-13T13:18:29.275466Z,25,TS,waiver,successful,4.0,FWD,Solanke,João Pedro,0,25,1,46,-21,-1.5,-1,0.0,25.0,-46.0
+849,2025-02-02T20:40:45.668456Z,25,AN,waiver,successful,9.0,FWD,Solanke,João Pedro,0,25,1,46,-21,-1.5,-1,8.0,17.0,-38.0
+850,2025-01-20T06:01:30.661144Z,23,TS,waiver,successful,5.0,DEF,Digne,Botman,2,29,0,11,18,1.125,2,7.0,22.0,-4.0
+851,2024-12-28T13:24:52.378691Z,19,TS,free agent,successful,,GKP,Sels,Ortega Moreno,6,71,6,21,50,2.5,0,45.0,26.0,24.0
+852,2025-03-07T10:59:32.452218Z,28,TS,waiver,successful,11.0,FWD,Strand Larsen,Solanke,1,59,2,25,34,3.090909090909091,-1,29.0,30.0,4.0
+853,2025-05-19T06:02:17.719721Z,38,BP,waiver,unsuccessful - player out already gone,15.0,DEF,Calafiori,Branthwaite,0,0,0,0,0,0.0,0,0.0,0.0,0.0
+854,2025-05-19T06:02:17.719668Z,38,BP,waiver,successful,2.0,DEF,Burn,Branthwaite,2,2,0,0,2,2.0,2,2.0,0.0,2.0
+855,2025-02-24T17:49:34.591749Z,27,TS,waiver,successful,8.0,DEF,Colwill,Lamptey,14,58,2,4,54,4.5,12,20.0,38.0,16.0
+856,2025-02-23T18:22:42.077678Z,27,PV,waiver,successful,9.0,DEF,Colwill,Chalobah,14,58,0,27,31,2.5833333333333335,14,14.0,44.0,-13.0
+857,2025-02-23T18:22:42.077718Z,27,PV,waiver,unsuccessful - player out already gone,17.0,DEF,N.Semedo,Chalobah,4,33,0,27,6,0.5,4,10.0,23.0,-17.0
+858,2025-02-23T18:22:42.077699Z,27,PV,waiver,unsuccessful - player in already been picked up,16.0,DEF,Cucurella,Chalobah,15,72,0,27,45,3.75,15,0.0,72.0,-27.0
+859,2025-02-24T13:12:54.709369Z,27,IR,waiver,unsuccessful - player in already been picked up,15.0,DEF,Colwill,Veltman,14,58,0,1,57,4.75,14,0.0,58.0,-1.0
+860,2025-02-24T13:12:54.709353Z,27,IR,waiver,unsuccessful - player in already been picked up,14.0,DEF,Cucurella,Veltman,15,72,0,1,71,5.916666666666667,15,30.0,42.0,29.0
+861,2025-02-25T16:43:48.891461Z,27,IR,free agent,successful,,DEF,Dalot,Veltman,4,29,0,1,28,2.3333333333333335,4,15.0,14.0,14.0
+862,2025-03-13T16:48:17.287836Z,29,TS,waiver,unsuccessful - player in already been picked up,11.0,FWD,Solanke,Strand Larsen,2,23,13,58,-35,-3.5,-11,0.0,23.0,-58.0
+863,2025-03-14T12:01:53.996448Z,29,HC,waiver,successful,1.0,FWD,Solanke,Mateta,2,23,0,27,-4,-0.4,2,4.0,19.0,-23.0
+864,2025-04-04T07:58:22.398457Z,31,TS,waiver,unsuccessful - player in already been picked up,2.0,FWD,Solanke,Strand Larsen,2,19,6,36,-17,-2.125,-4,0.0,19.0,-36.0
+865,2025-04-04T09:59:30.374701Z,31,HC,waiver,successful,1.0,FWD,Solanke,Cunha,2,19,0,35,-16,-2.0,2,2.0,17.0,-33.0
+866,2025-04-07T10:32:24.948791Z,32,IR,waiver,successful,2.0,FWD,Muniz,Darwin,1,1,0,5,-4,-0.5714285714285714,1,1.0,0.0,-4.0
+867,2024-10-24T16:49:47.741049Z,9,TS,waiver,unsuccessful - player in already been picked up,2.0,MID,Mitoma,Grealish,2,113,0,23,90,3.0,2,0.0,113.0,-23.0
+868,2024-10-25T12:46:39.234338Z,9,TS,free agent,successful,,MID,Kulusevski,Grealish,1,84,0,23,61,2.033333333333333,1,65.0,19.0,42.0
+869,2024-10-24T05:59:39.461774Z,9,AN,waiver,successful,3.0,MID,Buonanotte,Grealish,2,41,0,23,18,0.6,2,3.0,38.0,-20.0
+870,2024-10-20T18:08:34.286656Z,9,HC,waiver,successful,1.0,MID,Mitoma,Savinho,2,113,6,86,27,0.9,-4,39.0,74.0,-47.0
+871,2024-10-20T18:08:34.286717Z,9,HC,waiver,unsuccessful - player out already gone,4.0,MID,McNeil,Savinho,2,46,6,86,-40,-1.3333333333333333,-4,0.0,46.0,-86.0
+872,2024-10-20T21:00:34.392010Z,9,BP,waiver,successful,1.0,MID,Garnacho,Savinho,2,76,6,86,-10,-0.3333333333333333,-4,26.0,50.0,-60.0
+873,2025-02-23T18:22:42.077754Z,27,PV,waiver,successful,19.0,DEF,N.Semedo,Calafiori,4,33,0,3,30,2.5,4,10.0,23.0,7.0
+874,2025-02-23T18:22:42.077736Z,27,PV,waiver,unsuccessful - player in already been picked up,18.0,DEF,Cucurella,Calafiori,15,72,0,3,69,5.75,15,0.0,72.0,-3.0
+875,2025-02-23T18:22:42.077771Z,27,PV,waiver,unsuccessful - player out already gone,20.0,DEF,C.Richards,Calafiori,5,26,0,3,23,1.9166666666666667,5,0.0,26.0,-3.0
+876,2024-11-07T11:20:27.205758Z,11,TS,waiver,successful,1.0,FWD,João Pedro,Wissa,11,107,13,144,-37,-1.3214285714285714,-2,49.0,58.0,-95.0
+877,2024-11-08T08:26:56.543456Z,11,AN,waiver,successful,3.0,FWD,João Pedro,Calvert-Lewin,11,107,2,30,77,2.75,9,50.0,57.0,20.0
+878,2024-11-08T08:26:56.543508Z,11,AN,waiver,unsuccessful - player in already been picked up,5.0,FWD,Evanilson,Calvert-Lewin,8,91,2,30,61,2.1785714285714284,6,0.0,91.0,-30.0
+879,2024-11-22T14:16:32.860273Z,12,TS,free agent,successful,,DEF,Livramento,Muñoz,1,78,1,117,-39,-1.4444444444444444,0,8.0,70.0,-109.0
+880,2025-03-14T13:55:38.232923Z,29,IR,free agent,successful,,DEF,Khusanov,Cucurella,-1,-1,2,42,-43,-4.3,-3,-1.0,0.0,-43.0
+881,2025-03-31T16:52:53.591601Z,30,TS,waiver,unsuccessful - player out already gone,19.0,DEF,Burn,N.Semedo,2,42,6,25,17,1.8888888888888888,-4,0.0,42.0,-25.0
+882,2025-03-31T16:52:53.591528Z,30,TS,waiver,unsuccessful - player in already been picked up,15.0,DEF,Schär,N.Semedo,1,52,6,25,27,3.0,-5,43.0,9.0,18.0
+883,2025-03-31T16:52:53.591565Z,30,TS,waiver,successful,17.0,DEF,Trippier,N.Semedo,2,38,6,25,13,1.4444444444444444,-4,37.0,1.0,12.0
+884,2025-03-28T12:20:12.816220Z,30,PV,waiver,successful,3.0,DEF,Udogie,N.Semedo,2,0,6,25,-25,-2.7777777777777777,-4,0.0,0.0,-25.0
+885,2025-03-28T12:20:12.816273Z,30,PV,waiver,unsuccessful - player in already been picked up,8.0,DEF,James,N.Semedo,1,30,6,25,5,0.5555555555555556,-5,0.0,30.0,-25.0
+886,2025-03-28T12:20:12.816295Z,30,PV,waiver,unsuccessful - player out already gone,9.0,DEF,Romero,N.Semedo,1,5,6,25,-20,-2.2222222222222223,-5,0.0,5.0,-25.0
+887,2025-03-31T16:52:53.591583Z,30,TS,waiver,unsuccessful - player out already gone,18.0,DEF,Burn,Khusanov,2,42,0,0,42,4.666666666666667,2,0.0,42.0,0.0
+888,2025-03-31T16:52:53.591509Z,30,TS,waiver,successful,12.0,DEF,Schär,Khusanov,1,52,0,0,52,5.777777777777778,1,43.0,9.0,43.0
+889,2025-03-31T16:52:53.591546Z,30,TS,waiver,unsuccessful - player out already gone,16.0,DEF,Trippier,Khusanov,2,38,0,0,38,4.222222222222222,2,37.0,1.0,37.0
+890,2025-03-31T12:17:39.149808Z,30,IR,waiver,successful,4.0,DEF,Trippier,Mazraoui,2,38,2,16,22,2.4444444444444446,0,38.0,0.0,22.0
+891,2025-03-31T12:17:39.149860Z,30,IR,waiver,unsuccessful - player out already gone,10.0,DEF,Livramento,Mazraoui,2,40,2,16,24,2.6666666666666665,0,25.0,15.0,9.0
+892,2025-03-31T12:17:39.149922Z,30,IR,waiver,unsuccessful - player out already gone,16.0,DEF,Lacroix,Mazraoui,2,21,2,16,5,0.5555555555555556,0,0.0,21.0,-16.0
+893,2025-03-31T12:17:39.149883Z,30,IR,waiver,unsuccessful - player in already been picked up,11.0,DEF,Trippier,Dalot,2,38,2,12,26,2.888888888888889,0,38.0,0.0,26.0
+894,2025-03-31T12:17:39.149903Z,30,IR,waiver,successful,12.0,DEF,Livramento,Dalot,2,40,2,12,28,3.111111111111111,0,25.0,15.0,13.0
+895,2024-12-13T14:29:06.296843Z,16,TS,free agent,successful,,GKP,Verbruggen,Pickford,1,68,8,100,-32,-1.391304347826087,-7,1.0,67.0,-99.0
+896,2025-04-18T12:06:06.253519Z,33,TS,waiver,unsuccessful - player out already gone,16.0,DEF,Robinson,Burn,1,5,-2,27,-22,-3.6666666666666665,3,0.0,5.0,-27.0
+897,2025-04-18T12:06:06.253502Z,33,TS,waiver,successful,15.0,DEF,Alexander-Arnold,Burn,6,13,-2,27,-14,-2.3333333333333335,8,5.0,8.0,-22.0
+898,2025-04-18T13:06:23.534519Z,33,AN,free agent,successful,,DEF,Robinson,Lacroix,1,5,7,18,-13,-2.1666666666666665,-6,0.0,5.0,-18.0
+899,2024-12-20T07:52:22.438430Z,17,TS,waiver,successful,5.0,GKP,Leno,Verbruggen,6,68,3,67,1,0.045454545454545456,3,7.0,61.0,-60.0
+900,2024-12-24T19:15:48.311577Z,18,TS,waiver,successful,5.0,GKP,Ortega Moreno,Pope,2,23,0,54,-31,-1.4761904761904763,2,10.0,13.0,-44.0
+901,2024-12-24T19:15:48.311630Z,18,TS,waiver,unsuccessful - player out already gone,11.0,GKP,Pickford,Pope,9,85,0,54,31,1.4761904761904763,9,0.0,85.0,-54.0
+902,2025-04-18T12:06:06.253411Z,33,TS,waiver,successful,8.0,GKP,Ortega Moreno,Pope,8,8,2,23,-15,-2.5,6,8.0,0.0,-15.0
+903,2025-02-20T10:03:25.071764Z,26,TS,waiver,successful,25.0,GKP,Arrizabalaga,Pope,2,39,1,54,-15,-1.1538461538461537,1,2.0,37.0,-52.0
+904,2025-02-16T20:35:30.986781Z,26,AN,waiver,successful,26.0,GKP,José Sá,Pope,9,43,1,54,-11,-0.8461538461538461,8,12.0,31.0,-42.0
+905,2025-04-04T07:58:22.398581Z,31,TS,waiver,successful,9.0,MID,J.Murphy,Son,16,53,1,4,49,6.125,15,44.0,9.0,40.0
+906,2025-05-02T07:03:55.422896Z,35,TS,free agent,successful,,MID,I.Sarr,O’Reilly,2,22,1,2,20,5.0,1,8.0,14.0,6.0
+907,2025-05-09T10:20:15.799757Z,36,TS,waiver,successful,10.0,GKP,Arrizabalaga,Flekken,2,9,9,14,-5,-1.6666666666666667,-7,0.0,9.0,-14.0
+908,2025-05-15T16:07:06.367626Z,37,TS,waiver,successful,18.0,GKP,Pope,Arrizabalaga,3,6,1,7,-1,-0.5,2,3.0,3.0,-4.0
+909,2025-02-24T17:49:34.591779Z,27,TS,waiver,successful,15.0,GKP,Jørgensen,Arrizabalaga,6,6,1,37,-31,-2.5833333333333335,5,6.0,0.0,-31.0
+910,2025-01-13T11:30:50.257876Z,21,TS,waiver,successful,5.0,DEF,Botman,Castagne,6,17,0,27,-10,-0.5555555555555556,6,6.0,11.0,-21.0
+911,2025-01-13T09:50:04.390877Z,21,HC,waiver,unsuccessful - player in already been picked up,9.0,DEF,Botman,Digne,6,17,6,39,-22,-1.2222222222222223,0,0.0,17.0,-39.0
+912,2025-01-13T11:30:50.257895Z,21,TS,waiver,successful,12.0,GKP,Pope,Leno,0,54,1,54,0,0.0,-1,24.0,30.0,-30.0
+913,2025-01-10T08:58:39.352280Z,21,IR,waiver,successful,1.0,GKP,Pope,Dúbravka,0,54,10,17,37,2.0555555555555554,-10,37.0,17.0,20.0
+914,2025-01-10T08:58:39.352339Z,21,IR,waiver,unsuccessful - player out already gone,5.0,GKP,Onana,Dúbravka,3,48,10,17,31,1.7222222222222223,-7,0.0,48.0,-17.0
+915,2025-05-01T22:18:39.003330Z,35,TS,waiver,successful,14.0,MID,O’Reilly,Gordon,1,2,1,7,-5,-1.25,0,0.0,2.0,-7.0
+916,2025-05-01T18:42:10.690046Z,35,BP,waiver,successful,2.0,MID,O’Reilly,Mitoma,1,2,0,11,-9,-2.25,1,2.0,0.0,-9.0
+917,2025-05-01T20:49:12.644547Z,35,HC,waiver,successful,8.0,MID,Damsgaard,Mitoma,5,12,0,11,1,0.25,5,12.0,0.0,1.0
+918,2025-01-13T09:50:04.390899Z,21,HC,waiver,successful,10.0,DEF,Konaté,Robertson,2,59,2,38,21,1.1666666666666667,0,59.0,0.0,21.0
+919,2025-01-17T13:18:51.830483Z,22,HC,free agent,successful,,MID,Semenyo,Johnson,5,79,0,48,31,1.8235294117647058,5,19.0,60.0,-29.0
+920,2025-01-13T09:50:04.390975Z,21,HC,waiver,successful,21.0,FWD,Delap,G.Jesus,1,52,0,0,52,2.888888888888889,1,1.0,51.0,1.0
+921,2024-09-13T08:54:45.417350Z,4,HC,waiver,unsuccessful - player out already gone,8.0,DEF,Lewis,Van de Ven,1,52,1,21,31,0.8857142857142857,0,33.0,19.0,12.0
+922,2024-09-13T08:54:45.417332Z,4,HC,waiver,successful,7.0,DEF,Konaté,Van de Ven,2,92,1,21,71,2.0285714285714285,1,91.0,1.0,70.0
+923,2024-09-13T13:27:30.645840Z,4,HC,free agent,successful,,DEF,Lewis,Gusto,1,52,0,57,-5,-0.14285714285714285,1,33.0,19.0,-24.0
+924,2024-09-13T15:31:07.722620Z,4,MN,free agent,successful,,DEF,Kilman,Gusto,2,69,0,57,12,0.34285714285714286,2,12.0,57.0,-45.0
+925,2024-09-27T05:25:48.155379Z,6,HC,waiver,successful,3.0,DEF,Dalot,Van de Ven,0,66,11,19,47,1.4242424242424243,-11,21.0,45.0,2.0
+926,2025-01-31T11:19:34.301551Z,24,HC,waiver,successful,7.0,MID,A.Doucoure,Maddison,7,50,0,31,19,1.2666666666666666,7,0.0,50.0,-31.0
+927,2024-08-30T02:49:11.668198Z,3,HC,waiver,successful,12.0,DEF,Van de Ven,Calafiori,0,21,1,38,-17,-0.4722222222222222,-1,1.0,20.0,-37.0
+928,2024-09-20T16:35:53.586156Z,5,HC,free agent,successful,,DEF,Van de Ven,Digne,1,20,1,74,-54,-1.588235294117647,0,1.0,19.0,-73.0
+929,2024-09-19T09:06:01.787689Z,5,HC,waiver,unsuccessful - player out already gone,6.0,DEF,Van de Ven,Maatsen,1,20,1,53,-33,-0.9705882352941176,0,1.0,19.0,-52.0
+930,2024-09-19T09:06:01.787645Z,5,HC,waiver,successful,1.0,DEF,Digne,Maatsen,1,74,1,53,21,0.6176470588235294,0,0.0,74.0,-53.0
+931,2025-01-18T06:57:34.771315Z,22,HC,free agent,successful,,DEF,Livramento,Digne,0,53,4,33,20,1.1764705882352942,-4,4.0,49.0,-29.0
+932,2025-05-09T09:38:59.427942Z,36,HC,waiver,successful,1.0,MID,Amad,Barnes,2,16,3,7,9,3.0,-1,0.0,16.0,-7.0
+933,2024-08-30T02:49:11.668123Z,3,HC,waiver,successful,2.0,MID,Savinho,Nkunku,0,96,1,58,38,1.0555555555555556,-1,2.0,94.0,-56.0
+934,2024-08-30T12:47:20.259902Z,3,IR,free agent,successful,,MID,Rogers,Nkunku,2,157,1,58,99,2.75,1,31.0,126.0,-27.0
+935,2025-03-31T07:29:56.707358Z,30,HC,waiver,successful,10.0,MID,Maddison,Nkunku,2,15,0,2,13,1.4444444444444444,2,9.0,6.0,7.0
+936,2024-09-27T12:08:24.451806Z,6,HC,free agent,successful,,MID,Savinho,Rashford,1,88,2,79,9,0.2727272727272727,-1,2.0,86.0,-77.0
+937,2025-03-14T12:38:04.024736Z,29,AN,waiver,unsuccessful - player in already been picked up,10.0,MID,Hudson-Odoi,Eze,3,11,0,62,-51,-5.1,3,0.0,11.0,-62.0
+938,2025-03-14T12:38:04.024769Z,29,AN,waiver,unsuccessful - player out already gone,21.0,MID,Smith Rowe,Eze,3,22,0,62,-40,-4.0,3,0.0,22.0,-62.0
+939,2025-03-14T12:38:04.024693Z,29,AN,waiver,unsuccessful - player in already been picked up,9.0,MID,Martinelli,Eze,3,35,0,62,-27,-2.7,3,0.0,35.0,-62.0
+940,2025-03-14T12:38:04.024754Z,29,AN,waiver,successful,11.0,MID,Kudus,Eze,2,34,0,62,-28,-2.8,2,0.0,34.0,-62.0
+941,2025-03-12T10:42:16.808894Z,29,IR,waiver,unsuccessful - player in already been picked up,7.0,MID,Hudson-Odoi,Nkunku,3,11,2,4,7,0.7,1,0.0,11.0,-4.0
+942,2025-03-12T10:42:16.809003Z,29,IR,waiver,successful,35.0,MID,J.Gomes,Nkunku,2,19,2,4,15,1.5,0,2.0,17.0,-2.0
+943,2025-03-14T10:29:53.910549Z,29,BP,waiver,unsuccessful - player in already been picked up,33.0,MID,Hudson-Odoi,De Bruyne,3,11,1,39,-28,-2.8,2,0.0,11.0,-39.0
+944,2025-03-14T10:29:53.910531Z,29,BP,waiver,unsuccessful - player in already been picked up,32.0,MID,Martinelli,De Bruyne,3,35,1,39,-4,-0.4,2,0.0,35.0,-39.0
+945,2025-03-14T10:29:53.910513Z,29,BP,waiver,successful,26.0,MID,Trossard,De Bruyne,3,55,1,39,16,1.6,2,3.0,52.0,-36.0
+946,2025-03-14T10:29:53.910494Z,29,BP,waiver,unsuccessful - player in already been picked up,25.0,MID,Bruno G.,De Bruyne,0,32,1,39,-7,-0.7,-1,0.0,32.0,-39.0
+947,2025-03-14T10:29:53.910566Z,29,BP,waiver,unsuccessful - player out already gone,34.0,MID,Rice,De Bruyne,3,41,1,39,2,0.2,2,0.0,41.0,-39.0
+948,2024-08-30T02:49:11.668176Z,3,HC,waiver,successful,7.0,FWD,Evanilson,Füllkrug,2,126,1,40,86,2.388888888888889,1,67.0,59.0,27.0
+949,2024-10-04T07:22:07.234507Z,7,HC,waiver,successful,1.0,FWD,Evanilson,Darwin,2,113,0,57,56,1.75,2,63.0,50.0,6.0
+950,2024-10-04T07:22:07.234614Z,7,HC,waiver,unsuccessful - player in already been picked up,7.0,FWD,Evanilson,Darwin,2,113,0,57,56,1.75,2,63.0,50.0,6.0
+951,2025-04-25T10:13:51.511705Z,34,IR,free agent,successful,,DEF,Andersen,Konsa,2,6,0,27,-21,-4.2,2,2.0,4.0,-25.0
+952,2024-09-13T08:54:45.417288Z,4,HC,waiver,successful,2.0,MID,Sterling,Savinho,1,26,1,96,-70,-2.0,0,2.0,24.0,-94.0
+953,2024-09-07T15:13:19.408230Z,4,LB,waiver,successful,7.0,MID,Sterling,L.Paquetá,1,26,1,69,-43,-1.2285714285714286,0,1.0,25.0,-68.0
+954,2024-12-24T07:38:26.322162Z,18,HC,waiver,successful,7.0,FWD,Duran,Højlund,-2,0,2,44,-44,-2.0952380952380953,-4,-2.0,2.0,-46.0
+955,2024-09-27T05:25:48.155326Z,6,HC,waiver,successful,1.0,FWD,Welbeck,Evanilson,2,94,9,122,-28,-0.8484848484848485,-7,38.0,56.0,-84.0
+956,2024-12-06T10:18:05.758994Z,15,HC,waiver,successful,1.0,DEF,Dalot,Walker,1,47,1,3,44,1.8333333333333333,0,3.0,44.0,0.0
+957,2025-02-14T12:42:35.750767Z,25,HC,free agent,successful,,DEF,Disasi,Livramento,2,11,1,49,-38,-2.7142857142857144,1,2.0,9.0,-47.0
+958,2025-02-13T01:02:20.479764Z,25,LB,waiver,successful,5.0,DEF,Disasi,Cucurella,2,11,1,74,-63,-4.5,1,2.0,9.0,-72.0
+959,2025-03-14T14:50:34.502233Z,29,HC,free agent,successful,,DEF,Huijsen,Robinson,1,34,7,15,19,1.9,-6,13.0,21.0,-2.0
+960,2025-03-14T12:04:19.069648Z,29,MN,waiver,successful,13.0,DEF,Burn,Robinson,0,42,7,15,27,2.7,-7,28.0,14.0,13.0
+961,2025-01-31T11:19:34.301485Z,24,HC,waiver,successful,1.0,FWD,Marmoush,Calvert-Lewin,2,71,0,4,67,4.466666666666667,2,71.0,0.0,67.0
+962,2025-01-25T16:22:56.421852Z,24,BP,waiver,successful,1.0,FWD,Marmoush,Duran,2,71,0,0,71,4.733333333333333,2,71.0,0.0,71.0
+963,2025-04-11T19:49:55.920697Z,32,HC,free agent,successful,,MID,Diogo J.,Semenyo,1,6,10,46,-40,-5.714285714285714,-9,2.0,4.0,-44.0
+964,2025-01-24T11:32:20.278865Z,23,HC,waiver,successful,7.0,DEF,Robinson,Lewis,2,24,0,19,5,0.3125,2,5.0,19.0,-14.0
+965,2025-01-21T19:59:14.029343Z,23,BP,waiver,successful,6.0,DEF,Huijsen,Lewis,6,45,0,19,26,1.625,6,26.0,19.0,7.0
+966,2025-04-04T09:59:30.374755Z,31,HC,waiver,successful,7.0,GKP,Kelleher,Onana,2,2,11,17,-15,-1.875,-9,2.0,0.0,-15.0
+967,2025-04-04T07:13:47.933313Z,31,PV,waiver,successful,2.0,GKP,Kelleher,Onana,2,2,11,17,-15,-1.875,-9,2.0,0.0,-15.0
+968,2025-02-01T08:25:43.292966Z,24,HC,free agent,successful,,MID,Diogo J.,A.Doucoure,1,28,7,50,-22,-1.4666666666666666,-6,3.0,25.0,-47.0
+969,2025-01-13T09:50:04.390919Z,21,HC,waiver,successful,16.0,FWD,Mateta,Duran,8,83,0,2,81,4.5,8,70.0,13.0,68.0
+970,2025-04-10T22:48:06.356296Z,32,HC,waiver,successful,8.0,DEF,White,Mitchell,0,19,0,23,-4,-0.5714285714285714,0,6.0,13.0,-17.0
+971,2025-04-08T04:57:55.431712Z,32,PV,waiver,successful,7.0,DEF,White,Udogie,0,19,0,-2,21,3.0,0,5.0,14.0,7.0
+972,2025-04-08T04:57:55.431787Z,32,PV,waiver,unsuccessful - player out already gone,15.0,DEF,Gusto,Udogie,1,6,0,-2,8,1.1428571428571428,1,0.0,6.0,2.0
+973,2025-04-08T04:57:55.431748Z,32,PV,waiver,unsuccessful - player in already been picked up,13.0,DEF,Chalobah,Udogie,1,15,0,-2,17,2.4285714285714284,1,0.0,15.0,2.0
+974,2025-04-08T04:57:55.431768Z,32,PV,waiver,unsuccessful - player out already gone,14.0,DEF,Tosin,Udogie,0,15,0,-2,17,2.4285714285714284,0,0.0,15.0,2.0
+975,2025-03-07T09:33:09.819824Z,28,HC,waiver,successful,6.0,MID,Nkunku,Ødegaard,3,7,3,48,-41,-3.727272727272727,0,5.0,2.0,-43.0
+976,2025-03-06T10:38:57.952887Z,28,IR,waiver,successful,5.0,MID,I.Sarr,Ødegaard,11,47,3,48,-1,-0.09090909090909091,8,25.0,22.0,-23.0
+977,2025-03-07T09:33:09.819846Z,28,HC,waiver,successful,12.0,DEF,Mitchell,Disasi,6,32,6,9,23,2.090909090909091,0,9.0,23.0,0.0
+978,2025-03-04T21:40:05.370705Z,28,LB,waiver,successful,9.0,DEF,White,Disasi,0,21,6,9,12,1.0909090909090908,-6,0.0,21.0,-9.0
+979,2024-08-16T07:24:36.743781Z,1,AN,free agent,successful,,FWD,Wissa,Edouard,11,185,1,7,178,4.684210526315789,10,26.0,159.0,19.0
+980,2024-08-20T07:22:56.560419Z,2,AN,waiver,successful,5.0,MID,Mitoma,Barnes,6,137,5,129,8,0.21621621621621623,1,63.0,74.0,-66.0
+981,2024-08-20T07:22:56.560460Z,2,AN,waiver,unsuccessful - player out already gone,12.0,MID,Minteh,Barnes,2,98,5,129,-31,-0.8378378378378378,-3,0.0,98.0,-129.0
+982,2024-08-23T07:53:19.685179Z,2,BP,waiver,unsuccessful - player in already been picked up,15.0,MID,Mitoma,Johnson,6,137,3,135,2,0.05405405405405406,3,0.0,137.0,-135.0
+983,2025-01-01T08:49:31.389828Z,20,AN,waiver,unsuccessful - player in already been picked up,14.0,MID,Gibbs-White,Barnes,8,91,1,66,25,1.3157894736842106,7,0.0,91.0,-66.0
+984,2025-01-01T08:49:31.389843Z,20,AN,waiver,unsuccessful - player out already gone,15.0,MID,Trossard,Barnes,2,93,1,66,27,1.4210526315789473,1,0.0,93.0,-66.0
+985,2025-01-01T08:49:31.389765Z,20,AN,waiver,successful,8.0,MID,Kudus,Barnes,2,57,1,66,-9,-0.47368421052631576,1,0.0,57.0,-66.0
+986,2025-01-01T08:49:31.389809Z,20,AN,waiver,unsuccessful - player out already gone,13.0,MID,Szoboszlai,Barnes,0,83,1,66,17,0.8947368421052632,-1,11.0,72.0,-55.0
+987,2025-01-02T13:45:02.987688Z,20,AC,waiver,successful,1.0,MID,Gibbs-White,McNeil,8,91,0,28,63,3.3157894736842106,8,88.0,3.0,60.0
+988,2025-01-03T12:05:10.030628Z,20,AN,free agent,successful,,MID,Szoboszlai,Kudus,0,83,2,57,26,1.368421052631579,-2,11.0,72.0,-46.0
+989,2025-01-03T12:03:49.563334Z,20,AN,free agent,successful,,MID,Szoboszlai,Doku,0,83,0,42,41,2.1578947368421053,0,11.0,72.0,-31.0
+990,2024-09-20T13:19:38.211695Z,5,AN,free agent,successful,,MID,Nkunku,Madueke,1,50,3,95,-45,-1.3235294117647058,-2,0.0,50.0,-95.0
+991,2025-03-05T21:05:47.158349Z,28,AN,waiver,successful,2.0,MID,Minteh,Rashford,2,30,1,22,8,0.7272727272727273,1,2.0,28.0,-20.0
+992,2025-03-05T21:05:47.158433Z,28,AN,waiver,unsuccessful - player in already been picked up,7.0,MID,Iwobi,Rashford,5,44,1,22,22,2.0,4,0.0,44.0,-22.0
+993,2025-03-05T21:05:47.158410Z,28,AN,waiver,unsuccessful - player out already gone,6.0,MID,Kudus,Rashford,2,36,1,22,14,1.2727272727272727,1,0.0,36.0,-22.0
+994,2025-03-04T21:40:05.370644Z,28,LB,waiver,successful,3.0,MID,Iwobi,Gordon,5,44,0,11,33,3.0,5,8.0,36.0,-3.0
+995,2025-03-31T15:31:13.336114Z,30,AN,waiver,unsuccessful - player out already gone,20.0,MID,Barnes,Ødegaard,5,57,2,40,17,1.8888888888888888,3,0.0,57.0,-40.0
+996,2025-03-31T15:31:13.336076Z,30,AN,waiver,successful,14.0,MID,Gordon,Ødegaard,0,11,2,40,-29,-3.2222222222222223,-2,0.0,11.0,-40.0
+997,2025-03-14T12:08:43.868502Z,29,PV,waiver,successful,4.0,MID,Martinelli,Nwaneri,3,35,1,21,14,1.4,2,19.0,16.0,-2.0
+998,2025-03-14T12:08:43.868522Z,29,PV,waiver,unsuccessful - player out already gone,16.0,MID,Rashford,Nwaneri,0,21,1,21,0,0.0,-1,0.0,21.0,-21.0
+999,2025-05-23T13:37:50.738224Z,38,PV,waiver,unsuccessful - player in already been picked up,5.0,MID,Trossard,Kovačić,4,4,0,0,4,4.0,4,0.0,4.0,0.0
+1000,2025-05-23T13:37:50.738412Z,38,PV,waiver,unsuccessful - player out already gone,47.0,MID,Elliott,Kovačić,1,1,0,0,1,1.0,1,0.0,1.0,0.0
+1001,2025-05-23T13:37:50.738375Z,38,PV,waiver,successful,35.0,MID,B.Fernandes,Kovačić,7,7,0,0,7,7.0,7,7.0,0.0,7.0
+1002,2025-05-23T13:37:50.738394Z,38,PV,waiver,unsuccessful - player out already gone,46.0,MID,McGinn,Kovačić,3,3,0,0,3,3.0,3,0.0,3.0,0.0
+1003,2025-05-23T12:45:53.298115Z,38,AC,waiver,successful,1.0,MID,Trossard,I.Sarr,4,4,9,9,-5,-5.0,-5,4.0,0.0,-5.0
+1004,2025-01-15T09:33:02.011340Z,22,AN,waiver,successful,6.0,MID,I.Sarr,Neto,3,75,2,67,8,0.47058823529411764,1,2.0,73.0,-65.0
+1005,2025-04-03T19:25:42.169325Z,31,AN,waiver,unsuccessful - player out already gone,11.0,MID,Ødegaard,Georginio,1,38,0,0,38,4.75,1,12.0,26.0,12.0
+1006,2025-04-03T19:25:42.169225Z,31,AN,waiver,successful,4.0,MID,Barnes,Georginio,8,52,0,0,52,6.5,8,52.0,0.0,52.0
+1007,2025-04-03T19:25:42.169306Z,31,AN,waiver,unsuccessful - player out already gone,10.0,MID,Garnacho,Georginio,3,27,0,0,27,3.375,3,0.0,27.0,0.0
+1008,2025-04-03T19:25:42.169284Z,31,AN,waiver,unsuccessful - player in already been picked up,9.0,MID,Maddison,Georginio,7,13,0,0,13,1.625,7,0.0,13.0,0.0
+1009,2025-04-03T19:25:42.169344Z,31,AN,waiver,unsuccessful - player in already been picked up,12.0,MID,Maddison,Georginio,7,13,0,0,13,1.625,7,0.0,13.0,0.0
+1010,2025-02-16T20:35:30.986720Z,26,AN,waiver,successful,5.0,MID,Minteh,Kudus,6,38,3,45,-7,-0.5384615384615384,3,8.0,30.0,-37.0
+1011,2024-12-28T12:37:17.490653Z,19,AN,waiver,successful,4.0,MID,Doku,Kudus,0,42,2,59,-17,-0.85,-2,4.0,38.0,-55.0
+1012,2025-03-14T15:34:42.147191Z,29,AN,free agent,successful,,MID,Doku,Kudus,1,22,2,34,-12,-1.2,-1,4.0,18.0,-30.0
+1013,2025-05-06T10:45:28.526596Z,36,LB,waiver,successful,2.0,MID,Schade,Gordon,11,15,3,6,9,3.0,8,15.0,0.0,9.0
+1014,2025-02-25T09:37:22.984228Z,27,AN,free agent,successful,,DEF,Udogie,O'Brien,2,4,10,47,-43,-3.5833333333333335,-8,0.0,4.0,-47.0
+1015,2025-02-23T19:18:40.657925Z,27,AN,waiver,unsuccessful - player in already been picked up,11.0,DEF,Cucurella,O'Brien,15,72,10,47,25,2.0833333333333335,5,0.0,72.0,-47.0
+1016,2025-02-24T13:12:54.709312Z,27,IR,waiver,successful,8.0,DEF,Cucurella,Zabarnyi,15,72,0,30,42,3.5,15,30.0,42.0,0.0
+1017,2025-04-28T09:55:12.587306Z,35,IR,waiver,unsuccessful - player in already been picked up,16.0,DEF,Lewis,Bassey,1,7,1,3,4,1.0,0,0.0,7.0,-3.0
+1018,2025-04-28T09:55:12.587375Z,35,IR,waiver,unsuccessful - player out already gone,22.0,DEF,Aina,Bassey,1,4,1,3,1,0.25,0,0.0,4.0,-3.0
+1019,2025-04-28T09:55:12.587477Z,35,IR,waiver,unsuccessful - player out already gone,28.0,DEF,Akanji,Bassey,1,15,1,3,12,3.0,0,15.0,0.0,12.0
+1020,2025-04-28T09:55:12.587338Z,35,IR,waiver,successful,17.0,DEF,Toffolo,Bassey,0,0,1,3,-3,-0.75,-1,0.0,0.0,-3.0
+1021,2025-03-31T15:31:13.336151Z,30,AN,waiver,unsuccessful - player in already been picked up,22.0,DEF,Livramento,Aït-Nouri,2,40,8,45,-5,-0.5555555555555556,-6,0.0,40.0,-45.0
+1022,2025-03-31T15:31:13.336214Z,30,AN,waiver,unsuccessful - player in already been picked up,27.0,DEF,Cucurella,Aït-Nouri,5,40,8,45,-5,-0.5555555555555556,-3,0.0,40.0,-45.0
+1023,2025-03-31T15:31:13.336132Z,30,AN,waiver,unsuccessful - player in already been picked up,21.0,DEF,Livramento,Kilman,2,40,2,16,24,2.6666666666666665,0,0.0,40.0,-16.0
+1024,2025-03-31T15:31:13.336197Z,30,AN,waiver,successful,24.0,DEF,Lacroix,Kilman,2,21,2,16,5,0.5555555555555556,0,3.0,18.0,-13.0
+1025,2025-03-28T01:53:58.765946Z,30,AC,waiver,successful,1.0,DEF,Cucurella,Spence,5,40,1,9,31,3.4444444444444446,4,24.0,16.0,15.0
+1026,2025-04-11T13:55:45.110918Z,32,AN,free agent,successful,,DEF,Disasi,Aït-Nouri,0,1,14,35,-34,-4.857142857142857,-14,0.0,1.0,-35.0
+1027,2024-09-26T20:46:26.246790Z,6,AN,waiver,unsuccessful - player in already been picked up,7.0,DEF,J.Timber,Digne,4,99,0,73,26,0.7878787878787878,4,0.0,99.0,-73.0
+1028,2025-05-23T13:37:50.738306Z,38,PV,waiver,unsuccessful - player in already been picked up,21.0,DEF,Burn,Muñoz,2,2,2,2,0,0.0,0,0.0,2.0,-2.0
+1029,2025-05-23T13:37:50.738284Z,38,PV,waiver,successful,6.0,DEF,White,Muñoz,5,5,2,2,3,3.0,3,5.0,0.0,3.0
+1030,2024-11-01T11:37:15.342709Z,10,AN,free agent,successful,,DEF,Colwill,Digne,2,88,0,54,34,1.1724137931034482,2,0.0,88.0,-54.0
+1031,2024-08-20T07:22:56.560509Z,2,AN,waiver,successful,18.0,DEF,J.Timber,Zinchenko,6,113,0,34,79,2.135135135135135,6,0.0,113.0,-34.0
+1032,2024-08-20T07:22:56.560552Z,2,AN,waiver,unsuccessful - player out already gone,22.0,DEF,Burn,Zinchenko,1,110,0,34,76,2.054054054054054,1,1.0,109.0,-33.0
+1033,2024-08-23T10:43:36.751997Z,2,AN,free agent,successful,,DEF,Burn,J.Timber,1,110,6,113,-3,-0.08108108108108109,-5,1.0,109.0,-112.0
+1034,2024-12-23T08:22:53.409157Z,18,AN,waiver,successful,19.0,DEF,Branthwaite,Estupiñan,1,53,6,43,10,0.47619047619047616,-5,0.0,53.0,-43.0
+1035,2025-04-11T20:17:56.078018Z,32,AN,free agent,successful,,DEF,Bradley,Estupiñan,9,21,0,10,11,1.5714285714285714,9,15.0,6.0,5.0
+1036,2024-11-25T21:56:06.924127Z,13,AN,waiver,unsuccessful - player in already been picked up,5.0,DEF,J.Timber,Livramento,1,84,2,77,7,0.2692307692307692,-1,0.0,84.0,-77.0
+1037,2024-11-25T21:56:06.924183Z,13,AN,waiver,successful,6.0,DEF,Calafiori,Livramento,0,19,2,77,-58,-2.230769230769231,-2,1.0,18.0,-76.0
+1038,2024-11-25T01:41:33.710120Z,13,BP,waiver,successful,1.0,DEF,J.Timber,Keane,1,84,0,16,68,2.6153846153846154,1,64.0,20.0,48.0
+1039,2025-05-15T09:31:31.681005Z,37,MN,waiver,unsuccessful - player in already been picked up,33.0,DEF,Digne,Van den Berg,0,0,0,2,-2,-1.0,0,0.0,0.0,-2.0
+1040,2025-05-15T09:31:31.680854Z,37,MN,waiver,unsuccessful - player in already been picked up,6.0,DEF,Saliba,Van den Berg,1,1,0,2,-1,-0.5,1,0.0,1.0,-2.0
+1041,2025-05-02T05:18:05.906965Z,35,AN,free agent,successful,,DEF,Schär,Robinson,6,14,2,4,10,2.5,4,6.0,8.0,2.0
+1042,2025-05-14T20:38:10.391283Z,37,PV,waiver,unsuccessful - player in already been picked up,16.0,DEF,Saliba,Konsa,1,1,15,16,-15,-7.5,-14,0.0,1.0,-16.0
+1043,2025-05-14T20:38:10.391302Z,37,PV,waiver,successful,17.0,DEF,Zabarnyi,Konsa,1,12,15,16,-4,-2.0,-14,11.0,1.0,-5.0
+1044,2025-05-14T20:38:10.391321Z,37,PV,waiver,unsuccessful - player in already been picked up,30.0,DEF,Schär,Konsa,2,3,15,16,-13,-6.5,-13,0.0,3.0,-16.0
+1045,2025-05-13T10:31:25.487361Z,37,AC,waiver,successful,1.0,DEF,Saliba,Colwill,1,1,6,21,-20,-10.0,-5,1.0,0.0,-20.0
+1046,2024-12-05T07:00:15.060442Z,15,AN,waiver,unsuccessful - player in already been picked up,5.0,DEF,J.Timber,Gomez,2,69,0,4,65,2.7083333333333335,2,0.0,69.0,-4.0
+1047,2024-12-07T09:29:58.492629Z,15,AN,free agent,successful,,DEF,Hall,Gomez,1,66,0,4,62,2.5833333333333335,1,56.0,10.0,52.0
+1048,2024-12-06T10:36:16.599525Z,15,PV,waiver,unsuccessful - player in already been picked up,2.0,DEF,J.Timber,Van Hecke,2,69,1,60,9,0.375,1,0.0,69.0,-60.0
+1049,2024-12-06T15:26:59.144163Z,15,PV,free agent,successful,,DEF,Walker,Van Hecke,1,3,1,60,-57,-2.375,0,1.0,2.0,-59.0
+1050,2024-12-06T10:10:32.771813Z,15,IR,waiver,unsuccessful - player in already been picked up,9.0,DEF,J.Timber,Konaté,2,69,0,60,9,0.375,2,0.0,69.0,-60.0
+1051,2024-12-04T22:10:47.374213Z,15,BP,waiver,successful,1.0,DEF,J.Timber,Robinson,2,69,1,58,11,0.4583333333333333,1,63.0,6.0,5.0
+1052,2025-01-17T15:13:34.355493Z,22,AN,free agent,successful,,DEF,Estupiñan,Konaté,2,26,6,57,-31,-1.8235294117647058,-4,11.0,15.0,-46.0
+1053,2025-01-13T11:34:43.929778Z,21,LB,waiver,successful,6.0,DEF,N.Williams,Colwill,2,58,1,63,-5,-0.2777777777777778,1,45.0,13.0,-18.0
+1054,2024-08-20T07:22:56.560538Z,2,AN,waiver,successful,21.0,GKP,José Sá,Hermansen,-1,91,2,60,31,0.8378378378378378,-3,12.0,79.0,-48.0
+1055,2025-01-03T12:06:25.884861Z,20,AN,free agent,successful,,GKP,José Sá,Onana,1,57,2,50,7,0.3684210526315789,-1,13.0,44.0,-37.0
+1056,2025-01-23T19:56:48.017052Z,23,AN,waiver,successful,10.0,GKP,Flekken,Onana,3,71,6,44,27,1.6875,-3,3.0,68.0,-41.0
+1057,2025-04-18T11:16:45.352823Z,33,AN,waiver,unsuccessful - player out already gone,33.0,GKP,José Sá,Vicario,0,19,1,4,15,2.5,-1,0.0,19.0,-4.0
+1058,2025-04-18T11:16:45.352806Z,33,AN,waiver,unsuccessful - player out already gone,32.0,GKP,Flekken,Vicario,1,29,1,4,25,4.166666666666667,0,0.0,29.0,-4.0
+1059,2025-04-18T11:16:45.352789Z,33,AN,waiver,successful,31.0,GKP,Leno,Vicario,2,16,1,4,12,2.0,1,4.0,12.0,0.0
+1060,2024-09-13T07:04:00.272278Z,4,AN,waiver,successful,6.0,DEF,Digne,J.Timber,4,78,5,106,-28,-0.8,-1,16.0,62.0,-90.0
+1061,2024-11-08T08:26:56.543549Z,11,AN,waiver,successful,7.0,DEF,Alex Moreno,J.Timber,1,8,2,92,-84,-3.0,-1,2.0,6.0,-90.0
+1062,2024-11-08T08:26:56.543568Z,11,AN,waiver,unsuccessful - player in already been picked up,8.0,DEF,Hall,J.Timber,2,72,2,92,-20,-0.7142857142857143,0,0.0,72.0,-92.0
+1063,2024-11-08T12:31:34.109714Z,11,PV,waiver,successful,2.0,DEF,Hall,Stones,2,72,0,9,63,2.25,2,3.0,69.0,-6.0
+1064,2024-11-08T12:31:34.109762Z,11,PV,waiver,unsuccessful - player out already gone,4.0,DEF,Livramento,Stones,2,80,0,9,71,2.5357142857142856,2,0.0,80.0,-9.0
+1065,2025-01-01T08:49:31.389858Z,20,AN,waiver,successful,16.0,DEF,Konaté,Branthwaite,1,60,1,52,8,0.42105263157894735,0,1.0,59.0,-51.0
+1066,2025-01-01T08:49:31.389887Z,20,AN,waiver,unsuccessful - player out already gone,24.0,DEF,Botman,Branthwaite,1,18,1,52,-34,-1.7894736842105263,0,0.0,18.0,-52.0
+1067,2025-02-01T10:12:52.387885Z,24,AN,free agent,successful,,DEF,O'Brien,Branthwaite,7,56,10,40,16,1.0666666666666667,-3,9.0,47.0,-31.0
+1068,2025-05-23T22:22:30.275268Z,38,LB,waiver,successful,7.0,DEF,Estupiñan,Toti,0,0,2,2,-2,-2.0,-2,0.0,0.0,-2.0
+1069,2025-05-23T22:22:30.275373Z,38,LB,waiver,unsuccessful - player in already been picked up,48.0,DEF,White,Toti,5,5,2,2,3,3.0,3,0.0,5.0,-2.0
+1070,2025-05-23T12:45:53.298175Z,38,AC,waiver,unsuccessful - player in already been picked up,13.0,DEF,White,Saliba,5,5,0,0,5,5.0,5,0.0,5.0,0.0
+1071,2025-05-14T17:34:16.914363Z,37,AN,waiver,unsuccessful - player in already been picked up,19.0,FWD,Welbeck,Cunha,5,5,1,3,2,1.0,4,0.0,5.0,-3.0
+1072,2024-08-23T10:40:30.404592Z,2,AN,free agent,successful,,FWD,Vardy,Delap,2,120,2,130,-10,-0.2702702702702703,0,2.0,118.0,-128.0
+1073,2024-09-26T20:46:26.246741Z,6,AN,waiver,unsuccessful - player in already been picked up,6.0,FWD,Raúl,Zirkzee,9,129,1,50,79,2.393939393939394,8,0.0,129.0,-50.0
+1074,2024-09-26T20:46:26.246872Z,6,AN,waiver,successful,16.0,FWD,Wilson,Zirkzee,0,19,1,50,-31,-0.9393939393939394,-1,2.0,17.0,-48.0
+1075,2024-09-26T15:19:01.123111Z,6,MN,waiver,successful,3.0,FWD,Raúl,Antonio,9,129,5,35,94,2.8484848484848486,4,105.0,24.0,70.0
+1076,2024-09-26T15:19:01.123168Z,6,MN,waiver,unsuccessful - player out already gone,10.0,FWD,Ndiaye,Antonio,3,101,5,35,66,2.0,-2,0.0,101.0,-35.0
+1077,2025-04-10T10:14:05.435630Z,32,MN,waiver,unsuccessful - player in already been picked up,19.0,MID,Trossard,Kluivert,2,42,0,11,31,4.428571428571429,2,0.0,42.0,-11.0
+1078,2025-04-10T10:14:05.435594Z,32,MN,waiver,successful,17.0,MID,Mac Allister,Kluivert,5,23,0,11,12,1.7142857142857142,5,18.0,5.0,7.0
+1079,2025-04-10T10:14:05.435613Z,32,MN,waiver,unsuccessful - player out already gone,18.0,MID,Souček,Kluivert,0,23,0,11,12,1.7142857142857142,0,0.0,23.0,-11.0
+1080,2025-04-10T17:55:50.394052Z,32,AC,waiver,successful,1.0,MID,Trossard,Damsgaard,2,42,2,19,23,3.2857142857142856,0,39.0,3.0,20.0
+1081,2025-04-11T13:52:48.459678Z,32,AN,free agent,successful,,MID,Tielemans,Savinho,6,27,1,6,21,3.0,5,26.0,1.0,20.0
+1082,2025-02-23T21:50:03.148004Z,27,MN,waiver,unsuccessful - player in already been picked up,7.0,MID,Szoboszlai,Schade,11,44,3,52,-8,-0.6666666666666666,8,0.0,44.0,-52.0
+1083,2025-02-24T08:58:15.782587Z,27,LB,waiver,successful,6.0,MID,Szoboszlai,I.Sarr,11,44,15,62,-18,-1.5,-4,17.0,27.0,-45.0
+1084,2025-01-03T12:04:44.184617Z,20,AN,free agent,successful,,MID,Savinho,Szoboszlai,13,52,0,83,-31,-1.631578947368421,13,25.0,27.0,-58.0
+1085,2025-01-17T14:59:38.697256Z,22,AN,free agent,successful,,MID,Trossard,Szoboszlai,10,82,2,81,1,0.058823529411764705,8,23.0,59.0,-58.0
+1086,2024-09-13T07:04:00.272216Z,4,AN,waiver,unsuccessful - player in already been picked up,5.0,MID,Barnes,Doku,8,115,0,81,34,0.9714285714285714,8,0.0,115.0,-81.0
+1087,2024-09-13T08:05:25.046839Z,4,IR,waiver,successful,2.0,MID,Barnes,Bailey,8,115,0,43,72,2.057142857142857,8,23.0,92.0,-20.0
+1088,2024-10-21T09:27:43.445572Z,9,IR,waiver,unsuccessful - player in already been picked up,4.0,MID,Buonanotte,Barnes,2,41,2,91,-50,-1.6666666666666667,0,0.0,41.0,-91.0
+1089,2024-10-21T09:27:43.445517Z,9,IR,waiver,successful,2.0,MID,B.Fernandes,Barnes,2,153,2,91,62,2.066666666666667,0,145.0,8.0,54.0
+1090,2025-05-09T05:40:56.551534Z,36,AN,waiver,successful,27.0,DEF,Robinson,Zabarnyi,0,2,1,13,-11,-3.6666666666666665,-1,0.0,2.0,-13.0
+1091,2025-05-09T05:40:56.551516Z,36,AN,waiver,unsuccessful - player out already gone,26.0,DEF,Robinson,Lewis,0,2,6,6,-4,-1.3333333333333333,-6,0.0,2.0,-6.0
+1092,2025-05-09T05:40:56.551496Z,36,AN,waiver,successful,25.0,DEF,N.Semedo,Lewis,1,2,6,6,-4,-1.3333333333333333,-5,1.0,1.0,-5.0
+1093,2024-11-08T08:26:56.543586Z,11,AN,waiver,successful,9.0,DEF,Schär,Colwill,2,98,1,86,12,0.42857142857142855,1,0.0,98.0,-86.0
+1094,2024-12-14T14:12:25.264200Z,17,AN,waiver,unsuccessful - player in already been picked up,6.0,GKP,Martinez,Arrizabalaga,2,66,9,73,-7,-0.3181818181818182,-7,0.0,66.0,-73.0
+1095,2024-12-19T19:17:44.967285Z,17,IR,waiver,successful,2.0,GKP,Martinez,Kelleher,2,66,0,8,58,2.6363636363636362,2,16.0,50.0,8.0
+1096,2024-12-19T19:17:44.967537Z,17,IR,waiver,unsuccessful - player in already been picked up,18.0,GKP,Martinez,Kelleher,2,66,0,8,58,2.6363636363636362,2,16.0,50.0,8.0
+1097,2024-12-19T19:17:44.967520Z,17,IR,waiver,unsuccessful - player out already gone,17.0,GKP,Dúbravka,Kelleher,6,38,0,8,30,1.3636363636363635,6,24.0,14.0,16.0
+1098,2025-04-25T16:05:44.430425Z,34,AN,free agent,successful,,MID,Kudus,Bruno G.,7,23,3,16,7,1.4,4,23.0,0.0,7.0
+1099,2024-12-25T23:46:43.064328Z,18,AN,free agent,successful,,MID,Barnes,I.Sarr,1,68,3,88,-20,-0.9523809523809523,-2,54.0,14.0,-34.0
+1100,2024-09-26T20:46:26.246890Z,6,AN,waiver,unsuccessful - player in already been picked up,23.0,MID,Martinelli,Amad,13,110,1,110,0,0.0,12,0.0,110.0,-110.0
+1101,2024-09-26T09:38:21.399768Z,6,PV,waiver,successful,9.0,MID,Martinelli,Rodrigo,13,110,0,1,109,3.303030303030303,13,63.0,47.0,62.0
+1102,2024-09-26T09:38:21.399790Z,6,PV,waiver,unsuccessful - player in already been picked up,17.0,MID,Madueke,Rodrigo,5,92,0,1,91,2.757575757575758,5,0.0,92.0,-1.0
+1103,2024-09-26T09:38:21.399809Z,6,PV,waiver,unsuccessful - player out already gone,18.0,MID,Hudson-Odoi,Rodrigo,1,84,0,1,83,2.515151515151515,1,0.0,84.0,-1.0
+1104,2024-09-26T09:38:21.399851Z,6,PV,waiver,unsuccessful - player out already gone,19.0,MID,Doku,Rodrigo,1,79,0,1,78,2.3636363636363638,1,0.0,79.0,-1.0
+1105,2024-09-29T17:23:48.761970Z,7,AN,waiver,unsuccessful - player in already been picked up,3.0,MID,McNeil,Amad,2,54,0,109,-55,-1.71875,2,0.0,54.0,-109.0
+1106,2024-09-29T17:23:48.762063Z,7,AN,waiver,successful,4.0,MID,Sancho,Amad,2,70,0,109,-39,-1.21875,2,3.0,67.0,-106.0
+1107,2024-09-29T17:23:48.762088Z,7,AN,waiver,unsuccessful - player out already gone,6.0,MID,Garnacho,Amad,3,89,0,109,-20,-0.625,3,0.0,89.0,-109.0
+1108,2024-09-30T23:54:40.345081Z,7,AC,waiver,successful,2.0,MID,McNeil,Kovačić,2,54,15,88,-34,-1.0625,-13,12.0,42.0,-76.0
+1109,2024-10-03T15:48:12.630563Z,7,IR,waiver,unsuccessful - player in already been picked up,5.0,MID,Sancho,Rashford,2,70,2,77,-7,-0.21875,0,0.0,70.0,-77.0
+1110,2024-08-28T17:15:38.739530Z,3,AN,waiver,unsuccessful - player in already been picked up,6.0,FWD,João Pedro,Calvert-Lewin,8,116,12,59,57,1.5833333333333333,-4,0.0,116.0,-59.0
+1111,2024-08-28T17:15:38.739678Z,3,AN,waiver,successful,14.0,FWD,Strand Larsen,Calvert-Lewin,2,137,12,59,78,2.1666666666666665,-10,2.0,135.0,-57.0
+1112,2024-08-29T20:59:33.624742Z,3,PV,waiver,unsuccessful - player in already been picked up,3.0,FWD,João Pedro,Højlund,8,116,0,78,38,1.0555555555555556,8,0.0,116.0,-78.0
+1113,2024-11-02T16:34:00.880332Z,11,BP,waiver,successful,1.0,FWD,Evanilson,Antonio,8,91,2,7,84,3.0,6,33.0,58.0,26.0
+1114,2024-09-13T18:53:31.511890Z,4,AN,free agent,successful,,FWD,Calvert-Lewin,Strand Larsen,6,47,5,135,-88,-2.5142857142857142,1,17.0,30.0,-118.0
+1115,2025-01-24T16:06:15.363774Z,23,AN,free agent,successful,,MID,Madueke,Savinho,9,32,0,34,-2,-0.125,9,12.0,20.0,-22.0
+1116,2025-05-13T10:31:25.487417Z,37,AC,waiver,successful,9.0,MID,Enzo,Mitoma,3,6,6,10,-4,-2.0,-3,6.0,0.0,-4.0
+1117,2025-03-14T15:36:47.813837Z,29,AN,free agent,successful,,MID,Ødegaard,Savinho,5,45,0,15,30,3.0,5,17.0,28.0,2.0
+1118,2024-08-28T17:15:38.739623Z,3,AN,waiver,successful,11.0,FWD,Gakpo,Vardy,1,126,1,118,8,0.2222222222222222,0,125.0,1.0,7.0
+1119,2024-08-28T17:15:38.739659Z,3,AN,waiver,unsuccessful - player in already been picked up,13.0,DEF,Konaté,Burn,6,98,0,109,-11,-0.3055555555555556,6,0.0,98.0,-109.0
+1120,2024-08-30T10:30:41.202842Z,3,AN,free agent,successful,,DEF,Estupiñan,Burn,1,63,0,109,-46,-1.2777777777777777,1,23.0,40.0,-86.0
+1121,2024-08-29T12:36:14.500945Z,3,IR,waiver,successful,1.0,DEF,Konaté,Aké,6,98,1,25,73,2.0277777777777777,5,82.0,16.0,57.0
+1122,2024-09-20T08:01:52.679206Z,5,AN,waiver,unsuccessful - player out already gone,8.0,FWD,Strand Larsen,Wissa,2,130,0,157,-27,-0.7941176470588235,2,0.0,130.0,-157.0
+1123,2024-09-20T08:01:52.679137Z,5,AN,waiver,successful,4.0,FWD,Zirkzee,Wissa,2,52,0,157,-105,-3.088235294117647,2,2.0,50.0,-155.0
+1124,2024-09-20T08:01:52.679224Z,5,AN,waiver,unsuccessful - player out already gone,9.0,FWD,Raúl,Wissa,6,135,0,157,-22,-0.6470588235294118,6,0.0,135.0,-157.0
+1125,2024-11-19T23:26:28.911086Z,12,AN,waiver,successful,3.0,DEF,Estupiñan,Pedro Porro,2,57,14,63,-6,-0.2222222222222222,-12,23.0,34.0,-40.0
+1126,2025-03-14T12:38:04.024813Z,29,AN,waiver,unsuccessful - player in already been picked up,28.0,DEF,Estupiñan,Alexander-Arnold,7,19,0,13,6,0.6,7,9.0,10.0,-4.0
+1127,2025-03-14T12:38:04.024841Z,29,AN,waiver,successful,30.0,DEF,Kilman,Alexander-Arnold,2,18,0,13,5,0.5,2,3.0,15.0,-10.0
+1128,2025-03-14T12:38:04.024826Z,29,AN,waiver,unsuccessful - player in already been picked up,29.0,DEF,Dalot,Alexander-Arnold,11,23,0,13,10,1.0,11,0.0,23.0,-13.0
+1129,2025-05-15T20:13:44.559807Z,37,AN,free agent,successful,,DEF,James,Chalobah,10,16,0,0,16,8.0,10,10.0,6.0,10.0
+1130,2024-09-27T19:31:04.442468Z,6,AN,free agent,successful,,MID,Trossard,Nkunku,12,142,1,49,93,2.8181818181818183,11,36.0,106.0,-13.0
+1131,2024-11-08T08:26:56.543531Z,11,AN,waiver,successful,6.0,MID,Rogers,Buonanotte,1,117,1,38,79,2.8214285714285716,0,2.0,115.0,-36.0
+1132,2025-04-04T07:36:46.787612Z,31,MN,waiver,successful,5.0,MID,Maddison,Bruno G.,7,13,3,30,-17,-2.125,4,9.0,4.0,-21.0
+1133,2024-11-01T09:38:16.047777Z,10,MN,waiver,successful,5.0,MID,Barnes,Kovačić,1,89,2,69,20,0.6896551724137931,-1,10.0,79.0,-59.0
+1134,2024-11-01T09:38:16.047731Z,10,MN,waiver,unsuccessful - player in already been picked up,4.0,MID,Iwobi,Kovačić,2,116,2,69,47,1.6206896551724137,0,0.0,116.0,-69.0
+1135,2024-11-09T11:33:35.513283Z,11,AN,free agent,successful,,DEF,Livramento,Schär,2,80,2,98,-18,-0.6428571428571429,0,21.0,59.0,-77.0
+1136,2025-05-10T07:12:08.885076Z,36,AN,free agent,successful,,DEF,Bradley,Schär,1,6,5,8,-2,-0.6666666666666666,-4,1.0,5.0,-7.0
+1137,2025-04-26T06:59:44.199356Z,34,AN,free agent,successful,,DEF,S.Bueno,Schär,1,3,6,20,-17,-3.4,-5,1.0,2.0,-19.0
+1138,2025-04-23T07:58:55.663533Z,34,IR,waiver,successful,4.0,DEF,Bassey,Digne,2,5,0,8,-3,-0.6,2,2.0,3.0,-6.0
+1139,2025-04-18T11:16:45.352737Z,33,AN,waiver,successful,28.0,DEF,Kilman,Disasi,1,12,1,1,11,1.8333333333333333,0,1.0,11.0,0.0
+1140,2025-04-18T11:16:45.352772Z,33,AN,waiver,unsuccessful - player in already been picked up,30.0,DEF,Aït-Nouri,Disasi,5,21,1,1,20,3.3333333333333335,4,0.0,21.0,-1.0
+1141,2025-04-18T11:16:45.352754Z,33,AN,waiver,unsuccessful - player out already gone,29.0,DEF,Cash,Disasi,4,23,1,1,22,3.6666666666666665,3,0.0,23.0,-1.0
+1142,2025-04-16T19:44:55.974248Z,33,AC,waiver,successful,12.0,DEF,Aït-Nouri,Pedro Porro,5,21,5,4,17,2.8333333333333335,0,16.0,5.0,12.0
+1143,2025-04-18T11:16:45.352569Z,33,AN,waiver,successful,6.0,FWD,Ndiaye,Wilson,2,21,1,7,14,2.3333333333333335,1,3.0,18.0,-4.0
+1144,2025-04-18T11:16:45.352622Z,33,AN,waiver,unsuccessful - player out already gone,18.0,FWD,Solanke,Wilson,1,15,1,7,8,1.3333333333333333,0,0.0,15.0,-7.0
+1145,2025-04-18T05:38:06.354780Z,33,BP,waiver,unsuccessful - player in already been picked up,13.0,FWD,Ndiaye,Beto,2,21,1,21,0,0.0,1,0.0,21.0,-21.0
+1146,2024-10-24T05:59:39.461818Z,9,AN,waiver,successful,6.0,FWD,Cunha,Wilson,9,146,0,19,127,4.233333333333333,9,146.0,0.0,127.0
+1147,2024-10-21T09:27:43.445677Z,9,IR,waiver,unsuccessful - player in already been picked up,9.0,FWD,Cunha,Darwin,9,146,4,56,90,3.0,5,0.0,146.0,-56.0
+1148,2024-09-26T20:46:26.246812Z,6,AN,waiver,successful,8.0,GKP,Sels,José Sá,2,129,0,92,37,1.121212121212121,2,26.0,103.0,-66.0
+1149,2024-09-26T20:46:26.246854Z,6,AN,waiver,unsuccessful - player out already gone,15.0,GKP,Henderson,José Sá,1,118,0,92,26,0.7878787878787878,1,0.0,118.0,-92.0
+1150,2025-04-04T13:26:24.635137Z,31,AN,free agent,successful,,GKP,Martinez,José Sá,1,32,2,22,10,1.25,-1,23.0,9.0,1.0
+1151,2025-03-31T15:31:13.336178Z,30,AN,waiver,unsuccessful - player in already been picked up,23.0,GKP,Pope,José Sá,2,46,5,27,19,2.111111111111111,-3,0.0,46.0,-27.0
+1152,2025-03-31T12:17:39.149981Z,30,IR,waiver,successful,18.0,GKP,Pope,Martinez,2,46,6,38,8,0.8888888888888888,-4,37.0,9.0,-1.0
+1153,2025-01-13T17:55:56.819665Z,21,AN,waiver,successful,10.0,GKP,Onana,José Sá,3,48,1,56,-8,-0.4444444444444444,2,3.0,45.0,-53.0
+1154,2025-02-02T20:40:45.668477Z,25,AN,waiver,successful,11.0,GKP,Jørgensen,Flekken,2,10,10,68,-58,-4.142857142857143,-8,2.0,8.0,-66.0
+1155,2025-02-02T20:40:45.668518Z,25,AN,waiver,unsuccessful - player out already gone,12.0,GKP,Valdimarsson,Flekken,0,0,10,68,-68,-4.857142857142857,-10,0.0,0.0,-68.0
+1156,2025-05-10T07:14:15.607961Z,36,AN,free agent,successful,,FWD,Richarlison,Ndiaye,0,2,1,16,-14,-4.666666666666667,-1,0.0,2.0,-16.0
+1157,2024-12-02T12:47:58.287432Z,14,AN,waiver,unsuccessful - player in already been picked up,7.0,MID,Trossard,Rogers,1,106,8,112,-6,-0.24,-7,0.0,106.0,-112.0
+1158,2024-12-02T12:47:58.287447Z,14,AN,waiver,successful,8.0,MID,Kudus,Rogers,2,83,8,112,-29,-1.16,-6,57.0,26.0,-55.0
+1159,2024-12-02T16:10:58.947368Z,14,AC,waiver,successful,1.0,MID,Trossard,Hudson-Odoi,1,106,0,60,46,1.84,1,41.0,65.0,-19.0
+1160,2025-03-14T15:33:11.579824Z,29,AN,free agent,successful,,MID,Georginio,Minteh,5,5,2,28,-23,-2.3,3,5.0,0.0,-23.0
+1161,2025-02-25T09:30:14.715743Z,27,AN,free agent,successful,,MID,Eze,Minteh,5,70,2,32,38,3.1666666666666665,3,35.0,35.0,3.0
+1162,2025-03-14T15:40:37.713602Z,29,AN,free agent,successful,,DEF,Schär,Calafiori,0,52,0,2,50,5.0,0,33.0,19.0,31.0
+1163,2025-01-01T08:49:31.389872Z,20,AN,waiver,successful,21.0,DEF,Trippier,Calafiori,0,49,1,14,35,1.8421052631578947,-1,0.0,49.0,-14.0
+1164,2025-05-15T20:09:55.736412Z,37,AN,free agent,successful,,DEF,Chalobah,N.Semedo,0,0,0,1,-1,-0.5,0,0.0,0.0,-1.0
+1165,2025-05-09T05:40:56.551478Z,36,AN,waiver,successful,19.0,DEF,Livramento,Saliba,7,11,1,2,9,3.0,6,9.0,2.0,7.0
+1166,2024-12-07T09:49:58.892003Z,15,AN,free agent,successful,,GKP,Arrizabalaga,Sels,3,78,2,90,-12,-0.5,1,13.0,65.0,-77.0
+1167,2025-05-15T20:18:15.027901Z,37,AN,free agent,successful,,MID,Szoboszlai,Diogo J.,7,9,0,1,8,4.0,7,9.0,0.0,8.0
+1168,2025-01-23T19:56:48.017002Z,23,AN,waiver,successful,4.0,GKP,Pope,Kinsky,0,54,1,13,41,2.5625,-1,0.0,54.0,-13.0
+1169,2024-10-11T13:48:51.717782Z,8,AC,waiver,successful,2.0,FWD,Delap,Cunha,2,101,2,148,-47,-1.5161290322580645,0,97.0,4.0,-51.0
+1170,2024-10-17T19:23:49.965927Z,8,LB,waiver,unsuccessful - player in already been picked up,13.0,FWD,Delap,Vardy,2,101,6,104,-3,-0.0967741935483871,-4,0.0,101.0,-104.0
+1171,2025-02-20T21:04:12.040731Z,26,PV,free agent,successful,,MID,Johnson,Eze,14,47,3,73,-26,-2.0,11,44.0,3.0,-29.0
+1172,2024-09-10T16:47:06.115348Z,4,PV,waiver,unsuccessful - player out already gone,10.0,MID,Minteh,Hee Chan,2,92,1,33,59,1.6857142857142857,1,0.0,92.0,-33.0
+1173,2024-09-10T16:47:06.115272Z,4,PV,waiver,successful,3.0,MID,Semenyo,Hee Chan,1,146,1,33,113,3.2285714285714286,0,29.0,117.0,-4.0
+1174,2024-09-10T16:47:06.115327Z,4,PV,waiver,unsuccessful - player out already gone,9.0,MID,Rodrigo,Hee Chan,1,3,1,33,-30,-0.8571428571428571,0,2.0,1.0,-31.0
+1175,2024-09-10T16:47:06.115386Z,4,PV,waiver,unsuccessful - player out already gone,14.0,MID,Minteh,Rice,2,92,0,124,-32,-0.9142857142857143,2,0.0,92.0,-124.0
+1176,2024-09-10T16:47:06.115368Z,4,PV,waiver,successful,11.0,MID,Rodrigo,Rice,1,3,0,124,-121,-3.4571428571428573,1,2.0,1.0,-122.0
+1177,2024-09-10T16:47:06.115404Z,4,PV,waiver,unsuccessful - player out already gone,15.0,MID,Szmodics,Rice,1,45,0,124,-79,-2.257142857142857,1,0.0,45.0,-124.0
+1178,2024-12-12T12:40:23.933666Z,16,PV,waiver,unsuccessful - player out already gone,9.0,DEF,Udogie,Walker,1,10,0,2,8,0.34782608695652173,1,0.0,10.0,-2.0
+1179,2024-12-12T12:40:23.933619Z,16,PV,waiver,successful,2.0,DEF,Gusto,Walker,2,42,0,2,40,1.7391304347826086,2,7.0,35.0,5.0
+1180,2024-11-01T07:49:41.756467Z,10,PV,waiver,successful,2.0,DEF,N.Semedo,Walker,1,74,0,6,68,2.3448275862068964,1,16.0,58.0,10.0
+1181,2024-11-01T07:49:41.756511Z,10,PV,waiver,unsuccessful - player out already gone,8.0,DEF,Dawson,Walker,1,7,0,6,1,0.034482758620689655,1,0.0,7.0,-6.0
+1182,2025-01-17T10:33:42.682582Z,22,PV,waiver,unsuccessful - player out already gone,10.0,DEF,Guéhi,Bassey,8,46,6,35,11,0.6470588235294118,2,0.0,46.0,-35.0
+1183,2025-01-17T10:33:42.682535Z,22,PV,waiver,successful,5.0,DEF,De Ligt,Bassey,1,23,6,35,-12,-0.7058823529411765,-5,0.0,23.0,-35.0
+1184,2025-01-17T14:06:20.986069Z,22,AC,free agent,successful,,DEF,Guéhi,Tarkowski,8,46,1,44,2,0.11764705882352941,7,43.0,3.0,-1.0
+1185,2025-05-25T05:43:40.017950Z,38,PV,free agent,successful,,DEF,Botman,Konsa,6,6,1,1,5,5.0,5,6.0,0.0,5.0
+1186,2024-10-03T20:08:41.022134Z,7,PV,waiver,successful,1.0,DEF,Walker,Mazraoui,1,7,1,63,-56,-1.75,0,2.0,5.0,-61.0
+1187,2025-04-25T21:17:43.795452Z,34,PV,free agent,successful,,DEF,Tete,Aina,2,5,1,5,0,0.0,1,2.0,3.0,-3.0
+1188,2024-12-28T07:58:36.377215Z,19,PV,waiver,unsuccessful - player in already been picked up,2.0,MID,Saka,Martinelli,0,20,9,62,-42,-2.1,-9,0.0,20.0,-62.0
+1189,2024-12-28T09:31:21.387920Z,19,IR,waiver,successful,1.0,MID,Saka,Tonali,0,20,3,78,-58,-2.9,-3,20.0,0.0,-58.0
+1190,2024-12-28T09:31:21.388033Z,19,IR,waiver,unsuccessful - player out already gone,11.0,MID,Smith Rowe,Tonali,1,53,3,78,-25,-1.25,-2,0.0,53.0,-78.0
+1191,2024-12-28T09:31:21.388052Z,19,IR,waiver,unsuccessful - player out already gone,12.0,MID,Bruno G.,Tonali,3,76,3,78,-2,-0.1,0,0.0,76.0,-78.0
+1192,2024-12-28T07:37:44.524577Z,19,MN,waiver,unsuccessful - player in already been picked up,6.0,MID,Saka,Szoboszlai,0,20,0,83,-63,-3.15,0,0.0,20.0,-83.0
+1193,2024-12-28T07:37:44.524609Z,19,MN,waiver,unsuccessful - player out already gone,10.0,MID,Bruno G.,Szoboszlai,3,76,0,83,-7,-0.35,3,0.0,76.0,-83.0
+1194,2024-12-28T07:37:44.524594Z,19,MN,waiver,successful,7.0,MID,I.Sarr,Szoboszlai,2,85,0,83,2,0.1,2,2.0,83.0,-81.0
+1195,2025-04-25T07:41:59.008700Z,34,LB,waiver,successful,18.0,MID,Gordon,Savinho,1,8,0,2,6,1.2,1,2.0,6.0,0.0
+1196,2025-05-25T05:45:24.101990Z,38,PV,free agent,successful,,MID,Elliott,Garnacho,1,1,0,0,1,1.0,1,0.0,1.0,0.0
+1197,2025-05-02T08:50:56.446208Z,35,PV,free agent,successful,,MID,Garnacho,Szoboszlai,12,14,1,15,-1,-0.25,11,14.0,0.0,-1.0
+1198,2024-09-26T15:19:01.123198Z,6,MN,waiver,successful,11.0,MID,Madueke,Ward-Prowse,5,92,2,46,46,1.393939393939394,3,52.0,40.0,6.0
+1199,2024-09-26T15:19:01.123226Z,6,MN,waiver,unsuccessful - player out already gone,22.0,MID,McNeil,Ward-Prowse,15,69,2,46,23,0.696969696969697,13,0.0,69.0,-46.0
+1200,2025-03-08T10:38:41.392887Z,28,PV,free agent,successful,,DEF,Rúben,Colwill,2,49,6,44,5,0.45454545454545453,-4,40.0,9.0,-4.0
+1201,2024-08-23T15:29:34.110676Z,2,PV,free agent,successful,,GKP,Sánchez,Areola,1,124,6,68,56,1.5135135135135136,-5,44.0,80.0,-24.0
+1202,2025-03-08T10:29:12.524367Z,28,PV,free agent,successful,,GKP,Onana,Arrizabalaga,3,29,1,36,-7,-0.6363636363636364,2,9.0,20.0,-27.0
+1203,2024-09-26T09:38:21.399714Z,6,PV,waiver,successful,2.0,FWD,Nketiah,Muniz,2,49,1,75,-26,-0.7878787878787878,1,3.0,46.0,-72.0
+1204,2024-12-06T10:36:16.599589Z,15,PV,waiver,successful,3.0,MID,Sancho,Semenyo,8,57,2,115,-58,-2.4166666666666665,6,23.0,34.0,-92.0
+1205,2025-01-24T10:46:45.835975Z,23,PV,waiver,unsuccessful - player in already been picked up,8.0,DEF,Konaté,De Ligt,5,51,1,22,29,1.8125,4,0.0,51.0,-22.0
+1206,2025-01-24T10:46:45.836022Z,23,PV,waiver,successful,9.0,DEF,Calafiori,De Ligt,7,13,1,22,-9,-0.5625,6,0.0,13.0,-22.0
+1207,2025-01-24T09:26:01.041107Z,23,IR,waiver,successful,2.0,DEF,Konaté,Aké,5,51,0,1,50,3.125,5,51.0,0.0,50.0
+1208,2024-12-26T08:31:51.982440Z,18,PV,free agent,successful,,DEF,Muñoz,De Ligt,6,91,0,26,65,3.0952380952380953,6,43.0,48.0,17.0
+1209,2025-04-10T10:14:05.435499Z,32,MN,waiver,successful,5.0,DEF,Chalobah,Aina,1,15,0,5,10,1.4285714285714286,1,3.0,12.0,-2.0
+1210,2025-04-10T10:14:05.435575Z,32,MN,waiver,unsuccessful - player out already gone,16.0,DEF,Tosin,Van Hecke,0,15,0,11,4,0.5714285714285714,0,0.0,15.0,-11.0
+1211,2025-04-10T10:14:05.435553Z,32,MN,waiver,successful,12.0,DEF,Dalot,Van Hecke,3,5,0,11,-6,-0.8571428571428571,3,1.0,4.0,-10.0
+1212,2025-01-24T10:46:45.836076Z,23,PV,waiver,unsuccessful - player out already gone,14.0,MID,Szoboszlai,Sancho,13,79,2,32,47,2.9375,11,0.0,79.0,-32.0
+1213,2025-01-24T10:46:45.836056Z,23,PV,waiver,successful,13.0,MID,Eze,Sancho,2,77,2,32,45,2.8125,0,4.0,73.0,-28.0
+1214,2025-04-05T08:03:43.151298Z,31,LB,free agent,successful,,DEF,Spence,Collins,5,8,7,36,-28,-3.5,-2,3.0,5.0,-33.0
+1215,2025-04-17T05:25:41.519575Z,33,PV,waiver,successful,3.0,GKP,Henderson,Kelleher,10,22,0,0,22,3.6666666666666665,10,0.0,22.0,0.0
+1216,2025-04-18T11:21:56.463789Z,33,IR,waiver,unsuccessful - player in already been picked up,16.0,GKP,Henderson,Sánchez,10,22,2,27,-5,-0.8333333333333334,8,0.0,22.0,-27.0
+1217,2025-04-17T21:01:33.434365Z,33,MN,waiver,unsuccessful - player in already been picked up,24.0,GKP,Henderson,Onana,10,22,2,6,16,2.6666666666666665,8,0.0,22.0,-6.0
+1218,2025-01-31T08:10:38.252327Z,24,PV,waiver,successful,8.0,GKP,Arrizabalaga,Sánchez,2,44,0,52,-8,-0.5333333333333333,2,3.0,41.0,-49.0
+1219,2024-12-20T10:25:46.754536Z,17,PV,waiver,successful,1.0,DEF,Bassey,Pau,6,46,2,27,19,0.8636363636363636,4,2.0,44.0,-25.0
+1220,2025-04-17T05:25:41.519628Z,33,PV,waiver,successful,14.0,DEF,Aina,White,0,5,6,19,-14,-2.3333333333333335,-6,3.0,2.0,-16.0
+1221,2024-11-27T21:16:24.671318Z,13,PV,waiver,unsuccessful - player in already been picked up,3.0,DEF,Pedro Porro,N.Semedo,2,49,-1,65,-16,-0.6153846153846154,3,0.0,49.0,-65.0
+1222,2024-11-24T16:29:20.586528Z,13,MN,waiver,unsuccessful - player in already been picked up,4.0,DEF,Pedro Porro,Kerkez,2,49,7,103,-54,-2.076923076923077,-5,0.0,49.0,-103.0
+1223,2024-11-23T17:01:49.740050Z,13,AC,waiver,successful,2.0,DEF,Pedro Porro,Mitchell,2,49,1,97,-48,-1.8461538461538463,1,32.0,17.0,-65.0
+1224,2024-12-02T20:43:40.601619Z,14,PV,free agent,successful,,DEF,Pau,N.Semedo,0,34,0,66,-32,-1.28,0,7.0,27.0,-59.0
+1225,2025-03-31T14:45:29.268146Z,30,LB,waiver,successful,6.0,DEF,James,White,1,30,0,21,9,1.0,1,11.0,19.0,-10.0
+1226,2025-05-02T07:29:35.171127Z,35,PV,free agent,successful,,DEF,Aina,Tete,1,4,1,3,1,0.25,0,3.0,1.0,0.0
+1227,2024-12-02T20:43:40.610058Z,14,PV,free agent,successful,,DEF,Van Hecke,Hall,1,61,1,67,-6,-0.24,0,1.0,60.0,-66.0
+1228,2025-05-09T12:14:36.981092Z,36,PV,waiver,successful,13.0,GKP,Palmer,Ortega Moreno,3,4,0,0,4,1.3333333333333333,3,1.0,3.0,1.0
+1229,2025-04-25T21:26:52.845563Z,34,PV,free agent,successful,,MID,Szoboszlai,Foden,9,24,0,5,19,3.8,9,9.0,15.0,4.0
+1230,2025-05-02T08:50:56.428491Z,35,PV,free agent,successful,,MID,Ramsey,Diogo J.,1,2,1,3,-1,-0.25,0,1.0,1.0,-2.0
+1231,2025-05-02T08:54:18.020473Z,35,PV,free agent,successful,,GKP,Ortega Moreno,Henderson,0,0,3,12,-12,-3.0,-3,0.0,0.0,-12.0
+1232,2025-04-03T08:54:53.612664Z,31,IR,waiver,successful,18.0,FWD,Darwin,Nketiah,1,6,-2,17,-11,-1.375,3,1.0,5.0,-16.0
+1233,2024-12-19T19:17:44.967486Z,17,IR,waiver,successful,15.0,MID,Tonali,Barnes,3,84,1,69,15,0.6818181818181818,2,3.0,81.0,-66.0
+1234,2024-12-19T19:17:44.967503Z,17,IR,waiver,unsuccessful - player out already gone,16.0,MID,Bruno G.,Barnes,7,86,1,69,17,0.7727272727272727,6,0.0,86.0,-69.0
+1235,2024-12-23T17:42:42.050099Z,18,AC,waiver,successful,1.0,MID,Semenyo,Georginio,3,102,1,41,61,2.9047619047619047,2,50.0,52.0,9.0
+1236,2024-12-13T13:53:45.073638Z,16,IR,free agent,successful,,MID,Barnes,Eze,1,70,1,107,-37,-1.608695652173913,0,1.0,69.0,-106.0
+1237,2025-05-09T12:04:07.193245Z,36,IR,waiver,successful,8.0,DEF,Mazraoui,O'Brien,1,3,0,13,-10,-3.3333333333333335,1,1.0,2.0,-12.0
+1238,2025-05-09T12:04:07.193260Z,36,IR,waiver,unsuccessful - player out already gone,23.0,DEF,Van Hecke,O'Brien,7,10,0,13,-3,-1.0,7,0.0,10.0,-13.0
+1239,2025-04-28T09:55:12.587512Z,35,IR,waiver,successful,30.0,DEF,Akanji,Livramento,1,15,2,13,2,0.5,-1,15.0,0.0,2.0
+1240,2025-04-28T09:55:12.587357Z,35,IR,waiver,unsuccessful - player in already been picked up,21.0,DEF,Toffolo,Livramento,0,0,2,13,-13,-3.25,-2,0.0,0.0,-13.0
+1241,2024-11-01T12:50:29.645702Z,10,IR,free agent,successful,,DEF,Mazraoui,Konsa,2,59,0,84,-25,-0.8620689655172413,2,23.0,36.0,-61.0
+1242,2024-12-19T19:17:44.967340Z,17,IR,waiver,successful,7.0,DEF,Mazraoui,Aït-Nouri,1,42,0,85,-43,-1.9545454545454546,1,10.0,32.0,-75.0
+1243,2024-12-19T19:17:44.967417Z,17,IR,waiver,unsuccessful - player out already gone,11.0,DEF,Martinez,Aït-Nouri,1,27,0,85,-58,-2.6363636363636362,1,0.0,27.0,-85.0
+1244,2024-12-19T19:17:44.967399Z,17,IR,waiver,unsuccessful - player out already gone,10.0,DEF,Walker,Aït-Nouri,1,2,0,85,-83,-3.772727272727273,1,0.0,2.0,-85.0
+1245,2024-12-19T19:17:44.967380Z,17,IR,waiver,unsuccessful - player out already gone,9.0,DEF,Stones,Aït-Nouri,1,9,0,85,-76,-3.4545454545454546,1,0.0,9.0,-85.0
+1246,2024-12-19T19:17:44.967434Z,17,IR,waiver,unsuccessful - player out already gone,12.0,DEF,Tete,Aït-Nouri,0,12,0,85,-73,-3.3181818181818183,0,0.0,12.0,-85.0
+1247,2024-12-19T19:17:44.967469Z,17,IR,waiver,unsuccessful - player out already gone,14.0,DEF,Walker,Akanji,1,2,1,38,-36,-1.6363636363636365,0,0.0,2.0,-38.0
+1248,2024-12-19T19:17:44.967452Z,17,IR,waiver,successful,13.0,DEF,Stones,Akanji,1,9,1,38,-29,-1.3181818181818181,0,0.0,9.0,-38.0
+1249,2025-03-06T10:38:57.952949Z,28,IR,waiver,unsuccessful - player in already been picked up,13.0,DEF,C.Richards,Digne,6,21,6,20,1,0.09090909090909091,0,6.0,15.0,-14.0
+1250,2025-03-06T10:38:57.952930Z,28,IR,waiver,successful,11.0,DEF,C.Richards,Dalot,6,21,2,25,-4,-0.36363636363636365,4,6.0,15.0,-19.0
+1251,2025-03-06T10:38:57.952910Z,28,IR,waiver,unsuccessful - player in already been picked up,10.0,DEF,White,Dalot,0,21,2,25,-4,-0.36363636363636365,-2,0.0,21.0,-25.0
+1252,2024-12-10T07:26:37.977035Z,16,LB,waiver,unsuccessful - player out already gone,14.0,DEF,Livramento,White,6,74,0,23,51,2.217391304347826,6,0.0,74.0,-23.0
+1253,2024-12-10T07:26:37.976989Z,16,LB,waiver,successful,8.0,DEF,Schär,White,6,86,0,23,63,2.739130434782609,6,23.0,63.0,0.0
+1254,2025-01-16T12:49:28.367301Z,22,AC,waiver,successful,1.0,DEF,James,Davis,6,42,-1,4,38,2.235294117647059,7,9.0,33.0,5.0
+1255,2024-12-10T10:28:52.221874Z,16,IR,waiver,unsuccessful - player in already been picked up,10.0,DEF,Schär,Veltman,6,86,0,25,61,2.652173913043478,6,0.0,86.0,-25.0
+1256,2024-12-10T10:28:52.221895Z,16,IR,waiver,successful,11.0,DEF,Trippier,Veltman,1,57,0,25,32,1.391304347826087,1,0.0,57.0,-25.0
+1257,2024-09-17T08:28:29.546393Z,5,IR,waiver,successful,3.0,DEF,W.Fofana,Robinson,0,16,2,91,-75,-2.2058823529411766,-2,0.0,16.0,-91.0
+1258,2024-09-17T08:28:29.546454Z,5,IR,waiver,unsuccessful - player out already gone,5.0,DEF,Colwill,Robinson,7,100,2,91,9,0.2647058823529412,5,0.0,100.0,-91.0
+1259,2025-01-03T10:38:22.079150Z,20,IR,waiver,successful,20.0,DEF,Diop,Gomez,1,8,0,0,8,0.42105263157894735,1,1.0,7.0,1.0
+1260,2024-12-28T09:31:21.387974Z,19,IR,waiver,successful,5.0,DEF,Digne,Konaté,1,42,0,60,-18,-0.9,1,22.0,20.0,-38.0
+1261,2024-12-28T09:31:21.387995Z,19,IR,waiver,unsuccessful - player out already gone,8.0,DEF,Castagne,Konaté,1,29,0,60,-31,-1.55,1,0.0,29.0,-60.0
+1262,2025-02-25T16:45:30.062729Z,27,IR,free agent,successful,,DEF,Tosin,Van Hecke,9,38,1,21,17,1.4166666666666667,8,16.0,22.0,-5.0
+1263,2025-05-02T09:01:14.321425Z,35,IR,free agent,successful,,DEF,J.Timber,Justin,0,0,7,20,-20,-5.0,-7,0.0,0.0,-20.0
+1264,2024-12-20T11:35:43.624550Z,17,IR,free agent,successful,,GKP,Dúbravka,Pope,6,38,0,54,-16,-0.7272727272727273,6,24.0,14.0,-30.0
+1265,2025-01-17T09:57:58.977656Z,22,IR,waiver,successful,11.0,GKP,Dúbravka,Pope,2,7,0,54,-47,-2.764705882352941,2,6.0,1.0,-48.0
+1266,2025-05-13T10:05:25.773762Z,37,IR,waiver,successful,3.0,GKP,Henderson,Vicario,1,3,0,1,2,1.0,1,1.0,2.0,0.0
+1267,2024-12-02T10:04:51.009443Z,14,IR,waiver,successful,2.0,GKP,Kelleher,Vicario,2,10,0,29,-19,-0.76,2,2.0,8.0,-27.0
+1268,2024-10-21T09:27:43.445619Z,9,IR,waiver,successful,5.0,DEF,Udogie,J.Timber,2,25,2,95,-70,-2.3333333333333335,0,5.0,20.0,-90.0
+1269,2024-10-21T09:27:43.445640Z,9,IR,waiver,unsuccessful - player out already gone,7.0,DEF,Aït-Nouri,J.Timber,6,102,2,95,7,0.23333333333333334,4,17.0,85.0,-78.0
+1270,2024-10-21T09:27:43.445659Z,9,IR,waiver,successful,8.0,DEF,Aït-Nouri,Schär,6,102,0,103,-1,-0.03333333333333333,6,17.0,85.0,-86.0
+1271,2025-01-17T09:57:58.977620Z,22,IR,waiver,unsuccessful - player out already gone,8.0,MID,Joelinton,Smith Rowe,1,27,11,49,-22,-1.2941176470588236,-10,3.0,24.0,-46.0
+1272,2025-01-17T09:57:58.977598Z,22,IR,waiver,successful,4.0,MID,Jones,Smith Rowe,1,30,11,49,-19,-1.1176470588235294,-10,0.0,30.0,-49.0
+1273,2025-01-17T11:52:13.695185Z,22,IR,free agent,successful,,MID,Joelinton,Jones,1,27,1,30,-3,-0.17647058823529413,0,3.0,24.0,-27.0
+1274,2025-04-03T08:54:53.612602Z,31,IR,waiver,successful,8.0,MID,Joelinton,O.Dango,6,18,2,10,8,1.0,4,0.0,18.0,-10.0
+1275,2025-04-03T08:54:53.612641Z,31,IR,waiver,unsuccessful - player in already been picked up,17.0,MID,Madueke,O.Dango,1,19,2,10,9,1.125,-1,0.0,19.0,-10.0
+1276,2025-04-03T08:54:53.612622Z,31,IR,waiver,unsuccessful - player out already gone,16.0,MID,M.Asensio,O.Dango,1,13,2,10,3,0.375,-1,0.0,13.0,-10.0
+1277,2025-04-04T01:04:08.450457Z,31,AC,waiver,successful,1.0,MID,Madueke,Semenyo,1,19,6,52,-33,-4.125,-5,10.0,9.0,-42.0
+1278,2025-04-04T12:56:26.082478Z,31,BP,free agent,successful,,MID,M.Asensio,Trossard,1,13,9,51,-38,-4.75,-8,13.0,0.0,-38.0
+1279,2025-02-11T08:06:40.764262Z,25,IR,waiver,successful,2.0,MID,Tel,Szoboszlai,3,42,4,61,-19,-1.3571428571428572,-1,0.0,42.0,-61.0
+1280,2025-04-04T12:12:47.495475Z,31,IR,free agent,successful,,MID,Grealish,Joelinton,1,3,6,18,-15,-1.875,-5,1.0,2.0,-17.0
+1281,2025-05-02T08:51:21.588237Z,35,IR,free agent,successful,,MID,Doku,Grealish,6,11,0,1,10,2.5,6,7.0,4.0,6.0
+1282,2024-08-23T14:56:02.766257Z,2,IR,free agent,successful,,DEF,Robinson,Quansah,7,104,0,8,96,2.5945945945945947,7,13.0,91.0,5.0
+1283,2024-10-16T15:42:04.858165Z,8,IR,waiver,unsuccessful - player out already gone,12.0,DEF,Robinson,Colwill,1,81,1,91,-10,-0.3225806451612903,0,0.0,81.0,-91.0
+1284,2024-10-16T15:42:04.858104Z,8,IR,waiver,successful,5.0,DEF,Schär,Colwill,2,105,1,91,14,0.45161290322580644,1,2.0,103.0,-89.0
+1285,2024-10-11T06:26:17.382007Z,8,BP,waiver,successful,15.0,DEF,Robinson,Zabarnyi,1,81,6,82,-1,-0.03225806451612903,-5,20.0,61.0,-62.0
+1286,2025-02-24T13:12:54.709268Z,27,IR,waiver,successful,3.0,GKP,Sánchez,Dúbravka,0,52,0,0,52,4.333333333333333,0,2.0,50.0,2.0
+1287,2025-04-04T12:11:35.951480Z,31,IR,free agent,successful,,GKP,Sánchez,Arrizabalaga,6,34,1,33,1,0.125,5,2.0,32.0,-31.0
+1288,2025-02-14T08:53:01.083073Z,25,IR,free agent,successful,,FWD,Muniz,Calvert-Lewin,1,32,0,4,28,2.0,1,2.0,30.0,-2.0
+1289,2025-04-28T09:55:12.587460Z,35,IR,waiver,unsuccessful - player out already gone,27.0,FWD,Calvert-Lewin,Højlund,1,4,0,6,-2,-0.5,1,0.0,4.0,-6.0
+1290,2025-04-28T09:55:12.587199Z,35,IR,waiver,successful,3.0,FWD,Beto,Højlund,6,18,0,6,12,3.0,6,8.0,10.0,2.0
+1291,2025-04-28T20:21:57.583794Z,35,MN,waiver,unsuccessful - player in already been picked up,24.0,FWD,Beto,Welbeck,6,18,1,15,3,0.75,5,0.0,18.0,-15.0
+1292,2025-03-07T12:41:59.102798Z,28,IR,free agent,successful,,FWD,Darwin,Muniz,10,16,1,21,-5,-0.45454545454545453,9,11.0,5.0,-10.0
+1293,2024-11-14T15:07:41.220339Z,12,IR,waiver,unsuccessful - player in already been picked up,7.0,DEF,Digne,Udogie,1,52,6,20,32,1.1851851851851851,-5,0.0,52.0,-20.0
+1294,2024-11-14T15:07:41.220285Z,12,IR,waiver,successful,2.0,DEF,Veltman,Udogie,2,27,6,20,7,0.25925925925925924,-4,2.0,25.0,-18.0
+1295,2024-11-14T15:07:41.220363Z,12,IR,waiver,unsuccessful - player out already gone,8.0,DEF,Schär,Udogie,1,96,6,20,76,2.814814814814815,-5,0.0,96.0,-20.0
+1296,2024-11-22T10:03:29.251060Z,12,MN,waiver,successful,4.0,DEF,Digne,Collins,1,52,6,98,-46,-1.7037037037037037,-5,2.0,50.0,-96.0
+1297,2024-11-22T10:03:29.251123Z,12,MN,waiver,unsuccessful - player out already gone,10.0,DEF,Kerkez,Collins,1,104,6,98,6,0.2222222222222222,-5,91.0,13.0,-7.0
+1298,2024-11-19T22:42:39.379090Z,12,AC,waiver,unsuccessful - player in already been picked up,6.0,DEF,Digne,Mitchell,1,52,0,97,-45,-1.6666666666666667,1,0.0,52.0,-97.0
+1299,2024-11-22T10:03:29.251103Z,12,MN,waiver,unsuccessful - player in already been picked up,9.0,DEF,Veltman,Romero,2,27,0,15,12,0.4444444444444444,2,0.0,27.0,-15.0
+1300,2024-11-22T22:15:33.326623Z,12,MN,free agent,successful,,DEF,Kerkez,Romero,1,104,0,15,89,3.2962962962962963,1,91.0,13.0,76.0
+1301,2024-12-10T10:28:52.221826Z,16,IR,waiver,successful,3.0,MID,Enzo,Nkunku,5,81,1,29,52,2.260869565217391,4,11.0,70.0,-18.0
+1302,2024-12-13T11:53:02.521074Z,16,MN,waiver,unsuccessful - player in already been picked up,6.0,MID,Enzo,Kluivert,5,81,3,96,-15,-0.6521739130434783,2,0.0,81.0,-96.0
+1303,2024-12-13T11:53:02.521052Z,16,MN,waiver,unsuccessful - player in already been picked up,5.0,MID,Enzo,Smith Rowe,5,81,1,54,27,1.173913043478261,4,0.0,81.0,-54.0
+1304,2024-12-13T11:53:02.520997Z,16,MN,waiver,unsuccessful - player in already been picked up,4.0,MID,Iwobi,Smith Rowe,2,80,1,54,26,1.1304347826086956,1,0.0,80.0,-54.0
+1305,2024-09-13T13:01:11.925370Z,4,IR,free agent,successful,,DEF,Veltman,Schär,7,47,8,120,-73,-2.085714285714286,-1,10.0,37.0,-110.0
+1306,2025-02-17T08:26:04.799507Z,26,IR,waiver,successful,19.0,DEF,Veltman,Botman,0,1,0,11,-10,-0.7692307692307693,0,0.0,1.0,-11.0
+1307,2025-01-21T19:59:14.029281Z,23,BP,waiver,successful,1.0,FWD,Darwin,Evanilson,1,22,0,50,-28,-1.75,1,3.0,19.0,-47.0
+1308,2024-09-17T08:28:29.546476Z,5,IR,waiver,unsuccessful - player in already been picked up,6.0,FWD,Duran,Darwin,5,33,6,63,-30,-0.8823529411764706,-1,0.0,33.0,-63.0
+1309,2024-09-15T12:42:55.463738Z,5,BP,waiver,successful,1.0,FWD,Duran,Füllkrug,5,33,0,39,-6,-0.17647058823529413,5,8.0,25.0,-31.0
+1310,2025-03-12T10:42:16.808974Z,29,IR,waiver,successful,20.0,FWD,Zirkzee,Darwin,1,5,0,6,-1,-0.1,1,1.0,4.0,-5.0
+1311,2025-01-03T10:38:22.079027Z,20,IR,waiver,successful,3.0,FWD,Mateta,Darwin,8,91,0,33,58,3.0526315789473686,8,83.0,8.0,50.0
+1312,2025-01-02T09:41:49.718716Z,20,MN,waiver,unsuccessful - player in already been picked up,6.0,FWD,Mateta,Welbeck,8,91,0,56,35,1.8421052631578947,8,0.0,91.0,-56.0
+1313,2025-03-06T10:38:57.952823Z,28,IR,waiver,successful,1.0,GKP,Jørgensen,Sánchez,0,0,9,52,-52,-4.7272727272727275,-9,0.0,0.0,-52.0
+1314,2025-03-14T13:57:44.189066Z,29,IR,free agent,successful,,DEF,Zabarnyi,Tosin,1,30,1,22,8,0.8,0,2.0,28.0,-20.0
+1315,2025-02-17T08:26:04.799489Z,26,IR,waiver,successful,11.0,DEF,Cucurella,Bradley,1,73,0,25,48,3.6923076923076925,1,0.0,73.0,-25.0
+1316,2024-10-28T11:16:50.556584Z,10,IR,waiver,successful,3.0,MID,Iwobi,Rogers,2,116,9,126,-10,-0.3448275862068966,-7,34.0,82.0,-92.0
+1317,2025-05-02T08:54:20.970391Z,35,IR,free agent,successful,,DEF,Justin,Toffolo,7,20,0,0,20,5.0,7,0.0,20.0,0.0
+1318,2025-04-28T09:55:12.587442Z,35,IR,waiver,successful,26.0,MID,Grealish,Andreas,0,1,0,4,-3,-0.75,0,0.0,1.0,-4.0
+1319,2025-02-21T06:29:23.697028Z,26,IR,free agent,successful,,DEF,Van Hecke,Cucurella,7,28,1,73,-45,-3.4615384615384617,6,7.0,21.0,-66.0
+1320,2025-02-14T10:27:48.643323Z,25,IR,free agent,successful,,DEF,Bradley,Mykolenko,2,27,2,49,-22,-1.5714285714285714,0,2.0,25.0,-47.0
+1321,2024-12-28T09:31:21.388014Z,19,IR,waiver,successful,9.0,DEF,Aké,Stones,6,14,0,8,6,0.3,6,13.0,1.0,5.0
+1322,2024-12-06T21:32:36.032888Z,15,MN,free agent,successful,,MID,Kluivert,Barnes,2,98,7,77,21,0.875,-5,85.0,13.0,8.0
+1323,2025-01-17T02:40:37.362697Z,22,MN,waiver,successful,7.0,MID,Mitoma,Madueke,12,65,7,39,26,1.5294117647058822,5,32.0,33.0,-7.0
+1324,2024-12-13T15:17:32.555592Z,16,MN,free agent,successful,,DEF,Robinson,Guéhi,6,57,-1,68,-11,-0.4782608695652174,7,36.0,21.0,-32.0
+1325,2024-11-08T13:49:30.604027Z,11,MN,free agent,successful,,DEF,Murillo,Veltman,7,93,2,29,64,2.2857142857142856,5,28.0,65.0,-1.0
+1326,2024-08-20T19:07:53.414698Z,2,MN,waiver,successful,9.0,FWD,Antonio,Richarlison,2,40,1,34,6,0.16216216216216217,1,0.0,40.0,-34.0
+1327,2024-12-11T11:06:05.671207Z,16,AC,waiver,successful,1.0,MID,Iwobi,Trossard,2,80,1,104,-24,-1.0434782608695652,1,29.0,51.0,-75.0
+1328,2024-10-10T19:56:50.137069Z,8,MN,waiver,successful,4.0,MID,Kovačić,B.Fernandes,2,73,5,158,-85,-2.7419354838709675,-3,4.0,69.0,-154.0
+1329,2024-12-23T15:04:24.558204Z,18,MN,waiver,successful,17.0,DEF,Murillo,Guéhi,8,70,7,70,0,0.0,1,19.0,51.0,-51.0
+1330,2025-05-15T09:31:31.681023Z,37,MN,waiver,successful,34.0,FWD,Ndiaye,Højlund,13,15,2,4,11,5.5,11,13.0,2.0,9.0
+1331,2025-03-14T12:04:19.069686Z,29,MN,waiver,unsuccessful - player in already been picked up,31.0,MID,Trossard,Schade,3,55,2,47,8,0.8,1,0.0,55.0,-47.0
+1332,2025-03-14T12:04:19.069668Z,29,MN,waiver,successful,24.0,MID,Bruno G.,Schade,0,32,2,47,-15,-1.5,-2,0.0,32.0,-47.0
+1333,2025-05-09T05:58:32.055483Z,36,MN,waiver,successful,5.0,DEF,Kilman,Burn,6,8,11,14,-6,-2.0,-5,7.0,1.0,-7.0
+1334,2025-05-09T05:58:32.055567Z,36,MN,waiver,unsuccessful - player out already gone,21.0,DEF,Pau,Burn,1,8,11,14,-6,-2.0,-10,0.0,8.0,-14.0
+1335,2025-05-09T05:58:32.055544Z,36,MN,waiver,unsuccessful - player out already gone,20.0,DEF,Emerson,Burn,1,1,11,14,-13,-4.333333333333333,-10,0.0,1.0,-14.0
+1336,2024-10-17T19:23:49.965872Z,8,LB,waiver,successful,6.0,DEF,Justin,Livramento,1,41,2,90,-49,-1.5806451612903225,-1,3.0,38.0,-87.0
+1337,2025-04-25T18:39:38.246334Z,34,MN,free agent,successful,,DEF,Estupiñan,Chalobah,1,11,9,12,-1,-0.2,-8,1.0,10.0,-11.0
+1338,2025-04-25T18:33:33.269913Z,34,MN,free agent,successful,,MID,Matheus N.,Maddison,0,14,4,4,10,2.0,-4,3.0,11.0,-1.0
+1339,2024-11-01T09:38:16.047829Z,10,MN,waiver,unsuccessful - player out already gone,11.0,DEF,Veltman,Kilman,1,30,1,62,-32,-1.103448275862069,0,0.0,30.0,-62.0
+1340,2024-11-01T09:38:16.047812Z,10,MN,waiver,successful,10.0,DEF,Aina,Kilman,15,96,1,62,34,1.1724137931034482,14,91.0,5.0,29.0
+1341,2024-11-01T13:12:18.782602Z,10,MN,free agent,successful,,DEF,Veltman,Murillo,1,30,6,99,-69,-2.3793103448275863,-5,0.0,30.0,-99.0
+1342,2024-12-19T09:53:06.709204Z,17,LB,waiver,unsuccessful - player in already been picked up,4.0,DEF,Milenković,Dunk,6,86,5,20,66,3.0,1,0.0,86.0,-20.0
+1343,2024-12-19T09:53:06.709250Z,17,LB,waiver,successful,5.0,DEF,Udogie,Dunk,0,9,5,20,-11,-0.5,-5,0.0,9.0,-20.0
+1344,2025-01-02T09:41:49.718770Z,20,MN,waiver,unsuccessful - player in already been picked up,7.0,DEF,Mitchell,Murillo,2,66,9,62,4,0.21052631578947367,-7,0.0,66.0,-62.0
+1345,2025-01-02T08:27:34.625917Z,20,BP,waiver,successful,2.0,DEF,Mitchell,Dalot,2,66,0,41,25,1.3157894736842106,2,50.0,16.0,9.0
+1346,2025-01-02T08:27:34.625969Z,20,BP,waiver,unsuccessful - player in already been picked up,9.0,DEF,Chalobah,Dalot,0,39,0,41,-2,-0.10526315789473684,0,0.0,39.0,-41.0
+1347,2025-02-27T18:03:40.670588Z,28,MN,waiver,successful,4.0,DEF,Mykolenko,Murillo,2,40,8,37,3,0.2727272727272727,-6,2.0,38.0,-35.0
+1348,2024-12-13T11:53:02.521129Z,16,MN,waiver,successful,13.0,GKP,Sels,Martinez,2,88,2,68,20,0.8695652173913043,0,48.0,40.0,-20.0
+1349,2024-11-01T09:38:16.047845Z,10,MN,waiver,successful,12.0,GKP,Henderson,Flekken,2,103,4,114,-11,-0.3793103448275862,-2,49.0,54.0,-65.0
+1350,2024-11-01T09:38:16.047796Z,10,MN,waiver,successful,9.0,DEF,Murillo,Martinez,6,99,1,46,53,1.8275862068965518,5,0.0,99.0,-46.0
+1351,2025-03-31T19:49:54.115609Z,30,MN,free agent,successful,,DEF,Van Hecke,Mykolenko,1,10,2,36,-26,-2.888888888888889,-1,1.0,9.0,-35.0
+1352,2025-04-10T10:14:05.435649Z,32,MN,waiver,successful,20.0,GKP,Onana,Henderson,0,6,2,24,-18,-2.5714285714285716,-2,0.0,6.0,-24.0
+1353,2025-01-25T16:22:56.421930Z,24,BP,waiver,successful,6.0,MID,O.Dango,Johnson,2,27,0,48,-21,-1.4,2,12.0,15.0,-36.0
+1354,2025-04-21T06:22:14.230728Z,34,BP,waiver,successful,12.0,DEF,Branthwaite,J.Timber,2,11,0,0,11,2.2,2,11.0,0.0,11.0
+1355,2024-10-11T06:26:17.381989Z,8,BP,waiver,successful,8.0,FWD,Strand Larsen,João Pedro,9,120,0,107,13,0.41935483870967744,9,35.0,85.0,-72.0
+1356,2024-10-11T06:26:17.381940Z,8,BP,waiver,successful,1.0,FWD,Antonio,G.Jesus,2,12,1,39,-27,-0.8709677419354839,1,5.0,7.0,-34.0
+1357,2025-01-15T20:00:07.973718Z,22,BP,waiver,successful,2.0,FWD,Ndiaye,G.Jesus,7,57,0,0,57,3.3529411764705883,7,24.0,33.0,24.0
+1358,2025-03-14T14:58:23.370782Z,29,BP,free agent,successful,,MID,Garnacho,O.Dango,8,36,1,13,23,2.3,7,8.0,28.0,-5.0
+1359,2024-08-23T07:53:19.685104Z,2,BP,waiver,successful,1.0,MID,Savinho,Garnacho,9,105,1,102,3,0.08108108108108109,8,19.0,86.0,-83.0
+1360,2025-04-21T06:22:14.230763Z,34,BP,waiver,successful,25.0,GKP,Flekken,Areola,13,28,3,15,13,2.6,10,28.0,0.0,13.0
+1361,2024-09-01T14:40:47.063476Z,4,BP,waiver,successful,8.0,GKP,Verbruggen,Steele,5,99,0,0,99,2.8285714285714287,5,55.0,44.0,55.0
+1362,2024-12-13T17:28:35.010176Z,16,BP,free agent,successful,,FWD,Armstrong,Wilson,2,15,0,16,-1,-0.043478260869565216,2,2.0,13.0,-14.0
+1363,2024-10-28T06:49:01.515043Z,10,BP,waiver,successful,1.0,FWD,Wilson,Duran,0,19,1,24,-5,-0.1724137931034483,-1,0.0,19.0,-24.0
+1364,2025-03-14T10:29:53.910473Z,29,BP,waiver,successful,14.0,FWD,Wilson,Ndiaye,0,11,0,33,-22,-2.2,0,0.0,11.0,-33.0
+1365,2024-09-26T21:30:36.771608Z,6,BP,waiver,successful,1.0,DEF,Zabarnyi,Dunk,2,86,-1,28,58,1.7575757575757576,3,4.0,82.0,-24.0
+1366,2025-04-24T11:15:39.013111Z,34,AC,waiver,successful,1.0,DEF,Alexander-Arnold,Robertson,5,7,2,8,-1,-0.2,3,5.0,2.0,-3.0
+1367,2025-03-14T14:54:59.113720Z,29,BP,free agent,successful,,GKP,Areola,Leno,3,27,13,34,-7,-0.7,-10,12.0,15.0,-22.0
+1368,2025-04-26T16:49:07.995262Z,35,AC,waiver,successful,1.0,MID,Eze,Madueke,10,35,2,9,26,6.5,8,35.0,0.0,26.0
+1369,2025-05-09T14:00:35.628856Z,36,AC,free agent,successful,,MID,Mitoma,Kluivert,1,11,1,5,6,2.0,0,1.0,10.0,-4.0
+1370,2024-09-07T12:50:55.572551Z,4,AC,waiver,successful,12.0,DEF,Davis,Gomez,6,44,0,14,30,0.8571428571428571,6,33.0,11.0,19.0
+1371,2025-05-23T12:45:53.298197Z,38,AC,waiver,successful,14.0,FWD,Nketiah,João Pedro,1,1,0,0,1,1.0,1,0.0,1.0,0.0
+1372,2024-08-22T11:42:44.342043Z,2,AC,waiver,successful,3.0,MID,Joelinton,Almirón,1,88,1,10,78,2.108108108108108,0,2.0,86.0,-8.0
+1373,2024-08-22T11:42:44.342085Z,2,AC,waiver,unsuccessful - player out already gone,10.0,MID,Onana,Almirón,1,55,1,10,45,1.2162162162162162,0,0.0,55.0,-10.0
+1374,2024-08-25T17:50:33.734412Z,3,AC,waiver,successful,5.0,MID,Thomas,Martinelli,1,94,1,119,-25,-0.6944444444444444,0,4.0,90.0,-115.0
+1375,2025-05-16T02:07:31.986304Z,37,AC,free agent,successful,,MID,I.Sarr,Trossard,5,14,3,7,7,3.5,2,5.0,9.0,-2.0
+1376,2024-09-26T07:10:25.571403Z,6,AC,waiver,successful,4.0,MID,Kovačić,Joelinton,1,89,1,84,5,0.15151515151515152,0,0.0,89.0,-84.0
+1377,2024-08-23T10:10:51.536262Z,2,AC,free agent,successful,,MID,Kovačić,Rodrigo,1,98,0,3,95,2.5675675675675675,1,1.0,97.0,-2.0
+1378,2025-04-16T19:44:55.974196Z,33,AC,waiver,successful,1.0,MID,Kluivert,Hudson-Odoi,2,11,1,4,7,1.1666666666666667,1,4.0,7.0,0.0
+1379,2024-09-19T12:56:10.535758Z,5,AC,waiver,successful,2.0,MID,Gibbs-White,Kovačić,-1,138,6,95,43,1.2647058823529411,-7,87.0,51.0,-8.0
+1380,2024-11-08T22:55:57.176413Z,11,AC,free agent,successful,,MID,Hudson-Odoi,Onana,1,66,2,36,30,1.0714285714285714,-1,11.0,55.0,-25.0
+1381,2024-09-27T12:30:04.860984Z,6,AC,free agent,successful,,MID,Adama,Gibbs-White,3,72,0,139,-67,-2.0303030303030303,3,3.0,69.0,-136.0
+1382,2024-10-11T13:48:51.717834Z,8,AC,waiver,successful,9.0,MID,Georginio,Thomas,6,70,2,85,-15,-0.4838709677419355,4,29.0,41.0,-56.0
+1383,2024-11-19T22:42:39.379025Z,12,AC,waiver,successful,1.0,MID,Damsgaard,Adama,3,91,1,57,34,1.2592592592592593,2,72.0,19.0,15.0
+1384,2025-04-26T03:50:10.320470Z,34,AC,free agent,successful,,GKP,Arrizabalaga,Ortega Moreno,3,15,0,0,15,3.0,3,3.0,12.0,3.0
+1385,2025-02-21T02:10:26.497315Z,26,AC,free agent,successful,,DEF,Spence,Rúben,8,20,1,56,-36,-2.769230769230769,7,11.0,9.0,-45.0
+1386,2024-11-29T12:57:46.121328Z,13,LB,free agent,successful,,DEF,Dunk,Justin,1,22,-1,37,-15,-0.5769230769230769,2,1.0,21.0,-36.0
+1387,2024-09-07T15:13:19.408287Z,4,LB,waiver,successful,13.0,FWD,Vardy,Zirkzee,8,117,2,54,63,1.8,6,80.0,37.0,26.0
+1388,2024-11-10T20:21:38.181591Z,12,LB,waiver,successful,5.0,MID,Amad,Szoboszlai,8,102,10,116,-14,-0.5185185185185185,-2,93.0,9.0,-23.0
+1389,2025-04-25T11:30:54.166081Z,34,LB,free agent,successful,,MID,Amad,Tonali,0,22,3,20,2,0.4,-3,22.0,0.0,2.0
+1390,2025-04-05T08:07:59.135768Z,31,LB,free agent,successful,,FWD,Füllkrug,Højlund,7,20,2,20,0,0.0,5,14.0,6.0,-6.0
+1391,2025-01-03T12:43:35.336230Z,20,LB,free agent,successful,,DEF,Collins,Chalobah,6,71,0,39,32,1.6842105263157894,6,31.0,40.0,-8.0
+1392,2025-01-24T16:59:11.251577Z,23,LB,free agent,successful,,DEF,Tarkowski,Schär,7,43,2,63,-20,-1.25,5,27.0,16.0,-36.0
+1393,2024-11-10T20:21:38.181644Z,12,LB,waiver,successful,11.0,DEF,Colwill,Van de Ven,2,85,0,5,80,2.962962962962963,2,20.0,65.0,15.0
+1394,2025-05-02T06:13:22.947237Z,35,LB,free agent,successful,,DEF,Cash,James,7,19,1,18,1,0.25,6,12.0,7.0,-6.0
+1395,2024-10-25T10:30:07.654488Z,9,LB,free agent,successful,,MID,Jones,Sterling,2,68,0,22,46,1.5333333333333334,2,19.0,49.0,-3.0
+1396,2025-05-06T10:45:28.526641Z,36,LB,waiver,successful,9.0,DEF,Kayode,Kiwior,5,9,1,10,-1,-0.3333333333333333,4,2.0,7.0,-8.0
+1397,2025-04-18T15:18:48.621794Z,33,LB,free agent,successful,,DEF,C.Richards,Spence,-2,9,1,5,4,0.6666666666666666,-3,-2.0,11.0,-7.0
+1398,2025-05-02T06:21:17.785195Z,35,LB,free agent,successful,,DEF,Kiwior,Smith,1,11,0,8,3,0.75,1,1.0,10.0,-7.0
+1399,2025-04-25T10:34:06.150345Z,34,LB,free agent,successful,,GKP,Bentley,Ederson M.,0,2,0,20,-18,-3.6,0,0.0,2.0,-20.0
+1400,2025-05-23T22:22:30.275353Z,38,LB,waiver,successful,36.0,DEF,Smith,Kayode,6,6,2,2,4,4.0,4,6.0,0.0,4.0
+1401,2025-05-02T06:14:16.379298Z,35,LB,free agent,successful,,GKP,Ederson M.,Bentley,6,20,0,2,18,4.5,6,13.0,7.0,11.0
