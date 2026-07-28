@@ -254,6 +254,33 @@ Full curation list follows in Phase 4.
   `kickoff_time`), and backfill the four fantasy-only columns — `team_difficulty`,
   `opposition_difficulty`, `now_cost`, `selected_by_percent` — from the 2526 CSVs.
 
+### 6.1b The draft bootstrap is a hybrid: 2526 stats, 2627 team ids ⚠️⚠️
+Discovered while validating the frontend against the snapshot. Inside
+`reference/raw_2526/bootstrap_static_draft.json`:
+
+| Part | Season it reflects |
+|---|---|
+| `teams` array — BUR/WOL/WHU present, `SUN` = 17 | **2526** ✅ |
+| `elements[].total_points` — all 841 match the 2526 CSV exactly | **2526** ✅ |
+| `elements[].team` — **332 of 841 differ from the 2526 CSV** | **2627** ❌ |
+
+The fantasy bootstrap confirms it: its `teams` array is the 2627 list (`COV`, `HUL`, `IPS` in;
+`BUR`, `WOL`, `WHU` out) and there **`SUN` is id 20**. Roefs carries `team=20`, which resolves to
+Sunderland under 2627 ids but to Wolves under the 2526 `teams` array sitting in the same file.
+
+**Consequence:** joining `elements[].team → teams[].id` within the snapshot returns the wrong club
+for 39% of players. Silent, plausible-looking corruption — every Sunderland player becomes a Wolves
+player.
+
+Actions:
+- **2526 archive:** take `team` / `team_name` from the CSVs, not the raw bootstrap. This extends
+  the CSV-backfill list beyond the four fantasy-only columns (§6.1) to team assignment as well.
+- **Live 2627 pipeline:** both hosts will be on 2627 so element→team ids agree, but the draft
+  `teams` array is demonstrably able to lag. Resolve club names against the **fantasy** bootstrap's
+  `teams`, or assert the two lists agree.
+- **Add a build-time sanity check** that every `elements[].team` resolves in `teams`, and that a
+  sample of known players maps to the expected club. A pure id join cannot detect this on its own.
+
 ### 6.2 League size is hardcoded — breaks 2425
 - `round = ((index - 1) // 6) + 1` (cell 10) assumes 6 drafters. 2425 was 5 Prem / 7 Conf.
 - Cell 16 hardcodes rank 4/5/6 for Prem safety and relegation and rank 2 for Conf promotion.

@@ -1,0 +1,22 @@
+{
+  "name": "wod-datapacks-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "fixtures": "node scripts/make-dev-fixtures.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.2.1",
+    "@tanstack/react-table": "^8.21.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.0",
+    "vite": "^8.1.5"
+  }
+}

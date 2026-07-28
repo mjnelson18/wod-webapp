@@ -1,0 +1,84 @@
+import { useEffect, useState, lazy, Suspense } from 'react'
+import { useRoute, navigate, buildHash } from './lib/router.js'
+import { loadSeasons, loadMeta, useAsync } from './lib/data.js'
+import Header from './components/Header.jsx'
+
+// Lazy per view so a phone opening the gameweek grid doesn't download Recharts
+// (chart views) or TanStack Table (explorer) it will never render.
+const Gameweek = lazy(() => import('./views/Gameweek.jsx'))
+const SeasonTrends = lazy(() => import('./views/SeasonTrends.jsx'))
+const Compare = lazy(() => import('./views/Compare.jsx'))
+const Explorer = lazy(() => import('./views/Explorer.jsx'))
+
+const VIEW_COMPONENTS = { gw: Gameweek, season: SeasonTrends, compare: Compare, explorer: Explorer }
+
+export default function App() {
+  const route = useRoute()
+  const seasons = useAsync(loadSeasons, [])
+
+  // Send bare/unknown URLs to the newest season's latest gameweek.
+  useEffect(() => {
+    if (!seasons.data) return
+    const known = seasons.data.seasons.map(s => s.season)
+    if (!route.season || !known.includes(route.season)) {
+      const fallback = seasons.data.default ?? known[0]
+      const gw = seasons.data.seasons.find(s => s.season === fallback)?.current_gameweek
+      navigate({ season: fallback, view: 'gw', param: gw ?? null })
+    }
+  }, [seasons.data, route.season])
+
+  const season = route.season
+  const meta = useAsync(() => (season ? loadMeta(season) : Promise.resolve(null)), [season])
+
+  // League selection lives above the views so it persists across tab changes.
+  const [league, setLeague] = useState(null)
+  useEffect(() => {
+    if (meta.data?.leagues?.length) setLeague(prev =>
+      meta.data.leagues.some(l => l.code === prev) ? prev : meta.data.leagues[0].code)
+  }, [meta.data])
+
+  if (seasons.error) return <Fatal error={seasons.error} />
+  if (!seasons.data || !season) return <div className="spinner">Loading…</div>
+
+  const View = VIEW_COMPONENTS[route.view] ?? Gameweek
+
+  return (
+    <>
+      <Header
+        route={route}
+        seasons={seasons.data.seasons}
+        meta={meta.data}
+      />
+      <main>
+        {meta.error && <Fatal error={meta.error} />}
+        {meta.loading && <div className="spinner">Loading {season}…</div>}
+        {meta.data && league && (
+          <Suspense fallback={<div className="spinner">Loading view…</div>}>
+            <View
+              season={season}
+              meta={meta.data}
+              league={league}
+              setLeague={setLeague}
+              route={route}
+            />
+          </Suspense>
+        )}
+      </main>
+    </>
+  )
+}
+
+function Fatal({ error }) {
+  return (
+    <div className="notice" style={{ margin: 12 }}>
+      <strong>Couldn't load data.</strong>{' '}
+      {String(error?.message ?? error)}
+      <div className="small" style={{ marginTop: 6 }}>
+        Run <code>npm run fixtures</code> to build dev data, or check that the pipeline wrote
+        {' '}<code>web/public/data/</code>.
+      </div>
+    </div>
+  )
+}
+
+export { buildHash }
