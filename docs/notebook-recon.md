@@ -292,20 +292,28 @@ That generalises to 2425's 5 Prem / 7 Conf split, which the hardcoded `// 6` can
 `pick` (position within the raw round) is left untouched by the notebook, so for Prem it stays
 1..7 while `index` runs 1..90.
 
-### 6.4 Trades: the notebook table doesn't mean what it looks like
+### 6.4 Trades: real, but the CSV is stale
 - The Prem API returns **13 trades, all `state='p'`**; Conf returns 0. The notebook never filters
   on `state`.
-- I verified squad membership either side of every trade GW: **not one of them executed.** In
-  every case the offering entry still holds `element_in` before *and* after, and the receiving
-  entry keeps `element_out`. These are unaccepted *offers*.
-- 9 of the 13 vanish only because they were offered to the excluded entry 95076 and the inner
-  join on the league table drops them.
-- That leaves 4 candidate rows, but `trade_history_2526.csv` has **3** — the GW22 JP→MN
-  Gyökeres/Woltemade offer is missing even though it computes cleanly (net +44). The CSV also
-  stores `element_in` as a float (`237.0`) whereas the current cell ends with `.astype(int)`.
-  Both point to the CSV having been written by an **earlier version of cell 25**, so it is not a
-  faithful oracle for this table.
-- Note this contradicts `CLAUDE.md`, which describes trades as "accepted only".
+- **`state='p'` means processed, not pending.** All 13 carry a `response_time`, and comparing
+  squads at GW `event-1` → GW `event` (the `event` field is the week the trade *takes effect*, so
+  the change lands there, not the week after) shows **18 of the 22 trade items executed** — the
+  offering entry gained `element_in` and lost `element_out`. Confirmed by the user: e.g. AN really
+  did trade Mbeumo for Cunha, and LB really did trade Saka for Palmer.
+- 4 of the 22 items show no squad movement (Alderete GW22, Talbi GW38, Diarra GW38, Mukiele GW38).
+  Those players are absent from the offerer's squad both before and after, so the item did not
+  land while the rest of the same multi-item trade did. Cause not established — possibly partial
+  failure inside a multi-item trade. It does not affect the port: the notebook reports trade
+  *records* and never verifies execution, so neither does the pipeline.
+- 9 of the 13 are dropped from the notebook's output only because they were offered to the
+  excluded entry 95076 and the inner join on the league table removes them.
+- That leaves 4 rows, but `trade_history_2526.csv` has **3** — the GW22 JP→MN Gyökeres/Woltemade
+  trade is missing even though it computes cleanly (net +44). The CSV also stores `element_in` as
+  a float (`237.0`) whereas the current cell ends with `.astype(int)`. Both point to the CSV
+  having been written by an **earlier version of cell 25**, so it is not a faithful oracle for
+  this one table.
+- `CLAUDE.md`'s "accepted only" is right in substance; the useful correction is that the API
+  exposes `state`, `offer_time` and `response_time`, and the pipeline keeps all three.
 
 ### 6.5 Recomputes all history on every run
 Cell 12 loops every GW × every entry and refetches `event/{gw}/live` and
@@ -342,8 +350,11 @@ display strings baked into data columns (`player_in` = `"Name (12)"`), and the s
 2. **§6.2 league sizes** — per-season config, never hardcoded.
 3. **§6.3 draft index** — confirmed intentional; implement the renumbering intent
    deterministically per league, driven by config, as set out above.
-4. **§6.4 trades** — emit **all** trade offers with a `state` column and **no** `exclude_id`
-   filter, so the nine offers made to the organiser's dead Prem entry are visible. This
+4. **§6.4 trades** — emit **all** trades with `state`, `offer_time` and `response_time`, and
+   **no** `exclude_id` filter, so the nine involving the organiser's Prem entry stay visible. This
    deliberately does not match `trade_history_2526.csv` (3 rows vs 13); trades are recorded as
    **not validatable against the CSV**, since that CSV was written by an earlier version of cell
-   25. Whether the report keeps a trades *section* is a Phase 4 curation question.
+   25. Confirmed at Phase 4: the trades section stays, unaccepted trades included.
+5. **League sizes** — from 2526 onward, assume **6 per league, 2 promoted / 2 relegated**. 2425's
+   5 Prem / 7 Conf and 3-up/1-down was a one-off caused by new joiners starting in the Conference;
+   it stays in config purely so the 2425 archive builds correctly, and is not a live concern.

@@ -58,7 +58,10 @@ join graph and the gotchas, not the column lists (those are in the CSVs / notebo
   → players.`id`.
 - **transfers** — waiver + free-transfer moves, incl. *attempted* ones (`result` distinguishes).
   Waiver = priority-ordered, resolved by reverse league position weekly. Free = 24h window pre-lock.
-- **trades** — drafter↔drafter swaps, accepted only. (None existed in season 2425.)
+- **trades** — drafter↔drafter swaps. Keep `state`, `offer_time` and `response_time`; `state='p'`
+  means *processed*. Trades really do execute, and `event` is the gameweek the swap **takes effect
+  in**, so squads change between GW `event-1` and GW `event`. Do **not** filter out the entries in
+  `exclude_id` here — that silently hid 9 of 2526's 13 Prem trades. (None existed in 2425.)
 - **teams** — `team` ↔ `team_id` lookup used across the point/summary tables.
 - Every league-scoped row carries `league_code` (there are two leagues — Premiership + Conference).
 
@@ -84,8 +87,17 @@ Joins: `element` == `id` (footballer); `team` == `team_id` (PL club); `league_co
 ## Domain rules
 
 - Two leagues of six: **Premiership** and **Conference**. 2 promoted / 2 relegated per season.
-- **Season 2425 was different: 5 in Premiership, 7 in Conference, 3 up / 1 down.** League sizes
-  and promo/releg counts are per-season **config**, never hardcoded in logic.
+  **Assume this going forward** — 6/6 and 2-up/2-down is the settled structure.
+- **Season 2425 was the one exception: 5 in Premiership, 7 in Conference, 3 up / 1 down** — new
+  joiners had to start in the Conference that year. League sizes and promo/releg counts stay
+  per-season **config** (never hardcoded), but only so the 2425 archive builds correctly; don't
+  treat varying league size as a live design constraint.
+- One entry may be excluded per league via `exclude_id`: in 2526 that is league_entry **92234**
+  (entry 95076), Peter Vickers' Premiership team. He organised both leagues but only played the
+  Conference, filling the Prem squad with deliberate dud picks. Because that entry *did* draft in
+  the Prem snake, dropping its picks leaves gaps in `index`, so surviving picks must be renumbered
+  1..N before `round` is derived. Excluding it is right for standings/draft/summary tables and
+  **wrong for trades** (see above).
 - Points during a live match are **provisional**; bonus points are added after matches finish.
   A gameweek is only immutable once fully finalized (bonus applied, no live fixtures).
 - Auto-subs: benched players replace non-playing starters per FPL rules; `optimal_points` is the

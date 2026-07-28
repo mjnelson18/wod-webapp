@@ -51,9 +51,8 @@ dropped or added without your say-so.
 | 14 | **Weekly points heatmap** | chart ×2 | **The flagship.** Current-GW squad grid: drafters as columns (ordered by season total, GW total beneath each), squad places 1–15 as rows, heavy line after row 11 dividing starters from bench, cell shade = points scored. Each cell packs: transfer flag, sub flag, player, GW points, position, club, acquisition route, season total, and points realised by that drafter. |
 | 15 | Cell flag legend | legend | `W` waiver this week · `F` free agent this week · `AW` attempted waiver · `SN` subbed on · `SF` subbed off · `D#` draft round · `Tn#` transferred in GW# · `Td#` traded in GW# · `S` season total · `R` points realised by drafter. |
 
-> ⚠️ **`Td#` is currently misleading.** In GW37 it labels Cunha under AN and Saka under MN as
-> traded, but both trades were unaccepted offers and neither player moved. The label fires on any
-> row in `trade_history`, regardless of whether the trade completed. See recon §6.4.
+> `Td#` is correct — trades genuinely execute (recon §6.4). An earlier draft of this doc claimed
+> otherwise off the back of a gameweek-offset error; disregard that.
 
 ## 5. Choice of Substitutions  *(§5)*
 
@@ -79,10 +78,10 @@ dropped or added without your say-so.
 | 23 | Trade table | table | GW, who offered, who received, players both ways, each player's points from the trade GW to season end, net points, and a prose summary line. |
 | 24 | `net_points_from_trade` | metric | Points-since-trade for the player in minus the player out. |
 
-> ⚠️ **No trade has ever completed.** All 13 in the 2526 API are `state='p'` and I verified against
-> squads either side of every trade GW that not one executed. Nine are only hidden because they
-> were offered to the organiser's excluded Prem entry. As agreed, the pipeline will emit all offers
-> with a `state` column — but whether this section survives is a curation call.
+> **KEEP** (curated). Trades do execute. The notebook shows only 3 of 13 because the `exclude_id`
+> inner join drops the 9 involving the organiser's Prem entry, and the CSV is stale. The pipeline
+> emits all 13 with `state`, `offer_time` and `response_time` — unaccepted trades included, per
+> your call.
 
 ## 8. Draft Pick Performance  *(§8)*
 
@@ -146,7 +145,7 @@ dropped or added without your say-so.
 
 | # | Item | Type | Description |
 |---|---|---|---|
-| 46 | Gameweek highs & lows | chart ×2 | `gameweek_highs_lows_*.png` — count of GW-high and GW-low finishes per drafter. Cell 17 has written **56 of these across the season and not one report references them.** Include it, or keep it cut? |
+| 46 | Gameweek highs & lows | chart ×2 | ❌ **CUT** (curated). `gameweek_highs_lows_*.png` — count of GW-high and GW-low finishes per drafter. 56 PNGs written across the season, referenced by zero reports. Deliberately dropped and replaced by the score histogram (#6 / #11). Cell 17 should be deleted rather than ported. |
 
 ## Computed in the notebook but never rendered
 
@@ -170,12 +169,29 @@ The pipeline will emit these as data regardless; they only become views if you w
 
 ---
 
-## Open questions
+## Curation decisions (answered)
 
-1. **Weekly vs season framing.** The current report is per-gameweek, rebuilt 38 times. The SPA can
-   show a season view with a GW selector instead. Should the primary route be per-GW (matching the
-   podcast's "review last week" job) or per-season with GW as a filter?
-2. **Both leagues at once, or a league switcher?** Every chart is currently rendered twice and
-   stacked. On a phone, a Prem/Conf toggle would likely beat scrolling past both.
-3. **#46 highs-and-lows** — publish it, or was cutting it deliberate?
-4. **#23 trades** — keep the section given nothing has ever completed?
+1. **Split gameweek from season.** Two distinct areas rather than one scrolling report:
+   - **This Gameweek** — per-GW stats and analysis: the heatmap (#14), GW tables, subs impact for
+     the week (#17), this week's transfers and trades, results (#42).
+   - **Season Trends** — longer-term: rolling averages (#5), score histogram (#6), season summary
+     (#31), draft pick performance (#25–30), distributions (#39, #40), unique players (#22),
+     drafted players remaining (#30), season-long transfer activity (#20).
+   Section-by-section assignment goes in the Phase 5 IA proposal.
+2. **Prem/Conf toggle** for everything currently duplicated per league — replaces 20 stacked
+   images with 10 toggled views, which is the single biggest mobile win. **Exception:** Leagues
+   Head to Head (#12) shows both by definition and keeps its combined view.
+3. **New: League Comparison** — a fuller cross-league view living alongside H2H (#12). Draws on
+   `league_comparison` (#48, currently discarded) and the overlap matrix (#41): which league is
+   stronger, who each league missed, shared players. Marked as an addition, not a silent one.
+4. **#46 highs and lows** — cut, already replaced by the histogram.
+5. **#23 trades** — keep, unaccepted trades included.
+6. **League structure** — 6 per league, 2 up / 2 down from 2526 onward. 2425's 5/7 and 3-up/1-down
+   was a one-off from new joiners starting in the Conference; it lives in config only so the 2425
+   archive builds, and the promo/relegation metrics (#3, #4, #8) become config-driven rather than
+   hardcoded ranks.
+
+## Still open
+
+- Where exactly each of #1–#48 lands across **This Gameweek** vs **Season Trends** vs **Explorer**
+  — I'll propose the full mapping at the start of Phase 5 for your sign-off.
