@@ -260,17 +260,37 @@ Full curation list follows in Phase 4.
   2425 was 3 up / 1 down.
 Both move to per-season config.
 
-### 6.3 `draft_picks['index']` is overwritten with a bogus sequence
-Cell 10 runs a `sort_values(...)` whose result is **discarded** (no assignment, no `inplace`),
-then does:
+### 6.3 `draft_picks['index']` renumbering — intentional, but fragile
+Cell 10 does:
 ```python
 draft_picks['index'] = np.where(draft_picks['league_code'] == 'Prem',
                                 range(1, len(draft_picks) + 1), draft_picks['index'])
+draft_picks['round'] = ((draft_picks['index'] - 1) // 6) + 1
 ```
-This replaces every Prem `index` with a running counter over the whole *concatenated, unsorted*
-frame, so Prem pick numbers depend on row order rather than the draft. Conf keeps its real
-`index`. Since `round` is derived from `index`, Prem draft rounds inherit the error. Needs a
-decision — see §7.
+**This is deliberate, not a bug.** The excluded admin entry (92234) genuinely drafted in the
+Premiership snake — it holds 15 of the 105 Prem choices, including pick 5 of round 1. Dropping
+those picks leaves gaps in the raw `index` (1, 2, 3, 4, 6, 7, …), and because Prem ran with 7
+entries a raw round is 7 picks wide, not 6. Renumbering the 90 survivors 1..90 restores a
+contiguous sequence that `// 6` then divides into 15 correct rounds.
+
+Verified against `Draft Picks_2526.csv`: sorting choices by raw `index`, dropping excluded
+entries, renumbering 1..N and recomputing `round` reproduces **both leagues with 0 mismatches**
+on `index` and `round`.
+
+The implementation is fragile rather than wrong — it relies on Prem rows landing first and in
+pick order through two inner merges and a `concat`, and the preceding `sort_values(...)` result is
+discarded (no assignment, no `inplace`), so nothing actually enforces that order. The pipeline
+implements the *intent* deterministically, per league:
+
+1. sort `choices` by raw `index`
+2. drop picks belonging to excluded entries
+3. renumber `index` sequentially 1..N
+4. `round = ((index - 1) // n_real_drafters) + 1`, with `n_real_drafters` from season config
+
+That generalises to 2425's 5 Prem / 7 Conf split, which the hardcoded `// 6` cannot.
+
+`pick` (position within the raw round) is left untouched by the notebook, so for Prem it stays
+1..7 while `index` runs 1..90.
 
 ### 6.4 Trades: the notebook table doesn't mean what it looks like
 - The Prem API returns **13 trades, all `state='p'`**; Conf returns 0. The notebook never filters
@@ -313,12 +333,17 @@ display strings baked into data columns (`player_in` = `"Name (12)"`), and the s
 
 ---
 
-## 7. Open questions for Phase 1
+## 7. Decisions taken
 
-1. **§6.3 `draft_picks['index']` for Prem.** Reproduce the bug for byte-identical 2526 output, or
-   fix it to the true pick order from `choices` and log it as an intentional change? A fix also
-   changes `round`, and `round` is displayed in the flagship heatmap as `D#`.
-2. **§6.4 trades.** Since none executed and the CSV is stale, should the table (a) list all
-   *offers* with a `state` column and drop the `exclude_id` filter, (b) keep notebook behaviour
-   exactly, or (c) be cut? Also: is "Trade History" worth a report section at all if no trade has
-   ever completed?
+1. **§6.1 2526 fantasy columns** — rebuild the draft-derivable fixture columns from
+   `event/{gw}/live`; backfill `team_difficulty`, `opposition_difficulty`, `now_cost` and
+   `selected_by_percent` from the 2526 CSVs. Those four are flagged in the diff report as
+   CSV-sourced rather than reproduced from raw.
+2. **§6.2 league sizes** — per-season config, never hardcoded.
+3. **§6.3 draft index** — confirmed intentional; implement the renumbering intent
+   deterministically per league, driven by config, as set out above.
+4. **§6.4 trades** — emit **all** trade offers with a `state` column and **no** `exclude_id`
+   filter, so the nine offers made to the organiser's dead Prem entry are visible. This
+   deliberately does not match `trade_history_2526.csv` (3 rows vs 13); trades are recorded as
+   **not validatable against the CSV**, since that CSV was written by an earlier version of cell
+   25. Whether the report keeps a trades *section* is a Phase 4 curation question.
