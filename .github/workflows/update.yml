@@ -1,0 +1,195 @@
+name: Update data pack
+
+# Rebuilds the JSON artifacts and force-deploys site + data to GitHub Pages.
+# Nothing is ever committed: Pages is deployed from an artifact, so `main`'s
+# history stays free of data commits.
+#
+# The cron fires more often than we build. pipeline.schedule decides whether a run
+# is worth doing, so a quiet run costs ~20 seconds and two small HTTP requests.
+# See the README for the schedule and throttling rules.
+
+on:
+  schedule:
+    # Times are UTC. Premier League kick-offs run ~11:00-23:00 UTC at weekends
+    # and ~18:00-23:00 UTC midweek, allowing for BST.
+    - cron: '*/10 11-22 * * 0,6'   # weekend match windows
+    - cron: '*/10 18-22 * * 1-5'   # weekday evening match windows
+    - cron: '17 * * * *'           # hourly otherwise, for bonus/waivers/trades
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'pipeline/**'
+      - '.github/workflows/update.yml'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Build even if the throttle says no'
+        type: boolean
+        default: false
+      rebuild_archives:
+        description: 'Rebuild the frozen 2425/2526 archives'
+        type: boolean
+        default: false
+
+# Pages needs these; nothing here needs write access to the repo.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. Don't cancel in progress — a half-finished
+# deploy is worse than a queued one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  # Bump when onboarding a new season (see README).
+  CURRENT_SEASON: '2627'
+  ARCHIVE_SEASONS: '2425 2526'
+  # Bump to force archives to rebuild without touching their inputs.
+  ARCHIVE_CACHE_VERSION: 'v1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.digest.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+
+      # Raw responses for finalised gameweeks, plus the last-build timestamp the
+      # throttle reads. Without this the pipeline refetches all 38 gameweeks every
+      # run, which is the exact waste the refactor set out to remove.
+      - name: Restore raw response cache
+        uses: actions/cache@v4
+        with:
+          path: pipeline/cache
+          key: raw-${{ env.CURRENT_SEASON }}-${{ github.run_id }}
+          restore-keys: |
+            raw-${{ env.CURRENT_SEASON }}-
+
+      # Runs before the dependency install: the gate is stdlib-only, so a quiet
+      # run costs ~15s and two small requests instead of installing pandas.
+      - name: Decide whether to build
+        id: gate
+        run: |
+          python -m pipeline.schedule --season "$CURRENT_SEASON" \
+            ${{ (inputs.force || github.event_name == 'push') && '--force' || '' }}
+
+      - name: Nothing to do
+        if: steps.gate.outputs.should_build != 'true'
+        run: echo "::notice title=Skipped::${{ steps.gate.outputs.reason }}"
+
+      - name: Install Python dependencies
+        if: steps.gate.outputs.should_build == 'true'
+        run: pip install --quiet -r requirements.txt
+
+      # Archives are frozen — generated once from committed inputs and reused.
+      # 2526 takes ~2 minutes (456 squad-weeks of optimal_points), so it must not
+      # run every 10 minutes.
+      - name: Restore archive cache
+        if: steps.gate.outputs.should_build == 'true'
+        id: archive-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/2425
+            data/2526
+          key: >-
+            archives-${{ env.ARCHIVE_CACHE_VERSION }}-${{
+              hashFiles('pipeline/**/*.py', 'reference/historical/*.csv') }}
+
+      - name: Build frozen archives
+        if: >-
+          steps.gate.outputs.should_build == 'true' &&
+          (steps.archive-cache.outputs.cache-hit != 'true' || inputs.rebuild_archives)
+        run: |
+          for season in $ARCHIVE_SEASONS; do
+            echo "::group::archive $season"
+            python -m pipeline.build --season "$season"
+            echo "::endgroup::"
+          done
+
+      - name: Build current season
+        if: steps.gate.outputs.should_build == 'true'
+        run: python -m pipeline.build --season "$CURRENT_SEASON"
+
+      # Deploy only when the output differs from what is actually live.
+      #
+      # The comparison is against the digest published *with the site*, not a
+      # locally cached one. That makes it self-correcting: if a deploy fails, the
+      # old digest stays live and the next run redeploys, instead of recording
+      # "deployed" for something that never shipped.
+      - name: Compare against the deployed digest
+        id: digest
+        if: steps.gate.outputs.should_build == 'true'
+        run: |
+          digest=$(find data -type f -name '*.json' -print0 \
+            | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+
+          owner=$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
+          repo="${GITHUB_REPOSITORY#*/}"
+          live=$(curl -fsSL --max-time 20 "https://${owner}.github.io/${repo}/digest.txt" \
+                 || echo unavailable)
+
+          echo "local : $digest"
+          echo "live  : $live"
+          if [ "$digest" = "$live" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Unchanged::output identical to what is deployed; skipping deploy"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.digest.outputs.changed == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build the site
+        if: steps.digest.outputs.changed == 'true'
+        run: |
+          rm -rf web/public/data
+          mkdir -p web/public
+          cp -r data web/public/data
+          # published alongside the site so the next run can tell what is live
+          printf '%s' "${{ steps.digest.outputs.digest }}" > web/public/digest.txt
+          npm ci --prefix web
+          npm run build --prefix web
+
+      # Resets the throttle timer. Deliberately records only that a *build*
+      # happened — whether it deployed is answered by the live digest above.
+      - name: Record the build
+        if: steps.gate.outputs.should_build == 'true'
+        run: |
+          python -m pipeline.schedule --season "$CURRENT_SEASON" --record \
+            --digest "${{ steps.digest.outputs.digest }}"
+
+      - uses: actions/configure-pages@v5
+        if: steps.digest.outputs.changed == 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.digest.outputs.changed == 'true'
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.deploy == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
