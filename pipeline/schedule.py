@@ -40,6 +40,9 @@ MINIMUM_INTERVAL = {
     "gameweek_open": 60 * 60,
     "between_gameweeks": 6 * 60 * 60,
     "off_season": 7 * 24 * 60 * 60,
+    # Waiting on league codes: nothing to fetch, but keep checking daily so the
+    # first configured run happens on its own rather than needing a manual nudge.
+    "not_configured": 24 * 60 * 60,
 }
 
 STATE_FILE = "last_build.json"
@@ -114,35 +117,46 @@ def classify(season) -> tuple[str, str]:
 
 
 def decide(season_id: str, *, force: bool = False) -> dict:
+    """
+    Two independent answers, because they are different questions:
+
+      should_build    is this run worth doing at all?
+      season_ready    can the *current* season be fetched yet?
+
+    They come apart between the API rolling over to a new season and that season's
+    league codes being known — typically a few weeks, since the codes only exist
+    after draft night. Through that window the current season cannot be built, but
+    the site is still perfectly serviceable from the archives, so a push must still
+    be able to deploy. Treating "not configured" as "do nothing" would freeze
+    deployments for the whole pre-season.
+    """
     season = get_season(season_id)
     state, reason = classify(season)
+    season_ready = state != "not_configured"
 
-    # Neither is a failure: one means the season isn't set up yet, the other means
-    # the API asked us to wait. Both should skip quietly.
-    if state in ("not_configured", "rate_limited"):
-        return {"should_build": False, "state": state, "reason": reason,
-                "interval": None, "since": None}
+    def result(should_build, why, interval=None, since=None):
+        return {"should_build": should_build, "season_ready": season_ready,
+                "state": state, "reason": why, "interval": interval, "since": since}
+
+    # The API asked us to wait — never build into a throttle, not even when forced.
+    if state == "rate_limited":
+        return result(False, reason)
 
     if force:
-        return {"should_build": True, "state": state, "reason": f"forced — {reason}",
-                "interval": 0, "since": None}
+        return result(True, f"forced — {reason}", interval=0)
 
     interval = MINIMUM_INTERVAL[state]
     last = read_last_build(season.season)
     if last is None:
-        return {"should_build": True, "state": state,
-                "reason": f"no previous build recorded — {reason}",
-                "interval": interval, "since": None}
+        return result(True, f"no previous build recorded — {reason}", interval)
 
     since = time.time() - last
     if since >= interval:
-        return {"should_build": True, "state": state,
-                "reason": f"{int(since // 60)} min since last build — {reason}",
-                "interval": interval, "since": since}
+        return result(True, f"{int(since // 60)} min since last build — {reason}",
+                      interval, since)
     wait = int((interval - since) // 60)
-    return {"should_build": False, "state": state,
-            "reason": f"throttled: {wait} min until next {state} build — {reason}",
-            "interval": interval, "since": since}
+    return result(False, f"throttled: {wait} min until next {state} build — {reason}",
+                  interval, since)
 
 
 def main(argv=None) -> int:
@@ -162,12 +176,17 @@ def main(argv=None) -> int:
     result = decide(args.season, force=args.force)
     print(f"state       : {result['state']}")
     print(f"should_build: {result['should_build']}")
+    print(f"season_ready: {result['season_ready']}")
     print(f"reason      : {result['reason']}")
+    if not result["season_ready"]:
+        print("note        : archives will still build and deploy; "
+              "only the current season is skipped")
 
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output, "a", encoding="utf-8") as handle:
             handle.write(f"should_build={str(result['should_build']).lower()}\n")
+            handle.write(f"season_ready={str(result['season_ready']).lower()}\n")
             handle.write(f"state={result['state']}\n")
             handle.write(f"reason={result['reason']}\n")
 
@@ -177,6 +196,7 @@ def main(argv=None) -> int:
             handle.write(f"### Schedule gate\n\n"
                          f"- **state**: `{result['state']}`\n"
                          f"- **build**: {result['should_build']}\n"
+                         f"- **current season ready**: {result['season_ready']}\n"
                          f"- {result['reason']}\n")
     return 0
 

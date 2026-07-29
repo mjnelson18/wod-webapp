@@ -117,9 +117,17 @@ jobs:
             echo "::endgroup::"
           done
 
+      # Skipped between the API rolling over and that season's league codes being
+      # known. The archives above still build and deploy, so the site stays live
+      # through the whole pre-season.
       - name: Build current season
-        if: steps.gate.outputs.should_build == 'true'
+        if: steps.gate.outputs.should_build == 'true' && steps.gate.outputs.season_ready == 'true'
         run: python -m pipeline.build --season "$CURRENT_SEASON"
+
+      - name: Current season not configured yet
+        if: steps.gate.outputs.should_build == 'true' && steps.gate.outputs.season_ready != 'true'
+        run: |
+          echo "::notice title=Archives only::${{ steps.gate.outputs.reason }}"
 
       # Deploy only when the output differs from what is actually live.
       #

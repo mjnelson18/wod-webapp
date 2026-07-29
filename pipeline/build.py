@@ -22,6 +22,7 @@ from .fetchers.http import RateLimited
 from .transforms import (
     attach_fixtures,
     attach_pick_totals,
+    bootstrap_start_year,
     bootstrap_team_ids_agree,
     draft_picks_table,
     entry_ids,
@@ -33,6 +34,7 @@ from .transforms import (
     league_table,
     live_league_table,
     players_table,
+    season_start_year,
     teams_table,
     trades_table,
     transfers_table,
@@ -67,6 +69,21 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
 
     bootstrap_draft = source.bootstrap_draft()
     bootstrap_fantasy = source.bootstrap_fantasy()
+
+    # Refuse to label one season's data as another's. The FPL API serves only the
+    # current season, and the changeover is not instantaneous — so a build started
+    # around the rollover could otherwise fetch last season and write it out under
+    # this season's id, silently and irreversibly.
+    expected = season_start_year(season.season)
+    actual = bootstrap_start_year(bootstrap_draft)
+    if actual is not None and actual != expected:
+        raise SystemExit(
+            f"season mismatch: building {season.season} (expects GW1 in {expected}) "
+            f"but the draft API returned a season starting {actual}. "
+            f"The API has probably not rolled over yet — do not overwrite "
+            f"{season.season} with {actual}/{actual + 1} data."
+        )
+
     teams = teams_table(bootstrap_draft)
 
     # The snapshot's draft bootstrap carries 2526 teams/stats but 2627

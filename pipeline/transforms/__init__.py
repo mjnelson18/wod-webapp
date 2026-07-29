@@ -19,13 +19,20 @@ from .moves import (
     transfers_table,
 )
 from .optimal import add_optimal_points, calc_optimal_points
-from .players import bootstrap_team_ids_agree, players_table, teams_table
+from .players import (
+    bootstrap_start_year,
+    bootstrap_team_ids_agree,
+    players_table,
+    season_start_year,
+    teams_table,
+)
 from .weekly import attach_fixtures, weekly_tables
 
 __all__ = [
     "add_optimal_points",
     "attach_fixtures",
     "attach_pick_totals",
+    "bootstrap_start_year",
     "bootstrap_team_ids_agree",
     "calc_optimal_points",
     "draft_picks_table",
@@ -39,6 +46,7 @@ __all__ = [
     "league_table",
     "live_league_table",
     "players_table",
+    "season_start_year",
     "teams_table",
     "trades_table",
     "transfers_table",

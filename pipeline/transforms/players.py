@@ -52,6 +52,26 @@ def players_table(bootstrap_draft: dict, bootstrap_fantasy: dict | None = None) 
     return players
 
 
+def bootstrap_start_year(bootstrap_draft: dict) -> int | None:
+    """
+    Calendar year of the season the payload describes, from GW1's deadline.
+
+    Used to catch a payload from the wrong season — see `season_start_year`.
+    """
+    events = bootstrap_draft.get("events", {})
+    rows = events.get("data", events) if isinstance(events, dict) else events
+    for event in sorted(rows or [], key=lambda e: e.get("id", 0)):
+        deadline = event.get("deadline_time")
+        if deadline:
+            return int(str(deadline)[:4])
+    return None
+
+
+def season_start_year(season_id: str) -> int:
+    """'2627' -> 2026. The season id's first half is the year it kicks off in."""
+    return 2000 + int(str(season_id)[:2])
+
+
 def bootstrap_team_ids_agree(bootstrap_draft: dict, bootstrap_fantasy: dict) -> bool:
     """
     Sanity check for the hybrid-payload trap (docs/notebook-recon.md 6.1b).

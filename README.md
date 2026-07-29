@@ -108,7 +108,27 @@ applies a minimum interval:
 | `gameweek_open` | gameweek open, no match live right now | 1 hour |
 | `between_gameweeks` | gameweek done, next one pending | 6 hours |
 | `off_season` | no next gameweek | 7 days |
-| `not_configured` | league codes still `<FILL IN>` | skip, without failing |
+| `not_configured` | league codes still `<FILL IN>` | daily; archives only |
+| `rate_limited` | API returned 429/503 | skip, retry next run |
+
+### What happens at the season rollover
+
+The FPL API only ever serves the current season, and the two hosts flip
+*independently* — in July 2026 the draft host still served completed 2526 while the
+fantasy host had already moved to 2627. Three guarantees cover that window:
+
+1. **Archived seasons never touch the API again.** 2526 builds from the committed
+   raw snapshot and 2425 from the committed CSVs, so both are reproducible from
+   files in the repo. There is a test that builds them with `urlopen` patched to
+   raise, so this can't regress.
+2. **The gap between the rollover and draft night doesn't block deploys.** The new
+   season's league codes don't exist until the leagues are created, so the gate
+   reports `not_configured` and skips *only the current season* — archives still
+   build and the site still deploys. Without this the site would be frozen for the
+   whole pre-season.
+3. **Wrong-season data is refused.** Every build checks GW1's deadline year against
+   the season being built and aborts on a mismatch, so a run started mid-rollover
+   can't write last season's numbers out under this season's id.
 
 The gate is stdlib-only and runs *before* dependencies are installed, so a quiet run costs about 15
 seconds and does not install pandas. Roughly 66 runs a day fire; only a handful do real work.
