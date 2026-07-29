@@ -393,27 +393,56 @@ def available_form_players(weekly_points: pd.DataFrame, current_week: int,
                            form_games: int = FORM_GAMES,
                            per_position: int = AVAILABLE_PER_POSITION) -> pd.DataFrame:
     """
-    Best undrafted players by recent form. Ported from cell 42, which computed this
-    and never rendered it.
-    """
-    window = weekly_points[weekly_points["gameweek"] >= current_week - form_games + 1]
-    form = (
-        window.groupby(["league_code", "id", "web_name", "position", "team_name"], as_index=False)
-        ["total_points"].mean().rename(columns={"total_points": "form_points"})
-    )
-    free = weekly_points[
-        (weekly_points["gameweek"] == current_week)
-        & (weekly_points["short_name"].astype(str).str.startswith("Not Drafted"))
-    ][["league_code", "id"]].drop_duplicates()
+    Best undrafted players by recent form, computed for **every** gameweek.
 
-    frame = form.merge(free, on=["league_code", "id"], how="inner")
-    frame["form_points"] = frame["form_points"].round(2)
-    frame["rank"] = (
-        frame.groupby(["league_code", "position"])["form_points"]
-        .rank(ascending=False, method="min").astype(int)
-    )
-    return frame[frame["rank"] <= per_position].sort_values(
-        ["league_code", "position", "rank"]
+    Ported from cell 42, which computed this once for the current week and never
+    rendered it. Emitting one row set per gameweek matters because "available" is a
+    point-in-time fact: a player free in GW38 may have been owned all season, and
+    showing the latest week's list under an earlier gameweek is simply wrong.
+
+    Must be given the *full* weekly_points, not the reduced version written to JSON —
+    an undrafted player's form mean needs their score in every week of the window,
+    including the weeks they scored nothing.
+    """
+    gameweeks = sorted(int(g) for g in weekly_points["gameweek"].dropna().unique())
+    gameweeks = [g for g in gameweeks if g <= current_week]
+
+    pieces = []
+    for gameweek in gameweeks:
+        window = weekly_points[
+            (weekly_points["gameweek"] > gameweek - form_games)
+            & (weekly_points["gameweek"] <= gameweek)
+        ]
+        if window.empty:
+            continue
+        form = (
+            window.groupby(["league_code", "id", "web_name", "position", "team_name"],
+                           as_index=False)["total_points"].mean()
+            .rename(columns={"total_points": "form_points"})
+        )
+        # unowned in THIS gameweek, not in the latest one
+        free = weekly_points[
+            (weekly_points["gameweek"] == gameweek)
+            & (weekly_points["short_name"].astype(str).str.startswith("Not Drafted"))
+        ][["league_code", "id"]].drop_duplicates()
+
+        frame = form.merge(free, on=["league_code", "id"], how="inner")
+        if frame.empty:
+            continue
+        frame["form_points"] = frame["form_points"].round(2)
+        frame["rank"] = (
+            frame.groupby(["league_code", "position"])["form_points"]
+            .rank(ascending=False, method="min").astype(int)
+        )
+        frame = frame[frame["rank"] <= per_position].copy()
+        frame["gameweek"] = gameweek
+        pieces.append(frame)
+
+    if not pieces:
+        return pd.DataFrame(columns=["league_code", "gameweek", "id", "web_name",
+                                     "position", "team_name", "form_points", "rank"])
+    return pd.concat(pieces, ignore_index=True).sort_values(
+        ["league_code", "gameweek", "position", "rank"]
     )
 
 

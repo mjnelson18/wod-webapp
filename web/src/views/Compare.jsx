@@ -134,10 +134,12 @@ export default function Compare({ season, meta, route }) {
       weeks: aheadWeeks.map(g => all.find(f => f.team_name === team && f.gameweek === g) ?? null),
     })).filter(r => r.weeks.some(Boolean))
 
+    // "Available" is point-in-time: filter to the selected gameweek, or these are
+    // the latest week's free agents shown under an earlier one.
     const fixtureFor = (team, g) => all.find(f => f.team_name === team && f.gameweek === g)
-    const available = (available_players ?? []).map(p => ({
-      ...p, upcoming: aheadWeeks.map(g => fixtureFor(p.team_name, g) ?? null),
-    }))
+    const available = (available_players ?? [])
+      .filter(p => p.gameweek == null || p.gameweek === gw)
+      .map(p => ({ ...p, upcoming: aheadWeeks.map(g => fixtureFor(p.team_name, g) ?? null) }))
 
     return { codes, sizes, unequal, h2h, wins, totals, perDrafter, overlap, topPairs,
              highlighted, notDrafted, weekTop, results, lookahead, aheadWeeks, available }
@@ -297,13 +299,13 @@ export default function Compare({ season, meta, route }) {
 
       <Collapsible title="Best available"
                    count={v.available.length}
-                   summary="undrafted form players and their fixtures">
+                   summary={`free in GW${gw}, by recent form`}>
         {v.available.length === 0 ? (
           <Unavailable what="Available players" season={meta.label}
             reason="Needs per-league ownership, which this season's data doesn't carry." />
         ) : (
           <>
-            <SubHead note="Mean points over the last 6 gameweeks, top 5 per position">
+            <SubHead note={`Unowned as at gameweek ${gw}, ranked by mean points over the previous 6 gameweeks — top 5 per position`}>
               Undrafted form players
             </SubHead>
             <div className="table-wrap">

@@ -201,8 +201,8 @@ VIEW_COLUMNS = {
         "pct_points": "pct_points", "avg_points": "avg_points",
     },
     "available_players": {
-        "league": "league_code", "element": "id", "web_name": "web_name",
-        "position": "position", "team_name": "team_name",
+        "league": "league_code", "gameweek": "gameweek", "element": "id",
+        "web_name": "web_name", "position": "position", "team_name": "team_name",
         "form_points": "form_points", "rank": "rank",
     },
 }
