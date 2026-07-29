@@ -190,6 +190,11 @@ VIEW_COLUMNS = {
         "points_scored": "points_scored", "draft_points": "draft_points",
         "pct_from_draft": "pct_from_draft",
     },
+    "draft_share_by_gameweek": {
+        "league": "league_code", "short_name": "short_name", "gameweek": "gameweek",
+        "points_scored": "points_scored", "draft_points": "draft_points",
+        "pct_from_draft": "pct_from_draft",
+    },
     "distribution_position": {
         "league": "league_code", "short_name": "short_name", "cut": "cut",
         "bucket": "bucket", "points_scored": "points_scored",

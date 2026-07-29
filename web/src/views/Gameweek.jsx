@@ -8,17 +8,16 @@ import {
 import SquadGrid from '../components/SquadGrid.jsx'
 
 const STARTERS = 11
-const LOOKAHEAD = 6
 
 export default function Gameweek({ season, meta, league, setLeague, route }) {
   const gw = Number(route.param) || meta.current_gameweek
   const { data, loading, error } = useTables(season, [
-    'weekly_summary', 'league_table', 'transfers', 'trades', 'fixtures',
+    'weekly_summary', 'league_table', 'transfers', 'trades',
   ])
 
   const view = useMemo(() => {
     if (!data) return null
-    const { weekly_summary, league_table, transfers, trades, fixtures } = data
+    const { weekly_summary, league_table, transfers, trades } = data
 
     const table = league_table.filter(r => r.league === league).sort((a, b) => a.rank - b.rank)
     const rows = weekly_summary.filter(r => r.league === league && r.gameweek === gw)
@@ -86,19 +85,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     }
     moves.sort((a, b) => Math.abs(b.net ?? 0) - Math.abs(a.net ?? 0))
 
-    // results this gameweek, and the look-ahead from here
-    const all = fixtures ?? []
-    const results = all.filter(f => f.gameweek === gw)
-      .sort((a, b) => String(a.kickoff_time ?? '').localeCompare(String(b.kickoff_time ?? '')))
-    const aheadWeeks = meta.gameweeks.filter(g => g > gw && g <= gw + LOOKAHEAD)
-    const teams = [...new Set(all.map(f => f.team_name))].filter(Boolean).sort()
-    const lookahead = teams.map(team => ({
-      team,
-      weeks: aheadWeeks.map(g => all.find(f => f.team_name === team && f.gameweek === g) ?? null),
-    })).filter(r => r.weeks.some(Boolean))
-
-    return { table, drafters, best, worst, leagueTotal, leagueAvg, totalLost,
-             subs, moves, results, lookahead, aheadWeeks }
+    return { table, drafters, best, worst, leagueTotal, leagueAvg, totalLost, subs, moves }
   }, [data, league, gw, meta.gameweeks])
 
   if (error) return <div className="notice">Couldn&apos;t load gameweek data: {String(error.message)}</div>
@@ -269,88 +256,6 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         )}
       </Collapsible>
 
-      <Collapsible
-        title="Fixtures"
-        summary={can(meta, 'fixture_lookahead')
-          ? `results · next ${LOOKAHEAD} gameweeks`
-          : 'not available for this season'}
-      >
-        {!can(meta, 'fixture_lookahead') ? (
-          <Unavailable what="Fixtures" season={meta.label} />
-        ) : (
-          <>
-            <SubHead note={`Gameweek ${gw}`}>Results</SubHead>
-            <ResultsList results={view.results} />
-
-            <SubHead note="Shading is fixture difficulty — darker is harder">
-              Next {LOOKAHEAD} gameweeks
-            </SubHead>
-            {view.aheadWeeks.length === 0 ? (
-              <p className="muted small">Season complete — nothing ahead of gameweek {gw}.</p>
-            ) : (
-              <LookaheadGrid rows={view.lookahead} weeks={view.aheadWeeks} />
-            )}
-          </>
-        )}
-      </Collapsible>
     </>
-  )
-}
-
-/** Home fixtures only, so each match appears once. */
-function ResultsList({ results }) {
-  const played = results.filter(f => f.home_away === 'H')
-  if (!played.length) return <p className="muted small">No fixtures found.</p>
-  return (
-    <div className="table-wrap">
-      <table className="data">
-        <thead><tr><th>Home</th><th>Score</th><th>Away</th></tr></thead>
-        <tbody>
-          {played.map((f, i) => (
-            <tr key={i}>
-              <td>{f.team_name}</td>
-              <td className="num">{f.team_score ?? '–'} – {f.opposition_score ?? '–'}</td>
-              <td>{f.opposition}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-function difficultyColour(value) {
-  if (value == null) return undefined
-  // FPL rates 1 (easiest) to 5 (hardest)
-  const step = Math.max(1, Math.min(5, Math.round(Number(value))))
-  const alpha = { 1: 8, 2: 16, 3: 28, 4: 44, 5: 62 }[step]
-  const hue = step <= 2 ? 'var(--accent)' : '#d00000'
-  return `color-mix(in srgb, ${hue} ${alpha}%, transparent)`
-}
-
-function LookaheadGrid({ rows, weeks }) {
-  return (
-    <div className="table-wrap">
-      <table className="data">
-        <thead>
-          <tr>
-            <th>Team</th>
-            {weeks.map(g => <th key={g}>GW{g}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(r => (
-            <tr key={r.team}>
-              <td>{r.team}</td>
-              {r.weeks.map((f, i) => (
-                <td key={i} style={{ background: difficultyColour(f?.opposition_difficulty) }}>
-                  {f ? `${f.opposition}${f.home_away === 'H' ? '' : ' (a)'}` : '–'}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   )
 }

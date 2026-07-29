@@ -40,8 +40,8 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
   const { data, loading, error } = useTables(season, [
     'league_table', 'weekly_summary', 'transfers', 'trades',
     'season_summary', 'season_summary_by_gameweek', 'formations',
-    'draft_performance', 'player_usage', 'draft_share', 'lorenz',
-    'distribution_position', 'distribution_team',
+    'draft_performance', 'player_usage', 'draft_share', 'draft_share_by_gameweek',
+    'lorenz', 'distribution_position', 'distribution_team',
   ])
   const [mode, setMode] = useState('cumulative')
   const [seriesMetric, setSeriesMetric] = useState('points_scored')
@@ -182,6 +182,17 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     const usage = inLeague(data.player_usage)
     const share = inLeague(data.draft_share)
+
+    // share of banked points coming from own picks, cumulative per gameweek
+    const shareRows = inLeague(data.draft_share_by_gameweek)
+    const shareSeries = gws.map(g => {
+      const row = { gameweek: g }
+      for (const r of rows) {
+        const hit = shareRows.find(x => x.short_name === r.short_name && x.gameweek === g)
+        row[r.short_name] = hit?.pct_from_draft == null ? null : round(hit.pct_from_draft * 100)
+      }
+      return row
+    })
     const forms = inLeague(data.formations)
 
     // Draft round from the overall pick number and the league size — a snake
@@ -206,7 +217,7 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     return { rows, gws, points, bins, subCost, activity, activityByWeek, types,
              summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
-             lorenz, maxSquad, draftRows, earlyRounds, squadRounds }
+             lorenz, maxSquad, draftRows, earlyRounds, squadRounds, shareSeries }
   }, [data, league, meta, mode, seriesMetric, lorenzMode, draftFilter])
 
   if (error) return <div className="notice">Couldn&apos;t load season data: {String(error.message)}</div>
@@ -446,9 +457,29 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
         </SubHead>
         <FormationTable rows={v.rows} formations={v.forms} meta={meta} />
 
-        <SubHead note="Share of banked points that came from a drafter's own picks">
-          Points from the draft
+        <SubHead note="Cumulative share of banked points coming from a drafter's own picks — it can only fall as squads churn">
+          Points from the draft, over time
         </SubHead>
+        <div className="chart">
+          <ResponsiveContainer>
+            <LineChart data={v.shareSeries} margin={{ top: 4, right: 8, left: -18, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+              <XAxis dataKey="gameweek" tickLine={false} axisLine={false}
+                     interval="preserveStartEnd" minTickGap={18} />
+              <YAxis tickLine={false} axisLine={false} width={44} domain={[0, 100]}
+                     tickFormatter={y => `${y}%`} />
+              <Tooltip content={<ChartTip unit="%" />} />
+              <Legend iconType="plainline" wrapperStyle={{ fontSize: 12, paddingTop: 4 }} />
+              {v.rows.map(r => (
+                <Line key={r.short_name} type="monotone" dataKey={r.short_name}
+                      stroke={colours[r.short_name]} strokeWidth={2} dot={false}
+                      activeDot={{ r: 3 }} connectNulls />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <SubHead note="Season total">Points from the draft</SubHead>
         <div className="table-wrap">
           <table className="data">
             <thead><tr><th>Drafter</th><th>From draft</th><th>Total</th><th>Share</th></tr></thead>

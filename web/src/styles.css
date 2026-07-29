@@ -325,6 +325,14 @@ table.data th.sortable:hover .sort-mark { opacity: 0.7; }
 }
 .collapsible-body { padding: 12px; background: var(--bg); }
 
+/* closest-pair callout above the overlap matrix */
+.pair-list { list-style: none; margin: 0 0 4px; padding: 0; font-size: 0.85rem; }
+.pair-list li { padding: 4px 0; border-bottom: 1px solid var(--border); }
+.pair-list li:last-child { border-bottom: 0; }
+.pair-list strong { font-variant-numeric: tabular-nums; }
+
+table.data td.pair-top { outline: 2px solid var(--accent); outline-offset: -2px; font-weight: 700; }
+
 .subhead { margin: 14px 0 6px; }
 .subhead:first-child { margin-top: 0; }
 .subhead h3 { margin: 0; }

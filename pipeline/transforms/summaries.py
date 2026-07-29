@@ -282,21 +282,23 @@ def player_usage(weekly_summary: pd.DataFrame) -> pd.DataFrame:
 
 def lorenz_curve(weekly_summary: pd.DataFrame) -> pd.DataFrame:
     """
-    Lorenz curve per drafter: how much of their scoring came from how much of their squad.
+    Concentration curve per drafter: how much of their scoring came from how much of
+    their squad.
 
-    Long-form so the frontend can plot either axis. Players are ordered
-    worst-to-best, and each row carries the running share, so the curve starts at
-    the least productive squad members and bends upwards towards the stars. A
-    straight diagonal would mean every squad member contributed equally; the further
-    the curve sags below it, the more the drafter leaned on a few players.
+    Players are ordered **best first**, so the curve rises steeply through the few
+    players who carried the team and then plateaus across the squad members who
+    contributed little. A straight diagonal would mean every squad member
+    contributed equally; the further the curve bows above it, the more concentrated
+    the scoring.
 
-    `player_index` counts players (1..n), `players_pct` is that as a share of the
-    squad, and `points_pct` is the cumulative share of banked points.
+    Long-form so the frontend can plot either axis. `player_index` counts players
+    (1..n), `players_pct` is that as a share of the squad, and `points_pct` is the
+    cumulative share of banked points.
     """
     per_player = _squad_player_points(weekly_summary)
     rows = []
     for (league, short), group in per_player.groupby(["league_code", "short_name"]):
-        squad = group.sort_values("points_scored").reset_index(drop=True)
+        squad = group.sort_values("points_scored", ascending=False).reset_index(drop=True)
         total = float(squad["points_scored"].sum())
         n = len(squad)
         if not n:
@@ -365,6 +367,26 @@ def draft_share(weekly_summary: pd.DataFrame) -> pd.DataFrame:
     )
     out["pct_from_draft"] = (out["draft_points"] / out["points_scored"]).round(4)
     return out
+
+
+def draft_share_by_gameweek(weekly_summary: pd.DataFrame) -> pd.DataFrame:
+    """
+    The same share, cumulative per gameweek — how reliance on the original draft
+    decayed as squads churned through waivers and trades.
+    """
+    frame = weekly_summary.copy()
+    frame["draft_points"] = np.where(frame["in_original_draft"] == 1, frame["points_scored"], 0)
+    weekly = frame.groupby(["league_code", "short_name", "gameweek"], as_index=False).agg(
+        points_scored=("points_scored", "sum"), draft_points=("draft_points", "sum"),
+    ).sort_values(["league_code", "short_name", "gameweek"])
+
+    keys = ["league_code", "short_name"]
+    for column in ("points_scored", "draft_points"):
+        weekly[column] = weekly.groupby(keys)[column].cumsum()
+    weekly["pct_from_draft"] = (
+        weekly["draft_points"] / weekly["points_scored"].replace(0, np.nan)
+    ).round(4)
+    return weekly
 
 
 def available_form_players(weekly_points: pd.DataFrame, current_week: int,
