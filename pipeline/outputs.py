@@ -1,0 +1,256 @@
+"""Write canonical JSON. The shape is documented in docs/data-contract.md.
+
+Emits raw tables for the explorer plus pre-computed per-view arrays, so the mobile
+client never aggregates a large table to draw a chart.
+"""
+
+import json
+import math
+from pathlib import Path
+
+import pandas as pd
+
+from . import paths
+from .config import SEASONS
+
+# weekly_points is one row per element per gameweek per league — ~59k rows for a
+# full season, 88% of it undrafted players. Views need owned rows plus the best
+# undrafted names, so unowned rows are kept only when they ranked this well.
+UNDRAFTED_RANK_CUTOFF = 20
+
+NOT_DRAFTED_PREFIX = "Not Drafted"
+
+
+def _clean(value):
+    """JSON-safe scalar: NaN/NaT -> None, numpy -> python, timestamps -> ISO."""
+    if value is None:
+        return None
+    if isinstance(value, float):
+        return None if math.isnan(value) else value
+    if isinstance(value, (pd.Timestamp,)):
+        return None if pd.isna(value) else value.isoformat()
+    if value is pd.NaT:
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    if hasattr(value, "item"):
+        return value.item()
+    return value
+
+
+def _records(frame: pd.DataFrame, columns: dict[str, str]) -> list[dict]:
+    """Project and rename to canonical names, keeping missing columns as None."""
+    out = []
+    available = {new: old for new, old in columns.items() if old in frame.columns}
+    for row in frame.to_dict("records"):
+        record = {new: _clean(row.get(old)) for new, old in available.items()}
+        for new in columns:
+            record.setdefault(new, None)
+        out.append({key: record[key] for key in columns})
+    return out
+
+
+WEEKLY_SUMMARY = {
+    "gameweek": "gameweek", "league": "league_code", "short_name": "short_name",
+    "element": "element", "place": "place", "web_name": "web_name", "position": "position",
+    "team_id": "team_id", "team_name": "team_name",
+    "total_points": "total_points", "points_scored": "points_scored",
+    "points_before_auto_subs": "points_before_auto_subs",
+    "originally_starting": "originally_starting",
+    "optimal_points": "optimal_points", "optimal_weight": "optimal_weight",
+    "player_total_points": "player_total_points",
+    "points_scored_cumulative": "points_scored_cumulative",
+    "points_scored_pct": "points_scored_pct",
+    "drafter_name": "drafter_name", "draft_index": "draft_index", "round": "round",
+    "in_original_draft": "in_original_draft",
+    "gameweek_matches": "gameweek_matches", "opposition": "opposition",
+    "home_away": "home_away", "team_score": "team_score",
+    "opposition_score": "opposition_score",
+    "team_difficulty": "team_difficulty", "opposition_difficulty": "opposition_difficulty",
+    "kickoff_time_first": "kickoff_time_first",
+}
+
+WEEKLY_POINTS = {
+    "gameweek": "gameweek", "league": "league_code", "element": "id",
+    "web_name": "web_name", "position": "position", "team_name": "team_name",
+    "total_points": "total_points", "rank_in_week": "rank_in_week",
+    "owner": "short_name", "place": "place", "is_benched": "isBenched",
+    "drafter_name": "drafter_name", "draft_index": "draft_index",
+    "opposition": "opposition", "home_away": "home_away",
+    "team_difficulty": "team_difficulty",
+}
+
+DRAFT_PICKS = {
+    "league": "league_code", "short_name": "short_name", "index": "index", "pick": "pick",
+    "round": "round", "element": "element", "web_name": "web_name", "position": "position",
+    "team_name": "team_name", "draft_rank": "draft_rank", "now_cost": "now_cost",
+    "selected_by_percent": "selected_by_percent", "total_points": "total_points",
+}
+
+TRANSFERS = {
+    "league": "league_code", "gameweek": "gameweek", "short_name": "short_name",
+    "kind": "kind", "result": "result", "priority": "priority", "index": "index",
+    "element_in": "element_in", "element_out": "element_out",
+    "player_in": "player_in", "player_out": "player_out",
+    "player_in_points": "player_in_points_scored_in_week",
+    "player_out_points": "player_out_points_scored_in_week",
+    "net_points": "net_points_of_transfer_in_week",
+}
+
+TRADES = {
+    "league": "league_code", "gameweek": "gameweek", "state": "state",
+    "offer_time": "offer_time", "response_time": "response_time",
+    "offered_by": "offered_by", "received_by": "received_by",
+    "element_in": "element_in", "element_out": "element_out",
+    "player_in": "player_in", "player_out": "player_out",
+    "player_in_points": "player_in_total_points",
+    "player_out_points": "player_out_total_points",
+    "net_points": "net_points_from_trade",
+}
+
+PLAYERS = {
+    "element": "id", "web_name": "web_name", "position": "position",
+    "team_id": "team", "team_name": "team_name", "total_points": "total_points",
+    "goals_scored": "goals_scored", "assists": "assists", "bonus": "bonus",
+    "clean_sheets": "clean_sheets", "minutes": "minutes", "draft_rank": "draft_rank",
+    "now_cost": "now_cost", "selected_by_percent": "selected_by_percent",
+}
+
+TEAMS = {"team_id": "team", "team_name": "team_name"}
+
+
+def _capabilities(tables: dict) -> dict:
+    summary = tables["weekly_summary"]
+    points = tables["weekly_points"]
+
+    def filled(frame, column):
+        # bool() matters: numpy.bool_ is not JSON serializable
+        return bool(column in frame.columns and frame[column].notna().any())
+
+    return {
+        "fixtures": filled(summary, "opposition"),
+        "difficulty": filled(summary, "team_difficulty"),
+        "cost": filled(tables["players"], "now_cost"),
+        "ownership_by_league": filled(points, "drafter_name"),
+        "draft_round": filled(summary, "round"),
+        "cumulative": filled(summary, "points_scored_cumulative"),
+        "team_names": filled(summary, "team_name"),
+        "trades": len(tables["trades"]) > 0,
+        "optimal_points": filled(summary, "optimal_points"),
+    }
+
+
+def _league_table_view(tables: dict) -> list[dict]:
+    """Per-drafter table with per-gameweek arrays precomputed for the trends chart."""
+    table = tables["league_table"]
+    by_week = tables["league_table_by_week"]
+    gameweeks = sorted(by_week["gameweek"].unique())
+
+    rows = []
+    for record in table.to_dict("records"):
+        league, short = record["league_code"], record["short_name"]
+        mine = by_week[(by_week["league_code"] == league) & (by_week["short_name"] == short)]
+        series = mine.set_index("gameweek")["points_scored"].to_dict()
+        weekly = [int(series.get(gw, 0)) for gw in gameweeks]
+        running, cumulative = 0, []
+        for value in weekly:
+            running += value
+            cumulative.append(running)
+        rows.append({
+            "league": league,
+            "short_name": short,
+            "name": _clean(record.get("name")),
+            "entry_name": _clean(record.get("entry_name")),
+            "rank": _clean(record.get("rank")),
+            "last_rank": _clean(record.get("last_rank")),
+            "total": _clean(record.get("total")),
+            "gameweek_points": _clean(record.get("gameweek_points")),
+            "form_points": _clean(record.get("form_points")),
+            "form_rank": _clean(record.get("form_rank")),
+            "points_by_gameweek": weekly,
+            "cumulative_by_gameweek": cumulative,
+        })
+    rows.sort(key=lambda r: (r["league"], r["rank"] if r["rank"] is not None else 99))
+    return rows
+
+
+def _reduce_weekly_points(frame: pd.DataFrame) -> pd.DataFrame:
+    """Keep owned rows plus undrafted players who ranked in the top N that gameweek."""
+    if "short_name" not in frame.columns:
+        return frame
+    undrafted = frame["short_name"].astype(str).str.startswith(NOT_DRAFTED_PREFIX)
+    keep_undrafted = undrafted & (pd.to_numeric(frame["rank_in_week"], errors="coerce")
+                                 <= UNDRAFTED_RANK_CUTOFF)
+    return frame[~undrafted | keep_undrafted]
+
+
+def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: bool = True) -> Path:
+    season = tables["season"]
+    root = Path(out_dir) if out_dir else paths.season_data_dir(season.season)
+    root.mkdir(parents=True, exist_ok=True)
+
+    summary = tables["weekly_summary"]
+    points = tables["weekly_points"]
+    if reduce_points:
+        points = _reduce_weekly_points(points)
+
+    gameweeks = sorted(int(g) for g in summary["gameweek"].unique())
+    meta = {
+        "season": season.season,
+        "label": season.label,
+        "source": season.default_source,
+        "current_gameweek": int(tables["current_week"]),
+        "total_gameweeks": len(gameweeks),
+        "complete": len(gameweeks) >= season.total_gameweeks,
+        "gameweeks": gameweeks,
+        "leagues": [
+            {"code": lg.code, "name": lg.name, "size": lg.size,
+             "promoted": lg.promoted, "relegated": lg.relegated}
+            for lg in season.leagues
+        ],
+        "drafters": [
+            {"short_name": r["short_name"], "name": _clean(r.get("name")), "league": r["league_code"]}
+            for r in tables["league_table"].to_dict("records")
+        ],
+        "capabilities": _capabilities(tables),
+        "notes": season.notes,
+    }
+
+    files = {
+        "meta.json": meta,
+        "league_table.json": _league_table_view(tables),
+        "weekly_summary.json": _records(summary, WEEKLY_SUMMARY),
+        "weekly_points.json": _records(points, WEEKLY_POINTS),
+        "draft_picks.json": _records(tables["draft_picks"], DRAFT_PICKS),
+        "transfers.json": _records(tables["transfers"], TRANSFERS),
+        "trades.json": _records(tables["trades"], TRADES),
+        "players.json": _records(tables["players"], PLAYERS),
+        "teams.json": _records(tables["teams"], TEAMS),
+    }
+    for name, payload in files.items():
+        (root / name).write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+
+    write_seasons_index(root.parent)
+    return root
+
+
+def write_seasons_index(data_root: Path) -> Path:
+    """Rebuild seasons.json from whatever season directories exist on disk."""
+    entries = []
+    for season_id in sorted(SEASONS, reverse=True):
+        meta_path = data_root / season_id / "meta.json"
+        if not meta_path.exists():
+            continue
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        entries.append({
+            "season": meta["season"], "label": meta["label"],
+            "current_gameweek": meta["current_gameweek"], "complete": meta["complete"],
+        })
+    payload = {"seasons": entries, "default": entries[0]["season"] if entries else None}
+    path = data_root / "seasons.json"
+    data_root.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return path
