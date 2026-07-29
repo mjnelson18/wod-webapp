@@ -10,7 +10,7 @@ import urllib.error
 import urllib.request
 
 # Identifies the job so FPL can see who is calling and where to complain.
-USER_AGENT = "wod-datapacks/1.0 (+https://github.com/mN3l50n-nms/wod-webapp)"
+USER_AGENT = "wod-datapacks/1.0 (+https://github.com/mjnelson18/wod-webapp)"
 MAX_RETRIES = 4
 TIMEOUT = 60
 # Requests are strictly sequential and spaced. Never parallelise these endpoints:
