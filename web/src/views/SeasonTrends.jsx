@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Legend,
@@ -46,6 +46,13 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
   const [mode, setMode] = useState('cumulative')
   const [seriesMetric, setSeriesMetric] = useState('points_scored')
   const [lorenzMode, setLorenzMode] = useState('pct')
+  // 'all' shows the early picks across every drafter, which is the interesting
+  // view en masse; picking a drafter shows their full 15.
+  const [draftFilter, setDraftFilter] = useState('all')
+
+  // A drafter selected in one league won't exist in another (or in another
+  // season, after promotion and relegation), which would leave an empty table.
+  useEffect(() => { setDraftFilter('all') }, [season, league])
   const colours = useMemo(() => colourMap(meta, league), [meta, league])
 
   const v = useMemo(() => {
@@ -175,8 +182,21 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     const usage = inLeague(data.player_usage)
     const share = inLeague(data.draft_share)
-    const perf = inLeague(data.draft_performance)
     const forms = inLeague(data.formations)
+
+    // Draft round from the overall pick number and the league size — a snake
+    // draft of N drafters means every N picks is one round.
+    const leagueSize = meta.leagues.find(l => l.code === league)?.size || rows.length || 6
+    const perf = inLeague(data.draft_performance)
+      .map(p => ({ ...p, round: Math.floor(((p.draft_index ?? 1) - 1) / leagueSize) + 1 }))
+      .sort((a, b) => a.draft_index - b.draft_index)
+
+    const EARLY_ROUNDS = 5
+    const squadRounds = Math.max(0, ...perf.map(p => p.round))
+    const earlyRounds = Math.min(EARLY_ROUNDS, squadRounds)
+    const draftRows = draftFilter === 'all'
+      ? perf.filter(p => p.round <= earlyRounds)
+      : perf.filter(p => p.short_name === draftFilter)
 
     const leader = rows[0]
     const totalLost = summaryRows.filter(r => !r.is_average)
@@ -186,8 +206,8 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     return { rows, gws, points, bins, subCost, activity, activityByWeek, types,
              summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
-             lorenz, maxSquad }
-  }, [data, league, meta.gameweeks, mode, seriesMetric, lorenzMode])
+             lorenz, maxSquad, draftRows, earlyRounds, squadRounds }
+  }, [data, league, meta, mode, seriesMetric, lorenzMode, draftFilter])
 
   if (error) return <div className="notice">Couldn&apos;t load season data: {String(error.message)}</div>
   if (loading || !v) return <Loading what="season trends" />
@@ -269,18 +289,35 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
         <SubHead note="Realised by the drafter who picked them, by a later owner, or by nobody">
           Value of each pick
         </SubHead>
+
+        <div className="chips" style={{ marginBottom: 8 }}>
+          <button className="chip" aria-pressed={draftFilter === 'all'}
+                  onClick={() => setDraftFilter('all')}>
+            Early picks
+          </button>
+          {v.rows.map(r => (
+            <button key={r.short_name} className="chip"
+                    aria-pressed={draftFilter === r.short_name}
+                    title={fullName(meta, r.short_name)}
+                    onClick={() => setDraftFilter(r.short_name)}>
+              {r.short_name}
+            </button>
+          ))}
+        </div>
+
         <div className="table-wrap">
           <table className="data">
             <thead>
               <tr>
-                <th>#</th><th>Player</th><th>Drafter</th><th>Total</th>
+                <th>#</th><th>Rd</th><th>Player</th><th>Drafter</th><th>Total</th>
                 <th>To drafter</th><th>To others</th><th>Unrealised</th><th>Kept</th>
               </tr>
             </thead>
             <tbody>
-              {[...v.perf].sort((a, b) => a.draft_index - b.draft_index).slice(0, 40).map(p => (
+              {v.draftRows.map(p => (
                 <tr key={`${p.short_name}-${p.element}`}>
                   <td className="num">{p.draft_index}</td>
+                  <td className="num">{p.round}</td>
                   <td>{p.web_name}<span className="muted small"> {p.position}</span></td>
                   <td>{label(p.short_name)}</td>
                   <td className="num">{p.total_points}</td>
@@ -293,7 +330,11 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
             </tbody>
           </table>
         </div>
-        <p className="small muted">Showing the first 40 picks in draft order — the full table is in the Explorer.</p>
+        <p className="small muted">
+          {draftFilter === 'all'
+            ? `Rounds 1–${v.earlyRounds} across every drafter — pick a drafter above for their full ${v.squadRounds} picks.`
+            : `All ${v.draftRows.length} picks by ${fullName(meta, draftFilter)}.`}
+        </p>
       </Collapsible>
 
       <Collapsible title="Players" summary="squad churn and scoring concentration">
