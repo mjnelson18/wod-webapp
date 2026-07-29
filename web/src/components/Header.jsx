@@ -3,7 +3,7 @@ import { navigate, buildHash } from '../lib/router.js'
 const TABS = [
   { view: 'gw', label: 'This Gameweek' },
   { view: 'season', label: 'Season Trends' },
-  { view: 'compare', label: 'Leagues' },
+  { view: 'compare', label: 'Cross-league' },
   { view: 'explorer', label: 'Explorer' },
 ]
 

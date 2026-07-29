@@ -260,6 +260,78 @@ table.data td.num { font-variant-numeric: tabular-nums; }
 .chart-tip .tip-row { display: flex; justify-content: space-between; gap: 12px; }
 .chart-tip .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; }
 
+/* sort affordance: always visible so it's obvious columns are sortable */
+table.data th .sort-mark { margin-left: 4px; opacity: 0.35; font-size: 0.85em; }
+table.data th.sorted .sort-mark { opacity: 1; color: var(--accent); }
+table.data th.sortable:hover { color: var(--text); }
+table.data th.sortable:hover .sort-mark { opacity: 0.7; }
+
+.link-button {
+  font: inherit; font-size: inherit; padding: 0; border: 0; background: none;
+  color: var(--accent); cursor: pointer; text-decoration: underline;
+}
+
+/* ---------- collapsible sections ---------- */
+
+.collapsible {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.collapsible > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  min-height: 44px;           /* comfortable thumb target */
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  user-select: none;
+}
+.collapsible > summary::-webkit-details-marker { display: none; }
+
+/* chevron, rotated when open */
+.collapsible > summary::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 6px; height: 6px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+  margin-right: 2px;
+}
+.collapsible[open] > summary::before { transform: rotate(45deg); }
+.collapsible[open] > summary { border-bottom: 1px solid var(--border); }
+
+.collapsible > summary:hover { background: var(--surface-2); }
+.collapsible-title { flex: 0 0 auto; }
+.collapsible-count {
+  flex: 0 0 auto;
+  font-size: 0.72rem; font-weight: 600;
+  padding: 1px 7px; border-radius: 999px;
+  background: var(--surface-2); color: var(--muted);
+}
+.collapsible-summary {
+  margin-left: auto;
+  font-size: 0.78rem; font-weight: 500; color: var(--muted);
+  text-align: right; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.collapsible-body { padding: 12px; background: var(--bg); }
+
+.subhead { margin: 14px 0 6px; }
+.subhead:first-child { margin-top: 0; }
+.subhead h3 { margin: 0; }
+.subhead p { margin: 2px 0 0; }
+
+.toggle.wrap { flex-wrap: wrap; }
+
 /* ---------- misc ---------- */
 
 .chips { display: flex; gap: 5px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }

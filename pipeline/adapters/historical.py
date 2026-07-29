@@ -130,10 +130,16 @@ def build_tables(season, *, verbose: bool = True) -> dict:
         summary.groupby(["league_code", "short_name", "element"])["points_scored"].cumsum()
     )
 
-    # optimal_weight was never stored for 2425 and cannot be recovered without the
-    # raw squads; optimal_points itself is present in the CSV.
+    # optimal_weight was never stored for 2425, but it is recoverable the same way
+    # the notebook derived it (cell 36): optimal_points / total_points. Zero-point
+    # players divide to nothing, so they contribute 0 rather than NaN — otherwise a
+    # single non-scorer would poison the formation sums.
     if "optimal_weight" not in summary.columns:
-        summary["optimal_weight"] = pd.NA
+        weight = (
+            pd.to_numeric(summary["optimal_points"], errors="coerce")
+            / pd.to_numeric(summary["total_points"], errors="coerce")
+        )
+        summary["optimal_weight"] = weight.replace([np.inf, -np.inf], 0).fillna(0)
     for column in ("gameweek_matches", "opposition", "home_away", "team_score",
                    "opposition_score", "team_difficulty", "opposition_difficulty",
                    "kickoff_time_first", "team"):

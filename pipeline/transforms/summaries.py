@@ -134,6 +134,15 @@ def formations(weekly_summary: pd.DataFrame) -> pd.DataFrame:
         .size().rename(columns={"size": "count"})
     )
 
+    # No usable weights means no meaningful optimal shape — say so with null
+    # rather than reporting a confident 0.0-0.0-0.0.
+    if "optimal_weight" not in outfield.columns or not outfield["optimal_weight"].notna().any():
+        counts = (
+            chosen.groupby(["league_code", "short_name", "formation"], as_index=False)
+            .size().rename(columns={"size": "count"})
+        )
+        return counts.assign(optimal_formation=None)
+
     optimal = (
         outfield.groupby(["league_code", "short_name", "gameweek", "position"], as_index=False)
         ["optimal_weight"].sum()

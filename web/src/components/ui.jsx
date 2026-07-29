@@ -1,5 +1,61 @@
 /** Small shared pieces: league toggle, capability notice, loading, section wrapper. */
 
+import { useState } from 'react'
+
+/**
+ * Collapsible detail section.
+ *
+ * Every tab is "headline numbers first, detail on demand" — on a phone the old
+ * report's wall of stacked charts meant scrolling past things you didn't want.
+ * Uses native <details> so it works without JS and is keyboard/screen-reader
+ * accessible for free.
+ */
+export function Collapsible({ title, summary, children, open = false, count }) {
+  return (
+    <details className="collapsible" open={open}>
+      <summary>
+        <span className="collapsible-title">{title}</span>
+        {count != null && <span className="collapsible-count">{count}</span>}
+        {summary && <span className="collapsible-summary">{summary}</span>}
+      </summary>
+      <div className="collapsible-body">{children}</div>
+    </details>
+  )
+}
+
+/** Headline figures that sit above the collapsibles on every tab. */
+export function StatRow({ children }) {
+  return <div className="stat-grid">{children}</div>
+}
+
+/** Sub-heading inside a collapsible, for when one section holds several charts. */
+export function SubHead({ children, note }) {
+  return (
+    <div className="subhead">
+      <h3>{children}</h3>
+      {note && <p className="small muted">{note}</p>}
+    </div>
+  )
+}
+
+/** Segmented control, for picking a metric or breakdown within a section. */
+export function Segmented({ options, value, onChange, ariaLabel }) {
+  return (
+    <div className="toggle wrap" role="group" aria-label={ariaLabel}>
+      {options.map(o => (
+        <button
+          key={o.value}
+          aria-pressed={value === o.value}
+          onClick={() => onChange(o.value)}
+          title={o.title}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 export function LeagueToggle({ meta, league, setLeague }) {
   if (!meta?.leagues?.length) return null
   return (

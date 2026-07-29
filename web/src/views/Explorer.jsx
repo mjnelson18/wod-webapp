@@ -99,7 +99,15 @@ export default function Explorer({ season }) {
           <p className="small muted" style={{ margin: '0 0 8px' }}>
             {rows.length.toLocaleString()} row{rows.length === 1 ? '' : 's'}
             {rows.length !== data.length && ` of ${data.length.toLocaleString()}`}
-            {' · tap a column to sort'}
+            {sorting.length > 0 && (
+              <> · sorted by <strong>{sorting[0].id.replace(/_/g, ' ')}</strong>
+                {sorting[0].desc ? ' ▼' : ' ▲'}
+                {' '}<button className="link-button" onClick={() => setSorting([])}>clear</button>
+              </>
+            )}
+          </p>
+          <p className="small muted" style={{ margin: '0 0 8px' }}>
+            Tap any column heading to sort — every column is sortable, and tapping again reverses it.
           </p>
 
           <div className="table-wrap">
@@ -108,9 +116,17 @@ export default function Explorer({ season }) {
                 {table.getHeaderGroups().map(hg => (
                   <tr key={hg.id}>
                     {hg.headers.map(h => (
-                      <th key={h.id} onClick={h.column.getToggleSortingHandler()}>
+                      <th
+                        key={h.id}
+                        onClick={h.column.getToggleSortingHandler()}
+                        aria-sort={{ asc: 'ascending', desc: 'descending' }[h.column.getIsSorted()] ?? 'none'}
+                        title={`Sort by ${h.column.id.replace(/_/g, ' ')}`}
+                        className={h.column.getIsSorted() ? 'sorted' : 'sortable'}
+                      >
                         {flexRender(h.column.columnDef.header, h.getContext())}
-                        {{ asc: ' ▲', desc: ' ▼' }[h.column.getIsSorted()] ?? ''}
+                        <span className="sort-mark">
+                          {{ asc: '▲', desc: '▼' }[h.column.getIsSorted()] ?? '↕'}
+                        </span>
                       </th>
                     ))}
                   </tr>

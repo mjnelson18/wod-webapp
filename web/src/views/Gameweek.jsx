@@ -1,87 +1,105 @@
 import { useMemo } from 'react'
 import { useTables, can } from '../lib/data.js'
 import { navigate } from '../lib/router.js'
-import { LeagueToggle, Section, Loading, Unavailable, Stat } from '../components/ui.jsx'
+import { fullName, label, round, signed, rankMove } from '../lib/names.js'
+import {
+  LeagueToggle, Section, Loading, Unavailable, Stat, StatRow, Collapsible, SubHead,
+} from '../components/ui.jsx'
+import SquadGrid from '../components/SquadGrid.jsx'
 
 const STARTERS = 11
-const SQUAD_SIZE = 15
-
-/** Points -> heat step. Thresholds match the old report's visual weighting. */
-function heat(points) {
-  const p = Number(points) || 0
-  if (p <= 0) return 'var(--heat-0)'
-  if (p <= 2) return 'var(--heat-1)'
-  if (p <= 4) return 'var(--heat-2)'
-  if (p <= 6) return 'var(--heat-3)'
-  if (p <= 9) return 'var(--heat-4)'
-  if (p <= 13) return 'var(--heat-5)'
-  return 'var(--heat-6)'
-}
+const LOOKAHEAD = 6
 
 export default function Gameweek({ season, meta, league, setLeague, route }) {
   const gw = Number(route.param) || meta.current_gameweek
-  const { data, loading, error } = useTables(season, ['weekly_summary', 'league_table', 'transfers', 'trades'])
+  const { data, loading, error } = useTables(season, [
+    'weekly_summary', 'league_table', 'transfers', 'trades', 'fixtures',
+  ])
 
   const view = useMemo(() => {
     if (!data) return null
-    const { weekly_summary, league_table, transfers, trades } = data
+    const { weekly_summary, league_table, transfers, trades, fixtures } = data
 
     const table = league_table.filter(r => r.league === league).sort((a, b) => a.rank - b.rank)
-    const order = table.map(r => r.short_name)
     const rows = weekly_summary.filter(r => r.league === league && r.gameweek === gw)
+    const gwIndex = meta.gameweeks.indexOf(gw)
 
-    // Latest successful transfer-in gameweek per (drafter, element), for the Tn# label.
-    const transferWeek = new Map()
-    const thisWeekIn = new Map()
-    const attemptedOut = new Set()
-    for (const t of transfers) {
-      if (t.league && t.league !== league) continue
-      const key = `${t.short_name}|${t.element_in}`
-      const successful = t.result === 'successful' || t.result === 'a'
-      if (successful && t.element_in != null) {
-        transferWeek.set(key, Math.max(transferWeek.get(key) ?? 0, t.gameweek))
-        if (t.gameweek === gw) thisWeekIn.set(key, t.kind)
-      }
-      if (!successful && t.gameweek === gw && t.element_out != null) {
-        attemptedOut.add(`${t.short_name}|${t.element_out}`)
-      }
-    }
-
-    const tradeWeek = new Map()
-    for (const t of trades ?? []) {
-      if (t.league && t.league !== league) continue
-      if (t.element_in != null) tradeWeek.set(`${t.offered_by}|${t.element_in}`, t.gameweek)
-      if (t.element_out != null) tradeWeek.set(`${t.received_by}|${t.element_out}`, t.gameweek)
-    }
-
-    const columns = order.map(short => {
-      const squad = rows.filter(r => r.short_name === short)
-        .sort((a, b) => (a.place ?? 99) - (b.place ?? 99))
-      const gwTotal = squad.reduce((s, r) => s + (Number(r.points_scored) || 0), 0)
+    // per-drafter totals for this gameweek
+    const drafters = table.map(t => {
+      const squad = rows.filter(r => r.short_name === t.short_name)
+      const scored = squad.reduce((s, r) => s + (Number(r.points_scored) || 0), 0)
       const optimal = squad.reduce((s, r) => s + (Number(r.optimal_points) || 0), 0)
-      const cells = squad.map(r => {
-        const key = `${short}|${r.element}`
-        const benched = (r.place ?? 99) > STARTERS
-        let flag = ''
-        if (thisWeekIn.has(key)) flag = thisWeekIn.get(key) === 'waiver' ? 'W' : 'F'
-        else if (attemptedOut.has(key)) flag = 'AW'
-        let sub = ''
-        if (r.originally_starting === 1 && benched) sub = 'SF'
-        else if (r.originally_starting === 0 && !benched) sub = 'SN'
-        const acquired = r.in_original_draft === 1 && r.round != null
-          ? `D${r.round}`
-          : tradeWeek.has(key) ? `Td${tradeWeek.get(key)}`
-          : transferWeek.has(key) ? `Tn${transferWeek.get(key)}` : '—'
-        return { ...r, benched, flag, sub, acquired }
-      })
-      return { short, table: table.find(t => t.short_name === short), gwTotal, optimal, cells }
+      const beforeSubs = squad.reduce((s, r) => s + (Number(r.points_before_auto_subs) || 0), 0)
+      return {
+        ...t,
+        squad,
+        scored,
+        optimal,
+        beforeSubs,
+        lostToSubs: Math.max(0, optimal - scored),
+        autoSubGain: scored - beforeSubs,
+        cumulative: t.cumulative_by_gameweek?.[gwIndex] ?? null,
+      }
     })
 
-    const best = columns.reduce((a, b) => (b.gwTotal > (a?.gwTotal ?? -1) ? b : a), null)
-    const worst = columns.reduce((a, b) => (b.gwTotal < (a?.gwTotal ?? 1e9) ? b : a), null)
-    const lost = columns.reduce((s, c) => s + Math.max(0, c.optimal - c.gwTotal), 0)
-    return { columns, best, worst, lost }
-  }, [data, league, gw])
+    const best = drafters.reduce((a, b) => (b.scored > (a?.scored ?? -1) ? b : a), null)
+    const worst = drafters.reduce((a, b) => (b.scored < (a?.scored ?? 1e9) ? b : a), null)
+    const leagueTotal = drafters.reduce((s, d) => s + d.scored, 0)
+    const leagueAvg = drafters.length ? leagueTotal / drafters.length : 0
+    const totalLost = drafters.reduce((s, d) => s + d.lostToSubs, 0)
+
+    // subs detail: who was subbed on/off, and what it cost or gained
+    const subs = []
+    for (const d of drafters) {
+      for (const r of d.squad) {
+        const benched = (r.place ?? 99) > STARTERS
+        const on = r.originally_starting === 0 && !benched
+        const off = r.originally_starting === 1 && benched
+        if (!on && !off) continue
+        subs.push({
+          short_name: d.short_name, web_name: r.web_name, position: r.position,
+          team_name: r.team_name, points: Number(r.total_points) || 0,
+          kind: on ? 'on' : 'off',
+        })
+      }
+    }
+
+    // accepted moves only, this gameweek — successful transfers plus trades
+    const moves = []
+    for (const t of transfers) {
+      if (t.league !== league || t.gameweek !== gw) continue
+      if (t.result !== 'successful') continue
+      moves.push({
+        type: t.kind === 'waiver' ? 'Waiver' : 'Free agent',
+        who: t.short_name, inName: t.player_in, outName: t.player_out,
+        inPoints: t.player_in_points, outPoints: t.player_out_points,
+        net: t.net_points, counterparty: null,
+      })
+    }
+    for (const t of trades ?? []) {
+      if (t.league !== league || t.gameweek !== gw) continue
+      moves.push({
+        type: 'Trade', who: t.offered_by, inName: t.player_in, outName: t.player_out,
+        inPoints: t.player_in_points, outPoints: t.player_out_points,
+        net: t.net_points, counterparty: t.received_by,
+      })
+    }
+    moves.sort((a, b) => Math.abs(b.net ?? 0) - Math.abs(a.net ?? 0))
+
+    // results this gameweek, and the look-ahead from here
+    const all = fixtures ?? []
+    const results = all.filter(f => f.gameweek === gw)
+      .sort((a, b) => String(a.kickoff_time ?? '').localeCompare(String(b.kickoff_time ?? '')))
+    const aheadWeeks = meta.gameweeks.filter(g => g > gw && g <= gw + LOOKAHEAD)
+    const teams = [...new Set(all.map(f => f.team_name))].filter(Boolean).sort()
+    const lookahead = teams.map(team => ({
+      team,
+      weeks: aheadWeeks.map(g => all.find(f => f.team_name === team && f.gameweek === g) ?? null),
+    })).filter(r => r.weeks.some(Boolean))
+
+    return { table, drafters, best, worst, leagueTotal, leagueAvg, totalLost,
+             subs, moves, results, lookahead, aheadWeeks }
+  }, [data, league, gw, meta.gameweeks])
 
   if (error) return <div className="notice">Couldn&apos;t load gameweek data: {String(error.message)}</div>
   if (loading || !view) return <Loading what={`gameweek ${gw}`} />
@@ -94,102 +112,245 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
       >
         <div className="chips" style={{ marginBottom: 10 }}>
           {meta.gameweeks.map(g => (
-            <button
-              key={g}
-              className="chip"
-              aria-pressed={g === gw}
-              onClick={() => navigate({ season, view: 'gw', param: g })}
-            >
+            <button key={g} className="chip" aria-pressed={g === gw}
+                    onClick={() => navigate({ season, view: 'gw', param: g })}>
               {g}
             </button>
           ))}
         </div>
 
-        <div className="stat-grid">
-          <Stat label="Gameweek high" value={view.best ? `${view.best.short} · ${view.best.gwTotal}` : '—'} />
-          <Stat label="Gameweek low" value={view.worst ? `${view.worst.short} · ${view.worst.gwTotal}` : '—'} />
+        <StatRow>
+          <Stat label="Gameweek high"
+                value={view.best ? view.best.scored : '–'}
+                sub={view.best ? fullName(meta, view.best.short_name) : ''} />
+          <Stat label="Gameweek low"
+                value={view.worst ? view.worst.scored : '–'}
+                sub={view.worst ? fullName(meta, view.worst.short_name) : ''} />
+          <Stat label="League average" value={round(view.leagueAvg)} sub={`${view.leagueTotal} total`} />
           {can(meta, 'optimal_points') && (
-            <Stat
-              label="Points left on the bench"
-              value={Math.round(view.lost)}
-              sub="league total vs optimal XI"
-            />
+            <Stat label="Left on the bench" value={Math.round(view.totalLost)}
+                  sub="league-wide vs optimal XI" />
           )}
+        </StatRow>
+      </Section>
+
+      <Section title="Standings after this gameweek">
+        <div className="table-wrap">
+          <table className="data">
+            <thead>
+              <tr>
+                <th>#</th><th>Drafter</th><th>GW</th><th>Total</th>
+                <th>Form</th><th>vs optimal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {view.drafters.map(d => {
+                const move = rankMove(d.rank, d.last_rank)
+                return (
+                  <tr key={d.short_name}>
+                    <td className="num">
+                      {d.rank}
+                      {move && <span className={`rank-move ${move.className}`}>{move.text}</span>}
+                    </td>
+                    <td>{fullName(meta, d.short_name)}<span className="muted small"> {d.short_name}</span></td>
+                    <td className="num">{d.scored}</td>
+                    <td className="num">{d.cumulative ?? d.total}</td>
+                    <td className="num">{round(d.form_points)}</td>
+                    <td className="num">{d.lostToSubs > 0 ? `−${Math.round(d.lostToSubs)}` : '0'}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
       </Section>
 
-      <Section title="Squads" note="Swipe across · shading is points scored this week">
-        <SquadGrid columns={view.columns} meta={meta} />
-      </Section>
+      <Collapsible
+        title="Squads"
+        summary="colour grid · swipe across"
+        open
+      >
+        <SquadGrid columns={view.drafters.map(d => ({
+          short: d.short_name, table: d, gwTotal: d.scored, cells: d.squad,
+        }))} meta={meta} transfers={data.transfers} trades={data.trades}
+           league={league} gameweek={gw} />
+      </Collapsible>
+
+      <Collapsible
+        title="Substitutions"
+        count={view.subs.length}
+        summary={`${Math.round(view.totalLost)} pts left on benches`}
+      >
+        {view.subs.length === 0 ? (
+          <p className="muted small">No auto-subs this gameweek.</p>
+        ) : (
+          <>
+            <SubHead note="Auto-subs applied when a starter didn't play">Subbed players</SubHead>
+            <div className="table-wrap">
+              <table className="data">
+                <thead>
+                  <tr><th>Drafter</th><th>Player</th><th>Pos</th><th>Pts</th><th>Sub</th></tr>
+                </thead>
+                <tbody>
+                  {view.subs.map((s, i) => (
+                    <tr key={i}>
+                      <td>{fullName(meta, s.short_name)}</td>
+                      <td>{s.web_name}{s.team_name ? <span className="muted small"> {s.team_name}</span> : null}</td>
+                      <td>{s.position}</td>
+                      <td className="num">{s.points}</td>
+                      <td>{s.kind === 'on' ? 'came on' : 'went off'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <SubHead note="Points a perfect line-up would have added">Cost per drafter</SubHead>
+            <div className="table-wrap">
+              <table className="data">
+                <thead>
+                  <tr><th>Drafter</th><th>Scored</th><th>Optimal</th><th>Lost</th><th>Auto-sub gain</th></tr>
+                </thead>
+                <tbody>
+                  {[...view.drafters].sort((a, b) => b.lostToSubs - a.lostToSubs).map(d => (
+                    <tr key={d.short_name}>
+                      <td>{fullName(meta, d.short_name)}</td>
+                      <td className="num">{d.scored}</td>
+                      <td className="num">{round(d.optimal)}</td>
+                      <td className="num">{d.lostToSubs > 0 ? `−${Math.round(d.lostToSubs)}` : '0'}</td>
+                      <td className="num">{signed(d.autoSubGain)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+      </Collapsible>
+
+      <Collapsible
+        title="Transfers & trades"
+        count={view.moves.length}
+        summary="accepted moves this gameweek"
+      >
+        {view.moves.length === 0 ? (
+          <p className="muted small">No accepted moves this gameweek.</p>
+        ) : (
+          <div className="table-wrap">
+            <table className="data">
+              <thead>
+                <tr>
+                  <th>Drafter</th><th>Type</th><th>In</th><th>Pts</th>
+                  <th>Out</th><th>Pts</th><th>Net</th>
+                </tr>
+              </thead>
+              <tbody>
+                {view.moves.map((m, i) => (
+                  <tr key={i}>
+                    <td>
+                      {fullName(meta, m.who)}
+                      {m.counterparty && (
+                        <span className="muted small"> ↔ {fullName(meta, m.counterparty)}</span>
+                      )}
+                    </td>
+                    <td>{m.type}</td>
+                    <td>{m.inName}</td>
+                    <td className="num">{m.inPoints ?? '–'}</td>
+                    <td>{m.outName}</td>
+                    <td className="num">{m.outPoints ?? '–'}</td>
+                    <td className={`num ${(m.net ?? 0) > 0 ? 'up' : (m.net ?? 0) < 0 ? 'down' : ''}`}>
+                      {signed(m.net)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Collapsible>
+
+      <Collapsible
+        title="Fixtures"
+        summary={can(meta, 'fixture_lookahead')
+          ? `results · next ${LOOKAHEAD} gameweeks`
+          : 'not available for this season'}
+      >
+        {!can(meta, 'fixture_lookahead') ? (
+          <Unavailable what="Fixtures" season={meta.label} />
+        ) : (
+          <>
+            <SubHead note={`Gameweek ${gw}`}>Results</SubHead>
+            <ResultsList results={view.results} />
+
+            <SubHead note="Shading is fixture difficulty — darker is harder">
+              Next {LOOKAHEAD} gameweeks
+            </SubHead>
+            {view.aheadWeeks.length === 0 ? (
+              <p className="muted small">Season complete — nothing ahead of gameweek {gw}.</p>
+            ) : (
+              <LookaheadGrid rows={view.lookahead} weeks={view.aheadWeeks} />
+            )}
+          </>
+        )}
+      </Collapsible>
     </>
   )
 }
 
-function SquadGrid({ columns, meta }) {
+/** Home fixtures only, so each match appears once. */
+function ResultsList({ results }) {
+  const played = results.filter(f => f.home_away === 'H')
+  if (!played.length) return <p className="muted small">No fixtures found.</p>
   return (
-    <>
-      <div className="squad-scroll">
-        <div className="squad-grid">
-          {/* sticky place-number gutter so rows stay readable while scrolling */}
-          <div className="squad-col squad-gutter">
-            <div className="squad-head" style={{ background: 'transparent', border: 0 }} />
-            {Array.from({ length: SQUAD_SIZE }, (_, i) => (
-              <div
-                key={i}
-                className={`gutter-cell${i === STARTERS ? ' bench-start' : ''}`}
-              >
-                {i + 1}
-              </div>
-            ))}
-          </div>
-
-          {columns.map(col => (
-            <div className="squad-col" key={col.short}>
-              <div className="squad-head">
-                {col.short}
-                <span className="gw-total">{col.gwTotal}</span>
-                <span className="rank">
-                  {col.table ? `#${col.table.rank} · ${col.table.total} pts` : ''}
-                </span>
-              </div>
-              {col.cells.map((c, i) => (
-                <div
-                  key={c.element}
-                  className={`squad-cell${c.benched ? ' benched' : ''}${i === STARTERS ? ' bench-start' : ''}`}
-                  style={{ background: heat(c.points_scored) }}
-                  title={`${c.web_name} — ${c.total_points} pts`}
-                >
-                  <div className="name">
-                    <span>
-                      {c.flag && <span className="flag">{c.flag} </span>}
-                      {c.sub && <span className="flag">{c.sub} </span>}
-                      {c.web_name}
-                    </span>
-                    <b>{c.total_points}</b>
-                  </div>
-                  <div className="meta">
-                    {c.position}{c.team_name ? ` · ${c.team_name}` : ''}
-                  </div>
-                  <div className="meta">
-                    {c.acquired}
-                    {c.player_total_points != null && ` · ${c.player_total_points} S`}
-                    {c.points_scored_cumulative != null && ` · ${c.points_scored_cumulative} R`}
-                  </div>
-                </div>
-              ))}
-            </div>
+    <div className="table-wrap">
+      <table className="data">
+        <thead><tr><th>Home</th><th>Score</th><th>Away</th></tr></thead>
+        <tbody>
+          {played.map((f, i) => (
+            <tr key={i}>
+              <td>{f.team_name}</td>
+              <td className="num">{f.team_score ?? '–'} – {f.opposition_score ?? '–'}</td>
+              <td>{f.opposition}</td>
+            </tr>
           ))}
-        </div>
-      </div>
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
-      <p className="legend">
-        <code>W</code> waiver this week · <code>F</code> free agent · <code>AW</code> attempted waiver ·{' '}
-        <code>SN</code> subbed on · <code>SF</code> subbed off · <code>D#</code> draft round ·{' '}
-        <code>Tn#</code> transferred in GW# · <code>Td#</code> traded GW#
-        {meta.capabilities.cumulative && <> · <code>S</code> season total · <code>R</code> realised by drafter</>}
-        <br />
-        Dashed border = benched. The heavy line separates the starting XI from the bench.
-      </p>
-    </>
+function difficultyColour(value) {
+  if (value == null) return undefined
+  // FPL rates 1 (easiest) to 5 (hardest)
+  const step = Math.max(1, Math.min(5, Math.round(Number(value))))
+  const alpha = { 1: 8, 2: 16, 3: 28, 4: 44, 5: 62 }[step]
+  const hue = step <= 2 ? 'var(--accent)' : '#d00000'
+  return `color-mix(in srgb, ${hue} ${alpha}%, transparent)`
+}
+
+function LookaheadGrid({ rows, weeks }) {
+  return (
+    <div className="table-wrap">
+      <table className="data">
+        <thead>
+          <tr>
+            <th>Team</th>
+            {weeks.map(g => <th key={g}>GW{g}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(r => (
+            <tr key={r.team}>
+              <td>{r.team}</td>
+              {r.weeks.map((f, i) => (
+                <td key={i} style={{ background: difficultyColour(f?.opposition_difficulty) }}>
+                  {f ? `${f.opposition}${f.home_away === 'H' ? '' : ' (a)'}` : '–'}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
