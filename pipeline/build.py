@@ -22,19 +22,27 @@ from .fetchers.http import RateLimited
 from .transforms import (
     attach_fixtures,
     attach_pick_totals,
+    available_form_players,
     bootstrap_start_year,
     bootstrap_team_ids_agree,
+    draft_pick_performance,
     draft_picks_table,
+    draft_share,
     entry_ids,
     finalise_trades,
     finalise_transfers,
     fixtures_from_fantasy,
     fixtures_from_live,
     form_table,
+    formations,
     league_table,
     live_league_table,
+    player_usage,
     players_table,
+    points_distribution,
     season_start_year,
+    season_summary,
+    season_summary_by_gameweek,
     teams_table,
     trades_table,
     transfers_table,
@@ -172,6 +180,20 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
     table = table.merge(form_table(weekly_summary, current_week),
                         on=["league_code", "short_name"], how="left")
 
+    # Pre-computed per-view tables, so the client never aggregates a 6,840-row
+    # table to draw a chart.
+    views = {
+        "season_summary": season_summary(weekly_summary, weekly_points),
+        "season_summary_by_gameweek": season_summary_by_gameweek(weekly_summary, weekly_points),
+        "formations": formations(weekly_summary),
+        "draft_performance": draft_pick_performance(weekly_summary, weekly_points, current_week),
+        "player_usage": player_usage(weekly_summary),
+        "draft_share": draft_share(weekly_summary),
+        "distribution_position": points_distribution(weekly_summary, "position"),
+        "distribution_team": points_distribution(weekly_summary, "team_name"),
+        "available_players": available_form_players(weekly_points, current_week),
+    }
+
     if isinstance(source, object) and hasattr(source, "stats"):
         say(f"  fetches={source.stats['fetched']} cache_hits={source.stats['cached']}")
 
@@ -190,6 +212,7 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
         "league_table": table,
         "league_table_by_week": by_week,
         "fixtures_by_team": fixtures_by_team,
+        "views": views,
     }
 
 

@@ -121,6 +121,82 @@ PLAYERS = {
 
 TEAMS = {"team_id": "team", "team_name": "team_name"}
 
+# One row per team per gameweek for the WHOLE season, past and future. Separate
+# from the fixture columns embedded in weekly_summary, which only cover gameweeks
+# that have been played — the next-6 look-ahead needs fixtures that haven't.
+FIXTURES = {
+    "gameweek": "gameweek", "team_name": "team", "gameweek_matches": "gameweek_matches",
+    "opposition": "opposition", "home_away": "home_away",
+    "team_score": "team_score", "opposition_score": "opposition_score",
+    "team_difficulty": "team_difficulty", "opposition_difficulty": "opposition_difficulty",
+    "kickoff_time": "kickoff_time_first",
+}
+
+# Pre-computed per-view tables. Keys are file stems under the season directory.
+VIEW_COLUMNS = {
+    "season_summary": {
+        "league": "league_code", "short_name": "short_name", "is_average": "is_average",
+        "draft_points": "draft_points",
+        "points_gained_through_waivers": "points_gained_through_waivers",
+        "squad_points": "squad_points", "bench_strength": "bench_strength",
+        "optimal_points": "optimal_points",
+        "points_lost_choosing_starting_XI": "points_lost_choosing_starting_XI",
+        "points_before_auto_subs": "points_before_auto_subs",
+        "points_gained_with_auto_subs": "points_gained_with_auto_subs",
+        "net_points_lost_through_subs": "net_points_lost_through_subs",
+        "points_scored": "points_scored",
+    },
+    "season_summary_by_gameweek": {
+        "league": "league_code", "short_name": "short_name", "gameweek": "gameweek",
+        "draft_points": "draft_points",
+        "points_gained_through_waivers": "points_gained_through_waivers",
+        "squad_points": "squad_points", "bench_strength": "bench_strength",
+        "optimal_points": "optimal_points",
+        "points_lost_choosing_starting_XI": "points_lost_choosing_starting_XI",
+        "points_before_auto_subs": "points_before_auto_subs",
+        "points_gained_with_auto_subs": "points_gained_with_auto_subs",
+        "net_points_lost_through_subs": "net_points_lost_through_subs",
+        "points_scored": "points_scored",
+    },
+    "formations": {
+        "league": "league_code", "short_name": "short_name",
+        "formation": "formation", "count": "count", "optimal_formation": "optimal_formation",
+    },
+    "draft_performance": {
+        "league": "league_code", "short_name": "drafter_name", "draft_index": "draft_index",
+        "element": "id", "web_name": "web_name", "position": "position",
+        "total_points": "total_points",
+        "points_realised_by_drafter": "points_realised_by_drafter",
+        "points_realised_by_other": "points_realised_by_other",
+        "points_unrealised": "points_unrealised",
+        "still_owned": "still_owned", "current_owner": "current_owner",
+    },
+    "player_usage": {
+        "league": "league_code", "short_name": "short_name",
+        "unique_players_used": "unique_players_used",
+        "unique_players_started": "unique_players_started",
+        "scoring_players": "scoring_players", "gini": "gini",
+        "top_player": "top_player", "top_player_points": "top_player_points",
+        "top_player_pct": "top_player_pct",
+    },
+    "draft_share": {
+        "league": "league_code", "short_name": "short_name",
+        "points_scored": "points_scored", "draft_points": "draft_points",
+        "pct_from_draft": "pct_from_draft",
+    },
+    "distribution_position": {
+        "league": "league_code", "short_name": "short_name", "cut": "cut",
+        "bucket": "bucket", "points_scored": "points_scored",
+        "pct_points": "pct_points", "avg_points": "avg_points",
+    },
+    "available_players": {
+        "league": "league_code", "element": "id", "web_name": "web_name",
+        "position": "position", "team_name": "team_name",
+        "form_points": "form_points", "rank": "rank",
+    },
+}
+VIEW_COLUMNS["distribution_team"] = VIEW_COLUMNS["distribution_position"]
+
 
 def _capabilities(tables: dict) -> dict:
     summary = tables["weekly_summary"]
@@ -140,6 +216,8 @@ def _capabilities(tables: dict) -> dict:
         "team_names": filled(summary, "team_name"),
         "trades": len(tables["trades"]) > 0,
         "optimal_points": filled(summary, "optimal_points"),
+        # a full-season fixture table, needed for the next-6 look-ahead
+        "fixture_lookahead": filled(tables.get("fixtures_by_team", pd.DataFrame()), "opposition"),
     }
 
 
@@ -229,7 +307,14 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
         "trades.json": _records(tables["trades"], TRADES),
         "players.json": _records(tables["players"], PLAYERS),
         "teams.json": _records(tables["teams"], TEAMS),
+        "fixtures.json": _records(tables.get("fixtures_by_team", pd.DataFrame()), FIXTURES),
     }
+    for name, view in (tables.get("views") or {}).items():
+        columns = VIEW_COLUMNS.get(name)
+        if columns is None:
+            continue
+        files[f"{name}.json"] = _records(view, columns)
+
     for name, payload in files.items():
         (root / name).write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 

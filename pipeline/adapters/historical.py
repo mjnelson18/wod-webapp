@@ -18,6 +18,16 @@ import pandas as pd
 
 from .. import paths
 from ..transforms.league import form_table
+from ..transforms.summaries import (
+    available_form_players,
+    draft_pick_performance,
+    draft_share,
+    formations,
+    player_usage,
+    points_distribution,
+    season_summary,
+    season_summary_by_gameweek,
+)
 
 STARTING_XI = 11
 NOT_ORIGINALLY_DRAFTED = "Not Originally Drafted"
@@ -237,6 +247,21 @@ def build_tables(season, *, verbose: bool = True) -> dict:
     say(f"  {len(summary)} summary rows, {len(weekly_points)} point rows, "
         f"{len(picks)} picks, {len(transfers)} transfers")
 
+    # Same per-view tables as a live build. Most work for 2425 because they only
+    # need weekly_summary; the ones depending on fixtures or optimal_weight come
+    # out empty or null and are hidden by the capability flags.
+    views = {
+        "season_summary": season_summary(summary, weekly_points),
+        "season_summary_by_gameweek": season_summary_by_gameweek(summary, weekly_points),
+        "formations": formations(summary),
+        "draft_performance": draft_pick_performance(summary, weekly_points, current_week),
+        "player_usage": player_usage(summary),
+        "draft_share": draft_share(summary),
+        "distribution_position": points_distribution(summary, "position"),
+        "distribution_team": points_distribution(summary, "team_name"),
+        "available_players": available_form_players(weekly_points, current_week),
+    }
+
     return {
         "season": season,
         "current_week": current_week,
@@ -252,4 +277,5 @@ def build_tables(season, *, verbose: bool = True) -> dict:
         "league_table": table,
         "league_table_by_week": by_week,
         "fixtures_by_team": pd.DataFrame(),
+        "views": views,
     }

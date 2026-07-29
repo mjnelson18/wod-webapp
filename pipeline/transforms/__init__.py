@@ -19,6 +19,17 @@ from .moves import (
     transfers_table,
 )
 from .optimal import add_optimal_points, calc_optimal_points
+from .summaries import (
+    available_form_players,
+    draft_pick_performance,
+    draft_share,
+    fixture_lookahead,
+    formations,
+    player_usage,
+    points_distribution,
+    season_summary,
+    season_summary_by_gameweek,
+)
 from .players import (
     bootstrap_start_year,
     bootstrap_team_ids_agree,
@@ -32,8 +43,17 @@ __all__ = [
     "add_optimal_points",
     "attach_fixtures",
     "attach_pick_totals",
+    "available_form_players",
     "bootstrap_start_year",
     "bootstrap_team_ids_agree",
+    "draft_pick_performance",
+    "draft_share",
+    "fixture_lookahead",
+    "formations",
+    "player_usage",
+    "points_distribution",
+    "season_summary",
+    "season_summary_by_gameweek",
     "calc_optimal_points",
     "draft_picks_table",
     "entry_ids",
