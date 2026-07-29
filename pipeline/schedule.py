@@ -31,7 +31,7 @@ from datetime import datetime, timezone
 
 from . import paths
 from .config import get_season, is_configured
-from .fetchers.http import get_json
+from .fetchers.http import RateLimited, get_json
 from .fetchers.source import DRAFT, FANTASY
 
 MINIMUM_INTERVAL = {
@@ -76,7 +76,11 @@ def classify(season) -> tuple[str, str]:
             f"{season.season} league codes are still <FILL IN> in pipeline/config/seasons.py"
         )
 
-    game = get_json(f"{DRAFT}/game", throttle=0) or {}
+    try:
+        game = get_json(f"{DRAFT}/game", throttle=0) or {}
+    except RateLimited as error:
+        # Don't build into a throttle. The next cron retries within minutes.
+        return "rate_limited", str(error)
     current = game.get("current_event")
     finished = bool(game.get("current_event_finished"))
     next_event = game.get("next_event")
@@ -91,7 +95,10 @@ def classify(season) -> tuple[str, str]:
         return "between_gameweeks", f"GW{current} finished, GW{next_event} pending"
 
     # gameweek is open: is a match actually in progress?
-    fixtures = get_json(f"{FANTASY}/fixtures/?event={current}", throttle=0) or []
+    try:
+        fixtures = get_json(f"{FANTASY}/fixtures/?event={current}", throttle=0) or []
+    except RateLimited as error:
+        return "rate_limited", str(error)
     started = [f for f in fixtures if f.get("started")]
     in_play = [f for f in started if not f.get("finished_provisional")]
     if in_play:
@@ -110,7 +117,9 @@ def decide(season_id: str, *, force: bool = False) -> dict:
     season = get_season(season_id)
     state, reason = classify(season)
 
-    if state == "not_configured":
+    # Neither is a failure: one means the season isn't set up yet, the other means
+    # the API asked us to wait. Both should skip quietly.
+    if state in ("not_configured", "rate_limited"):
         return {"should_build": False, "state": state, "reason": reason,
                 "interval": None, "since": None}
 

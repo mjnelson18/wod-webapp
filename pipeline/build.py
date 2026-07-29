@@ -18,6 +18,7 @@ from . import paths
 from .adapters import backfill_difficulty, backfill_players
 from .config import get_season, is_configured
 from .fetchers import build_source
+from .fetchers.http import RateLimited
 from .transforms import (
     attach_fixtures,
     attach_pick_totals,
@@ -184,8 +185,16 @@ def main(argv=None) -> int:
     parser.add_argument("--out", default=None, help="output dir (default data/<season>)")
     args = parser.parse_args(argv)
 
-    tables = build_tables(args.season, source_kind=args.source, force=args.full,
-                          gameweeks=args.gameweeks)
+    try:
+        tables = build_tables(args.season, source_kind=args.source, force=args.full,
+                              gameweeks=args.gameweeks)
+    except RateLimited as error:
+        # Not a failure: FPL asked us to slow down. Leave the existing data in
+        # place, say so, and let the next scheduled run pick it up. Exiting 0
+        # keeps this from raising a red build for a self-correcting condition.
+        print(f"::notice title=Rate limited::{error}")
+        print("no data written; the next scheduled run will retry")
+        return 0
 
     from .outputs import write_season  # local import keeps transforms import-light
     out = write_season(tables, out_dir=args.out)
