@@ -102,6 +102,7 @@ jobs:
           path: |
             data/2425
             data/2526
+            data/seasons.json
           key: >-
             archives-${{ env.ARCHIVE_CACHE_VERSION }}-${{
               hashFiles('pipeline/**/*.py', 'reference/historical/*.csv') }}
@@ -128,6 +129,15 @@ jobs:
         if: steps.gate.outputs.should_build == 'true' && steps.gate.outputs.season_ready != 'true'
         run: |
           echo "::notice title=Archives only::${{ steps.gate.outputs.reason }}"
+
+      # Always regenerate the index, never rely on it surviving. The archive cache
+      # stores the season folders only, so on a cache hit with no build running
+      # data/seasons.json would be absent and the site would fail to load with a
+      # 404 — which is exactly what happened once. Fails the run if no seasons are
+      # present, rather than deploying a blank app.
+      - name: Refresh the season index
+        if: steps.gate.outputs.should_build == 'true'
+        run: python -m pipeline.outputs --index
 
       # Deploy only when the output differs from what is actually live.
       #

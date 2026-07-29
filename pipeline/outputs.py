@@ -333,8 +333,18 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
     return root
 
 
-def write_seasons_index(data_root: Path) -> Path:
-    """Rebuild seasons.json from whatever season directories exist on disk."""
+def write_seasons_index(data_root: Path | None = None) -> Path:
+    """
+    Rebuild seasons.json from whatever season directories exist on disk.
+
+    Safe to call standalone (`python -m pipeline.outputs --index`), which the
+    workflow does on every run. Season directories can be restored from the Actions
+    cache without any build running, and the cache holds the season folders only —
+    so without an unconditional rebuild the index goes missing and the whole site
+    fails to load.
+    """
+    if data_root is None:
+        data_root = paths.data_dir()
     entries = []
     for season_id in sorted(SEASONS, reverse=True):
         meta_path = data_root / season_id / "meta.json"
@@ -350,3 +360,30 @@ def write_seasons_index(data_root: Path) -> Path:
     data_root.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return path
+
+
+def main(argv=None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(prog="pipeline.outputs")
+    parser.add_argument("--index", action="store_true",
+                        help="rebuild data/seasons.json from the season directories on disk")
+    args = parser.parse_args(argv)
+
+    if not args.index:
+        parser.error("nothing to do; pass --index")
+
+    path = write_seasons_index()
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    seasons = ", ".join(s["season"] for s in payload["seasons"]) or "none"
+    print(f"wrote {path} ({seasons})")
+    if not payload["seasons"]:
+        # An empty index means the site will load nothing — fail loudly rather
+        # than deploying a blank app.
+        print("::error title=No seasons::data/ contains no season directories")
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
