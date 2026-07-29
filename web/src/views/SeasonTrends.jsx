@@ -40,11 +40,12 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
   const { data, loading, error } = useTables(season, [
     'league_table', 'weekly_summary', 'transfers', 'trades',
     'season_summary', 'season_summary_by_gameweek', 'formations',
-    'draft_performance', 'player_usage', 'draft_share',
+    'draft_performance', 'player_usage', 'draft_share', 'lorenz',
     'distribution_position', 'distribution_team',
   ])
   const [mode, setMode] = useState('cumulative')
   const [seriesMetric, setSeriesMetric] = useState('points_scored')
+  const [lorenzMode, setLorenzMode] = useState('pct')
   const colours = useMemo(() => colourMap(meta, league), [meta, league])
 
   const v = useMemo(() => {
@@ -123,6 +124,55 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       return row
     })
 
+    // Lorenz curves. Squad sizes differ (60-81 players), so for the share view the
+    // curves are interpolated onto a common grid to give Recharts one aligned
+    // dataset; for the count view x is the player number and shorter squads simply
+    // stop early.
+    const lorenzRows = inLeague(data.lorenz)
+    const byDrafter = new Map()
+    for (const r of lorenzRows) {
+      if (!byDrafter.has(r.short_name)) byDrafter.set(r.short_name, [])
+      byDrafter.get(r.short_name).push(r)
+    }
+    for (const list of byDrafter.values()) list.sort((a, b) => a.player_index - b.player_index)
+
+    const interpolate = (list, x, xKey) => {
+      if (!list.length) return null
+      if (x <= list[0][xKey]) return list[0].points_pct
+      const last = list[list.length - 1]
+      if (x >= last[xKey]) return last.points_pct
+      for (let i = 1; i < list.length; i++) {
+        const prev = list[i - 1], next = list[i]
+        if (x <= next[xKey]) {
+          const span = next[xKey] - prev[xKey]
+          if (span === 0) return next.points_pct
+          const t = (x - prev[xKey]) / span
+          return prev.points_pct + t * (next.points_pct - prev.points_pct)
+        }
+      }
+      return last.points_pct
+    }
+
+    const maxSquad = Math.max(0, ...[...byDrafter.values()].map(l => l.length - 1))
+    const lorenz = lorenzMode === 'pct'
+      ? Array.from({ length: 51 }, (_, i) => {
+          const x = i / 50
+          const row = { x: Math.round(x * 100), equal: Math.round(x * 100) }
+          for (const [short, list] of byDrafter) {
+            const y = interpolate(list, x, 'players_pct')
+            row[short] = y == null ? null : round(y * 100)
+          }
+          return row
+        })
+      : Array.from({ length: maxSquad + 1 }, (_, i) => {
+          const row = { x: i }
+          for (const [short, list] of byDrafter) {
+            const hit = list.find(r => r.player_index === i)
+            row[short] = hit ? round(hit.points_pct * 100) : null
+          }
+          return row
+        })
+
     const usage = inLeague(data.player_usage)
     const share = inLeague(data.draft_share)
     const perf = inLeague(data.draft_performance)
@@ -135,8 +185,9 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       (b.points_realised_by_drafter ?? 0) - (a.points_realised_by_drafter ?? 0))[0]
 
     return { rows, gws, points, bins, subCost, activity, activityByWeek, types,
-             summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick }
-  }, [data, league, meta.gameweeks, mode, seriesMetric])
+             summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
+             lorenz, maxSquad }
+  }, [data, league, meta.gameweeks, mode, seriesMetric, lorenzMode])
 
   if (error) return <div className="notice">Couldn&apos;t load season data: {String(error.message)}</div>
   if (loading || !v) return <Loading what="season trends" />
@@ -271,10 +322,42 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
           </table>
         </div>
         <p className="small muted">
-          <strong>Gini</strong> measures how unevenly banked points were spread across a drafter&apos;s
-          scorers: 0 would be every contributor chipping in equally, closer to 1 means one player carried
-          the team.
+          <strong>Gini</strong> measures how unevenly banked points were spread across every player a
+          drafter held — non-scorers and never-started included. 0 would be all squad members
+          contributing equally; closer to 1 means a few players carried the team.
         </p>
+
+        <SubHead note="Squad ordered worst to best. The straight line is perfect equality — the further a curve sags below it, the more that drafter leaned on a few players.">
+          Scoring concentration
+        </SubHead>
+        <Segmented ariaLabel="Lorenz x-axis" value={lorenzMode} onChange={setLorenzMode}
+          options={[{ value: 'pct', label: '% of squad' },
+                    { value: 'count', label: 'Player count' }]} />
+        <div className="chart">
+          <ResponsiveContainer>
+            <LineChart data={v.lorenz} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+              <XAxis dataKey="x" tickLine={false} axisLine={false}
+                     type="number" domain={[0, lorenzMode === 'pct' ? 100 : v.maxSquad]}
+                     tickFormatter={x => (lorenzMode === 'pct' ? `${x}%` : x)}
+                     interval="preserveStartEnd" minTickGap={24} />
+              <YAxis tickLine={false} axisLine={false} width={44} domain={[0, 100]}
+                     tickFormatter={y => `${y}%`} />
+              <Tooltip content={<ChartTip labelPrefix={lorenzMode === 'pct' ? '' : 'Player '}
+                                          unit="%" />} />
+              <Legend iconType="plainline" wrapperStyle={{ fontSize: 12, paddingTop: 4 }} />
+              {lorenzMode === 'pct' && (
+                <Line dataKey="equal" name="Equal" stroke="var(--muted)" strokeWidth={1}
+                      strokeDasharray="4 4" dot={false} activeDot={false} legendType="plainline" />
+              )}
+              {v.rows.map(r => (
+                <Line key={r.short_name} type="monotone" dataKey={r.short_name}
+                      stroke={colours[r.short_name]} strokeWidth={2} dot={false}
+                      activeDot={{ r: 3 }} connectNulls={false} />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </Collapsible>
 
       <Collapsible title="Season summary" summary="the full points breakdown">

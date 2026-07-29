@@ -221,14 +221,32 @@ def draft_pick_performance(weekly_summary: pd.DataFrame, weekly_points: pd.DataF
     )
 
 
+def _squad_player_points(weekly_summary: pd.DataFrame) -> pd.DataFrame:
+    """
+    Season points banked per (drafter, player), for every player they ever held.
+
+    Includes non-scorers and players who never started — a squad slot that returned
+    nothing is part of how concentrated the scoring was. Negative season totals are
+    clipped to zero: a Lorenz curve is undefined over negative values, and only a
+    handful of players ever finish a season net-negative for one drafter.
+    """
+    frame = (
+        weekly_summary.groupby(["league_code", "short_name", "element", "web_name"],
+                               as_index=False)["points_scored"].sum()
+    )
+    frame["points_scored"] = frame["points_scored"].clip(lower=0)
+    return frame
+
+
 def player_usage(weekly_summary: pd.DataFrame) -> pd.DataFrame:
     """
     Squad churn and scoring concentration per drafter.
 
-    `gini` measures how unevenly a drafter's banked points are spread across the
-    players who scored them: 0 = every contributor chipped in equally, towards 1 =
-    one player carried the team. Computed on `points_scored`, so it reflects points
-    actually banked rather than squad potential.
+    `gini` measures how unevenly banked points were spread across **every** player
+    the drafter held, non-scorers and never-started included: 0 would be all squad
+    members contributing equally, closer to 1 means a few players carried the team.
+    Computed on `points_scored`, so it reflects points actually banked rather than
+    squad potential.
     """
     used = (
         weekly_summary.groupby(["league_code", "short_name"], as_index=False)["element"]
@@ -241,27 +259,66 @@ def player_usage(weekly_summary: pd.DataFrame) -> pd.DataFrame:
     )
     frame = used.merge(started, on=["league_code", "short_name"], how="left")
 
-    per_player = (
-        weekly_summary.groupby(["league_code", "short_name", "element", "web_name"],
-                               as_index=False)["points_scored"].sum()
-    )
+    per_player = _squad_player_points(weekly_summary)
 
     rows = []
     for (league, short), group in per_player.groupby(["league_code", "short_name"]):
-        contributors = group[group["points_scored"] > 0].sort_values("points_scored")
+        squad = group.sort_values("points_scored")
         best = group.loc[group["points_scored"].idxmax()] if len(group) else None
         total = float(group["points_scored"].sum())
         rows.append({
             "league_code": league,
             "short_name": short,
-            "gini": _gini(contributors["points_scored"].to_numpy(dtype=float)),
-            "scoring_players": int(len(contributors)),
+            # across the whole squad, not just those who scored
+            "gini": _gini(squad["points_scored"].to_numpy(dtype=float)),
+            "scoring_players": int((group["points_scored"] > 0).sum()),
             "top_player": None if best is None else best["web_name"],
             "top_player_points": 0 if best is None else int(best["points_scored"]),
             "top_player_pct": 0.0 if not total or best is None
                               else round(float(best["points_scored"]) / total, 4),
         })
     return frame.merge(pd.DataFrame(rows), on=["league_code", "short_name"], how="left")
+
+
+def lorenz_curve(weekly_summary: pd.DataFrame) -> pd.DataFrame:
+    """
+    Lorenz curve per drafter: how much of their scoring came from how much of their squad.
+
+    Long-form so the frontend can plot either axis. Players are ordered
+    worst-to-best, and each row carries the running share, so the curve starts at
+    the least productive squad members and bends upwards towards the stars. A
+    straight diagonal would mean every squad member contributed equally; the further
+    the curve sags below it, the more the drafter leaned on a few players.
+
+    `player_index` counts players (1..n), `players_pct` is that as a share of the
+    squad, and `points_pct` is the cumulative share of banked points.
+    """
+    per_player = _squad_player_points(weekly_summary)
+    rows = []
+    for (league, short), group in per_player.groupby(["league_code", "short_name"]):
+        squad = group.sort_values("points_scored").reset_index(drop=True)
+        total = float(squad["points_scored"].sum())
+        n = len(squad)
+        if not n:
+            continue
+        running = 0.0
+        # origin, so the curve starts at (0, 0) rather than the first player
+        rows.append({"league_code": league, "short_name": short, "player_index": 0,
+                     "players_pct": 0.0, "points_pct": 0.0, "points_cumulative": 0,
+                     "players_total": n, "web_name": None})
+        for i, record in squad.iterrows():
+            running += float(record["points_scored"])
+            rows.append({
+                "league_code": league,
+                "short_name": short,
+                "player_index": i + 1,
+                "players_pct": round((i + 1) / n, 4),
+                "points_pct": 0.0 if total <= 0 else round(running / total, 4),
+                "points_cumulative": int(running),
+                "players_total": n,
+                "web_name": record["web_name"],
+            })
+    return pd.DataFrame(rows)
 
 
 def _gini(values: np.ndarray) -> float:

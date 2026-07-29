@@ -179,6 +179,12 @@ VIEW_COLUMNS = {
         "top_player": "top_player", "top_player_points": "top_player_points",
         "top_player_pct": "top_player_pct",
     },
+    "lorenz": {
+        "league": "league_code", "short_name": "short_name",
+        "player_index": "player_index", "players_pct": "players_pct",
+        "points_pct": "points_pct", "points_cumulative": "points_cumulative",
+        "players_total": "players_total", "web_name": "web_name",
+    },
     "draft_share": {
         "league": "league_code", "short_name": "short_name",
         "points_scored": "points_scored", "draft_points": "draft_points",
