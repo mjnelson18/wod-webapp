@@ -84,7 +84,10 @@ export default function SquadGrid({ columns, meta, transfers, trades, league, ga
                 {col.short}
                 <span className="gw-total">{col.gwTotal}</span>
                 <span className="rank">
-                  {col.table ? `#${col.table.rank} · ${col.table.total} pts` : ''}
+                  {/* rank and running total as at this gameweek, not season end */}
+                  {col.table
+                    ? `#${col.table.rank} · ${col.table.cumulative ?? col.table.total} pts`
+                    : ''}
                 </span>
               </div>
               {[...col.cells]

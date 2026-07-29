@@ -8,6 +8,9 @@ import {
 import SquadGrid from '../components/SquadGrid.jsx'
 
 const STARTERS = 11
+// Matches the notebook's form window: mean over the last 5 gameweeks, divided by
+// however many have actually been played when fewer than 5 exist.
+const FORM_GAMES = 5
 
 export default function Gameweek({ season, meta, league, setLeague, route }) {
   const gw = Number(route.param) || meta.current_gameweek
@@ -19,9 +22,34 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     if (!data) return null
     const { weekly_summary, league_table, transfers, trades } = data
 
-    const table = league_table.filter(r => r.league === league).sort((a, b) => a.rank - b.rank)
+    const table = league_table.filter(r => r.league === league)
     const rows = weekly_summary.filter(r => r.league === league && r.gameweek === gw)
     const gwIndex = meta.gameweeks.indexOf(gw)
+
+    // Standings AS AT the selected gameweek. league_table ships rank, last_rank and
+    // form for the *final* gameweek only, so reading them directly would show
+    // season-end figures while viewing GW8. All three are recoverable from the
+    // per-gameweek arrays the pipeline already sends.
+    const cumulativeAt = (t, i) => t.cumulative_by_gameweek?.[i] ?? 0
+    const ranksAt = i => {
+      if (i < 0) return null
+      const totals = table.map(t => cumulativeAt(t, i))
+      return Object.fromEntries(table.map((t, idx) => [
+        t.short_name,
+        // method='min', so tied drafters share the better rank
+        totals.filter(other => other > totals[idx]).length + 1,
+      ]))
+    }
+    const ranksNow = ranksAt(gwIndex)
+    const ranksPrev = ranksAt(gwIndex - 1)
+
+    const formAt = (t, i) => {
+      const points = t.points_by_gameweek ?? []
+      if (!points.length || i < 0) return null
+      const window = points.slice(Math.max(0, i - FORM_GAMES + 1), i + 1)
+      const divisor = Math.min(FORM_GAMES, i + 1)
+      return divisor ? window.reduce((s, p) => s + (Number(p) || 0), 0) / divisor : null
+    }
 
     // per-drafter totals for this gameweek
     const drafters = table.map(t => {
@@ -37,9 +65,13 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         beforeSubs,
         lostToSubs: Math.max(0, optimal - scored),
         autoSubGain: scored - beforeSubs,
-        cumulative: t.cumulative_by_gameweek?.[gwIndex] ?? null,
+        cumulative: cumulativeAt(t, gwIndex),
+        rank: ranksNow?.[t.short_name] ?? t.rank,
+        // 0 means "no previous week", which rankMove treats as no movement
+        last_rank: ranksPrev?.[t.short_name] ?? 0,
+        form_points: formAt(t, gwIndex),
       }
-    })
+    }).sort((a, b) => a.rank - b.rank)
 
     const best = drafters.reduce((a, b) => (b.scored > (a?.scored ?? -1) ? b : a), null)
     const worst = drafters.reduce((a, b) => (b.scored < (a?.scored ?? 1e9) ? b : a), null)
