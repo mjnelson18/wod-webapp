@@ -23,6 +23,11 @@ node_modules/
 # kept as the content-inventory source; the images themselves are not needed.
 /reference/old_html/*.png
 
+# Machine-local Claude Code settings (launch.json IS shared; this one isn't).
+# Also covered by the global gitignore here, but keep it with the repo so the
+# protection travels to other machines.
+.claude/settings.local.json
+
 # OS
 Thumbs.db
 .DS_Store
