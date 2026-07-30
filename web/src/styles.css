@@ -372,3 +372,36 @@ input[type='search'] {
   color: var(--text); background: var(--surface);
   border: 1px solid var(--border); border-radius: var(--radius);
 }
+
+/* Season review — the one long-form reading surface on the site, so it gets a
+   measure and a rhythm the dense stat tabs don't need. */
+.honours { margin-bottom: 12px; }
+.honours h3 {
+  margin: 0 0 6px; font-size: 0.8rem; font-weight: 650;
+  text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);
+}
+
+.review { max-width: 62ch; font-size: 0.95rem; line-height: 1.6; }
+.review h2 {
+  margin: 26px 0 8px; font-size: 1rem; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--text);
+}
+.review h2:first-child { margin-top: 0; }
+.review h3 { margin: 18px 0 6px; font-size: 0.88rem; font-weight: 650; color: var(--muted); }
+.review p { margin: 0 0 12px; }
+.review a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+.review blockquote {
+  margin: 16px 0; padding: 8px 0 8px 14px;
+  border-left: 3px solid var(--accent); color: var(--muted); font-style: italic;
+}
+
+.facts { margin: 0; display: grid; grid-template-columns: 1fr; gap: 2px 12px; font-size: 0.82rem; }
+.facts dt {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--muted); margin-top: 8px;
+}
+.facts dd { margin: 0; }
+@media (min-width: 620px) {
+  .facts { grid-template-columns: max-content 1fr; }
+  .facts dt { margin-top: 0; }
+}

@@ -42,6 +42,7 @@ from .transforms import (
     player_usage,
     players_table,
     points_distribution,
+    season_review_facts,
     season_start_year,
     season_summary,
     season_summary_by_gameweek,
@@ -198,6 +199,17 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
         "available_players": available_form_players(weekly_points, current_week),
     }
 
+    # Story beats for the season review. Takes the full weekly_points, not the
+    # reduced table written to JSON — a failed waiver on an undrafted player needs
+    # that player's rows to be scored.
+    review_facts = season_review_facts(
+        season=season, current_week=current_week,
+        league_table=table, league_table_by_week=by_week,
+        weekly_summary=weekly_summary, weekly_points=weekly_points,
+        draft_picks=draft_picks, draft_performance=views["draft_performance"],
+        transfers=transfers, trades=trades,
+    )
+
     if isinstance(source, object) and hasattr(source, "stats"):
         say(f"  fetches={source.stats['fetched']} cache_hits={source.stats['cached']}")
 
@@ -217,6 +229,7 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
         "league_table_by_week": by_week,
         "fixtures_by_team": fixtures_by_team,
         "views": views,
+        "review_facts": review_facts,
     }
 
 

@@ -18,6 +18,7 @@ from .moves import (
     trades_table,
     transfers_table,
 )
+from .narrative import season_review_facts
 from .optimal import add_optimal_points, calc_optimal_points
 from .summaries import (
     available_form_players,
@@ -56,6 +57,7 @@ __all__ = [
     "lorenz_curve",
     "player_usage",
     "points_distribution",
+    "season_review_facts",
     "season_summary",
     "season_summary_by_gameweek",
     "calc_optimal_points",

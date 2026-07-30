@@ -18,6 +18,7 @@ import pandas as pd
 
 from .. import paths
 from ..transforms.league import form_table
+from ..transforms.narrative import season_review_facts
 from ..transforms.summaries import (
     available_form_players,
     draft_pick_performance,
@@ -272,6 +273,16 @@ def build_tables(season, *, verbose: bool = True) -> dict:
         "available_players": available_form_players(weekly_points, current_week),
     }
 
+    # Beats the season review is written from. 2425 has no trades and thinner
+    # transfers, so those beats simply come out absent rather than empty.
+    review_facts = season_review_facts(
+        season=season, current_week=current_week,
+        league_table=table, league_table_by_week=by_week,
+        weekly_summary=summary, weekly_points=weekly_points,
+        draft_picks=picks, draft_performance=views["draft_performance"],
+        transfers=transfers, trades=trades,
+    )
+
     return {
         "season": season,
         "current_week": current_week,
@@ -288,4 +299,5 @@ def build_tables(season, *, verbose: bool = True) -> dict:
         "league_table_by_week": by_week,
         "fixtures_by_team": pd.DataFrame(),
         "views": views,
+        "review_facts": review_facts,
     }

@@ -206,6 +206,12 @@ anyway. This is deliberate; there is no keepalive workflow.
 
 6. **Re-enable the cron** in the Actions tab if it lapsed over the summer.
 
+7. **Write the outgoing season's review.** The pipeline emits
+   `data/<season>/season_review_facts.json` — every story beat as data. The write-up itself
+   is a hand-written markdown file at `web/src/content/season-review/<season>.md`; add one
+   and the **Season Review** tab appears for that season automatically. It is never
+   generated in CI, so nothing rewrites it on the cron.
+
 ## Validation
 
 The refactor's acceptance test is that the pipeline reproduces the old notebook's numbers on

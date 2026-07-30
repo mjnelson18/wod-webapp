@@ -320,6 +320,9 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
         "teams.json": _records(tables["teams"], TEAMS),
         "fixtures.json": _records(tables.get("fixtures_by_team", pd.DataFrame()), FIXTURES),
     }
+    # Not a table: a nested dict of story beats the season review is written from.
+    if tables.get("review_facts"):
+        files["season_review_facts.json"] = tables["review_facts"]
     for name, view in (tables.get("views") or {}).items():
         columns = VIEW_COLUMNS.get(name)
         if columns is None:

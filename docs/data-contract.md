@@ -22,6 +22,7 @@ web/public/data/                 # gitignored; written at build time
     trades.json
     players.json
     teams.json
+    season_review_facts.json
 ```
 
 The GitHub Action writes `/data/<season>/` and copies it to `web/public/data/` before
@@ -90,6 +91,35 @@ Conventions that differ from the notebook's CSVs, and are deliberate:
   not the row's drafter, and the `' (Benched)'` suffix is dropped in favour of `is_benched`.
 - Display strings stay out of data: `player_in` is `"Cunha"`, not `"Cunha (117)"`.
 - `short_name` is always upper-case.
+
+## `season_review_facts.json`
+
+The one output that isn't a table. A nested dict of **story beats** for the season review
+tab: final standings, how the title race moved, the best and worst weeks, draft hits and
+misses, the transfers and trades that mattered, points left on the bench, and Prem v Conf.
+Produced by `pipeline/transforms/narrative.py`.
+
+```json
+{ "season": "2526", "label": "2025/26", "complete": true,
+  "leagues": [ { "code": "Prem", "champion": {…}, "final_table": […], "race": {…},
+                 "extremes": {…}, "draft": {…}, "moves": {…}, "bench": {…} } ],
+  "cross_league": { "weekly": […], "record": {…}, "champion_crossover": […] } }
+```
+
+Two rules it follows, both of which matter more than the exact keys:
+
+- **A beat is absent, never zero.** 2425 has no trades, so there is no `best_trade` key at
+  all — rather than a trade worth 0 points, which reads as a finding. Anything consuming
+  this must treat every beat as optional.
+- **Moves are only reported when they can be scored.** 2425's CSV transfers carry player
+  names and no element ids, so ids are recovered from unambiguous names; rows that still
+  can't be resolved are excluded from the valued beats and `moves.counts.valued` records
+  how many survived.
+
+The prose that sits alongside it is **not** in the data pack — it lives in
+`web/src/content/season-review/<season>.md`, is written by hand once a season ends, and is
+committed. That split is the point: the honours strip renders from this JSON so headline
+numbers can't drift, while the writing stays a human artefact that no cron run rewrites.
 
 ## Payload size — the mobile constraint
 

@@ -100,6 +100,53 @@ raw is gone forever. So before any refactoring:
 3. Write a short `README` covering: how a new season is onboarded (which config to fill), how to
    run locally, and how the scheduled update works.
 
+## Phase 7 — Season review tab (built 2026-07-30; drafts awaiting your edit)
+
+A one-page written season review per season: a chronological, semi-comedic account of how the
+season unfolded, covering both leagues in one thread. Two layers, deliberately separated.
+
+1. **Facts pack (generated).** `pipeline/transforms/narrative.py` → `data/<season>/season_review_facts.json`.
+   Pure function over the existing tables, unit-tested like the rest. Beats to derive:
+   - honours: final tables, champion + margin, promoted/relegated, wooden spoon
+   - shape of the race: leader after each GW, lead changes, longest spell top, GW the title was
+     mathematically settled, biggest deficit overturned
+   - extremes: highest/lowest GW score (who, when), biggest week-on-week swing, widest one-week gap
+   - draft: best value pick vs its index, biggest round 1–2 bust, best late steal
+   - waivers & trades: best net transfer, worst miss (an *attempted* waiver on a player who then
+     hauled — failures are already in `transfers`), the trade that aged worst
+   - bench pain: worst single bench week, season total lost to sub choices
+   - cross-league: Prem v Conf weekly head-to-head record, whether the Conf champion would have
+     won the Prem
+   Gate each beat on `meta.capabilities` — 2425 has no trades, fixtures or cost, so its story runs
+   on standings + draft + waivers + bench only.
+2. **Prose (written once, committed).** `web/src/content/season-review/<season>.md`, ~1,000 words,
+   chapters in order: The Draft → August → autumn → Christmas → January window → run-in → final day
+   → verdict. **Claude drafts from the facts pack, I edit.** Not generated in CI: that would need a
+   secret in a job that has none, re-roll the jokes every cron tick, and publish unreviewed prose
+   about named people on a public site.
+3. **The tab.** Route `#/<season>/review`, lazy-loaded like the other views. Honours strip at the
+   top rendered from the facts JSON so headline numbers can't go stale; prose below; inline `GW14`
+   references link to `#/<season>/gw/14`. The tab only appears for seasons that have a review file,
+   so the live season shows nothing until one is written.
+
+Tone: dry, not zany. The numbers carry the comedy — state them flatly. Understatement and small
+humiliations over gags. Nobody is a legend.
+
+🛑 Checkpoint: **the two drafts are written and live on the tab — read them and edit.** The prose
+is yours; the facts pack and the tab are done.
+
+Resolved 2026-07-30: **swaps with an excluded entry are counted but never ranked.** Peter Vickers'
+unplayed Premiership squad was a joke team of Sunderland players; Tom Shiel is a Sunderland fan
+and occasionally wanted them for real, and Peter auto-accepted. Those players were available to
+the whole league, so the moves were waivers in all but name — not competitive trades. Ranking
+them made a +59 "best trade of the season" out of a formality. `narrative.py` now excludes them
+from the best/worst beats and reports `trade_items_with_excluded_entry` alongside, which drops
+2526's Premiership from 24 ranked items to the 4 real ones.
+
+Still open: 2425's archive carries initials only (`JP`, `MN`), so the honours strip shows initials
+while the prose uses full names. A per-season display-name map in `pipeline/config/seasons.py`
+would fix it, but it changes 2425 across every tab, not just this one.
+
 ## Standing rules for this build
 - Concise progress notes: what changed and why, not a re-explanation of whole files.
 - Match conventions you establish; don't churn style.
