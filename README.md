@@ -1,5 +1,10 @@
 # What's On Draft — data packs
 
+[![Tests](https://github.com/mjnelson18/wod-webapp/actions/workflows/test.yml/badge.svg)](https://github.com/mjnelson18/wod-webapp/actions/workflows/test.yml)
+[![Update data pack](https://github.com/mjnelson18/wod-webapp/actions/workflows/update.yml/badge.svg)](https://github.com/mjnelson18/wod-webapp/actions/workflows/update.yml)
+
+**Live:** https://mjnelson18.github.io/wod-webapp/
+
 A near-live data pack for a draft Fantasy Premier League among friends. Supports a weekly podcast
 (two hosts reviewing the previous gameweek plus long-term trends) and casual viewers who just want
 the stats.
@@ -58,6 +63,18 @@ pytest
 ```
 
 `pytest` includes the full 2526 regression (~2 min). Skip it with `pytest -m "not slow"`.
+
+### Continuous integration
+
+`.github/workflows/test.yml` runs the whole suite on any push or PR touching `pipeline/`,
+`tests/`, the reference data or the requirements — fast tests first for quick feedback, then the
+2526 regression. Run it manually with **diff_report** ticked to get the full column-by-column diff
+printed to the run summary.
+
+It does not gate the deploy. `update.yml` builds and deploys independently, so a red test run
+won't block a data refresh; check the badge above rather than assuming a green deploy means the
+pipeline is still correct. Frontend breakage isn't covered here either — that already fails the
+site build inside `update.yml`.
 
 ### Local note: ThreatLocker and `.py` files
 

@@ -1,0 +1,88 @@
+name: Tests
+
+# Guards the pipeline against silent breakage. The headline test is the Phase 2
+# acceptance check: run the pipeline on the committed 2526 raw snapshot and assert
+# it still reproduces the 2526 CSVs column-for-column.
+#
+# Only Python is covered here. A broken frontend already fails the site build in
+# update.yml, so it isn't duplicated.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pipeline/**'
+      - 'tests/**'
+      - 'reference/historical/**'
+      - 'reference/raw_2526/**'
+      - 'requirements*.txt'
+      - 'pytest.ini'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'pipeline/**'
+      - 'tests/**'
+      - 'reference/historical/**'
+      - 'reference/raw_2526/**'
+      - 'requirements*.txt'
+      - 'pytest.ini'
+  workflow_dispatch:
+    inputs:
+      diff_report:
+        description: 'Also print the full 2526 diff report to the summary'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Superseded test runs are worth cancelling — unlike a deploy, where a
+# half-finished run is worse than a queued one.
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: pip install --quiet -r requirements-dev.txt
+
+      # Fast tests first, so an obvious break reports in seconds rather than
+      # after the two-minute regression build.
+      - name: Unit and archive tests
+        run: pytest -m "not slow" -q
+
+      # The acceptance test: 2526 rebuilt from raw must still match the CSVs.
+      # ~2 minutes, because optimal_points solves 456 squad-weeks.
+      - name: 2526 regression against the CSVs
+        run: pytest -m slow -q
+
+      - name: Full 2526 diff report
+        if: inputs.diff_report
+        run: |
+          {
+            echo '### 2526 diff report'
+            echo
+            echo '```'
+            python -m pipeline.validate --season 2526
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Tests: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Includes the Phase 2 acceptance check — the pipeline run against" \
+               "\`reference/raw_2526\` must reproduce the 2526 CSVs." >> "$GITHUB_STEP_SUMMARY"
