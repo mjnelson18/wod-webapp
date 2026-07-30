@@ -57,9 +57,9 @@ jobs:
     outputs:
       deploy: ${{ steps.digest.outputs.changed }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
           cache: pip
@@ -68,7 +68,7 @@ jobs:
       # throttle reads. Without this the pipeline refetches all 38 gameweeks every
       # run, which is the exact waste the refactor set out to remove.
       - name: Restore raw response cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: pipeline/cache
           key: raw-${{ env.CURRENT_SEASON }}-${{ github.run_id }}
@@ -97,7 +97,7 @@ jobs:
       - name: Restore archive cache
         if: steps.gate.outputs.should_build == 'true'
         id: archive-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             data/2425
@@ -167,10 +167,11 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.digest.outputs.changed == 'true'
         with:
-          node-version: '22'
+          # Matches local development, so a build that works here works in CI.
+          node-version: '24'
           cache: npm
           cache-dependency-path: web/package-lock.json
 
@@ -193,10 +194,10 @@ jobs:
           python -m pipeline.schedule --season "$CURRENT_SEASON" --record \
             --digest "${{ steps.digest.outputs.digest }}"
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         if: steps.digest.outputs.changed == 'true'
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         if: steps.digest.outputs.changed == 'true'
         with:
           path: web/dist
@@ -210,4 +211,4 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
