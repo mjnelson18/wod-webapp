@@ -16,6 +16,8 @@ States and their minimum intervals:
   gameweek_open     gameweek open, no live match now    1 hour
   between_gameweeks gameweek done, next one pending     6 hours
   off_season        no next gameweek                    7 days
+  rate_limited      API asked us to back off            skip, don't fail
+  maintenance       API serving a holding page          skip, don't fail
   not_configured    league codes still <FILL IN>        skip, don't fail
 
 The interval is enforced against the last successful build recorded in
@@ -31,8 +33,13 @@ from datetime import datetime, timezone
 
 from . import paths
 from .config import get_season, is_configured
-from .fetchers.http import RateLimited, get_json
+from .fetchers.http import Maintenance, RateLimited, get_json
 from .fetchers.source import DRAFT, FANTASY
+
+# "Not now, and not because of us": the endpoint has either asked us to wait or
+# has nothing to serve. These return before any interval lookup, so they carry no
+# MINIMUM_INTERVAL entry — see decide() for why force does not override them.
+SKIP_STATES = ("rate_limited", "maintenance")
 
 MINIMUM_INTERVAL = {
     "live": 0,
@@ -84,6 +91,10 @@ def classify(season) -> tuple[str, str]:
     except RateLimited as error:
         # Don't build into a throttle. The next cron retries within minutes.
         return "rate_limited", str(error)
+    except Maintenance as error:
+        # Between seasons this endpoint serves an HTML "Game Updating" page under
+        # HTTP 200. Expected, so skip the run rather than reddening the workflow.
+        return "maintenance", str(error)
     current = game.get("current_event")
     finished = bool(game.get("current_event_finished"))
     next_event = game.get("next_event")
@@ -102,6 +113,10 @@ def classify(season) -> tuple[str, str]:
         fixtures = get_json(f"{FANTASY}/fixtures/?event={current}", throttle=0) or []
     except RateLimited as error:
         return "rate_limited", str(error)
+    except Maintenance as error:
+        # The two hosts roll over independently, so this one can be mid-update
+        # while the draft host is already answering.
+        return "maintenance", str(error)
     started = [f for f in fixtures if f.get("started")]
     in_play = [f for f in started if not f.get("finished_provisional")]
     if in_play:
@@ -138,8 +153,13 @@ def decide(season_id: str, *, force: bool = False) -> dict:
         return {"should_build": should_build, "season_ready": season_ready,
                 "state": state, "reason": why, "interval": interval, "since": since}
 
-    # The API asked us to wait — never build into a throttle, not even when forced.
-    if state == "rate_limited":
+    # Never build into a back-off or a holding page, not even when forced. Unlike
+    # not_configured, there is nothing to gain: the deployed site already holds a
+    # full copy of this season, and the season index is assembled from whatever
+    # season folders are on disk — so a run that can't fetch the current season
+    # would deploy a site with it missing. Leaving the last good deploy alone is
+    # strictly better, and the next run self-corrects.
+    if state in SKIP_STATES:
         return result(False, reason)
 
     if force:
