@@ -149,6 +149,20 @@ jobs:
         id: digest
         if: steps.gate.outputs.should_build == 'true'
         run: |
+          # The current season's JSON is regenerated every run and is not cached,
+          # so a self-correcting skip mid-build (rate limit, or the API going into
+          # maintenance after the gate passed) leaves data/<season> absent. The
+          # index is assembled from the folders on disk, so deploying now would
+          # publish a site with the current season missing. Keep what is live.
+          if [ "${{ steps.gate.outputs.season_ready }}" = "true" ] \
+             && [ ! -d "data/$CURRENT_SEASON" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "season_missing=true" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Current season missing::$CURRENT_SEASON produced no data" \
+                 "this run; keeping the deployed site and retrying on the next run"
+            exit 0
+          fi
+
           digest=$(find data -type f -name '*.json' -print0 \
             | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
@@ -188,8 +202,12 @@ jobs:
 
       # Resets the throttle timer. Deliberately records only that a *build*
       # happened — whether it deployed is answered by the live digest above.
+      # Skipped when the current season produced nothing, so the next run retries
+      # immediately instead of waiting out this state's interval.
       - name: Record the build
-        if: steps.gate.outputs.should_build == 'true'
+        if: >-
+          steps.gate.outputs.should_build == 'true' &&
+          steps.digest.outputs.season_missing != 'true'
         run: |
           python -m pipeline.schedule --season "$CURRENT_SEASON" --record \
             --digest "${{ steps.digest.outputs.digest }}"

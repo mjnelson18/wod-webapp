@@ -18,7 +18,7 @@ from . import paths
 from .adapters import backfill_difficulty, backfill_players
 from .config import get_season, is_configured
 from .fetchers import build_source
-from .fetchers.http import RateLimited
+from .fetchers.http import Maintenance, RateLimited
 from .transforms import (
     attach_fixtures,
     attach_pick_totals,
@@ -245,11 +245,14 @@ def main(argv=None) -> int:
     try:
         tables = build_tables(args.season, source_kind=args.source, force=args.full,
                               gameweeks=args.gameweeks)
-    except RateLimited as error:
-        # Not a failure: FPL asked us to slow down. Leave the existing data in
-        # place, say so, and let the next scheduled run pick it up. Exiting 0
-        # keeps this from raising a red build for a self-correcting condition.
-        print(f"::notice title=Rate limited::{error}")
+    except (RateLimited, Maintenance) as error:
+        # Not a failure: FPL either asked us to slow down or is serving a holding
+        # page mid-run. Leave the existing data in place, say so, and let the next
+        # scheduled run pick it up. Exiting 0 keeps this from raising a red build
+        # for a self-correcting condition — and because no data was written, the
+        # workflow declines to deploy rather than publishing a site that is
+        # missing this season (see the digest step in update.yml).
+        print(f"::notice title=Nothing fetched::{error}")
         print("no data written; the next scheduled run will retry")
         return 0
 
