@@ -8,12 +8,13 @@ import Header from './components/Header.jsx'
 const Gameweek = lazy(() => import('./views/Gameweek.jsx'))
 const SeasonTrends = lazy(() => import('./views/SeasonTrends.jsx'))
 const Compare = lazy(() => import('./views/Compare.jsx'))
+const HeadToHead = lazy(() => import('./views/HeadToHead.jsx'))
 const Explorer = lazy(() => import('./views/Explorer.jsx'))
 const SeasonReview = lazy(() => import('./views/SeasonReview.jsx'))
 
 const VIEW_COMPONENTS = {
   gw: Gameweek, season: SeasonTrends, compare: Compare,
-  explorer: Explorer, review: SeasonReview,
+  h2h: HeadToHead, explorer: Explorer, review: SeasonReview,
 }
 
 export default function App() {
