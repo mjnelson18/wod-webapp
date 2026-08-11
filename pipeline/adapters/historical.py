@@ -154,6 +154,20 @@ def build_tables(season, *, verbose: bool = True) -> dict:
         summary[column] = pd.to_numeric(summary[column], errors="coerce").fillna(0).astype(int)
     summary["in_original_draft"] = np.where(summary["index"] > 0, 1, 0)
 
+    # The 2425 CSV's draft-pick `total_points` is already the player's full season
+    # total, which is the canonical meaning — so unlike 2526 nothing is rewritten
+    # here. What it lacks is the companion column, and that IS derivable: sum the
+    # weeks each drafter actually held the player. Without this the two seasons
+    # would still disagree, just in the other direction.
+    realised = (
+        summary.groupby(["league_code", "short_name", "element"], as_index=False)["points_scored"]
+        .sum().rename(columns={"points_scored": "points_realised_by_drafter"})
+    )
+    picks = picks.merge(realised, on=["league_code", "short_name", "element"], how="left")
+    picks["points_realised_by_drafter"] = (
+        pd.to_numeric(picks["points_realised_by_drafter"], errors="coerce").fillna(0).astype(int)
+    )
+
     # --- weekly points ---------------------------------------------------
     # The 2425 CSV holds only id/total_points/gameweek. Ownership and in-week rank
     # ARE derivable — rank from the points themselves, owner from the weekly

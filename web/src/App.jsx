@@ -11,10 +11,11 @@ const Compare = lazy(() => import('./views/Compare.jsx'))
 const HeadToHead = lazy(() => import('./views/HeadToHead.jsx'))
 const Explorer = lazy(() => import('./views/Explorer.jsx'))
 const SeasonReview = lazy(() => import('./views/SeasonReview.jsx'))
+const Draft = lazy(() => import('./views/Draft.jsx'))
 
 const VIEW_COMPONENTS = {
   gw: Gameweek, season: SeasonTrends, compare: Compare,
-  h2h: HeadToHead, explorer: Explorer, review: SeasonReview,
+  h2h: HeadToHead, draft: Draft, explorer: Explorer, review: SeasonReview,
 }
 
 export default function App() {
