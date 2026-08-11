@@ -87,7 +87,12 @@ DRAFT_PICKS = {
     "league": "league_code", "short_name": "short_name", "index": "index", "pick": "pick",
     "round": "round", "element": "element", "web_name": "web_name", "position": "position",
     "team_name": "team_name", "draft_rank": "draft_rank", "now_cost": "now_cost",
-    "selected_by_percent": "selected_by_percent", "total_points": "total_points",
+    "selected_by_percent": "selected_by_percent",
+    # Two different quantities, named honestly. `total_points` is the player's
+    # full season total in every season; `points_realised_by_drafter` is the part
+    # the person who picked him actually banked. See attach_pick_totals().
+    "total_points": "total_points",
+    "points_realised_by_drafter": "points_realised_by_drafter",
 }
 
 TRANSFERS = {

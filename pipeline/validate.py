@@ -33,6 +33,10 @@ EXPECTED_BACKFILL = {
 DROPPED = {"element_x", "element_y"}
 
 # Deliberate cleanups that change a value. Listed explicitly, as CLAUDE.md requires.
+#
+# Keys are either a bare column name (applies to every table) or a
+# (table, column) pair when only one table's column is meant — `total_points`
+# exists in four tables and must keep matching in the other three.
 INTENTIONAL = {
     "player_in": "display string removed — CSV bakes in '(points)', data keeps the bare name",
     "player_out": "display string removed — CSV bakes in '(points)', data keeps the bare name",
@@ -40,7 +44,18 @@ INTENTIONAL = {
         "true selection weight from calc_optimal_points; the CSV recomputed it as "
         "optimal_points/total_points, which is NaN for the 946 zero-point rows"
     ),
+    ("draft_picks", "total_points"): (
+        "now the player's full season total, matching the 2425 archive and "
+        "players.total_points. The CSV stored what the drafter personally banked, "
+        "which is still emitted as points_realised_by_drafter — pooling the old "
+        "column across seasons compared two different quantities"
+    ),
 }
+
+
+def intentional_note(table: str, column: str) -> str | None:
+    """Deliberate-change note for a column, preferring the table-specific entry."""
+    return INTENTIONAL.get((table, column)) or INTENTIONAL.get(column)
 
 TABLES = {
     "weekly_summary": ("Weekly Summary", ["league_code", "short_name", "gameweek", "element"]),
@@ -158,12 +173,13 @@ def print_report(results: list[dict]) -> bool:
 
         matched, diffs, backfill, intended = [], [], [], []
         for column, info in sorted(table["columns"].items()):
+            note = intentional_note(table["name"], column)
             if info["mismatches"] == 0:
                 matched.append(column)
             elif column in EXPECTED_BACKFILL:
                 backfill.append((column, info))
-            elif column in INTENTIONAL:
-                intended.append((column, info))
+            elif note:
+                intended.append((column, info, note))
             else:
                 diffs.append((column, info))
 
@@ -174,8 +190,8 @@ def print_report(results: list[dict]) -> bool:
                 print(f"    {column}: {info['mismatches']}/{info['compared']} differ")
         if intended:
             print(f"  INTENTIONAL ({len(intended)}), deliberate cleanups:")
-            for column, info in intended:
-                print(f"    {column}: {info['mismatches']}/{info['compared']} differ — {INTENTIONAL[column]}")
+            for column, info, note in intended:
+                print(f"    {column}: {info['mismatches']}/{info['compared']} differ — {note}")
         if diffs:
             clean = False
             print(f"  DIFF ({len(diffs)}):")

@@ -34,7 +34,12 @@ def test_no_unexplained_differences(results):
         for column, info in table["columns"].items():
             if info["mismatches"] == 0:
                 continue
-            if column in validate.EXPECTED_BACKFILL or column in validate.INTENTIONAL:
+            if column in validate.EXPECTED_BACKFILL:
+                continue
+            # Deliberate changes may be registered globally or per table, so ask
+            # rather than testing membership — a (table, column) key is not found
+            # by `column in INTENTIONAL`.
+            if validate.intentional_note(table["name"], column):
                 continue
             problems.append(f"{table['name']}.{column}: {info['mismatches']}/{info['compared']}")
     assert not problems, "unexplained differences vs the 2526 CSVs:\n  " + "\n  ".join(problems)

@@ -76,7 +76,7 @@ Records (array of objects), `null` for a column a season lacks — never omitted
 | `league_table` | one row per drafter | `league`, `short_name`, `name`, `rank`, `total`, `gameweek_points`, `form_points`, `form_rank`, `points_by_gameweek[]`, `cumulative_by_gameweek[]` |
 | `weekly_summary` | drafter × squad slot × gameweek | `gameweek`, `league`, `short_name`, `element`, `place`, `web_name`, `position`, `team_id`, `team_name`, `total_points`, `points_scored`, `points_before_auto_subs`, `originally_starting`, `optimal_points`, `player_total_points`, `points_scored_cumulative`, `drafter_name`, `draft_index`, `round`, `in_original_draft`, `opposition`, `home_away`, `team_difficulty`, `opposition_difficulty` |
 | `weekly_points` | element × gameweek (reduced, see below) | `gameweek`, `league`, `element`, `web_name`, `position`, `team_name`, `total_points`, `rank_in_week`, `owner`, `place`, `is_benched`, `drafter_name` |
-| `draft_picks` | one row per pick | `league`, `short_name`, `index`, `pick`, `round`, `element`, `web_name`, `position`, `team_name`, `draft_rank`, `now_cost`, `selected_by_percent`, `total_points` |
+| `draft_picks` | one row per pick | `league`, `short_name`, `index`, `pick`, `round`, `element`, `web_name`, `position`, `team_name`, `draft_rank`, `now_cost`, `selected_by_percent`, `total_points`, `points_realised_by_drafter` |
 | `transfers` | one row per move, **including failed attempts** | `league`, `gameweek`, `short_name`, `kind`, `result`, `priority`, `element_in`, `element_out`, `player_in`, `player_out`, `player_in_points`, `player_out_points`, `net_points` |
 | `trades` | one row per trade item | `league`, `gameweek`, `offered_by`, `received_by`, `element_in`, `element_out`, `player_in`, `player_out`, `player_in_points`, `player_out_points`, `net_points`, `state` |
 | `players` | one row per footballer | `element`, `web_name`, `position`, `team_id`, `team_name`, `total_points`, `goals_scored`, `assists`, `bonus`, `clean_sheets`, `minutes`, `draft_rank`, `now_cost`, `selected_by_percent` |
@@ -91,6 +91,27 @@ Conventions that differ from the notebook's CSVs, and are deliberate:
   not the row's drafter, and the `' (Benched)'` suffix is dropped in favour of `is_benched`.
 - Display strings stay out of data: `player_in` is `"Cunha"`, not `"Cunha (117)"`.
 - `short_name` is always upper-case.
+
+### `total_points` on a draft pick means the season total, in every season
+
+`draft_picks.total_points` is **the player's full season total, whoever owned him**. The
+part the drafter personally banked is `points_realised_by_drafter`. Both columns exist for
+every season and both agree with `draft_performance` by construction.
+
+This is a deliberate change from the notebook, registered in `validate.py`'s `INTENTIONAL`.
+The two producers used to disagree:
+
+- the 2425 archive read `total_points` straight from its CSV, where it is the season total;
+- the live path built it from `attach_pick_totals`, which summed only the weeks the drafter
+  held the player — matching `Draft Picks_2526.csv`, and so matching the notebook.
+
+Both numbers are useful; sharing one name between them was not. Any view pooling the column
+across seasons was comparing a season total against a partial one, which understated the
+live-path season by roughly the capture rate — it made a points-by-draft-round table read
+~65 points a pick for rounds 3–15 when the true figure is ~95, because late picks get
+dropped more often and so realise less of what they score.
+
+`tests/test_draft_pick_semantics.py` pins both meanings and asserts the two seasons agree.
 
 ## `season_review_facts.json`
 

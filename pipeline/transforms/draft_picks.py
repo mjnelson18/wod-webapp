@@ -43,12 +43,40 @@ def draft_picks_table(choices: dict, players: pd.DataFrame, table: pd.DataFrame,
 
 
 def attach_pick_totals(picks: pd.DataFrame, weekly_points: pd.DataFrame) -> pd.DataFrame:
-    """Add each pick's season points, as the notebook did after building weekly points."""
-    totals = (
+    """
+    Attach two deliberately separate columns to each pick.
+
+    `total_points`               the player's full season total, whoever owned him
+    `points_realised_by_drafter` only the weeks the drafter who picked him held him
+
+    The notebook stored the *second* quantity under the name `total_points`, which
+    is why `Draft Picks_2526.csv` disagrees with the 2425 archive: the 2425 CSV
+    carries the player's season total in that column, the 2526 one carries what
+    the drafter banked. Pooling the two silently compares different quantities —
+    it made a "points by draft round" table understate rounds 3-15 by a third,
+    because late picks get dropped more often and so realise less of their total.
+
+    Emitting both under honest names is the fix. `total_points` now means the same
+    thing in every season and matches `players.total_points`; the old value keeps
+    its meaning under an explicit name. Registered in validate.py's INTENTIONAL,
+    since it deliberately no longer reproduces the 2526 CSV's column.
+
+    Grouping matches `draft_pick_performance`, so the two tables agree by
+    construction: weekly_points holds one row per league/gameweek/player, so
+    summing over (league, player) is the season total and summing over
+    (league, owner, player) is the owner's share.
+    """
+    season_total = (
+        weekly_points.groupby(["league_code", "id"], as_index=False)["total_points"].sum()
+        .rename(columns={"id": "element"})
+    )
+    realised = (
         weekly_points.groupby(["league_code", "short_name", "id"], as_index=False)["total_points"]
         .sum()
+        .rename(columns={"id": "element", "total_points": "points_realised_by_drafter"})
     )
-    return picks.merge(
-        totals, left_on=["league_code", "short_name", "element"],
-        right_on=["league_code", "short_name", "id"], how="left",
-    )
+
+    frame = picks.merge(season_total, on=["league_code", "element"], how="left")
+    frame = frame.merge(realised, on=["league_code", "short_name", "element"], how="left")
+    frame["points_realised_by_drafter"] = frame["points_realised_by_drafter"].fillna(0)
+    return frame
