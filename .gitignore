@@ -23,6 +23,10 @@ node_modules/
 # kept as the content-inventory source; the images themselves are not needed.
 /reference/old_html/*.png
 
+# Private draft-night tooling. Scouts the other drafters' tendencies from their own
+# league history — deliberately never committed and never deployed to Pages.
+/draft/
+
 # Machine-local Claude Code settings (launch.json IS shared; this one isn't).
 # Also covered by the global gitignore here, but keep it with the repo so the
 # protection travels to other machines.
