@@ -7,6 +7,7 @@ const TABS = [
   { view: 'season', label: 'Season Trends' },
   { view: 'compare', label: 'Cross-league' },
   { view: 'h2h', label: 'Head to Head' },
+  { view: 'draft', label: 'Draft' },
   // Written once a season is over, so it only appears for seasons that have one.
   { view: 'review', label: 'Season Review', when: season => hasReview(season) },
   { view: 'explorer', label: 'Explorer' },

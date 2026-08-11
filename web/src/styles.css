@@ -188,6 +188,22 @@ table.data th:first-child { z-index: 2; }
 table.data tbody tr:hover td { background: var(--surface); }
 table.data td.num { font-variant-numeric: tabular-nums; }
 
+/* Grouped header row (Draft tab): separates what was knowable at the draft from
+   what only the season revealed. Deliberately NOT sticky — two sticky rows both
+   pinned to top:0 would sit on top of each other, and the column row is the one
+   worth keeping in view. */
+table.data tr.group-head th {
+  position: static;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding-bottom: 3px;
+}
+table.data tr.group-head th:not(:empty) { background: var(--surface); }
+table.data tr.group-head th:first-child { background: var(--bg); }
+
 .rank-move { font-size: 0.72rem; margin-left: 4px; }
 .up { color: #2b9348; }
 .down { color: #d00000; }

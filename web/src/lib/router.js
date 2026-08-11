@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
  * hashes mean GitHub Pages needs no 404.html fallback for deep links.
  *
  *   #/2526/gw/38   #/2526/season   #/2526/compare   #/2526/h2h
- *   #/2526/explorer   #/2526/review
+ *   #/2526/draft       #/2526/explorer   #/2526/review
  */
 
-export const VIEWS = ['gw', 'season', 'compare', 'h2h', 'explorer', 'review']
+export const VIEWS = ['gw', 'season', 'compare', 'h2h', 'draft', 'explorer', 'review']
 
 export function parseHash(hash) {
   const parts = (hash || '').replace(/^#\/?/, '').split('/').filter(Boolean)
