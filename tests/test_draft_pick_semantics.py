@@ -70,26 +70,47 @@ def _agrees_with_performance(tables, season):
     The cross-season guard. `draft_performance` already carries both quantities
     under unambiguous names, so it is the reference: if `draft_picks` agrees with
     it for every season, the two producers cannot drift apart again.
+
+    Note `draft_performance` is a *view*, not a top-level table — `outputs.py`
+    writes everything under `tables["views"]` as its own JSON file.
     """
     picks = tables["draft_picks"]
-    performance = tables["draft_performance"]
+    performance = tables["views"]["draft_performance"]
 
     for column in ("total_points", "points_realised_by_drafter"):
         assert column in picks.columns, f"{season}: draft_picks is missing {column}"
 
-    merged = picks.merge(
-        performance.rename(columns={"id": "element", "drafter_name": "short_name"}),
-        on=["league_code", "short_name", "element"],
-        how="inner", suffixes=("_picks", "_perf"),
+    # Take only the keys and the two columns under test. `draft_performance` also
+    # carries web_name and position, and letting those collide would suffix them —
+    # making `r.web_name` in the failure messages below an AttributeError.
+    keys = ["league_code", "short_name", "element"]
+    reference = (
+        performance.rename(columns={"id": "element", "drafter_name": "short_name"})
+        [keys + ["total_points", "points_realised_by_drafter"]]
     )
-    assert len(merged) == len(picks), f"{season}: picks did not align with draft_performance"
+    merged = picks.merge(
+        reference, on=keys, how="left", indicator=True, suffixes=("_picks", "_perf"),
+    )
+
+    unmatched = merged.loc[merged["_merge"] == "left_only"]
+    assert unmatched.empty, (
+        f"{season}: {len(unmatched)} picks have no draft_performance row, e.g. "
+        + ", ".join(
+            f"{r.short_name} {r.web_name}" for r in unmatched.head(5).itertuples()
+        )
+    )
 
     for column in ("total_points", "points_realised_by_drafter"):
         left = pd.to_numeric(merged[f"{column}_picks"], errors="coerce").fillna(-1)
         right = pd.to_numeric(merged[f"{column}_perf"], errors="coerce").fillna(-1)
-        mismatches = int((left != right).sum())
-        assert mismatches == 0, (
-            f"{season}: {column} disagrees with draft_performance on {mismatches} picks"
+        bad = merged.loc[left != right]
+        assert bad.empty, (
+            f"{season}: {column} disagrees with draft_performance on {len(bad)} picks, e.g. "
+            + ", ".join(
+                f"{r.short_name} {r.web_name} "
+                f"{getattr(r, column + '_picks')} vs {getattr(r, column + '_perf')}"
+                for r in bad.head(5).itertuples()
+            )
         )
 
 
