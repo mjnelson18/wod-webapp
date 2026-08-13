@@ -209,6 +209,23 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       ? perf.filter(p => p.round <= earlyRounds)
       : perf.filter(p => p.short_name === draftFilter)
 
+    // How each drafter's board actually paid out. Draft Night covers the picks
+    // themselves; this is the half of the story only the season can tell.
+    const draftOutcomes = [...new Set(perf.map(p => p.short_name))].map(short_name => {
+      const mine = perf.filter(p => p.short_name === short_name)
+      const pool = mine.reduce((s, p) => s + (Number(p.total_points) || 0), 0)
+      const captured = mine.reduce((s, p) => s + (Number(p.points_realised_by_drafter) || 0), 0)
+      const best = [...mine].sort((a, b) => (b.total_points ?? 0) - (a.total_points ?? 0))[0]
+      return {
+        short_name, pool, captured,
+        captureRate: pool ? captured / pool : null,
+        lost: mine.reduce((s, p) => s + (Number(p.points_realised_by_other) || 0), 0),
+        held: mine.filter(p => p.still_owned).length,
+        n: mine.length,
+        best,
+      }
+    }).sort((a, b) => b.pool - a.pool)
+
     const leader = rows[0]
     const totalLost = summaryRows.filter(r => !r.is_average)
       .reduce((s, r) => s + Math.abs(Number(r.net_points_lost_through_subs) || 0), 0)
@@ -217,7 +234,8 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     return { rows, gws, points, bins, subCost, activity, activityByWeek, types,
              summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
-             lorenz, maxSquad, draftRows, earlyRounds, squadRounds, shareSeries }
+             lorenz, maxSquad, draftRows, earlyRounds, squadRounds, shareSeries,
+             draftOutcomes }
   }, [data, league, meta, mode, seriesMetric, lorenzMode, draftFilter])
 
   if (error) return <div className="notice">Couldn&apos;t load season data: {String(error.message)}</div>
@@ -297,6 +315,45 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       </Collapsible>
 
       <Collapsible title="Draft picks" count={v.perf.length} summary="who banked the points">
+        <SubHead note="What each drafter's board returned, and how much of it they kept. How the picks looked on the night is in Draft Night.">
+          How the drafts paid out
+        </SubHead>
+
+        <div className="table-wrap">
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Drafter</th>
+                <th className="num" title="Everything their picks scored, whoever ended up owning them">Drafted</th>
+                <th className="num" title="The part scored while they still owned the player">Kept</th>
+                <th className="num">Capture</th>
+                <th className="num" title="Points their picks scored for a rival after being dropped or traded">To rivals</th>
+                <th className="num" title="Picks still on their roster at the end of the season">Held</th>
+                <th>Best pick</th>
+              </tr>
+            </thead>
+            <tbody>
+              {v.draftOutcomes.map(d => (
+                <tr key={d.short_name}>
+                  <td>{fullName(meta, d.short_name)}</td>
+                  <td className="num"><strong>{d.pool}</strong></td>
+                  <td className="num">{d.captured}</td>
+                  <td className="num">{d.captureRate == null ? '–' : pct(d.captureRate, 0)}</td>
+                  <td className="num muted">{d.lost || ''}</td>
+                  <td className="num muted">{d.held}/{d.n}</td>
+                  <td className="muted">
+                    {d.best ? `${d.best.web_name} (${d.best.total_points})` : '–'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="small muted">
+          <strong>Drafted</strong> counts everything their picks scored that season, even after
+          being dropped — it measures the draft. <strong>Kept</strong> is what they banked.
+        </p>
+
         <SubHead note="Realised by the drafter who picked them, by a later owner, or by nobody">
           Value of each pick
         </SubHead>

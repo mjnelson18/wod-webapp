@@ -111,18 +111,20 @@ SEASON_2627 = Season(
     leagues=(
         League(
             code="Prem", name="Premiership",
-            league_code=None,  # <FILL IN> 2627 Premiership league code
+            league_code=19736,  # "What's on Draft? Premiership"
             size=6, relegated=2,
-            exclude_entries=(),  # <FILL IN> if an entry is again excluded
+            # Peter Vickers plays the Conference this season, so unlike 2526 there
+            # is no dud Premiership entry to drop. Revisit if that changes.
+            exclude_entries=(),
         ),
         League(
             code="Conf", name="Conference",
-            league_code=None,  # <FILL IN> 2627 Conference league code
+            league_code=19116,  # "What's on Draft? Conference"
             size=6, promoted=2,
             exclude_entries=(),
         ),
     ),
-    notes="Live season. League codes must be filled in before the first build.",
+    notes="Live season. Both leagues draft 2026-08-14 19:30 UTC.",
 )
 
 
