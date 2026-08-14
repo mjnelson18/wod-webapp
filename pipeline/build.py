@@ -22,6 +22,7 @@ from .fetchers.http import Maintenance, RateLimited
 from .transforms import (
     attach_fixtures,
     attach_pick_totals,
+    attach_prior_season,
     available_form_players,
     bootstrap_start_year,
     bootstrap_team_ids_agree,
@@ -67,6 +68,37 @@ def _current_week(source, season) -> int:
     return season.total_gameweeks
 
 
+def _prior_players(season, say) -> "pd.DataFrame | None":
+    """
+    Last season's player table, read back from its own generated archive.
+
+    The archives are frozen and restored into `data/<season>/` before the current
+    season builds, so by the time we get here the file is on disk. It is optional
+    on purpose: the oldest season has nothing behind it, and a missing archive
+    should cost the draft view one column rather than fail the run.
+    """
+    prior = getattr(season, "previous_season", None) or _previous_season(season.season)
+    if not prior:
+        return None
+    path = paths.season_data_dir(prior) / "players.json"
+    try:
+        return pd.DataFrame(json.loads(path.read_text(encoding="utf-8")))
+    except (OSError, ValueError) as error:
+        say(f"  no {prior} players.json ({error}) — draft view loses last season's clubs")
+        return None
+
+
+def _previous_season(season_id: str) -> str | None:
+    """'2627' -> '2526'. None if the id isn't the two-year form."""
+    text = str(season_id or "")
+    if not (len(text) == 4 and text.isdigit()):
+        return None
+    start = int(text[:2])
+    if start <= 0:
+        return None
+    return f"{start - 1:02d}{start:02d}"
+
+
 def _preseason_tables(season, source, teams, players, say) -> dict:
     """
     A season that exists but has not kicked off.
@@ -93,6 +125,8 @@ def _preseason_tables(season, source, teams, players, say) -> dict:
 
     draft_picks = pd.concat(picks_frames, ignore_index=True)
     standings = pd.concat(standings_frames, ignore_index=True)
+    if len(draft_picks):
+        draft_picks = attach_prior_season(draft_picks, players, _prior_players(season, say))
     # 'drafted' unlocks the draft-night view; 'pre_draft' has names and nothing else.
     stage = "drafted" if len(draft_picks) else "pre_draft"
     say(f"  no gameweeks yet — stage={stage}")

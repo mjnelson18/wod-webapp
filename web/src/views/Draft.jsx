@@ -80,11 +80,28 @@ export default function Draft({ season, meta, league, setLeague }) {
       const withRank = list.filter(p => p.draft_rank != null)
       const reaches = list.filter(p => p.reach != null)
       const passes = list.filter(p => p.passedOver)
+      // Last season's shape of the squad. Each is optional on its own: the oldest
+      // archived season has nothing behind it, so these stay null there and the
+      // columns drop out rather than rendering a row of dashes.
+      const priced = list.filter(p => p.now_cost != null)
+      const withPrior = list.filter(p => p.prior_points != null)
+      const knownNew = list.filter(p => p.new_to_pl != null)
+      const knownMoved = list.filter(p => p.moved_club != null)
+
       return {
         short_name,
         slot: slots.get(short_name) ?? null,
         picks: list,
         n: list.length,
+        priorPoints: withPrior.length
+          ? withPrior.reduce((s, p) => s + Number(p.prior_points), 0) : null,
+        cost: priced.length
+          ? priced.reduce((s, p) => s + Number(p.now_cost), 0) : null,
+        newToPl: knownNew.length ? knownNew.filter(p => p.new_to_pl).length : null,
+        // Counted over the players we can actually place last season, so a squad
+        // isn't made to look settled just because a name went unmatched.
+        movedClub: knownMoved.length ? knownMoved.filter(p => p.moved_club).length : null,
+        movedKnown: knownMoved.length,
         rankSpread: rankSpread(withRank.map(p => p.draft_rank)),
         chalk: withRank.length ? withRank.filter(p => p.draft_rank <= 30).length : null,
         // A gamble is a pick taken well ahead of where the board had him.
@@ -121,6 +138,13 @@ export default function Draft({ season, meta, league, setLeague }) {
     return {
       drafters,
       hasRank,
+      // Each squad column appears only if the season actually carries it. 2425 has
+      // no season behind it, so it has no prior points, no debutants and no moves;
+      // showing those headers with nothing under them would imply the answer is
+      // zero rather than unknown.
+      hasPrior: drafters.some(d => d.priorPoints != null),
+      hasCost: drafters.some(d => d.cost != null),
+      hasMoves: drafters.some(d => d.movedClub != null),
       totalPicks: picks.length,
       boldest: gambled.length
         ? gambled.reduce((a, b) => (b.biggestReach.reach > a.biggestReach.reach ? b : a)) : null,
@@ -268,6 +292,57 @@ export default function Draft({ season, meta, league, setLeague }) {
       </Section>
 
       {market && <Market market={market} league={league} meta={meta} />}
+
+      {(v.hasPrior || v.hasCost || v.hasMoves) && (
+        <Section
+          title="Every squad, compared"
+          note={v.hasPrior
+            ? 'Last season’s points are what these footballers scored before draft night, not a prediction. A squad can lead here and finish nowhere — it is a description of who was taken, not of how the season went.'
+            : undefined}
+        >
+          <div className="table-wrap">
+            <table className="data">
+              <thead>
+                <tr>
+                  <th>Drafter</th>
+                  <th className="num">Picks</th>
+                  {v.hasPrior && <th className="num" title="What these players scored last season">Last season</th>}
+                  {v.hasCost && <th className="num" title="Sum of FPL prices at draft time">Cost</th>}
+                  {v.hasPrior && <th className="num" title="No Premier League record last season">New to PL</th>}
+                  {v.hasMoves && <th className="num" title="Changed club since last season">Moved club</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {[...v.drafters]
+                  .sort((a, b) => (b.priorPoints ?? 0) - (a.priorPoints ?? 0))
+                  .map(d => (
+                    <tr key={d.short_name}>
+                      <td>
+                        <b>{d.short_name}</b>{' '}
+                        <span className="muted">{fullName(meta, d.short_name)}</span>
+                      </td>
+                      <td className="num">{d.n}</td>
+                      {v.hasPrior && <td className="num">{d.priorPoints ?? '—'}</td>}
+                      {v.hasCost && (
+                        <td className="num">
+                          {d.cost == null ? '—' : `£${d.cost.toFixed(1)}m`}
+                        </td>
+                      )}
+                      {v.hasPrior && <td className="num">{d.newToPl ?? '—'}</td>}
+                      {v.hasMoves && (
+                        <td className="num" title={d.movedKnown < d.n
+                          ? `of ${d.movedKnown} of ${d.n} placed last season`
+                          : undefined}>
+                          {d.movedClub ?? '—'}
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+      )}
 
       <Section title="Every board, pick by pick">
         {v.drafters.map(d => (

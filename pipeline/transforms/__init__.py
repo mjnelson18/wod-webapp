@@ -3,7 +3,7 @@
 This is what makes them testable against the historical CSVs.
 """
 
-from .draft_picks import attach_pick_totals, draft_picks_table
+from .draft_picks import attach_pick_totals, attach_prior_season, draft_picks_table
 from .fixtures import fixtures_from_fantasy, fixtures_from_live
 from .league import (
     entry_ids,
@@ -61,6 +61,7 @@ __all__ = [
     "season_summary",
     "season_summary_by_gameweek",
     "calc_optimal_points",
+    "attach_prior_season",
     "draft_picks_table",
     "entry_ids",
     "finalise_trades",
