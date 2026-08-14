@@ -85,3 +85,99 @@ def attach_pick_totals(picks: pd.DataFrame, weekly_points: pd.DataFrame) -> pd.D
     frame = frame.merge(realised, on=["league_code", "short_name", "element"], how="left")
     frame["points_realised_by_drafter"] = frame["points_realised_by_drafter"].fillna(0)
     return frame
+
+
+# Columns attach_prior_season adds. Named for what they are: last season's facts
+# about the footballer, not about the pick.
+PRIOR_COLUMNS = ["prior_points", "prior_team_name", "new_to_pl", "moved_club"]
+
+
+def attach_prior_season(picks: pd.DataFrame, players: pd.DataFrame,
+                        prior_players: pd.DataFrame | None) -> pd.DataFrame:
+    """
+    Attach last season's record for each drafted footballer.
+
+    `prior_points`      his total in the previous season, NaN if he wasn't in it
+    `prior_team_name`   the club he finished the previous season at
+    `new_to_pl`         True if he has no previous-season record at all
+    `moved_club`        True if he has one and it names a different club
+
+    Two independent sources, because neither is sufficient alone.
+
+    `prior_points` and `new_to_pl` come from the picks' own `last_minutes` /
+    `last_points`, which the caller takes from the current draft bootstrap. Before
+    GW1 those fields still describe *last* season — that is simply what FPL serves
+    in the pre-season window — so they are an exact, join-free record of what each
+    footballer did last year. Nothing can go wrong with a name here.
+
+    `prior_team_name`, and therefore `moved_club`, genuinely need the previous
+    season's table, and are joined on `web_name`. Not on `element`: FPL reassigns
+    element ids every season, and of the 19 ids present in both the 2425 and 2526
+    drafts not one refers to the same footballer (id 16 is Rice in 2425 and Saka in
+    2526). Joining on it yields a table that looks plausible and is entirely wrong.
+
+    But `web_name` is not fully stable either, which is why it is not trusted for
+    the other two columns. FPL adds an initial only when names collide *within* a
+    season, so a player's web_name changes when his rivals do: Mateus Fernandes was
+    `M.Fernandes` (WHU) in 2526 and is plain `Fernandes` (TOT) in 2627. A pure name
+    join therefore loses him — and would have called a 135-point player a Premier
+    League debutant. Where the name doesn't match, `moved_club` is left null, which
+    says "we can't tell" rather than asserting he stayed put.
+
+    `prior_players` is None for the oldest season in the archive, which has nothing
+    behind it. Then `moved_club` is null throughout — "we don't know" is not the
+    same claim as "nobody moved".
+    """
+    frame = picks.copy()
+
+    # `players` is this season's table, so joining on the element id is safe here —
+    # ids are only unstable *between* seasons. PICK_COLUMNS deliberately doesn't
+    # carry minutes or points, so they're taken from the source frame rather than
+    # widening every pick row with columns only this function needs.
+    record = (
+        players[["id", "minutes", "total_points"]]
+        .rename(columns={"id": "element", "total_points": "prior_points",
+                         "minutes": "prior_minutes"})
+    )
+    frame = frame.merge(record, on="element", how="left")
+
+    minutes = pd.to_numeric(frame["prior_minutes"], errors="coerce").fillna(0)
+    points = pd.to_numeric(frame["prior_points"], errors="coerce").fillna(0)
+    frame["prior_points"] = points
+    frame = frame.drop(columns=["prior_minutes"])
+
+    # No minutes and no points is necessary but not sufficient: Marcus Rashford
+    # scored nothing last season because he spent it on loan abroad, and calling
+    # him new to the Premier League would be nonsense. So a debutant must also be
+    # absent from last season's player list entirely. Both are checked for points
+    # and minutes because a substitute can score without starting, and a defender
+    # can play 3000 minutes for very few points.
+    no_record = (minutes <= 0) & (points <= 0)
+
+    if prior_players is None or not len(prior_players):
+        # Nothing behind this season, so we can neither confirm a debutant nor
+        # place anyone's old club.
+        frame["new_to_pl"] = pd.NA
+        frame["prior_team_name"] = pd.NA
+        frame["moved_club"] = pd.NA
+        return frame
+
+    # One row per name: a footballer appears once per league in players.json, so
+    # the same name arrives up to twice carrying identical values.
+    prior = (
+        prior_players[["web_name", "team_name"]]
+        .drop_duplicates(subset="web_name", keep="first")
+        .rename(columns={"team_name": "prior_team_name"})
+    )
+
+    frame = frame.merge(prior, on="web_name", how="left")
+    matched = frame["prior_team_name"].notna()
+    frame["new_to_pl"] = no_record.values & ~matched
+
+    frame["moved_club"] = pd.NA
+    frame.loc[matched, "moved_club"] = (
+        frame.loc[matched, "prior_team_name"] != frame.loc[matched, "team_name"]
+    )
+    # A debutant has no prior club to differ from, so that is a real False.
+    frame.loc[frame["new_to_pl"], "moved_club"] = False
+    return frame

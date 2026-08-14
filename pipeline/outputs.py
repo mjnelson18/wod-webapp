@@ -93,6 +93,13 @@ DRAFT_PICKS = {
     # the person who picked him actually banked. See attach_pick_totals().
     "total_points": "total_points",
     "points_realised_by_drafter": "points_realised_by_drafter",
+    # Last season's record for the footballer, for the draft-night view. Null on
+    # the oldest archived season, which has nothing behind it. See
+    # transforms.draft_picks.attach_prior_season.
+    "prior_points": "prior_points",
+    "prior_team_name": "prior_team_name",
+    "new_to_pl": "new_to_pl",
+    "moved_club": "moved_club",
 }
 
 TRANSFERS = {
