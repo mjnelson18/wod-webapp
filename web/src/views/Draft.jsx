@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
-import { useTables } from '../lib/data.js'
+import { useTables, useAsync, loadTableIfPresent } from '../lib/data.js'
 import { fullName, label, leagueName } from '../lib/names.js'
+import { previousSeason, clubMarket, playerMarket, clubSet } from '../lib/market.js'
 import {
   Section, Loading, Unavailable, Stat, StatRow, Collapsible, LeagueToggle,
 } from '../components/ui.jsx'
@@ -18,6 +19,17 @@ import {
  */
 export default function Draft({ season, meta, league, setLeague }) {
   const { data, loading, error } = useTables(season, ['draft_picks'])
+
+  // Last year's draft, for the hot-and-not comparison. Optional by design: the
+  // oldest season in the archive has nothing behind it. Deliberately only the pick
+  // tables and the club lists — players.json is 190 KB a season and this view is
+  // otherwise a 38 KB load on a phone.
+  const prevSeason = previousSeason(season)
+  const past = useAsync(() => Promise.all([
+    prevSeason ? loadTableIfPresent(prevSeason, 'draft_picks') : Promise.resolve(null),
+    prevSeason ? loadTableIfPresent(prevSeason, 'teams') : Promise.resolve(null),
+    loadTableIfPresent(season, 'teams'),
+  ]).then(([picks, priorTeams, teams]) => ({ picks, priorTeams, teams })), [season, prevSeason])
 
   const v = useMemo(() => {
     if (!data) return null
@@ -120,6 +132,30 @@ export default function Draft({ season, meta, league, setLeague }) {
       mostPassed,
     }
   }, [data, league])
+
+  // Where the league's taste moved since the previous draft.
+  const market = useMemo(() => {
+    const priorAll = past.data?.picks
+    if (!data || !priorAll?.length) return null
+    const inLeague = rows => rows.filter(p => p.league === league)
+    const prior = inLeague(priorAll)
+    if (!prior.length) return null   // league didn't exist under this code last year
+
+    const clubs = clubSet(past.data.teams)
+    const priorClubs = clubSet(past.data.priorTeams)
+    return {
+      priorSeason: prevSeason,
+      clubs: clubMarket(inLeague(data.draft_picks), prior, {
+        clubs: clubs.size ? clubs : null,
+        priorClubs: priorClubs.size ? priorClubs : null,
+      }),
+      players: playerMarket(inLeague(data.draft_picks), prior, {
+        priorAllPicks: priorAll,
+        allPicks: data.draft_picks,
+        priorClubs: priorClubs.size ? priorClubs : null,
+      }),
+    }
+  }, [data, past.data, league, prevSeason])
 
   if (error) return <Unavailable what="Draft night" season={season} reason={String(error.message ?? error)} />
   if (loading || !v) return <Loading what="the draft" />
@@ -231,6 +267,8 @@ export default function Draft({ season, meta, league, setLeague }) {
         )}
       </Section>
 
+      {market && <Market market={market} league={league} meta={meta} />}
+
       <Section title="Every board, pick by pick">
         {v.drafters.map(d => (
           <Collapsible
@@ -285,6 +323,202 @@ export default function Draft({ season, meta, league, setLeague }) {
         ))}
       </Section>
     </>
+  )
+}
+
+const SEASON_LABEL = season => `20${String(season).slice(0, 2)}/${String(season).slice(2)}`
+
+/** How many risers and fallers to name before the full list. */
+const NAMED = 6
+
+const ARRIVAL_NOTE = {
+  other_league: 'went in the other league last year',
+  new_to_division: 'club was not in the division last year',
+  undrafted_last_year: 'not drafted last year',
+}
+const DEPARTURE_NOTE = {
+  other_league: 'taken by the other league this year',
+  undrafted_this_year: 'not drafted this year',
+}
+
+/**
+ * Hot and not against the previous draft, by club and by player.
+ *
+ * Clubs first, because that is where a whole-squad repricing shows up and where the
+ * sample is big enough to mean something: six drafters take ninety players, so a
+ * club moving by three or four picks is a real shift in opinion. Player movement is
+ * noisier by nature — one drafter's conviction can move a single name a long way —
+ * so it is presented as named examples rather than a league-wide trend.
+ */
+function Market({ market, league, meta }) {
+  const { clubs, players, priorSeason } = market
+  const priorLabel = SEASON_LABEL(priorSeason)
+  const movedClubs = clubs.filter(c => c.delta !== 0)
+  const hottest = movedClubs[0]
+  const coldest = movedClubs[movedClubs.length - 1]
+  const topRiser = players.hotter[0]
+  const named = [...players.hotter.slice(0, NAMED), ...players.cooler.slice(0, NAMED)]
+    .sort((a, b) => b.move - a.move)
+
+  return (
+    <>
+      <Section
+        title={`Hot and not since the ${priorLabel} draft`}
+        note={`Where the ${leagueName(meta, league)}'s collective taste moved. Bear in mind the
+               league itself turns over — two up, two down — so this is the room's opinion, not
+               the same six people changing their minds.`}
+      >
+        <StatRow>
+          <Stat
+            label="Club in demand"
+            value={hottest && hottest.delta > 0 ? hottest.club : '–'}
+            sub={hottest && hottest.delta > 0
+              ? `${hottest.priorN} drafted last year, ${hottest.n} this year${hottest.status === 'new_to_division' ? ' — newly promoted' : ''}`
+              : 'no club gained ground'}
+          />
+          <Stat
+            label="Club out of favour"
+            value={coldest && coldest.delta < 0 ? coldest.club : '–'}
+            sub={coldest && coldest.delta < 0
+              ? `${coldest.priorN} last year, ${coldest.n === 0 ? 'none at all' : `${coldest.n}`} this year`
+              : 'no club lost ground'}
+          />
+          <Stat
+            label="Biggest riser"
+            value={topRiser ? topRiser.web_name : '–'}
+            sub={topRiser
+              ? `pick ${topRiser.priorIndex} → ${topRiser.index}, ${topRiser.move} places earlier`
+              : `no player was drafted in both ${priorLabel} and this year`}
+          />
+        </StatRow>
+
+        <div className="table-wrap">
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Club</th>
+                <th className="num" title="Players drafted from this club this year">Now</th>
+                <th className="num" title={`Players drafted from this club in ${priorLabel}`}>Then</th>
+                <th className="num">Change</th>
+                <th className="num" title="Earliest overall pick used on this club">First off</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {movedClubs.map(c => (
+                <tr key={c.club}>
+                  <td><strong>{c.club}</strong></td>
+                  <td className="num">{c.n}</td>
+                  <td className="num muted">{c.priorN}</td>
+                  <td className="num">{c.delta > 0 ? `+${c.delta}` : c.delta}</td>
+                  <td className="num muted">{c.earliest ?? '–'}</td>
+                  <td className="small muted">
+                    {c.status === 'new_to_division' ? 'new to the division'
+                      : c.status === 'left_division' ? 'no longer in the division' : ''}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {!movedClubs.length && (
+          <p className="small muted">Every club drew exactly the same number of picks as last year.</p>
+        )}
+
+        {named.length > 0 && (
+          <>
+            <p className="small muted" style={{ marginTop: 12 }}>
+              <strong>Players the room repriced.</strong> Drafted in both years, ranked by how far
+              their pick moved. Matched on name — FPL reassigns its player ids every season, so
+              nothing here can be joined on them.
+            </p>
+            <div className="table-wrap">
+              <table className="data">
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Club</th>
+                    <th className="num">{priorLabel}</th>
+                    <th className="num">Now</th>
+                    <th className="num">Move</th>
+                    <th>Taken by</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {named.map(p => (
+                    <tr key={`${p.web_name}-${p.index}`}>
+                      <td><strong>{p.web_name}</strong></td>
+                      <td className="muted">{p.team_name}</td>
+                      <td className="num muted">{p.priorIndex}</td>
+                      <td className="num">{p.index}</td>
+                      <td className="num">{p.move > 0 ? `+${p.move}` : p.move}</td>
+                      <td className="muted">
+                        {label(p.short_name)}
+                        {p.priorDrafter !== p.short_name && (
+                          <span className="small"> (was {label(p.priorDrafter)})</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+
+        <p className="small muted">
+          {players.matched} of this league&apos;s picks were also drafted here in {priorLabel}
+          {players.held.length > 0 && `, ${players.held.length} at the very same pick number`}.
+        </p>
+      </Section>
+
+      <Section title={`New faces and dropped names vs ${priorLabel}`}>
+        <Collapsible
+          title="Drafted this year, not last"
+          count={players.arrivals.length}
+          summary="New to this league's board"
+        >
+          <MarketList rows={players.arrivals} notes={ARRIVAL_NOTE} />
+        </Collapsible>
+        <Collapsible
+          title="Drafted last year, not this"
+          count={players.departures.length}
+          summary="Off the board"
+        >
+          <MarketList rows={players.departures} notes={DEPARTURE_NOTE} pickLabel={priorLabel} />
+        </Collapsible>
+      </Section>
+    </>
+  )
+}
+
+function MarketList({ rows, notes, pickLabel = 'Pick' }) {
+  if (!rows.length) return <p className="small muted">Nobody.</p>
+  return (
+    <div className="table-wrap">
+      <table className="data">
+        <thead>
+          <tr>
+            <th className="num" title={`Overall pick number in the ${pickLabel} draft`}>#</th>
+            <th>Player</th>
+            <th>Club</th>
+            <th>Drafter</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(p => (
+            <tr key={`${p.web_name}-${p.index}`}>
+              <td className="num muted">{p.index}</td>
+              <td><strong>{p.web_name}</strong></td>
+              <td className="muted">{p.team_name}</td>
+              <td className="muted">{label(p.short_name)}</td>
+              <td className="small muted">{notes[p.status] ?? ''}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

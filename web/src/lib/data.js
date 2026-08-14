@@ -25,6 +25,16 @@ export const loadSeasons = () => get('seasons.json')
 export const loadMeta = season => get(`${season}/meta.json`)
 export const loadTable = (season, name) => get(`${season}/${name}.json`)
 
+/**
+ * Like loadTable, but resolves to null instead of throwing when it isn't there.
+ *
+ * For genuinely optional data — a previous season to compare against, which the
+ * earliest season in the archive simply doesn't have. A missing file must degrade
+ * the view, not fail it.
+ */
+export const loadTableIfPresent = (season, name) =>
+  loadTable(season, name).catch(() => null)
+
 /** Generic async hook. `deps` gates refetching; returns {data, error, loading}. */
 export function useAsync(fn, deps) {
   const [state, setState] = useState({ data: null, error: null, loading: true })

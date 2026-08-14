@@ -26,6 +26,11 @@ def draft_picks_table(choices: dict, players: pd.DataFrame, table: pd.DataFrame,
     `pick` (position within the raw round) is left untouched, as the notebook did,
     so for 2526's Premiership it runs 1..7 while `index` runs 1..90.
     """
+    # Before draft night the league exists but nobody has picked. Return the empty
+    # frame with its real columns so downstream concats and merges still line up.
+    if not (choices.get("choices") or []):
+        return pd.DataFrame(columns=PICK_COLUMNS)
+
     picks = pd.json_normalize(choices["choices"])
     picks = picks.merge(players, left_on="element", right_on="id", how="inner")
     picks = picks.merge(table, left_on="entry", right_on="entry_id", how="inner")

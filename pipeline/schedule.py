@@ -15,6 +15,7 @@ States and their minimum intervals:
   settling          matches done, bonus not applied    15 min
   gameweek_open     gameweek open, no live match now    1 hour
   between_gameweeks gameweek done, next one pending     6 hours
+  pre_season        leagues exist, GW1 not open yet     15 min
   off_season        no next gameweek                    7 days
   rate_limited      API asked us to back off            skip, don't fail
   maintenance       API serving a holding page          skip, don't fail
@@ -46,6 +47,9 @@ MINIMUM_INTERVAL = {
     "settling": 15 * 60,
     "gameweek_open": 60 * 60,
     "between_gameweeks": 6 * 60 * 60,
+    # Before GW1: no gameweeks to fetch, so a build is cheap, but draft night
+    # happens in here and should reach the site promptly.
+    "pre_season": 15 * 60,
     "off_season": 7 * 24 * 60 * 60,
     # Waiting on league codes: nothing to fetch, but keep checking daily so the
     # first configured run happens on its own rather than needing a manual nudge.
@@ -100,6 +104,10 @@ def classify(season) -> tuple[str, str]:
     next_event = game.get("next_event")
 
     if not current:
+        if next_event:
+            # Leagues exist and may already have drafted, but no gameweek has
+            # opened. Worth building often: this is the window draft night lands in.
+            return "pre_season", f"no gameweek open yet, GW{next_event} first"
         return "off_season", "no current gameweek yet"
 
     if finished and not next_event:
