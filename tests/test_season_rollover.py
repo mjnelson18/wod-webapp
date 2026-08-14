@@ -18,7 +18,7 @@ import pytest
 
 from pipeline import schedule
 from pipeline.build import build_tables
-from pipeline.config import get_season
+from pipeline.config import League, Season, get_season
 from pipeline.fetchers.http import Maintenance, RateLimited
 from pipeline.schedule import decide
 from pipeline.transforms.players import bootstrap_start_year, season_start_year
@@ -59,20 +59,34 @@ def test_archive_seasons_declare_a_non_live_source():
 
 # --- 2. the pre-season gap -------------------------------------------------
 
-def test_unconfigured_season_still_allows_a_deploy():
+# A season with no league codes yet. Deliberately synthetic rather than the real
+# current season: the live one gets configured on draft night, which used to turn
+# these two tests red (and send them to the network) as a side effect.
+UNCONFIGURED = Season(
+    season="9999", label="future", default_source="live",
+    leagues=(League(code="Prem", name="Premiership", league_code=None, size=6),),
+)
+
+
+@pytest.fixture
+def unconfigured(monkeypatch):
+    monkeypatch.setattr(schedule, "get_season", lambda season: UNCONFIGURED)
+
+
+def test_unconfigured_season_still_allows_a_deploy(unconfigured):
     """
     Between the rollover and draft night the league codes don't exist yet. The
     current season can't be built, but the site is fine from the archives, so a
     forced run (push or manual) must still go ahead.
     """
-    result = decide("2627", force=True)
+    result = decide("9999", force=True)
     assert result["should_build"] is True      # archives build, site deploys
     assert result["season_ready"] is False     # current season is skipped
     assert result["state"] == "not_configured"
 
 
-def test_unconfigured_season_is_throttled_but_not_fatal():
-    result = decide("2627")
+def test_unconfigured_season_is_throttled_but_not_fatal(unconfigured):
+    result = decide("9999")
     assert result["season_ready"] is False
     assert result["state"] == "not_configured"
     # daily re-check, so the first configured run happens without a manual nudge

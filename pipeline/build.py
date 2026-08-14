@@ -56,7 +56,55 @@ from .transforms import (
 def _current_week(source, season) -> int:
     game = source.game() or {}
     week = game.get("current_event")
-    return int(week) if week else season.total_gameweeks
+    if week:
+        return int(week)
+    # No current gameweek. Before GW1 opens that means zero weeks have happened —
+    # the honest answer, and it keeps us from fetching 38 empty live payloads and
+    # 404ing every entry/gameweek pair. `next_event` is what separates "not started
+    # yet" from a payload that simply omits the field (the archives).
+    if game.get("next_event"):
+        return 0
+    return season.total_gameweeks
+
+
+def _preseason_tables(season, source, teams, players, say) -> dict:
+    """
+    A season that exists but has not kicked off.
+
+    Between the leagues being created and GW1 opening there are no gameweeks, so
+    the weekly tables, per-view aggregates and review facts have nothing to compute
+    from. Emit only what really exists — the leagues, their drafters, and the picks
+    once draft night has happened — so the site can list the season and show draft
+    night as soon as it lands, instead of hiding the season for the whole build-up.
+    """
+    standings_frames, picks_frames = [], []
+    for league in season.leagues:
+        details = source.league_details(league.league_code)
+        standings = league_table(details, league_code=league.code,
+                                 exclude_entries=league.exclude_entries)
+        picks = draft_picks_table(
+            source.draft_choices(league.league_code), players, standings,
+            league_code=league.code, drafters=league.size,
+        )
+        say(f"  {league.code} ({league.league_code}): {len(standings)} drafters, "
+            f"{len(picks)} picks")
+        standings_frames.append(standings)
+        picks_frames.append(picks)
+
+    draft_picks = pd.concat(picks_frames, ignore_index=True)
+    standings = pd.concat(standings_frames, ignore_index=True)
+    # 'drafted' unlocks the draft-night view; 'pre_draft' has names and nothing else.
+    stage = "drafted" if len(draft_picks) else "pre_draft"
+    say(f"  no gameweeks yet — stage={stage}")
+    return {
+        "season": season,
+        "current_week": 0,
+        "stage": stage,
+        "teams": teams,
+        "players": players,
+        "standings": standings,
+        "draft_picks": draft_picks,
+    }
 
 
 def build_tables(season_id: str, *, source_kind: str | None = None, force: bool = False,
@@ -113,6 +161,9 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
     if season.csv_backfill:
         players = backfill_players(players, season)
         say(f"  backfilled from CSV: {', '.join(season.csv_backfill)}")
+
+    if current_week == 0:
+        return _preseason_tables(season, source, teams, players, say)
 
     # event/{gw}/live, shared across both leagues — fetch once
     live = {gw: source.event_live(gw) for gw in weeks}
@@ -216,6 +267,7 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
     return {
         "season": season,
         "current_week": current_week,
+        "stage": "live",
         "hosts_agree": hosts_agree,
         "teams": teams,
         "players": players,

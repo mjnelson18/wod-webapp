@@ -281,7 +281,76 @@ def _reduce_weekly_points(frame: pd.DataFrame) -> pd.DataFrame:
     return frame[~undrafted | keep_undrafted]
 
 
+def _write_preseason(tables: dict, *, out_dir: str | None = None) -> Path:
+    """
+    Write the little that exists for a season that has not kicked off.
+
+    Enough for the site to list the season, name its leagues and drafters, and —
+    once draft night has happened — show the picks. Everything derived from
+    gameweeks is written empty rather than omitted, so a view that loads a table
+    renders nothing instead of failing on a 404.
+    """
+    season = tables["season"]
+    root = Path(out_dir) if out_dir else paths.season_data_dir(season.season)
+    root.mkdir(parents=True, exist_ok=True)
+    standings = tables["standings"]
+
+    def full_name(row):
+        name = f"{row.get('first_name') or ''} {row.get('last_name') or ''}".strip()
+        return _clean(name) or None
+
+    # Reuse the real capability probe against empty frames rather than hardcoding a
+    # list of falses, so this cannot drift as capabilities are added. `cost` comes
+    # out true on its own merit: the bootstrap carries prices before GW1.
+    empty = pd.DataFrame()
+    capabilities = _capabilities({
+        "weekly_summary": empty, "weekly_points": empty, "trades": empty,
+        "players": tables["players"], "fixtures_by_team": empty,
+    })
+
+    meta = {
+        "season": season.season,
+        "label": season.label,
+        "source": season.default_source,
+        "stage": tables["stage"],
+        "current_gameweek": 0,
+        "total_gameweeks": 0,
+        "complete": False,
+        "gameweeks": [],
+        "leagues": [
+            {"code": lg.code, "name": lg.name, "size": lg.size,
+             "promoted": lg.promoted, "relegated": lg.relegated}
+            for lg in season.leagues
+        ],
+        "drafters": [
+            {"short_name": r["short_name"], "name": full_name(r), "league": r["league_code"]}
+            for r in standings.to_dict("records")
+        ],
+        "capabilities": capabilities,
+        "notes": season.notes,
+    }
+
+    files = {
+        "meta.json": meta,
+        "draft_picks.json": _records(tables["draft_picks"], DRAFT_PICKS),
+        "players.json": _records(tables["players"], PLAYERS),
+        "teams.json": _records(tables["teams"], TEAMS),
+    }
+    for name in ("league_table", "weekly_summary", "weekly_points",
+                 "transfers", "trades", "fixtures"):
+        files[f"{name}.json"] = []
+
+    for name, payload in files.items():
+        (root / name).write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+
+    write_seasons_index(root.parent)
+    return root
+
+
 def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: bool = True) -> Path:
+    if tables.get("stage", "live") != "live":
+        return _write_preseason(tables, out_dir=out_dir)
+
     season = tables["season"]
     root = Path(out_dir) if out_dir else paths.season_data_dir(season.season)
     root.mkdir(parents=True, exist_ok=True)
@@ -296,6 +365,7 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
         "season": season.season,
         "label": season.label,
         "source": season.default_source,
+        "stage": tables.get("stage", "live"),
         "current_gameweek": int(tables["current_week"]),
         "total_gameweeks": len(gameweeks),
         "complete": len(gameweeks) >= season.total_gameweeks,
@@ -362,8 +432,14 @@ def write_seasons_index(data_root: Path | None = None) -> Path:
         entries.append({
             "season": meta["season"], "label": meta["label"],
             "current_gameweek": meta["current_gameweek"], "complete": meta["complete"],
+            "stage": meta.get("stage", "live"),
         })
-    payload = {"seasons": entries, "default": entries[0]["season"] if entries else None}
+    # Land on the newest season that has something to show. The new season appears
+    # in the selector as soon as its leagues exist, but opening the site on its
+    # holding screen would bury last season's completed data for weeks.
+    playable = [e for e in entries if e["stage"] == "live"]
+    default = (playable or entries or [{"season": None}])[0]["season"]
+    payload = {"seasons": entries, "default": default}
     path = data_root / "seasons.json"
     data_root.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")

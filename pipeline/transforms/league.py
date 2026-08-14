@@ -31,6 +31,15 @@ def league_table(details: dict, *, league_code, exclude_entries=()) -> pd.DataFr
     if exclude_entries:
         mapping = mapping[~mapping["id"].isin(list(exclude_entries))]
 
+    # Between a league being created and GW1 opening, the API serves an empty
+    # standings list: the drafters exist but have no position yet. json_normalize
+    # leaves no columns behind for an empty list, so selecting them raises — take
+    # the drafters at zero instead, which is what the league actually looks like.
+    if not (details.get("standings") or []):
+        blank = mapping.assign(gameweek_points=0, total=0, rank=0, last_rank=0,
+                               league_code=league_code)
+        return blank[STANDINGS_COLUMNS + ["league_code"]]
+
     standings = pd.json_normalize(details["standings"])[[
         "league_entry", "event_total", "total", "rank", "last_rank",
     ]]

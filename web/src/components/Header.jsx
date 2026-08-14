@@ -13,9 +13,17 @@ const TABS = [
   { view: 'explorer', label: 'Explorer' },
 ]
 
+// Before GW1 there are no gameweeks, so every chart and table would be empty.
+// Draft Night is the exception: it needs only the picks, so it opens the moment
+// draft night has happened. An unlisted stage (or meta still loading) shows all.
+const STAGE_TABS = { pre_draft: [], drafted: ['draft'] }
+
 export default function Header({ route, seasons, meta }) {
   const current = seasons.find(s => s.season === route.season)
-  const tabs = TABS.filter(t => !t.when || t.when(route.season))
+  const allowed = STAGE_TABS[meta?.stage]
+  const tabs = TABS
+    .filter(t => !allowed || allowed.includes(t.view))
+    .filter(t => !t.when || t.when(route.season))
 
   // The strip scrolls horizontally and five tabs no longer fit on a phone, so
   // the selected one has to be pulled into view — otherwise landing on a deep

@@ -47,6 +47,8 @@ export default function App() {
   if (!seasons.data || !season) return <div className="spinner">Loading…</div>
 
   const View = VIEW_COMPONENTS[route.view] ?? Gameweek
+  // A season can be listed before it has any gameweeks — see NotStarted.
+  const notStarted = Boolean(meta.data?.stage) && meta.data.stage !== 'live'
 
   return (
     <>
@@ -59,18 +61,59 @@ export default function App() {
         {meta.error && <Fatal error={meta.error} />}
         {meta.loading && <div className="spinner">Loading {season}…</div>}
         {meta.data && league && (
-          <Suspense fallback={<div className="spinner">Loading view…</div>}>
-            <View
-              season={season}
-              meta={meta.data}
-              league={league}
-              setLeague={setLeague}
-              route={route}
-            />
-          </Suspense>
+          notStarted && !(meta.data.stage === 'drafted' && route.view === 'draft')
+            ? <NotStarted meta={meta.data} />
+            : (
+              <Suspense fallback={<div className="spinner">Loading view…</div>}>
+                <View
+                  season={season}
+                  meta={meta.data}
+                  league={league}
+                  setLeague={setLeague}
+                  route={route}
+                />
+              </Suspense>
+            )
         )}
       </main>
     </>
+  )
+}
+
+/**
+ * A season that exists but has not kicked off.
+ *
+ * The leagues are created weeks before GW1, so the season appears in the selector
+ * with nothing behind it yet. Say so plainly and show what does exist — the
+ * leagues and who is in them — rather than rendering a wall of empty charts.
+ */
+function NotStarted({ meta }) {
+  const drafted = meta.stage === 'drafted'
+  const inLeague = code => meta.drafters
+    .filter(d => d.league === code)
+    .map(d => d.name || d.short_name)
+
+  return (
+    <div className="section" style={{ margin: 12 }}>
+      <h2>{meta.label} hasn&apos;t started yet</h2>
+      <div className="notice">
+        Points, tables and trends appear once <strong>gameweek 1</strong> kicks off.{' '}
+        {drafted
+          ? 'Draft night is done — the picks are on the Draft Night tab.'
+          : 'The draft hasn’t happened yet, so there are no picks to show either.'}
+      </div>
+      {meta.leagues.map(l => {
+        const names = inLeague(l.code)
+        return (
+          <div key={l.code} style={{ marginTop: 12 }}>
+            <strong>{l.name}</strong>
+            <div className="small">
+              {names.length ? names.join(' · ') : 'no entries yet'}
+            </div>
+          </div>
+        )
+      })}
+    </div>
   )
 }
 
