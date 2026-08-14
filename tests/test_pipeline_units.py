@@ -5,7 +5,7 @@ import json
 import pandas as pd
 import pytest
 
-from pipeline.config import get_season, is_configured
+from pipeline.config import League, Season, get_season, is_configured
 from pipeline.fetchers import SnapshotSource
 from pipeline.transforms.draft_picks import draft_picks_table
 from pipeline.transforms.fixtures import fixtures_from_live
@@ -24,9 +24,29 @@ def test_season_registry():
 
 
 def test_live_season_without_league_codes_is_unconfigured():
-    """2627 ships with <FILL IN> codes; builds must refuse until they're set."""
-    assert is_configured(get_season("2627")) is False
+    """
+    A live season refuses to build until its codes are set.
+
+    Deliberately synthetic. This used to assert on the real current season, which
+    made it a test of today's config rather than of the behaviour — so filling in
+    the 2627 codes on draft night turned it red for doing exactly what it was
+    supposed to do.
+    """
+    def live(**codes):
+        return Season(
+            season="9999", label="future", default_source="live",
+            leagues=tuple(
+                League(code=code, name=code, league_code=value, size=6)
+                for code, value in codes.items()
+            ),
+        )
+
+    assert is_configured(live(Prem=None, Conf=None)) is False
+    assert is_configured(live(Prem=19736, Conf=None)) is False   # one is not enough
+    assert is_configured(live(Prem=19736, Conf=19116)) is True
+    # archives carry no league codes at all and must never be gated on them
     assert is_configured(get_season("2526")) is True   # snapshot-backed
+    assert is_configured(get_season("2425")) is True   # CSV-derived
 
 
 def test_settled_structure_is_six_six_two_two():
