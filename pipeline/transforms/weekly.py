@@ -17,6 +17,19 @@ NOT_DRAFTED = "Not Drafted"
 NOT_ORIGINALLY_DRAFTED = "Not Originally Drafted"
 
 
+def points_scored_share(scored: pd.Series, totals: pd.Series) -> pd.Series:
+    """
+    Each player's share of the drafter's league points.
+
+    `totals` is the drafter's season points, which stays 0 until their first
+    fixture is scored — so during a live GW1 the plain division yields inf, and
+    inf reaches the JSON as the bare token `Infinity`, which the browser refuses
+    to parse. Nobody's share of an unscored season is anything but zero; a
+    genuinely missing total stays missing.
+    """
+    return (scored / totals).where(totals != 0, 0.0)
+
+
 def _picks_frame(picks_by_entry_gameweek: dict, entry_names: dict, league_code) -> pd.DataFrame:
     """
     One row per entry per squad slot per gameweek.
@@ -134,7 +147,9 @@ def weekly_tables(*, picks_by_entry_gameweek: dict, live_by_gameweek: dict,
         standings[["league_code", "short_name", "total"]],
         on=["league_code", "short_name"], how="left",
     )
-    summary["points_scored_pct"] = summary["points_scored"] / summary["total"]
+    summary["points_scored_pct"] = points_scored_share(
+        summary["points_scored"], summary["total"]
+    )
 
     for column in ("index", "round", "points_scored", "player_total_points"):
         summary[column] = summary[column].fillna(0).astype(int)

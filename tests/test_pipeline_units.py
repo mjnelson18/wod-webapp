@@ -2,16 +2,18 @@
 
 import json
 
+import numpy as np
 import pandas as pd
 import pytest
 
 from pipeline.config import League, Season, get_season, is_configured
 from pipeline.fetchers import SnapshotSource
+from pipeline.outputs import _clean, _dump
 from pipeline.transforms.draft_picks import draft_picks_table
 from pipeline.transforms.fixtures import fixtures_from_live
 from pipeline.transforms.league import league_gaps, league_table
 from pipeline.transforms.players import bootstrap_team_ids_agree
-from pipeline.transforms.weekly import _picks_frame
+from pipeline.transforms.weekly import _picks_frame, points_scored_share
 
 
 # --- config -----------------------------------------------------------------
@@ -238,3 +240,44 @@ def test_league_table_drops_excluded_entries():
     table = league_table(details, league_code="Prem", exclude_entries=(22,))
     assert table["short_name"].tolist() == ["AA"]
     assert table["first_name"].tolist() == ["Ann"]     # capitalised
+
+
+# --- JSON has no Infinity ---------------------------------------------------
+
+def test_points_scored_share_survives_a_drafter_on_zero():
+    """
+    GW1 kicked off and the whole site went blank.
+
+    A drafter's league total is 0 until their first fixture is scored, so the
+    share of players already banking live points divided by zero. `Infinity` is
+    valid Python and invalid JSON, so one such row made weekly_summary.json
+    unparseable and every view failed to load.
+    """
+    scored = pd.Series([9.0, 1.0, 0.0, 5.0])
+    totals = pd.Series([30.0, 0.0, 0.0, float("nan")])
+
+    share = points_scored_share(scored, totals)
+
+    assert share[0] == pytest.approx(0.3)   # the ordinary case is untouched
+    assert share[1] == 0.0                  # was inf
+    assert share[2] == 0.0                  # was nan, from 0/0
+    assert pd.isna(share[3])                # a missing total stays missing
+    assert np.isfinite(share.dropna()).all()
+
+
+def test_clean_nulls_non_finite_floats():
+    assert _clean(float("inf")) is None
+    assert _clean(float("-inf")) is None
+    assert _clean(float("nan")) is None
+    assert _clean(0.5) == 0.5
+
+
+def test_dump_refuses_to_write_unparseable_json():
+    """
+    The backstop for payloads that never pass through `_clean` (meta, review
+    facts). Failing the build keeps the last good site live; writing `Infinity`
+    would publish a file no browser can read.
+    """
+    with pytest.raises(ValueError):
+        _dump({"pct": float("inf")})
+    assert json.loads(_dump({"pct": 0.5})) == {"pct": 0.5}

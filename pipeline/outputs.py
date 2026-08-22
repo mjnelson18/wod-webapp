@@ -22,11 +22,14 @@ NOT_DRAFTED_PREFIX = "Not Drafted"
 
 
 def _clean(value):
-    """JSON-safe scalar: NaN/NaT -> None, numpy -> python, timestamps -> ISO."""
+    """JSON-safe scalar: NaN/inf/NaT -> None, numpy -> python, timestamps -> ISO."""
     if value is None:
         return None
     if isinstance(value, float):
-        return None if math.isnan(value) else value
+        # isfinite, not isnan: an inf reaches the file as the bare token
+        # `Infinity`, which Python emits happily and JSON.parse rejects — one
+        # such value makes the whole table unreadable to the browser.
+        return None if not math.isfinite(value) else value
     if isinstance(value, (pd.Timestamp,)):
         return None if pd.isna(value) else value.isoformat()
     if value is pd.NaT:
@@ -39,6 +42,18 @@ def _clean(value):
     if hasattr(value, "item"):
         return value.item()
     return value
+
+
+def _dump(payload, **kwargs) -> str:
+    """Serialise strictly.
+
+    `allow_nan=False` turns a stray non-finite float into a failed build rather
+    than a file no browser can read. The deploy is gated on this step, so raising
+    here leaves the last good site live instead of publishing a broken one. Only
+    payloads built by hand (meta, review facts) can reach it; everything routed
+    through `_records` is already cleaned.
+    """
+    return json.dumps(payload, allow_nan=False, **kwargs)
 
 
 def _records(frame: pd.DataFrame, columns: dict[str, str]) -> list[dict]:
@@ -348,7 +363,7 @@ def _write_preseason(tables: dict, *, out_dir: str | None = None) -> Path:
         files[f"{name}.json"] = []
 
     for name, payload in files.items():
-        (root / name).write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+        (root / name).write_text(_dump(payload, separators=(",", ":")), encoding="utf-8")
 
     write_seasons_index(root.parent)
     return root
@@ -412,7 +427,7 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
         files[f"{name}.json"] = _records(view, columns)
 
     for name, payload in files.items():
-        (root / name).write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+        (root / name).write_text(_dump(payload, separators=(",", ":")), encoding="utf-8")
 
     write_seasons_index(root.parent)
     return root
@@ -449,7 +464,7 @@ def write_seasons_index(data_root: Path | None = None) -> Path:
     payload = {"seasons": entries, "default": default}
     path = data_root / "seasons.json"
     data_root.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    path.write_text(_dump(payload, indent=2), encoding="utf-8")
     return path
 
 
