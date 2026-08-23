@@ -40,11 +40,32 @@ def league_table(details: dict, *, league_code, exclude_entries=()) -> pd.DataFr
                                league_code=league_code)
         return blank[STANDINGS_COLUMNS + ["league_code"]]
 
-    standings = pd.json_normalize(details["standings"])[[
-        "league_entry", "event_total", "total", "rank", "last_rank",
-    ]]
+    # Two standings shapes, because FPL runs two kinds of draft league.
+    #
+    #   classic ('c')          event_total, total          — points banked
+    #   head-to-head ('h')     matches_won/drawn/lost,     — a fixture table;
+    #                          points_for, points_against,   `total` is league
+    #                          total                          points, not FPL ones
+    #
+    # Only the columns common to both are taken, and a head-to-head league's
+    # `total` is not read as a points total: live_league_table recomputes every
+    # figure here from the weekly rows anyway, so this frame is identity plus a
+    # seed. What it does mean is that a head-to-head league is ranked on points
+    # scored rather than on the fixtures it actually plays — an honest table, but
+    # not that league's official one. See the README.
+    frame = pd.json_normalize(details["standings"])
+    standings = pd.DataFrame({
+        "league_entry": frame["league_entry"],
+        "gameweek_points": frame.get("event_total", 0),
+        "total": frame.get("total", 0),
+        "rank": frame.get("rank"),
+        "last_rank": frame.get("last_rank"),
+    })
+    # Nulls until the first result is in, on either shape.
+    for column in ("gameweek_points", "total", "rank", "last_rank"):
+        standings[column] = pd.to_numeric(standings[column], errors="coerce").fillna(0).astype(int)
+
     standings = standings.merge(mapping, left_on="league_entry", right_on="id", how="inner")
-    standings = standings.rename(columns={"event_total": "gameweek_points"})
     standings["league_code"] = league_code
     return standings[STANDINGS_COLUMNS + ["league_code"]]
 

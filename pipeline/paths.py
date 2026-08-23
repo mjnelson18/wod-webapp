@@ -8,6 +8,8 @@ file's location.
 import os
 from pathlib import Path
 
+from .config import DEFAULT_SITE
+
 
 def repo_root() -> Path:
     env = os.environ.get("WOD_REPO_ROOT")
@@ -28,9 +30,16 @@ def cache_dir() -> Path:
     return repo_root() / "pipeline" / "cache"
 
 
-def data_dir() -> Path:
-    return repo_root() / "data"
+def data_dir(site: str | None = None) -> Path:
+    """
+    Output root for one site.
+
+    Each published site owns a folder, so two sites can hold the same season id
+    without colliding. The deploy copies one site's folder into the web app as
+    its `data/`, which is why the app itself never sees a site slug.
+    """
+    return repo_root() / "data" / str(site or DEFAULT_SITE)
 
 
-def season_data_dir(season: str) -> Path:
-    return data_dir() / str(season)
+def season_data_dir(season: str, site: str | None = None) -> Path:
+    return data_dir(site) / str(season)

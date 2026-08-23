@@ -29,11 +29,12 @@ Nothing under `/reference` is served on the site (Pages deploys the build output
   /fetchers        # one thin client per endpoint; return raw parsed JSON, no logic
   /transforms      # PURE functions: raw JSON in, output tables out. No I/O, no fetching.
   /config          # season config (league codes, entry_ids, sizes, promo/releg, gw offset)
+                   # + sites.py: which seasons/leagues each published site covers
   /cache           # cached raw responses for finalized (immutable) gameweeks
   build.py         # orchestrator: decide what to fetch -> fetch -> transform -> write JSON
 /data              # generated JSON output (gitignored; produced at build time)
-  /<season>/       # e.g. 2627/  -> players.json, weekly_points.json, weekly_summary.json, ...
-/web               # React (Vite) app
+  /<site>/<season>/  # e.g. wod/2627/ -> players.json, weekly_points.json, ...
+/web               # React (Vite) app; .env.<slug> carries each site's branding + base path
 /reference         # READ-ONLY inputs, do not treat as source of truth for the app:
   weekly_report_generator.ipynb   # the existing messy logic = the SPEC to port (commit; optional)
   /historical/                    # last seasons' CSVs = the VALIDATION ORACLE (commit — tests need it)
@@ -83,6 +84,20 @@ Joins: `element` == `id` (footballer); `team` == `team_id` (PL club); `league_co
 - **One canonical JSON schema** for all seasons. The live pipeline emits it; the adapter maps the
   historical CSV columns onto it. Where an older season lacks a column a current-season view needs,
   the frontend must degrade gracefully (hide/grey-out that view for that season), never error.
+
+## Sites
+
+One repo publishes **two independent data packs** from the same pipeline and app:
+
+- **`wod`** — What's On Draft: Premiership + Conference, plus the 2425/2526 archives. Root of Pages.
+- **`dunelmliga`** — a different group of friends. One standalone league, first season 2026/27, no
+  promotion or relegation, no comparison drawn to the WOD leagues. Served at `/dunelmliga/`.
+
+Scope lives in `pipeline/config/sites.py`; branding and base path live in `web/.env.<slug>`. Data
+is namespaced per site (`data/<slug>/<season>/`) and the deploy copies one site's folder in as the
+app's `data/`, so **the frontend never sees a site slug** — don't add one to it. A view that a site
+can't support must degrade (hide the tab, drop the stat), never error. Everything below describes
+the WOD leagues unless it says otherwise.
 
 ## Domain rules
 
@@ -182,6 +197,15 @@ reproduce the 2526 numbers from 2526 raw is wrong.**
   monthly keepalive workflow is the automated alternative if you'd rather it never lapse.
 - Provisional vs. final points/bonus — don't cache a gameweek as immutable until it's truly done.
 - Season 2425's 5/7 split will break any code that assumes 6/6.
+- **`draft/<league>/choices` is not a history.** It serves the league's current or *next* draft, so
+  a league with a second draft scheduled (Dunelmliga re-drafts at GW21) returns an empty list for a
+  draft that already happened. Snapshot a draft the day it finishes; `League.draft_choices_fallback`
+  points at the committed copy, used only when the API serves none.
+- **The bootstrap's `total_points`/`minutes` change meaning at GW1.** Before the season opens they
+  are *last* season's totals, which is what makes the pre-season draft board exact. From GW1 they
+  are this season's — the highest total in the whole bootstrap on GW1 day was 15. Anything wanting
+  last season's numbers mid-season must read the previous season's archive instead, joined on
+  `code` (permanent) and never on `element` (reassigned yearly) — see `attach_prior_season`.
 
 ## Non-goals / do not do
 

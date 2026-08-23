@@ -57,7 +57,9 @@ export function Segmented({ options, value, onChange, ariaLabel }) {
 }
 
 export function LeagueToggle({ meta, league, setLeague }) {
-  if (!meta?.leagues?.length) return null
+  // A site with a single league has nothing to toggle between — showing one
+  // permanently-pressed button would just be furniture.
+  if ((meta?.leagues?.length ?? 0) < 2) return null
   return (
     <div className="toggle" role="group" aria-label="League">
       {meta.leagues.map(l => (

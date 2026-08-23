@@ -2,16 +2,22 @@ import { useEffect, useRef } from 'react'
 import { navigate, buildHash } from '../lib/router.js'
 import { hasReview } from '../lib/review.jsx'
 
+// `when` decides whether a tab exists at all for this season. Both uses are about
+// a tab having nothing to say rather than being switched off: a review that hasn't
+// been written, and a cross-league comparison on a site with one league.
 const TABS = [
   { view: 'gw', label: 'This Gameweek' },
   { view: 'season', label: 'Season Trends' },
-  { view: 'compare', label: 'Cross-league' },
+  { view: 'compare', label: 'Cross-league', when: (season, meta) => (meta?.leagues?.length ?? 0) > 1 },
   { view: 'h2h', label: 'Head to Head' },
   { view: 'draft', label: 'Draft Night' },
   // Written once a season is over, so it only appears for seasons that have one.
   { view: 'review', label: 'Season Review', when: season => hasReview(season) },
   { view: 'explorer', label: 'Explorer' },
 ]
+
+const BRAND = import.meta.env.VITE_SITE_BRAND ?? "What's On Draft"
+const TAGLINE = import.meta.env.VITE_SITE_TAGLINE ?? '· data pack'
 
 // Before GW1 there are no gameweeks, so every chart and table would be empty.
 // Draft Night is the exception: it needs only the picks, so it opens the moment
@@ -23,7 +29,7 @@ export default function Header({ route, seasons, meta }) {
   const allowed = STAGE_TABS[meta?.stage]
   const tabs = TABS
     .filter(t => !allowed || allowed.includes(t.view))
-    .filter(t => !t.when || t.when(route.season))
+    .filter(t => !t.when || t.when(route.season, meta))
 
   // The strip scrolls horizontally and five tabs no longer fit on a phone, so
   // the selected one has to be pulled into view — otherwise landing on a deep
@@ -54,13 +60,18 @@ export default function Header({ route, seasons, meta }) {
     <header className="header">
       <div className="header-top">
         <div className="brand">
-          What&apos;s On Draft <span>· data pack</span>
+          {BRAND} <span>{TAGLINE}</span>
         </div>
-        <select value={route.season ?? ''} onChange={onSeasonChange} aria-label="Season">
-          {seasons.map(s => (
-            <option key={s.season} value={s.season}>{s.label}</option>
-          ))}
-        </select>
+        {/* A site in its first season has nothing to select between. */}
+        {seasons.length > 1 ? (
+          <select value={route.season ?? ''} onChange={onSeasonChange} aria-label="Season">
+            {seasons.map(s => (
+              <option key={s.season} value={s.season}>{s.label}</option>
+            ))}
+          </select>
+        ) : (
+          <span className="small">{seasons[0]?.label}</span>
+        )}
       </div>
       <nav className="tabs" ref={strip}>
         {tabs.map(t => {

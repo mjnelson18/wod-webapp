@@ -24,6 +24,55 @@ No server, no database. A scheduled job writes static JSON and force-deploys it 
   [data contract](docs/data-contract.md)
 - `data/` — generated output, gitignored
 
+## Two sites, one codebase
+
+The same pipeline and the same React app publish two independent data packs:
+
+| Site | Leagues | URL |
+| --- | --- | --- |
+| `wod` | Premiership + Conference, plus the 2425 and 2526 archives | https://mjnelson18.github.io/wod-webapp/ |
+| `dunelmliga` | Dunelmliga, from 2026/27 | https://mjnelson18.github.io/wod-webapp/dunelmliga/ |
+
+They share the schedule, the transforms and the views. They share no data: each site owns
+`data/<slug>/`, and the deploy copies one site's folder in as the app's `data/` before building it,
+so the app itself never knows a site slug exists. GitHub Pages serves one site per repo, which is
+why the second one lives under a sub-path of the first.
+
+- **Which seasons and leagues** a site covers is Python — `pipeline/config/sites.py`.
+- **How it looks and where it is served from** is Vite — `web/.env.<slug>`, selected with
+  `vite build --mode <slug>`.
+
+Views degrade rather than break when a site lacks something. Dunelmliga has one league, so the
+Cross-league tab and the league toggle don't render; no promotion or relegation, so the
+head-to-head view drops that stat; and no season before its first, so the draft board borrows the
+shared footballer history — last season's points and clubs, which is a list of players, not
+anything about another league's drafters.
+
+Adding a third site is a `Site` entry, a `web/.env.<slug>` file, a `build:<slug>` script and three
+steps in `update.yml`.
+
+### A draft the API stops serving
+
+`draft/<league>/choices` returns a league's **current or next** draft, never a history. A league
+that schedules a second draft therefore loses the first one from the API the moment it does.
+Dunelmliga re-drafts at GW21, so its completed GW1 draft already returns an empty list — which
+would leave every player in the league reading "Not Originally Drafted".
+
+`League.draft_choices_fallback` names a committed copy to use when, and only when, the API serves
+none — for Dunelmliga that is
+[reference/draft_choices/dunelmliga_2627.json](reference/draft_choices/dunelmliga_2627.json). It
+was captured live on draft night; the file's `_provenance` block records what was captured, what
+was derived from it, and how it was checked. **Snapshot a draft as soon as it finishes** if the
+league has another one scheduled — by the time you notice, the API has moved on.
+
+### Known gap: head-to-head leagues
+
+Dunelmliga is a head-to-head league on FPL (`scoring: 'h'`) — its official table is decided by
+weekly fixtures, not points banked. This app ranks on total points scored, which is an honest
+table but not the one the league plays for, and its "Head to Head" tab simulates hypothetical
+schedules rather than reporting real ones. The league details payload carries a `matches` array
+with the actual results; building a proper W/D/L table from it is outstanding work.
+
 ## Running locally
 
 ```bash
@@ -42,13 +91,17 @@ python -m pipeline.build --season 2425
 cd web && npm install && npm run dev
 ```
 
-The frontend reads `web/public/data/`, so copy the pipeline output across after building:
+The frontend reads `web/public/data/`, so copy one site's pipeline output across after building:
 
 ```bash
-rm -rf web/public/data && mkdir -p web/public && cp -r data web/public/data
+rm -rf web/public/data && mkdir -p web/public && cp -r data/wod web/public/data
 ```
 
 Other useful commands:
+
+```bash
+python -m pipeline.build --season 2627 --site dunelmliga
+```
 
 ```bash
 python -m pipeline.validate --season 2526
@@ -184,8 +237,10 @@ anyway. This is deliberate; there is no keepalive workflow.
    Until these are set the workflow skips every run with `not_configured` rather than failing, so
    there is no alarm noise before the draft.
 
-2. **Add the season** to `SEASONS` in the same file, modelled on `SEASON_2627`. Entry ids are
-   discovered from the league details endpoint, so they do not need to be listed.
+2. **Add the season** to the site that publishes it, in `pipeline/config/sites.py`, modelled on
+   `SEASON_2627`. Entry ids are discovered from the league details endpoint, so they do not need to
+   be listed. `current_season` and `archive_seasons` follow from each season's `default_source`, so
+   nothing else needs telling which is which.
 
 3. **Check for an excluded entry.** If someone sets up a team they will not play (as the organiser
    did in 2526), add its `league_entry` id to that league's `exclude_entries`. Its draft picks are
@@ -203,6 +258,10 @@ anyway. This is deliberate; there is no keepalive workflow.
 
    Commit the result. Without it that season can never be rebuilt from raw. See
    [docs/notebook-recon.md](docs/notebook-recon.md) §6.1 for what was already lost this way.
+
+   **Snapshot each draft the day it happens, too**, for any league with a second draft scheduled —
+   the choices endpoint drops the completed one as soon as the next is pending. See *A draft the
+   API stops serving* above.
 
 6. **Re-enable the cron** in the Actions tab if it lapsed over the summer.
 
