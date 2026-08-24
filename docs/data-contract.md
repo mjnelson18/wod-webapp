@@ -22,6 +22,8 @@ web/public/data/                 # gitignored; written at build time
     trades.json
     players.json
     teams.json
+    h2h_table.json                 # head-to-head leagues; empty otherwise
+    h2h_matches.json
     season_review_facts.json
 ```
 
@@ -83,6 +85,13 @@ Records (array of objects), `null` for a column a season lacks — never omitted
 | `trades` | one row per trade item | `league`, `gameweek`, `offered_by`, `received_by`, `element_in`, `element_out`, `player_in`, `player_out`, `player_in_points`, `player_out_points`, `net_points`, `state` |
 | `players` | one row per footballer | `element`, `code`, `web_name`, `position`, `team_id`, `team_name`, `total_points`, `goals_scored`, `assists`, `bonus`, `clean_sheets`, `minutes`, `draft_rank`, `now_cost`, `selected_by_percent` |
 | `teams` | one row per PL club | `team_id`, `team_name` |
+| `h2h_table` | one row per drafter, **head-to-head leagues only** | `league`, `short_name`, `played`, `won`, `drawn`, `lost`, `points_for`, `points_against`, `h2h_points`, `rank`, `last_rank`, `provisional` |
+| `h2h_matches` | one row per fixture, all 38 gameweeks | `gameweek`, `league`, `home`, `away`, `home_points`, `away_points`, `started`, `finished`, `result`, `winner` |
+
+Both head-to-head files are written for every season and are simply empty for a classic league —
+views key off `meta.leagues[].scoring`, so an empty file is never ambiguous. Seasons built before
+these existed don't have them at all, which is why the gameweek view asks for `h2h_matches` by
+name rather than always.
 
 Conventions that differ from the notebook's CSVs, and are deliberate:
 

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useTables, can } from '../lib/data.js'
 import { navigate } from '../lib/router.js'
 import { fullName, label, round, signed, rankMove } from '../lib/names.js'
+import { headToHeadTable, fixturesFor } from '../lib/standings.js'
 import {
   LeagueToggle, Section, Loading, Unavailable, Stat, StatRow, Collapsible, SubHead,
 } from '../components/ui.jsx'
@@ -14,8 +15,13 @@ const FORM_GAMES = 5
 
 export default function Gameweek({ season, meta, league, setLeague, route }) {
   const gw = Number(route.param) || meta.current_gameweek
+  // Only a league played as weekly fixtures has these, and only seasons built
+  // since they existed ship the files at all — so they are asked for by name
+  // rather than always, which would 404 the older archives.
+  const h2h = meta.leagues?.find(l => l.code === league)?.scoring === 'h2h'
   const { data, loading, error } = useTables(season, [
     'weekly_summary', 'league_table', 'transfers', 'trades',
+    ...(h2h ? ['h2h_matches'] : []),
   ])
 
   const view = useMemo(() => {
@@ -117,8 +123,19 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     }
     moves.sort((a, b) => Math.abs(b.net ?? 0) - Math.abs(a.net ?? 0))
 
-    return { table, drafters, best, worst, leagueTotal, leagueAvg, totalLost, subs, moves }
-  }, [data, league, gw, meta.gameweeks])
+    // The league's own table, as it stood after the selected gameweek — folded
+    // from the fixtures rather than read off the shipped table, which is only
+    // ever season-to-date.
+    const fixtures = (data.h2h_matches ?? []).filter(m => m.league === league)
+    const standings = h2h
+      ? headToHeadTable(fixtures, table.map(t => t.short_name), gw)
+      : null
+
+    return {
+      table, drafters, best, worst, leagueTotal, leagueAvg, totalLost, subs, moves,
+      standings, fixtures: fixturesFor(fixtures, gw),
+    }
+  }, [data, league, gw, meta.gameweeks, h2h])
 
   if (error) return <div className="notice">Couldn&apos;t load gameweek data: {String(error.message)}</div>
   if (loading || !view) return <Loading what={`gameweek ${gw}`} />
@@ -153,7 +170,88 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         </StatRow>
       </Section>
 
-      <Section title="Standings after this gameweek">
+      {view.standings && (
+        <Section
+          title="League table"
+          note={`after gameweek ${gw} · won on weekly results, not on points banked`}
+        >
+          {view.standings.some(r => r.provisional) && (
+            <div className="notice" style={{ marginBottom: 10 }}>
+              Gameweek {gw} is still being played, so these results are{' '}
+              <strong>provisional</strong> — bonus points can still change them, and
+              the official table won&apos;t move until they do.
+            </div>
+          )}
+          <div className="table-wrap">
+            <table className="data">
+              <thead>
+                <tr>
+                  <th>#</th><th>Drafter</th><th>P</th><th>W</th><th>D</th><th>L</th>
+                  <th>PF</th><th>PA</th><th>Pts</th><th>Form</th>
+                </tr>
+              </thead>
+              <tbody>
+                {view.standings.map(r => {
+                  const move = rankMove(r.rank, r.lastRank)
+                  return (
+                    <tr key={r.shortName}>
+                      <td className="num">
+                        {r.rank}
+                        {move && <span className={`rank-move ${move.className}`}>{move.text}</span>}
+                      </td>
+                      <td>
+                        {fullName(meta, r.shortName)}
+                        <span className="muted small"> {r.shortName}</span>
+                      </td>
+                      <td className="num">{r.played}</td>
+                      <td className="num">{r.won}</td>
+                      <td className="num">{r.drawn}</td>
+                      <td className="num">{r.lost}</td>
+                      <td className="num">{r.pointsFor}</td>
+                      <td className="num">{r.pointsAgainst}</td>
+                      <td className="num"><strong>{r.points}</strong></td>
+                      <td className="muted small">{r.form.join(' ') || '–'}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          {view.fixtures.length > 0 && (
+            <>
+              <SubHead>This gameweek</SubHead>
+              <div className="table-wrap">
+                <table className="data">
+                  <tbody>
+                    {view.fixtures.map(f => (
+                      <tr key={`${f.home}-${f.away}`}>
+                        <td style={{ textAlign: 'right' }}>
+                          {f.winner === f.home ? <strong>{fullName(meta, f.home)}</strong>
+                                               : fullName(meta, f.home)}
+                        </td>
+                        <td className="num">{f.started ? f.home_points : '–'}</td>
+                        <td className="muted small">v</td>
+                        <td className="num">{f.started ? f.away_points : '–'}</td>
+                        <td>
+                          {f.winner === f.away ? <strong>{fullName(meta, f.away)}</strong>
+                                               : fullName(meta, f.away)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </Section>
+      )}
+
+      <Section
+        title={view.standings ? 'Points scored' : 'Standings after this gameweek'}
+        note={view.standings
+          ? 'the same league ranked on points banked — not the competition, but the better read on who is playing well'
+          : undefined}
+      >
         <div className="table-wrap">
           <table className="data">
             <thead>

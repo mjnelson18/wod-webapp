@@ -6,11 +6,17 @@ This is what makes them testable against the historical CSVs.
 from .draft_picks import attach_pick_totals, attach_prior_season, draft_picks_table
 from .fixtures import fixtures_from_fantasy, fixtures_from_live
 from .league import (
+    H2H_MATCH_COLUMNS,
+    H2H_TABLE_COLUMNS,
     entry_ids,
     form_table,
+    head_to_head_matches,
+    head_to_head_table,
+    is_head_to_head,
     league_gaps,
     league_table,
     live_league_table,
+    reconcile_head_to_head,
 )
 from .moves import (
     finalise_trades,
@@ -68,10 +74,16 @@ __all__ = [
     "finalise_transfers",
     "fixtures_from_fantasy",
     "fixtures_from_live",
+    "H2H_MATCH_COLUMNS",
+    "H2H_TABLE_COLUMNS",
     "form_table",
+    "head_to_head_matches",
+    "head_to_head_table",
+    "is_head_to_head",
     "league_gaps",
     "league_table",
     "live_league_table",
+    "reconcile_head_to_head",
     "players_table",
     "season_start_year",
     "teams_table",

@@ -23,6 +23,8 @@ from .config import DEFAULT_SITE, get_site, is_configured
 from .fetchers import build_source
 from .fetchers.http import Maintenance, RateLimited
 from .transforms import (
+    H2H_MATCH_COLUMNS,
+    H2H_TABLE_COLUMNS,
     attach_fixtures,
     attach_pick_totals,
     attach_prior_season,
@@ -40,12 +42,16 @@ from .transforms import (
     fixtures_from_live,
     form_table,
     formations,
+    head_to_head_matches,
+    head_to_head_table,
+    is_head_to_head,
     league_table,
     live_league_table,
     lorenz_curve,
     player_usage,
     players_table,
     points_distribution,
+    reconcile_head_to_head,
     season_review_facts,
     season_start_year,
     season_summary,
@@ -152,9 +158,10 @@ def _preseason_tables(season, site, source, teams, players, say) -> dict:
     once draft night has happened — so the site can list the season and show draft
     night as soon as it lands, instead of hiding the season for the whole build-up.
     """
-    standings_frames, picks_frames = [], []
+    standings_frames, picks_frames, scoring = [], [], {}
     for league in season.leagues:
         details = source.league_details(league.league_code)
+        scoring[league.code] = "h2h" if is_head_to_head(details) else "classic"
         standings = league_table(details, league_code=league.code,
                                  exclude_entries=league.exclude_entries)
         picks = draft_picks_table(
@@ -178,6 +185,7 @@ def _preseason_tables(season, site, source, teams, players, say) -> dict:
         "season": season,
         "current_week": 0,
         "stage": stage,
+        "scoring": scoring,
         "teams": teams,
         "players": players,
         "standings": standings,
@@ -258,6 +266,7 @@ def build_tables(season_id: str, *, site: str | None = None,
 
     summaries, points_frames, picks_frames = [], [], []
     standings_frames, transfers_frames, trades_frames = [], [], []
+    h2h_tables, h2h_match_frames, scoring = [], [], {}
 
     for league in season.leagues:
         say(f"  {league.code} ({league.league_code})")
@@ -265,6 +274,11 @@ def build_tables(season_id: str, *, site: str | None = None,
         standings = league_table(details, league_code=league.code,
                                 exclude_entries=league.exclude_entries)
         names = entry_ids(details, exclude_entries=league.exclude_entries)
+
+        # How the league is actually won. Discovered rather than configured: the
+        # payload says so outright, and a league that changed format between
+        # seasons would otherwise need remembering to update by hand.
+        scoring[league.code] = "h2h" if is_head_to_head(details) else "classic"
 
         picks = draft_picks_table(
             _draft_choices(source, league, say), players, standings,
@@ -292,6 +306,21 @@ def build_tables(season_id: str, *, site: str | None = None,
                          league_code=league.code),
             weekly_points, players,
         )
+
+        # The league's own table, for a league that plays weekly fixtures. The
+        # points table is still built for everyone — in a head-to-head league it
+        # is the more interesting of the two, it just isn't the competition.
+        if scoring[league.code] == "h2h":
+            fixtures = head_to_head_matches(details, standings, league_code=league.code)
+            h2h_table, _ = head_to_head_table(
+                fixtures, standings, league_code=league.code, current_week=current_week)
+            for note in reconcile_head_to_head(h2h_table, details, standings):
+                # 3/1/0 is FPL's rule, not something the payload states, so a
+                # disagreement with the official table is worth shouting about.
+                say(f"  ! {league.code} head-to-head table disagrees with the API — {note}")
+            h2h_tables.append(h2h_table)
+            h2h_match_frames.append(fixtures)
+            say(f"  {league.code}: head-to-head, {len(fixtures)} fixtures")
 
         summaries.append(summary)
         points_frames.append(weekly_points)
@@ -354,10 +383,15 @@ def build_tables(season_id: str, *, site: str | None = None,
     if isinstance(source, object) and hasattr(source, "stats"):
         say(f"  fetches={source.stats['fetched']} cache_hits={source.stats['cached']}")
 
+    empty_h2h = pd.DataFrame(columns=H2H_TABLE_COLUMNS)
     return {
         "season": season,
         "current_week": current_week,
         "stage": "live",
+        "scoring": scoring,
+        "h2h_table": pd.concat(h2h_tables, ignore_index=True) if h2h_tables else empty_h2h,
+        "h2h_matches": (pd.concat(h2h_match_frames, ignore_index=True) if h2h_match_frames
+                        else pd.DataFrame(columns=H2H_MATCH_COLUMNS)),
         "hosts_agree": hosts_agree,
         "teams": teams,
         "players": players,

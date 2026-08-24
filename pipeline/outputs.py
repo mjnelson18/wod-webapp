@@ -151,6 +151,27 @@ PLAYERS = {
 
 TEAMS = {"team_id": "team", "team_name": "team_name"}
 
+# A head-to-head league's own table, and the fixtures behind it. Empty for a
+# classic league, which is every WOD league — the views key off meta.leagues[].scoring
+# rather than off these being non-empty, so an empty file is never ambiguous.
+H2H_TABLE = {
+    "league": "league_code", "short_name": "short_name",
+    "played": "played", "won": "won", "drawn": "drawn", "lost": "lost",
+    "points_for": "points_for", "points_against": "points_against",
+    "h2h_points": "h2h_points", "rank": "rank", "last_rank": "last_rank",
+    # True while a counted gameweek is still being played, so the view can say
+    # the table is ahead of the official one rather than silently contradicting it.
+    "provisional": "provisional",
+}
+
+H2H_MATCHES = {
+    "gameweek": "gameweek", "league": "league_code",
+    "home": "home", "away": "away",
+    "home_points": "home_points", "away_points": "away_points",
+    "started": "started", "finished": "finished",
+    "result": "result", "winner": "winner",
+}
+
 # One row per team per gameweek for the WHOLE season, past and future. Separate
 # from the fixture columns embedded in weekly_summary, which only cover gameweeks
 # that have been played — the next-6 look-ahead needs fixtures that haven't.
@@ -345,7 +366,8 @@ def _write_preseason(tables: dict, *, site: str | None = None,
         "gameweeks": [],
         "leagues": [
             {"code": lg.code, "name": lg.name, "size": lg.size,
-             "promoted": lg.promoted, "relegated": lg.relegated}
+             "promoted": lg.promoted, "relegated": lg.relegated,
+             "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
         "drafters": [
@@ -363,7 +385,7 @@ def _write_preseason(tables: dict, *, site: str | None = None,
         "teams.json": _records(tables["teams"], TEAMS),
     }
     for name in ("league_table", "weekly_summary", "weekly_points",
-                 "transfers", "trades", "fixtures"):
+                 "transfers", "trades", "fixtures", "h2h_table", "h2h_matches"):
         files[f"{name}.json"] = []
 
     for name, payload in files.items():
@@ -399,7 +421,8 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
         "gameweeks": gameweeks,
         "leagues": [
             {"code": lg.code, "name": lg.name, "size": lg.size,
-             "promoted": lg.promoted, "relegated": lg.relegated}
+             "promoted": lg.promoted, "relegated": lg.relegated,
+             "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
         "drafters": [
@@ -421,6 +444,8 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
         "players.json": _records(tables["players"], PLAYERS),
         "teams.json": _records(tables["teams"], TEAMS),
         "fixtures.json": _records(tables.get("fixtures_by_team", pd.DataFrame()), FIXTURES),
+        "h2h_table.json": _records(tables.get("h2h_table", pd.DataFrame()), H2H_TABLE),
+        "h2h_matches.json": _records(tables.get("h2h_matches", pd.DataFrame()), H2H_MATCHES),
     }
     # Not a table: a nested dict of story beats the season review is written from.
     if tables.get("review_facts"):

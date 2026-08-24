@@ -42,11 +42,12 @@ why the second one lives under a sub-path of the first.
 - **How it looks and where it is served from** is Vite — `web/.env.<slug>`, selected with
   `vite build --mode <slug>`.
 
-Views degrade rather than break when a site lacks something. Dunelmliga has one league, so the
-Cross-league tab and the league toggle don't render; no promotion or relegation, so the
-head-to-head view drops that stat; and no season before its first, so the draft board borrows the
-shared footballer history — last season's points and clubs, which is a list of players, not
-anything about another league's drafters.
+Views degrade rather than break when a site lacks something, and adapt when it differs. Dunelmliga
+has one league, so the Cross-league tab and the league toggle don't render; no promotion or
+relegation, so the counterfactual view drops that stat; no season before its first, so the draft
+board borrows the shared footballer history — last season's points and clubs, which is a list of
+players, not anything about another league's drafters; and head-to-head scoring, so it leads with
+a different table (below).
 
 Adding a third site is a `Site` entry, a `web/.env.<slug>` file, a `build:<slug>` script and three
 steps in `update.yml`.
@@ -65,13 +66,34 @@ was captured live on draft night; the file's `_provenance` block records what wa
 was derived from it, and how it was checked. **Snapshot a draft as soon as it finishes** if the
 league has another one scheduled — by the time you notice, the API has moved on.
 
-### Known gap: head-to-head leagues
+### Head-to-head leagues
 
-Dunelmliga is a head-to-head league on FPL (`scoring: 'h'`) — its official table is decided by
-weekly fixtures, not points banked. This app ranks on total points scored, which is an honest
-table but not the one the league plays for, and its "Head to Head" tab simulates hypothetical
-schedules rather than reporting real ones. The league details payload carries a `matches` array
-with the actual results; building a proper W/D/L table from it is outstanding work.
+FPL runs draft leagues on two scoring modes and the difference is not cosmetic. Both WOD leagues
+are **classic** (`scoring: 'c'`): the table is points banked. Dunelmliga is **head-to-head**
+(`'h'`): every gameweek is a fixture against one other drafter, and the table is won on 3 / 1 / 0.
+
+The mode is discovered from the league payload, never configured, and lands in
+`meta.leagues[].scoring`. For a head-to-head league the gameweek view **leads with the league's
+own table** — P W D L, points for and against, form — followed by that week's fixtures, and keeps
+the points-scored table underneath. Both are worth having: one is the competition, the other is
+the better read on who is actually playing well. They can disagree sharply, which is the point.
+
+Two things are less obvious than they look:
+
+- **The API's own table can't be used directly.** `standings` only moves once a gameweek has
+  finished — before the first result it is all zeroes with a null rank, and mid-gameweek it is
+  still last week's. So the table is rebuilt from `matches`, the same call `live_league_table`
+  already makes for a classic league. A gameweek in progress counts, and is flagged
+  `provisional` so the view can say it is ahead of the official table rather than silently
+  contradicting it.
+- **3 / 1 / 0 is FPL's rule, not something the payload states.** `reconcile_head_to_head` compares
+  the rebuilt table against the API's own on settled rows and logs any disagreement during the
+  build, so the assumption cannot quietly be wrong. As of the first gameweek of 2026/27 nothing
+  has settled yet, so it has had nothing to check against — watch the build log once GW1 finishes.
+
+The view folds the table in the browser from `h2h_matches.json` rather than reading
+`h2h_table.json`, because the gameweek selector can be pointed at any week while the shipped table
+is only ever season-to-date. Same rule, same inputs, so at the latest gameweek they agree.
 
 ## Running locally
 

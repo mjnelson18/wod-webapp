@@ -28,11 +28,9 @@ from .seasons import League, Season, SEASON_2425, SEASON_2526, SEASON_2627
 #   * No promotion or relegation. `promoted`/`relegated` at zero is already
 #     understood everywhere — the head-to-head view drops its promotion stat
 #     rather than inventing one.
-#   * FPL runs this league on head-to-head scoring (`scoring: 'h'`), where the
-#     official table is won on weekly fixtures rather than points banked. This
-#     app ranks on points scored, which is an honest table but not the one the
-#     league plays for. Building the real W/D/L table from the `matches` payload
-#     is tracked separately; until then `notes` says so on the site.
+#   * Head-to-head scoring, so the league is won on weekly fixtures rather than
+#     points banked. That is discovered from the payload rather than set here —
+#     see build_tables — and the gameweek view leads with the resulting table.
 DUNELMLIGA_2627 = Season(
     season="2627",
     label="2026/27",
@@ -47,8 +45,7 @@ DUNELMLIGA_2627 = Season(
             draft_choices_fallback="reference/draft_choices/dunelmliga_2627.json",
         ),
     ),
-    notes="Head-to-head league on FPL. This table ranks on total points scored, "
-          "not the weekly head-to-head result.",
+    notes="Head-to-head league: won on weekly fixtures, 3 points for a win.",
 )
 
 

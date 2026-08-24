@@ -99,6 +99,11 @@ app's `data/`, so **the frontend never sees a site slug** — don't add one to i
 can't support must degrade (hide the tab, drop the stat), never error. Everything below describes
 the WOD leagues unless it says otherwise.
 
+**Two scoring modes.** WOD leagues are classic — the table is points banked. Dunelmliga is
+head-to-head: each gameweek is a fixture, 3/1/0, and its gameweek view leads with that table and
+keeps the points one below it. The mode is discovered from the league payload into
+`meta.leagues[].scoring`, never configured. Don't assume a league's table is its points total.
+
 ## Domain rules
 
 - Two leagues of six: **Premiership** and **Conference**. 2 promoted / 2 relegated per season.
