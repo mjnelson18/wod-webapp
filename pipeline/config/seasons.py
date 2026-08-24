@@ -5,7 +5,8 @@ promotion/relegation counts, and the entry excluded from each league. Transforms
 read these rather than hardcoding, which is what lets 2425's one-off 5/7 split
 build correctly alongside the settled 6/6.
 
-Onboarding a new season = adding one entry here (see README).
+Onboarding a new season = adding one entry here, then listing it on the site that
+publishes it in sites.py (see README).
 """
 
 from dataclasses import dataclass, field
@@ -25,6 +26,11 @@ class League:
     # their picks must be removed *and* the survivors renumbered — but they are
     # deliberately kept in the trades table.
     exclude_entries: tuple[int, ...] = ()
+    # Repo-relative committed copy of this league's draft choices, used only when
+    # the API serves none. `draft/<league>/choices` returns the league's current
+    # or *next* draft, never a history, so a league that schedules a second draft
+    # loses its first one from the API the moment it does. See build._draft_choices.
+    draft_choices_fallback: str | None = None
 
 
 @dataclass(frozen=True)
@@ -126,21 +132,6 @@ SEASON_2627 = Season(
     ),
     notes="Live season. Both leagues draft 2026-08-14 19:30 UTC.",
 )
-
-
-SEASONS: dict[str, Season] = {s.season: s for s in (SEASON_2425, SEASON_2526, SEASON_2627)}
-
-# Archived seasons are generated once and never refetched.
-ARCHIVE_SEASONS = ("2425", "2526")
-
-
-def get_season(season: str) -> Season:
-    try:
-        return SEASONS[str(season)]
-    except KeyError:
-        raise KeyError(
-            f"unknown season {season!r}; known: {', '.join(sorted(SEASONS))}"
-        ) from None
 
 
 def is_configured(season: Season) -> bool:

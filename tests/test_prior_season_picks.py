@@ -118,3 +118,84 @@ def test_oldest_season_has_no_prior_and_says_so():
 def test_empty_prior_table_behaves_like_none():
     frame = attach_prior_season(PICKS, PLAYERS, PRIOR.iloc[0:0])
     assert frame["moved_club"].isna().all()
+
+
+# --- once the season kicks off ---------------------------------------------
+# The bootstrap's `minutes` and `total_points` mean *last* season only in the
+# pre-season window. From GW1 they mean this season — on the day GW1 opened the
+# highest total in the whole bootstrap was 15 — so a live build has to read last
+# season's archive instead, and must not quietly report this week as last year.
+
+# The same five players, as the bootstrap serves them once GW1 is under way.
+LIVE_PLAYERS = pd.DataFrame([
+    {"id": 1, "code": 223094, "web_name": "Haaland", "minutes": 90, "total_points": 8},
+    {"id": 2, "code": 500001, "web_name": "Fernandes", "minutes": 78, "total_points": 2},
+    {"id": 3, "code": 176297, "web_name": "Rashford", "minutes": 0, "total_points": 0},
+    {"id": 4, "code": 600002, "web_name": "Palestra", "minutes": 12, "total_points": 1},
+    {"id": 5, "code": 470000, "web_name": "Rogers", "minutes": 90, "total_points": 6},
+])
+
+# Last season's archive, as players.json holds it. Fernandes is under the name he
+# had then, but carries the same permanent code.
+PRIOR_WITH_CODES = pd.DataFrame([
+    {"code": 223094, "web_name": "Haaland", "team_name": "MCI",
+     "total_points": 239, "minutes": 2953},
+    {"code": 500001, "web_name": "M.Fernandes", "team_name": "WHU",
+     "total_points": 135, "minutes": 3017},
+    {"code": 176297, "web_name": "Rashford", "team_name": "MUN",
+     "total_points": 0, "minutes": 0},
+    {"code": 470000, "web_name": "Rogers", "team_name": "AVL",
+     "total_points": 169, "minutes": 2600},
+])
+
+
+def live():
+    return attach_prior_season(
+        PICKS, LIVE_PLAYERS, PRIOR_WITH_CODES, bootstrap_is_prior_season=False,
+    ).set_index("web_name")
+
+
+def test_live_season_reads_last_seasons_archive_not_the_bootstrap():
+    """
+    The bug this guards: Haaland has 8 points *this* season and 239 last season.
+    Reading the bootstrap here would put 8 on the draft board as last year's total.
+    """
+    frame = live()
+    assert frame.loc["Haaland", "prior_points"] == 239
+    assert frame.loc["Rogers", "prior_points"] == 169
+
+
+def test_the_permanent_code_matches_a_player_whose_name_changed():
+    """
+    Mateus Fernandes is `M.Fernandes` (WHU) last season and `Fernandes` (TOT) now.
+    The name join can't see that; his code can, so his move is a real True rather
+    than the "we can't tell" the name-only path was stuck with.
+    """
+    frame = live()
+    assert frame.loc["Fernandes", "prior_points"] == 135
+    assert not frame.loc["Fernandes", "new_to_pl"]
+    assert frame.loc["Fernandes", "prior_team_name"] == "WHU"
+    assert frame.loc["Fernandes", "moved_club"] is True
+
+
+def test_live_season_says_unknown_rather_than_zero():
+    """
+    Palestra isn't in last season's table at all. Mid-season we cannot tell a
+    debutant from a lookup that simply failed, so both columns say so — reporting
+    0 points would be a guess dressed up as a fact.
+    """
+    frame = live()
+    assert pd.isna(frame.loc["Palestra", "prior_points"])
+    assert pd.isna(frame.loc["Palestra", "new_to_pl"])
+
+
+def test_live_season_still_keeps_a_loan_player_off_the_debutant_list():
+    frame = live()
+    assert frame.loc["Rashford", "prior_points"] == 0
+    assert not frame.loc["Rashford", "new_to_pl"]
+
+
+def test_live_row_count_is_preserved():
+    assert len(attach_prior_season(
+        PICKS, LIVE_PLAYERS, PRIOR_WITH_CODES, bootstrap_is_prior_season=False,
+    )) == len(PICKS)

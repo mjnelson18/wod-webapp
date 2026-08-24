@@ -3,9 +3,12 @@
     python -m pipeline.build --season 2526 --source snapshot
     python -m pipeline.build --season 2627                 # incremental live build
     python -m pipeline.build --season 2627 --full          # ignore cache
+    python -m pipeline.build --season 2627 --site dunelmliga
 
 All season-variable values come from pipeline/config. All transformation logic
-lives in pipeline/transforms and is pure; this module does the I/O.
+lives in pipeline/transforms and is pure; this module does the I/O. `--site`
+selects which published site's seasons and output folder to use; it changes no
+logic, only which leagues are read and where the JSON lands.
 """
 
 import argparse
@@ -16,10 +19,12 @@ import pandas as pd
 
 from . import paths
 from .adapters import backfill_difficulty, backfill_players
-from .config import get_season, is_configured
+from .config import DEFAULT_SITE, get_site, is_configured
 from .fetchers import build_source
 from .fetchers.http import Maintenance, RateLimited
 from .transforms import (
+    H2H_MATCH_COLUMNS,
+    H2H_TABLE_COLUMNS,
     attach_fixtures,
     attach_pick_totals,
     attach_prior_season,
@@ -37,12 +42,16 @@ from .transforms import (
     fixtures_from_live,
     form_table,
     formations,
+    head_to_head_matches,
+    head_to_head_table,
+    is_head_to_head,
     league_table,
     live_league_table,
     lorenz_curve,
     player_usage,
     players_table,
     points_distribution,
+    reconcile_head_to_head,
     season_review_facts,
     season_start_year,
     season_summary,
@@ -68,24 +77,64 @@ def _current_week(source, season) -> int:
     return season.total_gameweeks
 
 
-def _prior_players(season, say) -> "pd.DataFrame | None":
+def _prior_players(season, site, say) -> "pd.DataFrame | None":
     """
     Last season's player table, read back from its own generated archive.
 
-    The archives are frozen and restored into `data/<season>/` before the current
-    season builds, so by the time we get here the file is on disk. It is optional
-    on purpose: the oldest season has nothing behind it, and a missing archive
-    should cost the draft view one column rather than fail the run.
+    The archives are frozen and restored into `data/<site>/<season>/` before the
+    current season builds, so by the time we get here the file is on disk. It is
+    optional on purpose: the oldest season has nothing behind it, and a missing
+    archive should cost the draft view one column rather than fail the run.
+
+    A site in its first season has no archive of its own, so it may borrow one —
+    see Site.player_history_site. This table is a list of footballers, not of
+    drafters, so borrowing it says nothing about the other site's league.
     """
     prior = getattr(season, "previous_season", None) or _previous_season(season.season)
     if not prior:
         return None
-    path = paths.season_data_dir(prior) / "players.json"
+    candidates = [site.slug]
+    if site.player_history_site:
+        candidates.append(site.player_history_site)
+    for slug in candidates:
+        path = paths.season_data_dir(prior, slug) / "players.json"
+        try:
+            return pd.DataFrame(json.loads(path.read_text(encoding="utf-8")))
+        except (OSError, ValueError) as error:
+            last = error
+    say(f"  no {prior} players.json ({last}) — draft view loses last season's clubs")
+    return None
+
+
+def _draft_choices(source, league, say) -> dict:
+    """
+    Draft night for one league, falling back to a committed copy.
+
+    `draft/<league>/choices` serves the league's current or *next* draft, not a
+    history. A league that schedules a second draft therefore loses the first one
+    from the API the moment it does — which is exactly Dunelmliga's position: it
+    re-drafts at GW21, so its completed GW1 draft now returns an empty list. Left
+    alone, every player in that league reads "Not Originally Drafted" and the
+    draft-night view has nothing to show.
+
+    Only ever a fallback. A league whose draft the API still serves reads it from
+    the API, so this can't mask a live payload going stale.
+    """
+    choices = source.draft_choices(league.league_code) or {}
+    if choices.get("choices") or not league.draft_choices_fallback:
+        return choices
+
+    path = paths.repo_root() / league.draft_choices_fallback
     try:
-        return pd.DataFrame(json.loads(path.read_text(encoding="utf-8")))
+        restored = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError) as error:
-        say(f"  no {prior} players.json ({error}) — draft view loses last season's clubs")
-        return None
+        say(f"  ! {league.code}: API served no draft choices and {path.name} "
+            f"is unreadable ({error}) — draft night will be empty")
+        return choices
+
+    say(f"  {league.code}: API served no draft choices; restored "
+        f"{len(restored.get('choices') or [])} from {path.name}")
+    return restored
 
 
 def _previous_season(season_id: str) -> str | None:
@@ -99,7 +148,7 @@ def _previous_season(season_id: str) -> str | None:
     return f"{start - 1:02d}{start:02d}"
 
 
-def _preseason_tables(season, source, teams, players, say) -> dict:
+def _preseason_tables(season, site, source, teams, players, say) -> dict:
     """
     A season that exists but has not kicked off.
 
@@ -109,13 +158,14 @@ def _preseason_tables(season, source, teams, players, say) -> dict:
     once draft night has happened — so the site can list the season and show draft
     night as soon as it lands, instead of hiding the season for the whole build-up.
     """
-    standings_frames, picks_frames = [], []
+    standings_frames, picks_frames, scoring = [], [], {}
     for league in season.leagues:
         details = source.league_details(league.league_code)
+        scoring[league.code] = "h2h" if is_head_to_head(details) else "classic"
         standings = league_table(details, league_code=league.code,
                                  exclude_entries=league.exclude_entries)
         picks = draft_picks_table(
-            source.draft_choices(league.league_code), players, standings,
+            _draft_choices(source, league, say), players, standings,
             league_code=league.code, drafters=league.size,
         )
         say(f"  {league.code} ({league.league_code}): {len(standings)} drafters, "
@@ -126,7 +176,8 @@ def _preseason_tables(season, source, teams, players, say) -> dict:
     draft_picks = pd.concat(picks_frames, ignore_index=True)
     standings = pd.concat(standings_frames, ignore_index=True)
     if len(draft_picks):
-        draft_picks = attach_prior_season(draft_picks, players, _prior_players(season, say))
+        draft_picks = attach_prior_season(draft_picks, players,
+                                          _prior_players(season, site, say))
     # 'drafted' unlocks the draft-night view; 'pre_draft' has names and nothing else.
     stage = "drafted" if len(draft_picks) else "pre_draft"
     say(f"  no gameweeks yet — stage={stage}")
@@ -134,6 +185,7 @@ def _preseason_tables(season, source, teams, players, say) -> dict:
         "season": season,
         "current_week": 0,
         "stage": stage,
+        "scoring": scoring,
         "teams": teams,
         "players": players,
         "standings": standings,
@@ -141,10 +193,12 @@ def _preseason_tables(season, source, teams, players, say) -> dict:
     }
 
 
-def build_tables(season_id: str, *, source_kind: str | None = None, force: bool = False,
+def build_tables(season_id: str, *, site: str | None = None,
+                 source_kind: str | None = None, force: bool = False,
                  gameweeks: int | None = None, verbose: bool = True) -> dict:
-    """Run the whole pipeline for one season and return canonical tables."""
-    season = get_season(season_id)
+    """Run the whole pipeline for one season of one site and return canonical tables."""
+    site = get_site(site)
+    season = site.season(season_id)
     if season.default_source == "csv" and source_kind is None:
         # No raw input exists (2425) — build the archive from the historical CSVs.
         from .adapters import build_csv_tables
@@ -197,7 +251,7 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
         say(f"  backfilled from CSV: {', '.join(season.csv_backfill)}")
 
     if current_week == 0:
-        return _preseason_tables(season, source, teams, players, say)
+        return _preseason_tables(season, site, source, teams, players, say)
 
     # event/{gw}/live, shared across both leagues — fetch once
     live = {gw: source.event_live(gw) for gw in weeks}
@@ -212,6 +266,7 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
 
     summaries, points_frames, picks_frames = [], [], []
     standings_frames, transfers_frames, trades_frames = [], [], []
+    h2h_tables, h2h_match_frames, scoring = [], [], {}
 
     for league in season.leagues:
         say(f"  {league.code} ({league.league_code})")
@@ -220,8 +275,13 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
                                 exclude_entries=league.exclude_entries)
         names = entry_ids(details, exclude_entries=league.exclude_entries)
 
+        # How the league is actually won. Discovered rather than configured: the
+        # payload says so outright, and a league that changed format between
+        # seasons would otherwise need remembering to update by hand.
+        scoring[league.code] = "h2h" if is_head_to_head(details) else "classic"
+
         picks = draft_picks_table(
-            source.draft_choices(league.league_code), players, standings,
+            _draft_choices(source, league, say), players, standings,
             league_code=league.code, drafters=league.size,
         )
 
@@ -247,6 +307,21 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
             weekly_points, players,
         )
 
+        # The league's own table, for a league that plays weekly fixtures. The
+        # points table is still built for everyone — in a head-to-head league it
+        # is the more interesting of the two, it just isn't the competition.
+        if scoring[league.code] == "h2h":
+            fixtures = head_to_head_matches(details, standings, league_code=league.code)
+            h2h_table, _ = head_to_head_table(
+                fixtures, standings, league_code=league.code, current_week=current_week)
+            for note in reconcile_head_to_head(h2h_table, details, standings):
+                # 3/1/0 is FPL's rule, not something the payload states, so a
+                # disagreement with the official table is worth shouting about.
+                say(f"  ! {league.code} head-to-head table disagrees with the API — {note}")
+            h2h_tables.append(h2h_table)
+            h2h_match_frames.append(fixtures)
+            say(f"  {league.code}: head-to-head, {len(fixtures)} fixtures")
+
         summaries.append(summary)
         points_frames.append(weekly_points)
         picks_frames.append(attach_pick_totals(picks, weekly_points))
@@ -260,6 +335,16 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
     standings = pd.concat(standings_frames, ignore_index=True)
     transfers = pd.concat(transfers_frames, ignore_index=True)
     trades = pd.concat(trades_frames, ignore_index=True)
+
+    # Last season's record for each drafted footballer. `bootstrap_is_prior_season`
+    # is False here and True in the pre-season path, because that one flag decides
+    # whether the bootstrap's totals mean last season or this one — get it wrong
+    # and the draft view files this week's points as last year's.
+    if len(draft_picks):
+        draft_picks = attach_prior_season(
+            draft_picks, players, _prior_players(season, site, say),
+            bootstrap_is_prior_season=False,
+        )
 
     weekly_summary = attach_fixtures(weekly_summary, fixtures_by_team)
     weekly_points = attach_fixtures(weekly_points, fixtures_by_team)
@@ -298,10 +383,15 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
     if isinstance(source, object) and hasattr(source, "stats"):
         say(f"  fetches={source.stats['fetched']} cache_hits={source.stats['cached']}")
 
+    empty_h2h = pd.DataFrame(columns=H2H_TABLE_COLUMNS)
     return {
         "season": season,
         "current_week": current_week,
         "stage": "live",
+        "scoring": scoring,
+        "h2h_table": pd.concat(h2h_tables, ignore_index=True) if h2h_tables else empty_h2h,
+        "h2h_matches": (pd.concat(h2h_match_frames, ignore_index=True) if h2h_match_frames
+                        else pd.DataFrame(columns=H2H_MATCH_COLUMNS)),
         "hosts_agree": hosts_agree,
         "teams": teams,
         "players": players,
@@ -322,15 +412,17 @@ def build_tables(season_id: str, *, source_kind: str | None = None, force: bool 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="pipeline.build")
     parser.add_argument("--season", required=True)
+    parser.add_argument("--site", default=DEFAULT_SITE,
+                        help=f"site to build (default {DEFAULT_SITE}); see pipeline/config/sites.py")
     parser.add_argument("--source", choices=["live", "snapshot"], default=None)
     parser.add_argument("--full", action="store_true", help="ignore cache, refetch everything")
     parser.add_argument("--gameweeks", type=int, default=None, help="cap gameweeks (debug)")
-    parser.add_argument("--out", default=None, help="output dir (default data/<season>)")
+    parser.add_argument("--out", default=None, help="output dir (default data/<site>/<season>)")
     args = parser.parse_args(argv)
 
     try:
-        tables = build_tables(args.season, source_kind=args.source, force=args.full,
-                              gameweeks=args.gameweeks)
+        tables = build_tables(args.season, site=args.site, source_kind=args.source,
+                              force=args.full, gameweeks=args.gameweeks)
     except (RateLimited, Maintenance) as error:
         # Not a failure: FPL either asked us to slow down or is serving a holding
         # page mid-run. Leave the existing data in place, say so, and let the next
@@ -343,7 +435,7 @@ def main(argv=None) -> int:
         return 0
 
     from .outputs import write_season  # local import keeps transforms import-light
-    out = write_season(tables, out_dir=args.out)
+    out = write_season(tables, site=args.site, out_dir=args.out)
     print(f"wrote {out}")
     return 0
 

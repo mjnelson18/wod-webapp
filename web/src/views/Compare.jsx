@@ -25,6 +25,22 @@ const TOP_PAIRS = 5
  * #/<season>/compare/<gw>.
  */
 export default function Compare({ season, meta, route }) {
+  // Only reachable by deep link — the tab is hidden on a single-league site. Every
+  // section below measures one league against another, so there is no partial
+  // version of this view to fall back to.
+  if ((meta?.leagues?.length ?? 0) < 2) {
+    return (
+      <Section title="Cross-league">
+        <Unavailable
+          what="A cross-league comparison"
+          season={season}
+          reason={`${meta?.leagues?.[0]?.name ?? 'This league'} is the only league here, `
+                  + 'so there is nothing to compare it against.'}
+        />
+      </Section>
+    )
+  }
+
   const gw = Number(route?.param) || meta.current_gameweek
   const { data, loading, error } = useTables(season, [
     'weekly_summary', 'weekly_points', 'league_table', 'available_players', 'fixtures',

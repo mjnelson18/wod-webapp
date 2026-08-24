@@ -1,0 +1,736 @@
+{
+ "_provenance": {
+  "league": 32619,
+  "league_name": "Dunelmliga",
+  "season": "2627",
+  "draft_completed": "2026-08-20T19:38:30Z",
+  "captured": "2026-08-20T19:56:57.296Z",
+  "why": "draft/<league>/choices serves a league's current or next draft, not a history. Dunelmliga re-drafts at GW21, so the API returned an empty choices list for the GW1 draft from the moment that second draft was scheduled. Without this file every player in the league reads as Not Originally Drafted.",
+  "source": "Captured live during the draft by the private draft-night tooling, which recorded element id, drafter short_name and 0-based overall pick order.",
+  "derived": "index = n + 1. pick and round are computed from index and the six drafters, matching how the API numbers a snake draft (verified against league 19116). entry is the entry_id looked up from the league details by short_name.",
+  "not_captured": "choice_time and seconds_to_pick. Nothing downstream reads them.",
+  "verified": "89 of the 90 picks were still held by the drafter who made them at GW1; the exception (element 239, MN) is an explicit free-agent move in the transfers table."
+ },
+ "choices": [
+  {
+   "element": 411,
+   "entry": 169024,
+   "index": 1,
+   "pick": 1,
+   "round": 1,
+   "was_auto": true
+  },
+  {
+   "element": 426,
+   "entry": 169026,
+   "index": 2,
+   "pick": 2,
+   "round": 1,
+   "was_auto": false
+  },
+  {
+   "element": 106,
+   "entry": 169022,
+   "index": 3,
+   "pick": 3,
+   "round": 1,
+   "was_auto": false
+  },
+  {
+   "element": 165,
+   "entry": 169027,
+   "index": 4,
+   "pick": 4,
+   "round": 1,
+   "was_auto": false
+  },
+  {
+   "element": 55,
+   "entry": 169023,
+   "index": 5,
+   "pick": 5,
+   "round": 1,
+   "was_auto": false
+  },
+  {
+   "element": 12,
+   "entry": 169025,
+   "index": 6,
+   "pick": 6,
+   "round": 1,
+   "was_auto": false
+  },
+  {
+   "element": 397,
+   "entry": 169025,
+   "index": 7,
+   "pick": 1,
+   "round": 2,
+   "was_auto": false
+  },
+  {
+   "element": 4,
+   "entry": 169023,
+   "index": 8,
+   "pick": 2,
+   "round": 2,
+   "was_auto": false
+  },
+  {
+   "element": 379,
+   "entry": 169027,
+   "index": 9,
+   "pick": 3,
+   "round": 2,
+   "was_auto": false
+  },
+  {
+   "element": 356,
+   "entry": 169022,
+   "index": 10,
+   "pick": 4,
+   "round": 2,
+   "was_auto": false
+  },
+  {
+   "element": 25,
+   "entry": 169026,
+   "index": 11,
+   "pick": 5,
+   "round": 2,
+   "was_auto": false
+  },
+  {
+   "element": 154,
+   "entry": 169024,
+   "index": 12,
+   "pick": 6,
+   "round": 2,
+   "was_auto": false
+  },
+  {
+   "element": 40,
+   "entry": 169024,
+   "index": 13,
+   "pick": 1,
+   "round": 3,
+   "was_auto": false
+  },
+  {
+   "element": 1,
+   "entry": 169026,
+   "index": 14,
+   "pick": 2,
+   "round": 3,
+   "was_auto": false
+  },
+  {
+   "element": 388,
+   "entry": 169022,
+   "index": 15,
+   "pick": 3,
+   "round": 3,
+   "was_auto": false
+  },
+  {
+   "element": 346,
+   "entry": 169027,
+   "index": 16,
+   "pick": 4,
+   "round": 3,
+   "was_auto": false
+  },
+  {
+   "element": 481,
+   "entry": 169023,
+   "index": 17,
+   "pick": 5,
+   "round": 3,
+   "was_auto": false
+  },
+  {
+   "element": 427,
+   "entry": 169025,
+   "index": 18,
+   "pick": 6,
+   "round": 3,
+   "was_auto": false
+  },
+  {
+   "element": 401,
+   "entry": 169025,
+   "index": 19,
+   "pick": 1,
+   "round": 4,
+   "was_auto": false
+  },
+  {
+   "element": 13,
+   "entry": 169023,
+   "index": 20,
+   "pick": 2,
+   "round": 4,
+   "was_auto": false
+  },
+  {
+   "element": 15,
+   "entry": 169027,
+   "index": 21,
+   "pick": 3,
+   "round": 4,
+   "was_auto": false
+  },
+  {
+   "element": 480,
+   "entry": 169022,
+   "index": 22,
+   "pick": 4,
+   "round": 4,
+   "was_auto": false
+  },
+  {
+   "element": 387,
+   "entry": 169026,
+   "index": 23,
+   "pick": 5,
+   "round": 4,
+   "was_auto": false
+  },
+  {
+   "element": 366,
+   "entry": 169024,
+   "index": 24,
+   "pick": 6,
+   "round": 4,
+   "was_auto": true
+  },
+  {
+   "element": 229,
+   "entry": 169024,
+   "index": 25,
+   "pick": 1,
+   "round": 5,
+   "was_auto": true
+  },
+  {
+   "element": 428,
+   "entry": 169026,
+   "index": 26,
+   "pick": 2,
+   "round": 5,
+   "was_auto": false
+  },
+  {
+   "element": 498,
+   "entry": 169022,
+   "index": 27,
+   "pick": 3,
+   "round": 5,
+   "was_auto": false
+  },
+  {
+   "element": 10,
+   "entry": 169027,
+   "index": 28,
+   "pick": 4,
+   "round": 5,
+   "was_auto": false
+  },
+  {
+   "element": 26,
+   "entry": 169023,
+   "index": 29,
+   "pick": 5,
+   "round": 5,
+   "was_auto": false
+  },
+  {
+   "element": 368,
+   "entry": 169025,
+   "index": 30,
+   "pick": 6,
+   "round": 5,
+   "was_auto": false
+  },
+  {
+   "element": 223,
+   "entry": 169025,
+   "index": 31,
+   "pick": 1,
+   "round": 6,
+   "was_auto": false
+  },
+  {
+   "element": 155,
+   "entry": 169023,
+   "index": 32,
+   "pick": 2,
+   "round": 6,
+   "was_auto": false
+  },
+  {
+   "element": 367,
+   "entry": 169027,
+   "index": 33,
+   "pick": 3,
+   "round": 6,
+   "was_auto": false
+  },
+  {
+   "element": 61,
+   "entry": 169022,
+   "index": 34,
+   "pick": 4,
+   "round": 6,
+   "was_auto": false
+  },
+  {
+   "element": 439,
+   "entry": 169026,
+   "index": 35,
+   "pick": 5,
+   "round": 6,
+   "was_auto": false
+  },
+  {
+   "element": 471,
+   "entry": 169024,
+   "index": 36,
+   "pick": 6,
+   "round": 6,
+   "was_auto": true
+  },
+  {
+   "element": 200,
+   "entry": 169024,
+   "index": 37,
+   "pick": 1,
+   "round": 7,
+   "was_auto": true
+  },
+  {
+   "element": 499,
+   "entry": 169026,
+   "index": 38,
+   "pick": 2,
+   "round": 7,
+   "was_auto": false
+  },
+  {
+   "element": 226,
+   "entry": 169022,
+   "index": 39,
+   "pick": 3,
+   "round": 7,
+   "was_auto": false
+  },
+  {
+   "element": 8,
+   "entry": 169027,
+   "index": 40,
+   "pick": 4,
+   "round": 7,
+   "was_auto": false
+  },
+  {
+   "element": 112,
+   "entry": 169023,
+   "index": 41,
+   "pick": 5,
+   "round": 7,
+   "was_auto": false
+  },
+  {
+   "element": 79,
+   "entry": 169025,
+   "index": 42,
+   "pick": 6,
+   "round": 7,
+   "was_auto": false
+  },
+  {
+   "element": 429,
+   "entry": 169025,
+   "index": 43,
+   "pick": 1,
+   "round": 8,
+   "was_auto": false
+  },
+  {
+   "element": 142,
+   "entry": 169023,
+   "index": 44,
+   "pick": 2,
+   "round": 8,
+   "was_auto": false
+  },
+  {
+   "element": 358,
+   "entry": 169027,
+   "index": 45,
+   "pick": 3,
+   "round": 8,
+   "was_auto": false
+  },
+  {
+   "element": 380,
+   "entry": 169022,
+   "index": 46,
+   "pick": 4,
+   "round": 8,
+   "was_auto": false
+  },
+  {
+   "element": 399,
+   "entry": 169026,
+   "index": 47,
+   "pick": 5,
+   "round": 8,
+   "was_auto": false
+  },
+  {
+   "element": 84,
+   "entry": 169024,
+   "index": 48,
+   "pick": 6,
+   "round": 8,
+   "was_auto": true
+  },
+  {
+   "element": 230,
+   "entry": 169024,
+   "index": 49,
+   "pick": 1,
+   "round": 9,
+   "was_auto": true
+  },
+  {
+   "element": 390,
+   "entry": 169026,
+   "index": 50,
+   "pick": 2,
+   "round": 9,
+   "was_auto": false
+  },
+  {
+   "element": 389,
+   "entry": 169022,
+   "index": 51,
+   "pick": 3,
+   "round": 9,
+   "was_auto": false
+  },
+  {
+   "element": 208,
+   "entry": 169027,
+   "index": 52,
+   "pick": 4,
+   "round": 9,
+   "was_auto": false
+  },
+  {
+   "element": 371,
+   "entry": 169023,
+   "index": 53,
+   "pick": 5,
+   "round": 9,
+   "was_auto": false
+  },
+  {
+   "element": 384,
+   "entry": 169025,
+   "index": 54,
+   "pick": 6,
+   "round": 9,
+   "was_auto": false
+  },
+  {
+   "element": 391,
+   "entry": 169025,
+   "index": 55,
+   "pick": 1,
+   "round": 10,
+   "was_auto": false
+  },
+  {
+   "element": 5,
+   "entry": 169023,
+   "index": 56,
+   "pick": 2,
+   "round": 10,
+   "was_auto": false
+  },
+  {
+   "element": 554,
+   "entry": 169027,
+   "index": 57,
+   "pick": 3,
+   "round": 10,
+   "was_auto": false
+  },
+  {
+   "element": 82,
+   "entry": 169022,
+   "index": 58,
+   "pick": 4,
+   "round": 10,
+   "was_auto": false
+  },
+  {
+   "element": 449,
+   "entry": 169026,
+   "index": 59,
+   "pick": 5,
+   "round": 10,
+   "was_auto": false
+  },
+  {
+   "element": 527,
+   "entry": 169024,
+   "index": 60,
+   "pick": 6,
+   "round": 10,
+   "was_auto": true
+  },
+  {
+   "element": 491,
+   "entry": 169024,
+   "index": 61,
+   "pick": 1,
+   "round": 11,
+   "was_auto": true
+  },
+  {
+   "element": 400,
+   "entry": 169026,
+   "index": 62,
+   "pick": 2,
+   "round": 11,
+   "was_auto": false
+  },
+  {
+   "element": 260,
+   "entry": 169022,
+   "index": 63,
+   "pick": 3,
+   "round": 11,
+   "was_auto": false
+  },
+  {
+   "element": 412,
+   "entry": 169027,
+   "index": 64,
+   "pick": 4,
+   "round": 11,
+   "was_auto": false
+  },
+  {
+   "element": 28,
+   "entry": 169023,
+   "index": 65,
+   "pick": 5,
+   "round": 11,
+   "was_auto": false
+  },
+  {
+   "element": 201,
+   "entry": 169025,
+   "index": 66,
+   "pick": 6,
+   "round": 11,
+   "was_auto": false
+  },
+  {
+   "element": 472,
+   "entry": 169025,
+   "index": 67,
+   "pick": 1,
+   "round": 12,
+   "was_auto": false
+  },
+  {
+   "element": 525,
+   "entry": 169023,
+   "index": 68,
+   "pick": 2,
+   "round": 12,
+   "was_auto": false
+  },
+  {
+   "element": 95,
+   "entry": 169027,
+   "index": 69,
+   "pick": 3,
+   "round": 12,
+   "was_auto": false
+  },
+  {
+   "element": 239,
+   "entry": 169022,
+   "index": 70,
+   "pick": 4,
+   "round": 12,
+   "was_auto": false
+  },
+  {
+   "element": 452,
+   "entry": 169026,
+   "index": 71,
+   "pick": 5,
+   "round": 12,
+   "was_auto": false
+  },
+  {
+   "element": 398,
+   "entry": 169024,
+   "index": 72,
+   "pick": 6,
+   "round": 12,
+   "was_auto": false
+  },
+  {
+   "element": 236,
+   "entry": 169024,
+   "index": 73,
+   "pick": 1,
+   "round": 13,
+   "was_auto": false
+  },
+  {
+   "element": 464,
+   "entry": 169026,
+   "index": 74,
+   "pick": 2,
+   "round": 13,
+   "was_auto": false
+  },
+  {
+   "element": 136,
+   "entry": 169022,
+   "index": 75,
+   "pick": 3,
+   "round": 13,
+   "was_auto": false
+  },
+  {
+   "element": 503,
+   "entry": 169027,
+   "index": 76,
+   "pick": 4,
+   "round": 13,
+   "was_auto": false
+  },
+  {
+   "element": 392,
+   "entry": 169023,
+   "index": 77,
+   "pick": 5,
+   "round": 13,
+   "was_auto": false
+  },
+  {
+   "element": 6,
+   "entry": 169025,
+   "index": 78,
+   "pick": 6,
+   "round": 13,
+   "was_auto": false
+  },
+  {
+   "element": 231,
+   "entry": 169025,
+   "index": 79,
+   "pick": 1,
+   "round": 14,
+   "was_auto": false
+  },
+  {
+   "element": 350,
+   "entry": 169023,
+   "index": 80,
+   "pick": 2,
+   "round": 14,
+   "was_auto": false
+  },
+  {
+   "element": 31,
+   "entry": 169027,
+   "index": 81,
+   "pick": 3,
+   "round": 14,
+   "was_auto": false
+  },
+  {
+   "element": 542,
+   "entry": 169022,
+   "index": 82,
+   "pick": 4,
+   "round": 14,
+   "was_auto": false
+  },
+  {
+   "element": 357,
+   "entry": 169026,
+   "index": 83,
+   "pick": 5,
+   "round": 14,
+   "was_auto": false
+  },
+  {
+   "element": 140,
+   "entry": 169024,
+   "index": 84,
+   "pick": 6,
+   "round": 14,
+   "was_auto": true
+  },
+  {
+   "element": 496,
+   "entry": 169024,
+   "index": 85,
+   "pick": 1,
+   "round": 15,
+   "was_auto": true
+  },
+  {
+   "element": 566,
+   "entry": 169026,
+   "index": 86,
+   "pick": 2,
+   "round": 15,
+   "was_auto": false
+  },
+  {
+   "element": 69,
+   "entry": 169022,
+   "index": 87,
+   "pick": 3,
+   "round": 15,
+   "was_auto": false
+  },
+  {
+   "element": 109,
+   "entry": 169027,
+   "index": 88,
+   "pick": 4,
+   "round": 15,
+   "was_auto": false
+  },
+  {
+   "element": 552,
+   "entry": 169023,
+   "index": 89,
+   "pick": 5,
+   "round": 15,
+   "was_auto": false
+  },
+  {
+   "element": 442,
+   "entry": 169025,
+   "index": 90,
+   "pick": 6,
+   "round": 15,
+   "was_auto": false
+  }
+ ]
+}

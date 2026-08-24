@@ -55,14 +55,14 @@ def test_index_ignores_directories_without_meta(tmp_path):
 
 def test_empty_index_is_reported_as_an_error(tmp_path, monkeypatch, capsys):
     """An empty index means a blank site — the run must fail, not deploy it."""
-    monkeypatch.setattr(outputs.paths, "data_dir", lambda: tmp_path)
+    monkeypatch.setattr(outputs.paths, "data_dir", lambda site=None: tmp_path)
     assert outputs.main(["--index"]) == 1
     assert "No seasons" in capsys.readouterr().out
 
 
 def test_index_succeeds_when_seasons_exist(tmp_path, monkeypatch):
     _season_dir(tmp_path, "2526")
-    monkeypatch.setattr(outputs.paths, "data_dir", lambda: tmp_path)
+    monkeypatch.setattr(outputs.paths, "data_dir", lambda site=None: tmp_path)
     assert outputs.main(["--index"]) == 0
 
 

@@ -1,6 +1,12 @@
 name: Update data pack
 
 # Rebuilds the JSON artifacts and force-deploys site + data to GitHub Pages.
+#
+# Two sites come out of this one run: What's On Draft at the root, and Dunelmliga
+# — a separate league for a different group — under /dunelmliga/. They share the
+# pipeline, the app and this schedule; they share no data. See
+# pipeline/config/sites.py.
+#
 # Nothing is ever committed: Pages is deployed from an artifact, so `main`'s
 # history stays free of data commits.
 #
@@ -45,8 +51,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Bump when onboarding a new season (see README).
+  # Bump when onboarding a new season (see README). Both sites publish the same
+  # FPL season, so one value covers them.
   CURRENT_SEASON: '2627'
+  # WOD only — Dunelmliga has no archived seasons.
   ARCHIVE_SEASONS: '2425 2526'
   # Bump to force archives to rebuild without touching their inputs.
   ARCHIVE_CACHE_VERSION: 'v1'
@@ -87,6 +95,17 @@ jobs:
         if: steps.gate.outputs.should_build != 'true'
         run: echo "::notice title=Skipped::${{ steps.gate.outputs.reason }}"
 
+      # Both sites publish the same FPL season and follow the same fixtures, so
+      # the expensive question — is a build worth doing at all? — is asked once
+      # above. This only asks the cheap one: does Dunelmliga have its league code
+      # yet? No network, so it costs nothing on a quiet run.
+      - name: Is Dunelmliga configured?
+        id: gate-dunelmliga
+        if: steps.gate.outputs.should_build == 'true'
+        run: |
+          python -m pipeline.schedule --season "$CURRENT_SEASON" \
+            --site dunelmliga --configured-only
+
       - name: Install Python dependencies
         if: steps.gate.outputs.should_build == 'true'
         run: pip install --quiet -r requirements.txt
@@ -100,9 +119,9 @@ jobs:
         uses: actions/cache@v6
         with:
           path: |
-            data/2425
-            data/2526
-            data/seasons.json
+            data/wod/2425
+            data/wod/2526
+            data/wod/seasons.json
           key: >-
             archives-${{ env.ARCHIVE_CACHE_VERSION }}-${{
               hashFiles('pipeline/**/*.py', 'reference/historical/*.csv') }}
@@ -130,14 +149,25 @@ jobs:
         run: |
           echo "::notice title=Archives only::${{ steps.gate.outputs.reason }}"
 
+      # Dunelmliga: one league, one season, no archives to restore or rebuild.
+      - name: Build Dunelmliga
+        if: >-
+          steps.gate.outputs.should_build == 'true' &&
+          steps.gate-dunelmliga.outputs.season_ready == 'true'
+        run: python -m pipeline.build --season "$CURRENT_SEASON" --site dunelmliga
+
       # Always regenerate the index, never rely on it surviving. The archive cache
       # stores the season folders only, so on a cache hit with no build running
-      # data/seasons.json would be absent and the site would fail to load with a
-      # 404 — which is exactly what happened once. Fails the run if no seasons are
-      # present, rather than deploying a blank app.
+      # data/<site>/seasons.json would be absent and the site would fail to load
+      # with a 404 — which is exactly what happened once. Fails the run if no
+      # seasons are present, rather than deploying a blank app.
       - name: Refresh the season index
         if: steps.gate.outputs.should_build == 'true'
-        run: python -m pipeline.outputs --index
+        run: |
+          python -m pipeline.outputs --index
+          if [ -d data/dunelmliga ]; then
+            python -m pipeline.outputs --index --site dunelmliga
+          fi
 
       # Deploy only when the output differs from what is actually live.
       #
@@ -151,15 +181,26 @@ jobs:
         run: |
           # The current season's JSON is regenerated every run and is not cached,
           # so a self-correcting skip mid-build (rate limit, or the API going into
-          # maintenance after the gate passed) leaves data/<season> absent. The
-          # index is assembled from the folders on disk, so deploying now would
+          # maintenance after the gate passed) leaves data/<site>/<season> absent.
+          # The index is assembled from the folders on disk, so deploying now would
           # publish a site with the current season missing. Keep what is live.
+          #
+          # Checked per site: both are rebuilt from the same API every run, so
+          # either one going missing means this run saw a partial view of it.
+          missing=
           if [ "${{ steps.gate.outputs.season_ready }}" = "true" ] \
-             && [ ! -d "data/$CURRENT_SEASON" ]; then
+             && [ ! -d "data/wod/$CURRENT_SEASON" ]; then
+            missing="wod"
+          fi
+          if [ "${{ steps.gate-dunelmliga.outputs.season_ready }}" = "true" ] \
+             && [ ! -d "data/dunelmliga/$CURRENT_SEASON" ]; then
+            missing="${missing:+$missing }dunelmliga"
+          fi
+          if [ -n "$missing" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "season_missing=true" >> "$GITHUB_OUTPUT"
             echo "::warning title=Current season missing::$CURRENT_SEASON produced no data" \
-                 "this run; keeping the deployed site and retrying on the next run"
+                 "for: $missing; keeping the deployed site and retrying on the next run"
             exit 0
           fi
 
@@ -189,16 +230,30 @@ jobs:
           cache: npm
           cache-dependency-path: web/package-lock.json
 
-      - name: Build the site
+      # One app, built once per published site. Each build gets that site's data
+      # copied in as web/public/data, so the app itself never knows a site slug —
+      # it just reads <base>/data/. Pages serves one site per repo, so Dunelmliga
+      # goes into a sub-directory of the WOD build. WOD must therefore build
+      # first: its build empties web/dist.
+      - name: Build the sites
         if: steps.digest.outputs.changed == 'true'
         run: |
-          rm -rf web/public/data
+          npm ci --prefix web
           mkdir -p web/public
-          cp -r data web/public/data
           # published alongside the site so the next run can tell what is live
           printf '%s' "${{ steps.digest.outputs.digest }}" > web/public/digest.txt
-          npm ci --prefix web
+
+          rm -rf web/public/data
+          cp -r data/wod web/public/data
           npm run build --prefix web
+
+          if [ -d data/dunelmliga ]; then
+            rm -rf web/public/data
+            cp -r data/dunelmliga web/public/data
+            npm run build:dunelmliga --prefix web
+          else
+            echo "::notice title=Dunelmliga skipped::no data built this run"
+          fi
 
       # Resets the throttle timer. Deliberately records only that a *build*
       # happened — whether it deployed is answered by the live digest above.

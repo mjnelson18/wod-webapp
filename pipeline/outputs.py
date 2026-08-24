@@ -11,7 +11,7 @@ from pathlib import Path
 import pandas as pd
 
 from . import paths
-from .config import SEASONS
+from .config import DEFAULT_SITE, get_site
 
 # weekly_points is one row per element per gameweek per league — ~59k rows for a
 # full season, 88% of it undrafted players. Views need owned rows plus the best
@@ -139,7 +139,10 @@ TRADES = {
 }
 
 PLAYERS = {
-    "element": "id", "web_name": "web_name", "position": "position",
+    # `element` is this season's id and is reassigned each year; `code` is the
+    # footballer's permanent one, and is what lets next season recognise him here.
+    # Null on the CSV-derived 2425 archive, which never had it.
+    "element": "id", "code": "code", "web_name": "web_name", "position": "position",
     "team_id": "team", "team_name": "team_name", "total_points": "total_points",
     "goals_scored": "goals_scored", "assists": "assists", "bonus": "bonus",
     "clean_sheets": "clean_sheets", "minutes": "minutes", "draft_rank": "draft_rank",
@@ -147,6 +150,27 @@ PLAYERS = {
 }
 
 TEAMS = {"team_id": "team", "team_name": "team_name"}
+
+# A head-to-head league's own table, and the fixtures behind it. Empty for a
+# classic league, which is every WOD league — the views key off meta.leagues[].scoring
+# rather than off these being non-empty, so an empty file is never ambiguous.
+H2H_TABLE = {
+    "league": "league_code", "short_name": "short_name",
+    "played": "played", "won": "won", "drawn": "drawn", "lost": "lost",
+    "points_for": "points_for", "points_against": "points_against",
+    "h2h_points": "h2h_points", "rank": "rank", "last_rank": "last_rank",
+    # True while a counted gameweek is still being played, so the view can say
+    # the table is ahead of the official one rather than silently contradicting it.
+    "provisional": "provisional",
+}
+
+H2H_MATCHES = {
+    "gameweek": "gameweek", "league": "league_code",
+    "home": "home", "away": "away",
+    "home_points": "home_points", "away_points": "away_points",
+    "started": "started", "finished": "finished",
+    "result": "result", "winner": "winner",
+}
 
 # One row per team per gameweek for the WHOLE season, past and future. Separate
 # from the fixture columns embedded in weekly_summary, which only cover gameweeks
@@ -303,7 +327,8 @@ def _reduce_weekly_points(frame: pd.DataFrame) -> pd.DataFrame:
     return frame[~undrafted | keep_undrafted]
 
 
-def _write_preseason(tables: dict, *, out_dir: str | None = None) -> Path:
+def _write_preseason(tables: dict, *, site: str | None = None,
+                     out_dir: str | None = None) -> Path:
     """
     Write the little that exists for a season that has not kicked off.
 
@@ -313,7 +338,7 @@ def _write_preseason(tables: dict, *, out_dir: str | None = None) -> Path:
     renders nothing instead of failing on a 404.
     """
     season = tables["season"]
-    root = Path(out_dir) if out_dir else paths.season_data_dir(season.season)
+    root = Path(out_dir) if out_dir else paths.season_data_dir(season.season, site)
     root.mkdir(parents=True, exist_ok=True)
     standings = tables["standings"]
 
@@ -341,7 +366,8 @@ def _write_preseason(tables: dict, *, out_dir: str | None = None) -> Path:
         "gameweeks": [],
         "leagues": [
             {"code": lg.code, "name": lg.name, "size": lg.size,
-             "promoted": lg.promoted, "relegated": lg.relegated}
+             "promoted": lg.promoted, "relegated": lg.relegated,
+             "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
         "drafters": [
@@ -359,22 +385,23 @@ def _write_preseason(tables: dict, *, out_dir: str | None = None) -> Path:
         "teams.json": _records(tables["teams"], TEAMS),
     }
     for name in ("league_table", "weekly_summary", "weekly_points",
-                 "transfers", "trades", "fixtures"):
+                 "transfers", "trades", "fixtures", "h2h_table", "h2h_matches"):
         files[f"{name}.json"] = []
 
     for name, payload in files.items():
         (root / name).write_text(_dump(payload, separators=(",", ":")), encoding="utf-8")
 
-    write_seasons_index(root.parent)
+    write_seasons_index(root.parent, site=site)
     return root
 
 
-def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: bool = True) -> Path:
+def write_season(tables: dict, *, site: str | None = None, out_dir: str | None = None,
+                 reduce_points: bool = True) -> Path:
     if tables.get("stage", "live") != "live":
-        return _write_preseason(tables, out_dir=out_dir)
+        return _write_preseason(tables, site=site, out_dir=out_dir)
 
     season = tables["season"]
-    root = Path(out_dir) if out_dir else paths.season_data_dir(season.season)
+    root = Path(out_dir) if out_dir else paths.season_data_dir(season.season, site)
     root.mkdir(parents=True, exist_ok=True)
 
     summary = tables["weekly_summary"]
@@ -394,7 +421,8 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
         "gameweeks": gameweeks,
         "leagues": [
             {"code": lg.code, "name": lg.name, "size": lg.size,
-             "promoted": lg.promoted, "relegated": lg.relegated}
+             "promoted": lg.promoted, "relegated": lg.relegated,
+             "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
         "drafters": [
@@ -416,6 +444,8 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
         "players.json": _records(tables["players"], PLAYERS),
         "teams.json": _records(tables["teams"], TEAMS),
         "fixtures.json": _records(tables.get("fixtures_by_team", pd.DataFrame()), FIXTURES),
+        "h2h_table.json": _records(tables.get("h2h_table", pd.DataFrame()), H2H_TABLE),
+        "h2h_matches.json": _records(tables.get("h2h_matches", pd.DataFrame()), H2H_MATCHES),
     }
     # Not a table: a nested dict of story beats the season review is written from.
     if tables.get("review_facts"):
@@ -429,11 +459,11 @@ def write_season(tables: dict, *, out_dir: str | None = None, reduce_points: boo
     for name, payload in files.items():
         (root / name).write_text(_dump(payload, separators=(",", ":")), encoding="utf-8")
 
-    write_seasons_index(root.parent)
+    write_seasons_index(root.parent, site=site)
     return root
 
 
-def write_seasons_index(data_root: Path | None = None) -> Path:
+def write_seasons_index(data_root: Path | None = None, *, site: str | None = None) -> Path:
     """
     Rebuild seasons.json from whatever season directories exist on disk.
 
@@ -442,11 +472,14 @@ def write_seasons_index(data_root: Path | None = None) -> Path:
     cache without any build running, and the cache holds the season folders only —
     so without an unconditional rebuild the index goes missing and the whole site
     fails to load.
+
+    Only the seasons the site publishes are listed, so one site can never index
+    another's folders even though they sit under the same `data/`.
     """
     if data_root is None:
-        data_root = paths.data_dir()
+        data_root = paths.data_dir(site)
     entries = []
-    for season_id in sorted(SEASONS, reverse=True):
+    for season_id in sorted(get_site(site).season_ids, reverse=True):
         meta_path = data_root / season_id / "meta.json"
         if not meta_path.exists():
             continue
@@ -473,20 +506,23 @@ def main(argv=None) -> int:
 
     parser = argparse.ArgumentParser(prog="pipeline.outputs")
     parser.add_argument("--index", action="store_true",
-                        help="rebuild data/seasons.json from the season directories on disk")
+                        help="rebuild data/<site>/seasons.json from the season "
+                             "directories on disk")
+    parser.add_argument("--site", default=DEFAULT_SITE,
+                        help=f"site to index (default {DEFAULT_SITE})")
     args = parser.parse_args(argv)
 
     if not args.index:
         parser.error("nothing to do; pass --index")
 
-    path = write_seasons_index()
+    path = write_seasons_index(site=args.site)
     payload = json.loads(path.read_text(encoding="utf-8"))
     seasons = ", ".join(s["season"] for s in payload["seasons"]) or "none"
     print(f"wrote {path} ({seasons})")
     if not payload["seasons"]:
         # An empty index means the site will load nothing — fail loudly rather
         # than deploying a blank app.
-        print("::error title=No seasons::data/ contains no season directories")
+        print(f"::error title=No seasons::{path.parent} contains no season directories")
         return 1
     return 0
 

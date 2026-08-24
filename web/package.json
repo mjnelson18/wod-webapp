@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:dunelmliga": "vite build --mode dunelmliga --outDir dist/dunelmliga",
     "preview": "vite preview",
     "fixtures": "node scripts/make-dev-fixtures.mjs"
   },

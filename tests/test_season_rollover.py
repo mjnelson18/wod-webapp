@@ -18,7 +18,7 @@ import pytest
 
 from pipeline import schedule
 from pipeline.build import build_tables
-from pipeline.config import League, Season, get_season
+from pipeline.config import League, Season, Site, get_season
 from pipeline.fetchers.http import Maintenance, RateLimited
 from pipeline.schedule import decide
 from pipeline.transforms.players import bootstrap_start_year, season_start_year
@@ -70,7 +70,7 @@ UNCONFIGURED = Season(
 
 @pytest.fixture
 def unconfigured(monkeypatch):
-    monkeypatch.setattr(schedule, "get_season", lambda season: UNCONFIGURED)
+    monkeypatch.setattr(schedule, "get_season", lambda season, site=None: UNCONFIGURED)
 
 
 def test_unconfigured_season_still_allows_a_deploy(unconfigured):
@@ -126,9 +126,12 @@ def test_building_a_season_against_the_wrong_payload_is_refused(monkeypatch):
     monkeypatch.setattr(build_module, "build_source", lambda *a, **k: snapshot)
 
     season = get_season("2526")
-    monkeypatch.setattr(build_module, "get_season", lambda _: type(season)(
+    mislabelled = type(season)(
         season="2627", label="2026/27", leagues=season.leagues,
         default_source="snapshot", snapshot_dir=season.snapshot_dir,
+    )
+    monkeypatch.setattr(build_module, "get_site", lambda _=None: Site(
+        slug="wod", name="What's On Draft", seasons=(mislabelled,),
     ))
 
     with pytest.raises(SystemExit, match="season mismatch"):

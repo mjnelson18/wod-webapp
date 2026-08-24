@@ -33,7 +33,7 @@ import time
 from datetime import datetime, timezone
 
 from . import paths
-from .config import get_season, is_configured
+from .config import DEFAULT_SITE, get_season, is_configured
 from .fetchers.http import Maintenance, RateLimited, get_json
 from .fetchers.source import DRAFT, FANTASY
 
@@ -139,7 +139,7 @@ def classify(season) -> tuple[str, str]:
     )
 
 
-def decide(season_id: str, *, force: bool = False) -> dict:
+def decide(season_id: str, *, site: str | None = None, force: bool = False) -> dict:
     """
     Two independent answers, because they are different questions:
 
@@ -153,7 +153,7 @@ def decide(season_id: str, *, force: bool = False) -> dict:
     be able to deploy. Treating "not configured" as "do nothing" would freeze
     deployments for the whole pre-season.
     """
-    season = get_season(season_id)
+    season = get_season(season_id, site)
     state, reason = classify(season)
     season_ready = state != "not_configured"
 
@@ -187,12 +187,27 @@ def decide(season_id: str, *, force: bool = False) -> dict:
                   interval, since)
 
 
+def _write_github_output(**values: str) -> None:
+    """Append key=value pairs to $GITHUB_OUTPUT. A no-op outside Actions."""
+    output = os.environ.get("GITHUB_OUTPUT")
+    if not output:
+        return
+    with open(output, "a", encoding="utf-8") as handle:
+        for key, value in values.items():
+            handle.write(f"{key}={value}\n")
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="pipeline.schedule")
     parser.add_argument("--season", required=True)
+    parser.add_argument("--site", default=DEFAULT_SITE,
+                        help=f"site whose season config to read (default {DEFAULT_SITE})")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--record", action="store_true",
                         help="record a completed build instead of deciding")
+    parser.add_argument("--configured-only", action="store_true",
+                        help="report season_ready for this site without any network "
+                             "calls; the build cadence is decided once, for all sites")
     parser.add_argument("--digest", default=None)
     args = parser.parse_args(argv)
 
@@ -201,7 +216,16 @@ def main(argv=None) -> int:
         print(f"recorded build for {args.season}")
         return 0
 
-    result = decide(args.season, force=args.force)
+    # One run builds every site, so the expensive question — is a build worth
+    # doing? — is asked once, against the default site. The cheap per-site
+    # question is only whether that site's season has its league codes yet.
+    if args.configured_only:
+        ready = is_configured(get_season(args.season, args.site))
+        print(f"season_ready: {ready}  ({args.site} {args.season})")
+        _write_github_output(season_ready=str(ready).lower())
+        return 0
+
+    result = decide(args.season, site=args.site, force=args.force)
     print(f"state       : {result['state']}")
     print(f"should_build: {result['should_build']}")
     print(f"season_ready: {result['season_ready']}")
@@ -210,13 +234,12 @@ def main(argv=None) -> int:
         print("note        : archives will still build and deploy; "
               "only the current season is skipped")
 
-    output = os.environ.get("GITHUB_OUTPUT")
-    if output:
-        with open(output, "a", encoding="utf-8") as handle:
-            handle.write(f"should_build={str(result['should_build']).lower()}\n")
-            handle.write(f"season_ready={str(result['season_ready']).lower()}\n")
-            handle.write(f"state={result['state']}\n")
-            handle.write(f"reason={result['reason']}\n")
+    _write_github_output(
+        should_build=str(result["should_build"]).lower(),
+        season_ready=str(result["season_ready"]).lower(),
+        state=result["state"],
+        reason=result["reason"],
+    )
 
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:

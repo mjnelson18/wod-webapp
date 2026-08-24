@@ -3,7 +3,12 @@
 import pandas as pd
 
 PLAYER_COLUMNS = [
-    "id", "web_name", "team", "team_name", "position", "total_points",
+    # `id` is this season's element id and is reassigned every year. `code` is the
+    # footballer's permanent FPL id and is the only safe way to recognise the same
+    # person across two seasons — see attach_prior_season, which had to name-join
+    # before this was carried through. Absent from the CSV-derived 2425 archive,
+    # which predates it having anywhere to live.
+    "id", "code", "web_name", "team", "team_name", "position", "total_points",
     "goals_scored", "assists", "bonus", "clean_sheets", "minutes", "draft_rank",
 ]
 
@@ -31,6 +36,10 @@ def players_table(bootstrap_draft: dict, bootstrap_fantasy: dict | None = None) 
         "id", "web_name", "element_type", "team", "total_points", "goals_scored",
         "assists", "bonus", "clean_sheets", "minutes", "draft_rank",
     ]].copy()
+    # Selected separately, and tolerantly: every real bootstrap carries `code`,
+    # but a hand-built or trimmed payload in a test needn't, and losing the
+    # permanent id should cost the cross-season join, not the whole run.
+    players["code"] = elements["code"] if "code" in elements.columns else pd.NA
 
     positions = pd.json_normalize(bootstrap_draft["element_types"])[["id", "singular_name_short"]]
     positions.columns = ["element_type", "position"]
