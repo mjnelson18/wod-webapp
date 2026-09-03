@@ -183,6 +183,12 @@ The goal is to prove the refactored pipeline reproduces the old notebook's logic
   details/choices/transactions/trades, both bootstraps, fixtures) into `/reference/raw_2526/` and
   commit it. Then run the new pipeline on that snapshot and assert its output equals the 2526 CSVs
   column-for-column. A full completed season is the strongest possible regression test.
+- **PART OF THAT SNAPSHOT IS THE WRONG SEASON — see the Gotchas entry below.** It was taken in late
+  July 2026, after `/api/fixtures/` and the fantasy bootstrap's `teams[]` had already rolled over
+  to 2026/27. `fixtures.json` and `bootstrap_static_fantasy.json` in `/reference/raw_2526/` are
+  **not** 2025/26 and must not be used as an oracle. The per-gameweek `event/*` payloads and the
+  draft bootstrap are fine. Anything needing 2025/26's real schedule, club list or element→club
+  mapping should read the pipeline's own output for that season instead.
 - **2425 can't be validated** (no raw, ever). Schema/plausibility sanity-check on the CSV-derived
   archive only.
 - Handle 2425's 5/7 split and 3-up/1-down correctly regardless.
@@ -211,6 +217,27 @@ reproduce the 2526 numbers from 2526 raw is wrong.**
   are this season's — the highest total in the whole bootstrap on GW1 day was 15. Anything wanting
   last season's numbers mid-season must read the previous season's archive instead, joined on
   `code` (permanent) and never on `element` (reassigned yearly) — see `attach_prior_season`.
+- **A raw snapshot can contain more than one season, and nothing in it says so.** Two files in
+  `/reference/raw_2526/` are actually 2026/27, because they were captured after those endpoints
+  rolled over while others had not:
+  - `fixtures.json` — 380 fixtures with kickoffs in **August 2026**, none finished.
+  - `bootstrap_static_fantasy.json` — the 2026/27 **team list**: COV, HUL and IPS are present and
+    BUR, WHU and WOL are missing, so 2025/26 players map onto next season's clubs.
+
+  Nothing caught this for months: the clubs looked plausible and every lookup returned *a* fixture
+  for *a* club. The one hard regression test reads recorded points and never touches a fixture, so
+  it kept passing. Measured against the real schedule, the snapshot matched the true opponent
+  **2.2%** of the time and the true venue **47.8%** — a coin flip. When taking a snapshot, assert
+  the kickoff years and the club list against the season it claims to be; a rollover does not move
+  every endpoint at once.
+- **An unplayed fixture has no score, and that is not nil-nil.** `fillna(0)` on
+  `team_h_score`/`team_a_score` turned every future fixture into a completed goalless draw — 753 of
+  760 rows at GW3 — so nothing downstream could tell "not played" from "finished 0-0". Use nullable
+  `Int64` and let the gap reach JSON as `null`; the frontend already renders that as a dash.
+- **`meta.gameweeks` is the list of gameweeks that have been PLAYED**, so it is `[1]` in August.
+  Anything looking *forward* must take its gameweeks from the fixture table, which is published for
+  all 38 up front. Filtering `meta.gameweeks` for weeks after the current one is always empty, which
+  is how the fixture look-ahead silently rendered nothing for a whole season.
 
 ## Non-goals / do not do
 
