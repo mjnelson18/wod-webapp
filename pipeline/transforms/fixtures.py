@@ -80,8 +80,13 @@ def fixtures_from_fantasy(raw_fixtures: list, teams: pd.DataFrame):
         "event", "team_a", "team_h", "team_a_score", "team_h_score",
         "team_a_difficulty", "team_h_difficulty", "kickoff_time",
     ]].copy()
-    frame["team_h_score"] = frame["team_h_score"].fillna(0).astype(int)
-    frame["team_a_score"] = frame["team_a_score"].fillna(0).astype(int)
+    # A fixture that has not been played has no score, and that is NOT nil-nil. Filling with
+    # zero made every future fixture look like a completed goalless draw — 753 of 760 rows in
+    # the 2026/27 output at GW3 — so the app could not tell a fixture still to come from one
+    # that ended 0-0, and future fixtures stopped rendering. Nullable Int64 keeps the integer
+    # dtype and carries the gap through to JSON null.
+    frame["team_h_score"] = pd.to_numeric(frame["team_h_score"], errors="coerce").astype("Int64")
+    frame["team_a_score"] = pd.to_numeric(frame["team_a_score"], errors="coerce").astype("Int64")
 
     names = teams.set_index("team")["team_name"]
     frame["team_a"] = frame["team_a"].map(names)
@@ -117,8 +122,9 @@ def fixtures_from_live(live_by_gameweek: dict[int, dict], teams: pd.DataFrame):
         return pd.DataFrame(), empty
 
     frame = pd.DataFrame(rows)
-    frame["team_h_score"] = pd.to_numeric(frame["team_h_score"]).fillna(0).astype(int)
-    frame["team_a_score"] = pd.to_numeric(frame["team_a_score"]).fillna(0).astype(int)
+    # Same rule as `fixtures_from_fantasy` — an unplayed fixture keeps a null score.
+    frame["team_h_score"] = pd.to_numeric(frame["team_h_score"], errors="coerce").astype("Int64")
+    frame["team_a_score"] = pd.to_numeric(frame["team_a_score"], errors="coerce").astype("Int64")
 
     names = teams.set_index("team")["team_name"]
     frame["team_h"] = frame["team_h"].map(names)

@@ -143,7 +143,14 @@ export default function Compare({ season, meta, route }) {
     const all = fixtures ?? []
     const results = all.filter(f => f.gameweek === gw && f.home_away === 'H')
       .sort((x, y) => String(x.kickoff_time ?? '').localeCompare(String(y.kickoff_time ?? '')))
-    const aheadWeeks = meta.gameweeks.filter(g => g > gw && g <= gw + LOOKAHEAD)
+    // The look-ahead comes from the FIXTURE table, not from meta.gameweeks. meta.gameweeks is
+    // the list of gameweeks that have been PLAYED — [1] in August — so filtering it for weeks
+    // after the current one is always empty and the whole "next 6 gameweeks" section, plus the
+    // upcoming-fixture columns on the free agents, silently rendered nothing all season.
+    // Fixtures are published for all 38 weeks up front, which is exactly what a look-ahead needs.
+    const scheduled = new Set(all.map(f => f.gameweek))
+    const aheadWeeks = Array.from({ length: LOOKAHEAD }, (_, i) => gw + 1 + i)
+      .filter(g => scheduled.has(g))
     const teams = [...new Set(all.map(f => f.team_name))].filter(Boolean).sort()
     const lookahead = teams.map(team => ({
       team,
