@@ -347,7 +347,7 @@ export default function Compare({ season, meta, route }) {
                       <td>{p.position}</td>
                       <td className="num">{p.form_points}</td>
                       {p.upcoming.map((f, i) => (
-                        <td key={i} style={{ background: difficultyColour(f?.opposition_difficulty) }}>
+                        <td key={i} style={{ background: difficultyColour(f?.team_difficulty) }}>
                           {f ? `${f.opposition}${f.home_away === 'H' ? '' : ' (a)'}` : '–'}
                         </td>
                       ))}
@@ -410,7 +410,7 @@ export default function Compare({ season, meta, route }) {
                       <tr key={r.team}>
                         <td>{r.team}</td>
                         {r.weeks.map((f, i) => (
-                          <td key={i} style={{ background: difficultyColour(f?.opposition_difficulty) }}>
+                          <td key={i} style={{ background: difficultyColour(f?.team_difficulty) }}>
                             {f ? `${f.opposition}${f.home_away === 'H' ? '' : ' (a)'}` : '–'}
                           </td>
                         ))}
@@ -427,6 +427,15 @@ export default function Compare({ season, meta, route }) {
   )
 }
 
+/**
+ * Shade a fixture by how hard it is FOR THE TEAM IN THAT ROW — `team_difficulty`.
+ *
+ * Not `opposition_difficulty`, which is how hard that team is to play against and is therefore
+ * a property of the team rather than of the fixture: it is constant all season (2.00 every week
+ * for Hull, Ipswich and Coventry; 4.50 for Arsenal and Man City). Shading on it coloured the
+ * grid by how good each club is, so the promoted sides were permanently green and the title
+ * contenders permanently red, which is the exact opposite of the run each of them actually has.
+ */
 function difficultyColour(value) {
   if (value == null) return undefined
   // FPL rates 1 (easiest) to 5 (hardest)
