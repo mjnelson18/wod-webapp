@@ -202,10 +202,20 @@ reproduce the 2526 numbers from 2526 raw is wrong.**
   one-off unauthenticated sanity check at build time to confirm each still returns data.)
 - GitHub Actions cron: 5-min minimum, and short schedules get delayed/dropped. Target near-live
   (~10–15 min during matches), not true-live.
-- **60-day cron auto-disable.** On public repos GitHub disables scheduled workflows after 60 days
-  with no new commits. The off-season exceeds this, so the cron switches itself off ~summer. Plan:
-  re-enable it (one click) when onboarding the new season — you're editing config then anyway. A
-  monthly keepalive workflow is the automated alternative if you'd rather it never lapse.
+- **The repo is private (since Oct 2026, GitHub Pro), which flips two Actions rules.** The 60-day
+  cron auto-disable is a public-repo rule, so the schedule no longer lapses over the summer and no
+  keepalive is needed (the rule returns if the repo ever goes public again). In exchange, Actions
+  minutes are metered — Pro includes 3,000/month and **every fired run bills a minimum of one
+  minute**, even a gate-skipped one — so run *count* matters as much as run length. Pages is
+  unaffected: repo visibility and site visibility are independent, and the URL is unchanged.
+- **The cron is fixture-aware, and that is a billing feature.** The match-window block in
+  `update.yml` (between `# BEGIN/END match windows` markers) is generated from the live fixture
+  list by `pipeline/windows.py`; `reschedule.yml` rewrites it daily and commits only on change
+  (`[skip ci]`, roughly weekly). Don't hand-edit the block or re-broaden the schedule — blanket
+  windows are what the quota goes on. The push needs the `WORKFLOW_PAT` secret (classic PAT,
+  `repo` + `workflow` scopes) because the default token cannot push workflow files; if it expires
+  the job warns, stale date-pinned windows stop firing, and the site degrades to the 3-hourly
+  baseline cron — slower, never broken.
 - Provisional vs. final points/bonus — don't cache a gameweek as immutable until it's truly done.
 - Season 2425's 5/7 split will break any code that assumes 6/6.
 - **`draft/<league>/choices` is not a history.** It serves the league's current or *next* draft, so

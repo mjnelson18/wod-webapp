@@ -1,0 +1,60 @@
+name: Refresh match windows
+
+# Rewrites the generated cron block in update.yml from the live fixture list
+# (see pipeline/windows.py) and commits it when it changed — roughly weekly, as
+# the gameweek advances or kick-offs are moved for TV.
+#
+# Pushing a change to a workflow file is refused for the default GITHUB_TOKEN,
+# so the push needs a classic PAT with `repo` + `workflow` scopes stored in the
+# WORKFLOW_PAT secret. Without it the job still runs but stops before pushing,
+# with a warning: the windows go stale, past-dated entries simply stop firing,
+# and the site degrades to update.yml's 3-hourly baseline — slower, not broken.
+#
+# [skip ci] on the commit stops the push re-triggering a forced build through
+# update.yml's push trigger; the schedule itself is read from the new file
+# regardless.
+
+on:
+  schedule:
+    - cron: '43 5 * * *'   # daily, before the earliest realistic kick-off
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reschedule
+  cancel-in-progress: false
+
+jobs:
+  reschedule:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.WORKFLOW_PAT || github.token }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+      # Stdlib-only, like the schedule gate: no dependency install. On an API
+      # holding page or back-off it leaves the file unchanged and exits 0.
+      - name: Regenerate the match windows
+        id: windows
+        run: python -m pipeline.windows --write
+
+      - name: Commit the new schedule
+        if: steps.windows.outputs.changed == 'true'
+        env:
+          HAS_PAT: ${{ secrets.WORKFLOW_PAT != '' }}
+        run: |
+          if [ "$HAS_PAT" != "true" ]; then
+            echo "::warning title=WORKFLOW_PAT missing::The match windows changed but the default token cannot push workflow files. Add a classic PAT with repo + workflow scopes as the WORKFLOW_PAT secret; running on the 3-hourly baseline until then."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/update.yml
+          git commit -m "schedule: refresh match windows [skip ci]"
+          git push
