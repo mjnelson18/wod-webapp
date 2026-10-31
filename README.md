@@ -175,15 +175,35 @@ This affects only local development — CI runs on Linux and is unaffected. Dele
 JSON, and force-deploys site + data to Pages. Deployment uses a Pages artifact, so nothing is ever
 committed.
 
-### Cron (UTC)
+### Cron (UTC) — fixture-aware
+
+The schedule follows the actual fixture list rather than blanket windows:
 
 | Cron | Covers |
 |---|---|
-| `*/10 11-22 * * 0,6` | weekend match windows |
-| `*/10 18-22 * * 1-5` | weekday evening match windows |
-| `17 * * * *` | hourly otherwise, for bonus, waivers and trades |
+| generated, e.g. `*/10 12-20 7 11 *` | every 10 min through a day's matches, kick-off −10 min to +3.5 h (bonus settling) |
+| `17 */3 * * *` | 3-hourly baseline: waivers, trades, pre-season, and the fallback if the windows go stale |
 
-Kick-offs run roughly 11:00–23:00 UTC at weekends and 18:00–23:00 UTC midweek, allowing for BST.
+The match-window block lives in `update.yml` between `# BEGIN match windows` / `# END match
+windows` markers and covers the current and next gameweek. `reschedule.yml` regenerates it daily
+(05:43 UTC) with `python -m pipeline.windows --write` and commits only when it changed — roughly
+weekly, as the gameweek advances or kick-offs move for TV. Postponed fixtures (no kickoff time)
+are skipped and picked up once rescheduled.
+
+**Why:** the repo is private, so every fired run bills at least one minute against the included
+Actions quota (3,000 min/month on GitHub Pro) even when the gate skips it. The old blanket
+schedule fired ~460 runs a week, most of them quiet; the fixture windows cut that to roughly a
+third, almost all of them runs that do real work.
+
+**The rewrite needs a secret.** GitHub refuses workflow-file pushes from the default token, so
+`reschedule.yml` pushes with **`WORKFLOW_PAT`** — a classic PAT with `repo` + `workflow` scopes
+(classic, because fine-grained PATs expire within a year). If the secret is missing or revoked
+the job warns instead of failing, past-dated windows simply stop firing, and the site updates on
+the 3-hourly baseline until it's restored.
+
+Date-pinned cron entries recur **annually**; the daily rewrite prunes past days, so a stale line
+would only ever misfire a year on, costing one gated quiet run.
+
 GitHub enforces a 5-minute minimum and delays or drops short schedules under load, so treat 10
 minutes as "about 10–20 minutes in practice" — near-live, not live.
 
@@ -223,7 +243,8 @@ fantasy host had already moved to 2627. Three guarantees cover that window:
    can't write last season's numbers out under this season's id.
 
 The gate is stdlib-only and runs *before* dependencies are installed, so a quiet run costs about 15
-seconds and does not install pandas. Roughly 66 runs a day fire; only a handful do real work.
+seconds and does not install pandas. On a match day a few dozen runs fire, mostly doing real work;
+on a blank day only the 3-hourly baseline does.
 
 Two further brakes:
 
@@ -239,13 +260,16 @@ historical CSVs, so they are not rebuilt on every run — 2526 takes about two m
 `ARCHIVE_CACHE_VERSION` in the workflow to force a rebuild, or run the workflow manually with
 **rebuild_archives**.
 
-### ⚠️ The cron switches itself off each summer
+### The summer cron lapse is gone (private repo)
 
-GitHub disables scheduled workflows on public repos after **60 days with no new commits**. The
-off-season is longer than that, so the cron will lapse around midsummer every year.
+GitHub's 60-day no-commit auto-disable for scheduled workflows is a public-repo rule. Since the
+repo went private (October 2026, GitHub Pro) the cron no longer switches itself off over the
+off-season, and there is still no keepalive workflow because none is needed. If the repo is ever
+made public again the rule comes back — re-enable lapsed workflows from the Actions tab.
 
-Re-enable it from the Actions tab when onboarding the new season — you are editing config then
-anyway. This is deliberate; there is no keepalive workflow.
+The trade is that Actions minutes are now metered (see the cron section above). Keep an eye on
+**Settings → Billing → Actions** for the first month or two of a season; the default spending
+limit is $0, which means workflows stop silently when the quota runs out rather than charging.
 
 ## Onboarding a new season
 
@@ -285,7 +309,9 @@ anyway. This is deliberate; there is no keepalive workflow.
    the choices endpoint drops the completed one as soon as the next is pending. See *A draft the
    API stops serving* above.
 
-6. **Re-enable the cron** in the Actions tab if it lapsed over the summer.
+6. **Check the schedule woke up.** The cron no longer lapses over summer (private repo), but
+   confirm `reschedule.yml` has regenerated the match windows for the new fixtures and that the
+   `WORKFLOW_PAT` secret hasn't been revoked — its job warns rather than fails when it can't push.
 
 7. **Write the outgoing season's review.** The pipeline emits
    `data/<season>/season_review_facts.json` — every story beat as data. The write-up itself
