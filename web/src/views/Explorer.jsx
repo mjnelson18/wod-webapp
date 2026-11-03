@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-table'
 import { loadTable, useAsync } from '../lib/data.js'
 import { Section, Loading } from '../components/ui.jsx'
+import AskBox from '../components/AskBox.jsx'
 
 /**
  * Raw data explorer — sortable, filterable, paginated tables over the canonical
@@ -25,7 +26,7 @@ const TABLES = [
 
 const PAGE_SIZE = 50
 
-export default function Explorer({ season }) {
+export default function Explorer({ season, meta }) {
   const [which, setWhich] = useState(TABLES[0].name)
   const [query, setQuery] = useState('')
   const [sorting, setSorting] = useState([])
@@ -70,6 +71,9 @@ export default function Explorer({ season }) {
 
   return (
     <Section title="Data explorer" note={active?.note}>
+      {/* Hidden entirely when no /ask endpoint is configured for this site. */}
+      <AskBox season={season} meta={meta} />
+
       <div className="chips" style={{ marginBottom: 8 }}>
         {TABLES.map(t => (
           <button
