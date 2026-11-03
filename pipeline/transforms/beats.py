@@ -105,6 +105,10 @@ def _week_beats(week: pd.DataFrame, prior: pd.DataFrame, league: str,
 def _bench_beat(summary: pd.DataFrame, league: str, gameweek: int,
                 names: dict) -> list[dict]:
     """The week's worst optimal-XI gap, when it is painful enough to mention."""
+    if not len(summary):
+        # A columnless empty frame (preseason, or an H2H build with no summary
+        # yet) would KeyError on the column lookups below.
+        return []
     rows = summary[(summary["league_code"] == league)
                    & (summary["gameweek"] == gameweek)]
     if rows.empty or not rows["optimal_points"].notna().any():

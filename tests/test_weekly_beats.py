@@ -125,7 +125,8 @@ def test_a_personal_outlier_measures_against_their_own_average(beats):
     beat = outliers[0]
     assert (beat["gameweek"], beat["data"]["short_name"]) == (5, "AA")
     assert beat["data"]["direction"] == "below"
-    assert beat["data"]["average"] == pytest.approx(31.3, abs=0.1)
+    # AA's prior mean is exactly 31.25; round(…, 1) banker-rounds it to 31.2.
+    assert beat["data"]["average"] == pytest.approx(31.25, abs=0.06)
 
 
 def test_a_rank_swing_needs_two_places(beats):
