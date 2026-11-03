@@ -12,7 +12,7 @@
 // (not imported: the worker folder isn't part of the web bundle).
 export const QUERY_TABLES = [
   'weekly_summary', 'weekly_points', 'draft_picks',
-  'transfers', 'trades', 'players', 'league_table',
+  'transfers', 'trades', 'players', 'league_table', 'fixtures',
 ]
 
 const MAX_LIMIT = 50
@@ -112,6 +112,21 @@ function aggregateRows(rows, groupBy, aggregates) {
       result[as] = value
     }
     out.push(result)
+  }
+  return out
+}
+
+/**
+ * Swap drafter short names in a headline for full names — "MN let Watkins go"
+ * reads better as "Mike Nelson let Watkins go". Whole words only, exact case,
+ * so initials buried inside player names are left alone.
+ */
+export function personaliseHeadline(headline, drafters) {
+  if (!headline) return headline
+  let out = headline
+  for (const d of drafters ?? []) {
+    if (!d?.short_name || !d?.name) continue
+    out = out.replace(new RegExp(`\\b${d.short_name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), d.name)
   }
   return out
 }

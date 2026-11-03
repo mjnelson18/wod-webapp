@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { loadTable, loadTableIfPresent, loadSeasons, useAsync } from '../lib/data.js'
 import { askAvailable, askContext, fetchSpec } from '../lib/ask.js'
-import { runSpec, QueryError } from '../lib/queryExec.js'
+import { runSpec, personaliseHeadline, QueryError } from '../lib/queryExec.js'
 import { Collapsible } from './ui.jsx'
 
 /**
@@ -58,7 +58,7 @@ export default function AskBox({ season, meta }) {
         (name, s) => (s == null ? loadTable(season, name) : loadTableIfPresent(s, name)),
         { seasons: publishedSeasons },
       )
-      setState({ status: 'done', rows, headline, spec })
+      setState({ status: 'done', rows, headline: personaliseHeadline(headline, meta?.drafters), spec })
     } catch (err) {
       if (err instanceof QueryError) {
         // The model said no (answerable: false) or produced a spec the

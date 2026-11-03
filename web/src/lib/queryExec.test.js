@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { runSpec, QueryError } from './queryExec.js'
+import { runSpec, personaliseHeadline, QueryError } from './queryExec.js'
 
 // The offering drafter RECEIVES player_in and gives up player_out; the other
 // side therefore gives player_in and receives player_out (see data contract).
@@ -205,6 +205,24 @@ describe('cross-season execution', () => {
     )
     expect(rows).toHaveLength(3)
     expect(rows[0].season).toBeUndefined()
+  })
+})
+
+describe('personaliseHeadline', () => {
+  const drafters = [
+    { short_name: 'MN', name: 'Mike Nelson' },
+    { short_name: 'TS', name: 'Tom Shiel' },
+  ]
+
+  it('swaps whole-word short names for full names', () => {
+    expect(personaliseHeadline('MN let Watkins go, TS pounced', drafters))
+      .toBe('Mike Nelson let Watkins go, Tom Shiel pounced')
+  })
+
+  it('leaves initials buried in other words alone', () => {
+    expect(personaliseHeadline('TSitsipas and the MNightly show', drafters))
+      .toBe('TSitsipas and the MNightly show')
+    expect(personaliseHeadline(null, drafters)).toBeNull()
   })
 })
 

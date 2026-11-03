@@ -3,7 +3,7 @@ import {
   useReactTable, getCoreRowModel, getSortedRowModel,
   getFilteredRowModel, getPaginationRowModel, flexRender,
 } from '@tanstack/react-table'
-import { loadTable, useAsync } from '../lib/data.js'
+import { loadTable, useAsync, can } from '../lib/data.js'
 import { Section, Loading } from '../components/ui.jsx'
 import AskBox from '../components/AskBox.jsx'
 
@@ -22,12 +22,18 @@ const TABLES = [
   { name: 'trades', label: 'Trades', note: 'drafter-to-drafter swaps' },
   { name: 'players', label: 'Players', note: 'one row per footballer' },
   { name: 'league_table', label: 'League table', note: 'one row per drafter' },
+  // Only seasons with a full-season fixture table (2425's archive has none).
+  { name: 'fixtures', label: 'Fixtures', note: 'one row per club per gameweek — null scores are unplayed, not 0-0',
+    when: meta => can(meta, 'fixture_lookahead') },
 ]
 
 const PAGE_SIZE = 50
 
 export default function Explorer({ season, meta }) {
-  const [which, setWhich] = useState(TABLES[0].name)
+  const tables = TABLES.filter(t => !t.when || t.when(meta))
+  const [picked, setWhich] = useState(TABLES[0].name)
+  // Switching to a season that lacks the picked table falls back to the first.
+  const which = tables.some(t => t.name === picked) ? picked : tables[0].name
   const [query, setQuery] = useState('')
   const [sorting, setSorting] = useState([])
 
@@ -67,7 +73,7 @@ export default function Explorer({ season, meta }) {
     initialState: { pagination: { pageSize: PAGE_SIZE } },
   })
 
-  const active = TABLES.find(t => t.name === which)
+  const active = tables.find(t => t.name === which) ?? TABLES[0]
 
   return (
     <Section title="Data explorer" note={active?.note}>
@@ -75,7 +81,7 @@ export default function Explorer({ season, meta }) {
       <AskBox season={season} meta={meta} />
 
       <div className="chips" style={{ marginBottom: 8 }}>
-        {TABLES.map(t => (
+        {tables.map(t => (
           <button
             key={t.name}
             className="chip"
