@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 
 from .. import paths
+from ..transforms.beats import weekly_beats
 from ..transforms.league import form_table
 from ..transforms.narrative import season_review_facts
 from ..transforms.summaries import (
@@ -297,9 +298,18 @@ def build_tables(season, *, verbose: bool = True) -> dict:
         transfers=transfers, trades=trades,
     )
 
+    # Weekly talking points work from the same tables, so the archives get them
+    # too. No h2h_matches here — no archived season played head-to-head.
+    beats = weekly_beats(
+        season=season, league_table=table, league_table_by_week=by_week,
+        weekly_summary=summary, transfers=transfers, trades=trades,
+        h2h_matches=None,
+    )
+
     return {
         "season": season,
         "current_week": current_week,
+        "weekly_beats": beats,
         "hosts_agree": False,
         "teams": teams if teams is not None else pd.DataFrame(columns=["team", "team_name"]),
         "players": players,

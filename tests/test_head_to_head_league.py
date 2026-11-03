@@ -9,6 +9,7 @@ and mid-gameweek it is still last week's table.
 Nothing here touches the network.
 """
 
+import pandas as pd
 import pytest
 
 from pipeline.transforms.league import (
@@ -16,6 +17,7 @@ from pipeline.transforms.league import (
     head_to_head_table,
     is_head_to_head,
     league_table,
+    override_live_scores,
     reconcile_head_to_head,
 )
 
@@ -225,3 +227,81 @@ def test_a_provisional_row_is_not_compared(standings):
                           match(2, 102, 104, 45, 45, started=True, finished=False)]
 
     assert reconcile(standings, api_standings(), matches=live) == []
+
+
+# --- live-score override -----------------------------------------------------
+# The matches payload lags live scoring, while the weekly summary (built from
+# event/live) is near-live. Mid-gameweek the fixture scores are replaced with the
+# summary's banked points so the fixtures agree with the points table beside them.
+
+def summary_rows(points: dict[tuple[int, str], list[int]]) -> pd.DataFrame:
+    """A weekly_summary stand-in: several squad rows per drafter per gameweek."""
+    rows = []
+    for (gameweek, short_name), scores in points.items():
+        rows.extend({"gameweek": gameweek, "short_name": short_name,
+                     "points_scored": p} for p in scores)
+    return pd.DataFrame(rows)
+
+
+@pytest.fixture
+def live_fixtures(standings):
+    """GW1 finished; GW2 in play; GW3 not started — the mid-gameweek shape."""
+    matches = MATCHES[:2] + [
+        match(2, 101, 103, 20, 60, started=True, finished=False),
+        match(2, 102, 104, 45, 45, started=True, finished=False),
+    ] + MATCHES[4:]
+    return head_to_head_matches(details(matches=matches), standings, league_code="DL")
+
+
+def test_an_in_play_score_comes_from_the_weekly_summary(live_fixtures):
+    summary = summary_rows({(2, "AA"): [10, 15], (2, "CC"): [30, 32],
+                            (2, "BB"): [20], (2, "DD"): [50]})
+    out = override_live_scores(live_fixtures, summary).set_index(["gameweek", "home"])
+
+    row = out.loc[(2, "AA")]
+    assert (row["home_points"], row["away_points"]) == (25, 62)   # summed squad rows
+    assert (row["result"], row["winner"]) == ("L", "CC")
+    # The stale API draw becomes a live DD win once real points replace it.
+    row = out.loc[(2, "BB")]
+    assert (row["home_points"], row["away_points"]) == (20, 50)
+    assert (row["result"], row["winner"]) == ("L", "DD")
+
+
+def test_finished_and_unstarted_matches_are_never_touched(live_fixtures):
+    summary = summary_rows({(gw, name): [99] for gw in (1, 2, 3)
+                            for name in ("AA", "BB", "CC", "DD")})
+    out = override_live_scores(live_fixtures, summary).set_index(["gameweek", "home"])
+
+    settled = out.loc[(1, "AA")]
+    assert (settled["home_points"], settled["away_points"]) == (50, 40)
+    future = out.loc[(3, "AA")]
+    assert (future["home_points"], future["away_points"]) == (0, 0)
+    assert future["result"] is None or pd.isna(future["result"])
+
+
+def test_a_drafter_missing_from_the_summary_keeps_the_api_score(live_fixtures):
+    summary = summary_rows({(2, "AA"): [25]})       # nothing for CC, BB or DD
+    out = override_live_scores(live_fixtures, summary).set_index(["gameweek", "home"])
+
+    row = out.loc[(2, "AA")]
+    assert (row["home_points"], row["away_points"]) == (25, 60)
+    row = out.loc[(2, "BB")]
+    assert (row["home_points"], row["away_points"]) == (45, 45)
+
+
+def test_an_empty_summary_changes_nothing(live_fixtures):
+    out = override_live_scores(live_fixtures, pd.DataFrame())
+
+    assert out.equals(live_fixtures)
+
+
+def test_the_folded_table_uses_the_live_scores(standings, live_fixtures):
+    summary = summary_rows({(2, "AA"): [10, 15], (2, "CC"): [30, 32],
+                            (2, "BB"): [20], (2, "DD"): [50]})
+    fixtures = override_live_scores(live_fixtures, summary)
+    table, _ = head_to_head_table(fixtures, standings, league_code="DL", current_week=2)
+    rows = table.set_index("short_name")
+
+    assert rows.loc["DD", "h2h_points"] == 4        # GW1 draw + live GW2 win
+    assert rows.loc["DD", "points_for"] == 80       # 30 + 50
+    assert rows.loc["DD", "provisional"]

@@ -1,5 +1,6 @@
 from .seasons import (
     League,
+    PotRules,
     Season,
     is_configured,
 )
@@ -14,6 +15,7 @@ from .sites import (
 __all__ = [
     "DEFAULT_SITE",
     "League",
+    "PotRules",
     "SITES",
     "Season",
     "Site",

@@ -3,6 +3,8 @@
 This is what makes them testable against the historical CSVs.
 """
 
+from .beats import weekly_beats
+from .breakdown import points_breakdown
 from .draft_picks import attach_pick_totals, attach_prior_season, draft_picks_table
 from .fixtures import fixtures_from_fantasy, fixtures_from_live
 from .league import (
@@ -16,6 +18,7 @@ from .league import (
     league_gaps,
     league_table,
     live_league_table,
+    override_live_scores,
     reconcile_head_to_head,
 )
 from .moves import (
@@ -26,6 +29,7 @@ from .moves import (
 )
 from .narrative import season_review_facts
 from .optimal import add_optimal_points, calc_optimal_points
+from .pot import gameweek_calendar, pot_tracker
 from .summaries import (
     available_form_players,
     draft_pick_performance,
@@ -60,9 +64,12 @@ __all__ = [
     "draft_share_by_gameweek",
     "fixture_lookahead",
     "formations",
+    "gameweek_calendar",
     "lorenz_curve",
     "player_usage",
+    "points_breakdown",
     "points_distribution",
+    "pot_tracker",
     "season_review_facts",
     "season_summary",
     "season_summary_by_gameweek",
@@ -83,11 +90,13 @@ __all__ = [
     "league_gaps",
     "league_table",
     "live_league_table",
+    "override_live_scores",
     "reconcile_head_to_head",
     "players_table",
     "season_start_year",
     "teams_table",
     "trades_table",
     "transfers_table",
+    "weekly_beats",
     "weekly_tables",
 ]

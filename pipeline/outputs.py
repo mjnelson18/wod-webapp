@@ -429,7 +429,16 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
             {"short_name": r["short_name"], "name": _clean(r.get("name")), "league": r["league_code"]}
             for r in tables["league_table"].to_dict("records")
         ],
-        "capabilities": _capabilities(tables),
+        # Frame-probed capabilities plus the payload-shaped extras. The extras are
+        # merged here rather than inside _capabilities, which _write_preseason
+        # reuses against empty frames — a preseason meta simply lacks these keys,
+        # and the frontend's can() treats absent as off.
+        "capabilities": {
+            **_capabilities(tables),
+            "weekly_beats": bool(tables.get("weekly_beats")),
+            "pot_tracker": bool(tables.get("pot_tracker")),
+            "points_breakdown": bool(tables.get("points_breakdown")),
+        },
         "notes": season.notes,
     }
 
@@ -450,6 +459,11 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
     # Not a table: a nested dict of story beats the season review is written from.
     if tables.get("review_facts"):
         files["season_review_facts.json"] = tables["review_facts"]
+    # Also hand-shaped: weekly talking points and the pot ledger.
+    if tables.get("weekly_beats"):
+        files["weekly_beats.json"] = tables["weekly_beats"]
+    if tables.get("pot_tracker"):
+        files["pot_tracker.json"] = tables["pot_tracker"]
     for name, view in (tables.get("views") or {}).items():
         columns = VIEW_COLUMNS.get(name)
         if columns is None:
@@ -458,6 +472,16 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
 
     for name, payload in files.items():
         (root / name).write_text(_dump(payload, separators=(",", ":")), encoding="utf-8")
+
+    # Per-player score breakdowns, one file per gameweek so the squads view can
+    # fetch just the week it is showing. Settled weeks are byte-stable run to run.
+    breakdown = tables.get("points_breakdown") or {}
+    if breakdown:
+        breakdown_dir = root / "points_breakdown"
+        breakdown_dir.mkdir(parents=True, exist_ok=True)
+        for gameweek, records in breakdown.items():
+            (breakdown_dir / f"{int(gameweek)}.json").write_text(
+                _dump(records, separators=(",", ":")), encoding="utf-8")
 
     write_seasons_index(root.parent, site=site)
     return root

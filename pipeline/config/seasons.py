@@ -13,6 +13,19 @@ from dataclasses import dataclass, field
 
 
 @dataclass(frozen=True)
+class PotRules:
+    """
+    A league's side-pot convention. Purely the group's own rule, never derivable
+    from any payload: everyone buys in once, then the drafter with the fewest FPL
+    points scored across each calendar month's gameweeks adds the monthly stake.
+    """
+
+    buy_in: int = 20
+    monthly_stake: int = 10
+    currency: str = "£"
+
+
+@dataclass(frozen=True)
 class League:
     """One league within a season."""
 
@@ -31,6 +44,9 @@ class League:
     # or *next* draft, never a history, so a league that schedules a second draft
     # loses its first one from the API the moment it does. See build._draft_choices.
     draft_choices_fallback: str | None = None
+    # The league's side-pot rule, if it keeps one (Dunelmliga does; the WOD
+    # leagues don't). Drives the pot_tracker output and its capability flag.
+    pot: PotRules | None = None
 
 
 @dataclass(frozen=True)

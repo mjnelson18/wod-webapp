@@ -3,7 +3,7 @@ import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Legend,
 } from 'recharts'
-import { useTables, colourMap, can } from '../lib/data.js'
+import { useTables, useAsync, loadTableIfPresent, colourMap, can } from '../lib/data.js'
 import { fullName, label, pct, round, signed } from '../lib/names.js'
 import {
   LeagueToggle, Section, Loading, Unavailable, Stat, StatRow,
@@ -43,6 +43,9 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
     'draft_performance', 'player_usage', 'draft_share', 'draft_share_by_gameweek',
     'lorenz', 'distribution_position', 'distribution_team',
   ])
+  // The facts pack is optional (older archives may not ship it), so it loads
+  // beside the tables rather than through useTables, which errors on a 404.
+  const facts = useAsync(() => loadTableIfPresent(season, 'season_review_facts'), [season])
   const [mode, setMode] = useState('cumulative')
   const [seriesMetric, setSeriesMetric] = useState('points_scored')
   const [lorenzMode, setLorenzMode] = useState('pct')
@@ -226,6 +229,18 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       }
     }).sort((a, b) => b.pool - a.pool)
 
+    // Most points sitting on a bench across the season — the same definition as
+    // the gameweek tile (what places 12-15 actually scored), summed.
+    const benchTotals = new Map()
+    for (const x of summary) {
+      if ((x.place ?? 99) > 11) {
+        benchTotals.set(x.short_name,
+          (benchTotals.get(x.short_name) ?? 0) + (Number(x.total_points) || 0))
+      }
+    }
+    const biggestBench = [...benchTotals.entries()].reduce(
+      (a, [short, pts]) => (pts > (a?.pts ?? -1) ? { short, pts } : a), null)
+
     const leader = rows[0]
     const totalLost = summaryRows.filter(r => !r.is_average)
       .reduce((s, r) => s + Math.abs(Number(r.net_points_lost_through_subs) || 0), 0)
@@ -234,14 +249,19 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     return { rows, gws, points, bins, subCost, activity, activityByWeek, types,
              summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
-             lorenz, maxSquad, draftRows, earlyRounds, squadRounds, shareSeries,
-             draftOutcomes }
+             biggestBench, lorenz, maxSquad, draftRows, earlyRounds, squadRounds,
+             shareSeries, draftOutcomes }
   }, [data, league, meta, mode, seriesMetric, lorenzMode, draftFilter])
 
   if (error) return <div className="notice">Couldn&apos;t load season data: {String(error.message)}</div>
   if (loading || !v) return <Loading what="season trends" />
 
   const modeLabel = { cumulative: 'Cumulative points', weekly: 'Points per gameweek', average: 'Rolling average' }[mode]
+
+  // Facts-pack extras for the selected league; both degrade to absent.
+  const leagueFacts = facts.data?.leagues?.find(l => l.code === league)
+  const bestTransfer = leagueFacts?.moves?.best_transfer
+  const keepers = leagueFacts?.keepers
 
   return (
     <>
@@ -258,6 +278,14 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
           {v.bestPick && (
             <Stat label="Best draft pick" value={v.bestPick.points_realised_by_drafter}
                   sub={`${v.bestPick.web_name} · ${fullName(meta, v.bestPick.short_name)}`} />
+          )}
+          {v.biggestBench && (
+            <Stat label="Benched points" value={v.biggestBench.pts}
+                  sub={`${fullName(meta, v.biggestBench.short)} · season total on the bench`} />
+          )}
+          {bestTransfer && bestTransfer.net_points_since != null && (
+            <Stat label="Best transfer" value={signed(bestTransfer.net_points_since)}
+                  sub={`${bestTransfer.player_in} in · ${fullName(meta, bestTransfer.short_name)} · since GW${bestTransfer.gameweek}`} />
           )}
         </StatRow>
       </Section>
@@ -286,6 +314,31 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
               <DrafterLines data={v.subCost} rows={v.rows} colours={colours} />
             </>
           )}
+
+        {keepers?.length > 0 && (
+          <>
+            <SubHead note="You start one keeper of two — how often was it the right one? An equal score counts as right.">
+              Keeper calls
+            </SubHead>
+            <div className="table-wrap">
+              <table className="data">
+                <thead>
+                  <tr><th>Drafter</th><th>Right call</th><th>%</th><th>Points lost</th></tr>
+                </thead>
+                <tbody>
+                  {keepers.map(k => (
+                    <tr key={k.short_name}>
+                      <td>{fullName(meta, k.short_name)}</td>
+                      <td className="num">{k.correct}/{k.weeks_with_choice}</td>
+                      <td className="num">{pct(k.pct, 0)}</td>
+                      <td className="num">{k.points_lost > 0 ? `−${k.points_lost}` : '0'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </Collapsible>
 
       <Collapsible title="Transfers & trades"
