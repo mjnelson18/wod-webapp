@@ -6,11 +6,19 @@ state and the season's fixtures (published for all 38 gameweeks up front),
 computes when the current and next gameweek's matches are actually on, and
 rewrites the cron block between the BEGIN/END markers in the workflow file:
 
-    python -m pipeline.windows            # print the windows
-    python -m pipeline.windows --write    # rewrite the block in update.yml
+    python -m pipeline.windows                        # print the windows
+    python -m pipeline.windows --write                # rewrite the block in update.yml
+    python -m pipeline.windows --json <path>          # write the windows as JSON
 
 `reschedule.yml` runs it daily and commits the result only when it changed —
 roughly once a week, as the gameweek advances or kick-offs move for TV.
+
+GitHub's scheduler is best-effort and in practice delivers a fraction of the
+cron block's firings, hours late (observed Oct–Nov 2026). The primary clock is
+therefore the Cloudflare Worker in /trigger, which reads the same windows as
+JSON — published with the site by update.yml via `--json` — and fires the
+workflow through `workflow_dispatch`. The cron block stays as the free
+fallback for when the worker or its token lapses.
 
 Why it exists: the repo is private, so every fired run bills a minimum of one
 minute even when pipeline.schedule says there is nothing to do. Firing only
@@ -28,6 +36,7 @@ Stdlib-only, like pipeline.schedule: it runs before dependencies are installed.
 """
 
 import argparse
+import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -107,6 +116,30 @@ def cron_lines(windows) -> list[str]:
     return lines
 
 
+def _iso(moment: datetime) -> str:
+    return moment.isoformat().replace("+00:00", "Z")
+
+
+def window_payload(windows, *, now: datetime) -> dict:
+    """The windows as data, for the external trigger (see /trigger).
+
+    `generated` is metadata for debugging a stale file — the worker never
+    reads it, and the deploy digest must never include this file, or the
+    timestamp alone would force a deploy every run.
+    """
+    return {
+        "generated": _iso(now),
+        "windows": [
+            {
+                "start": _iso(start),
+                "end": _iso(end),
+                "kickoffs": [_iso(k) for k in kickoffs],
+            }
+            for start, end, kickoffs in windows
+        ],
+    }
+
+
 def replace_block(text: str, lines) -> str:
     """Replace the cron block between the markers, preserving their indent."""
     out, begun, skipping = [], False, False
@@ -135,6 +168,8 @@ def main(argv=None) -> int:
     parser.add_argument("--write", action="store_true",
                         help="rewrite the cron block in the workflow file")
     parser.add_argument("--workflow", default=WORKFLOW)
+    parser.add_argument("--json", metavar="PATH",
+                        help="also write the windows as JSON for the external trigger")
     args = parser.parse_args(argv)
 
     try:
@@ -148,7 +183,8 @@ def main(argv=None) -> int:
         _write_github_output(changed="false")
         return 0
 
-    windows = match_windows(fixtures, events, now=datetime.now(timezone.utc))
+    now = datetime.now(timezone.utc)
+    windows = match_windows(fixtures, events, now=now)
     lines = cron_lines(windows)
     if len(lines) > MAX_LINES:
         print(f"refusing to write {len(lines)} cron lines (cap {MAX_LINES}) — "
@@ -160,6 +196,15 @@ def main(argv=None) -> int:
         print(entry)
     if not lines:
         print(f"no upcoming fixtures for events {sorted(events) or 'none'}")
+
+    if args.json:
+        path = Path(args.json)
+        if not path.is_absolute():
+            path = paths.repo_root() / path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(window_payload(windows, now=now), indent=1) + "\n",
+                        encoding="utf-8", newline="\n")
+        print(f"windows written to {path}")
 
     changed = False
     if args.write:

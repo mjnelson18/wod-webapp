@@ -1,0 +1,16 @@
+# Cloudflare Worker config for the external trigger (see README.md here).
+# Deploy from this folder: npx wrangler@latest deploy
+
+name = "wod-trigger"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# Cron-only: no HTTP route, nothing to browse to.
+workers_dev = false
+
+[triggers]
+# One tick every 10 minutes; worker.js decides what (if anything) is due.
+crons = ["*/10 * * * *"]
+
+[observability]
+enabled = true

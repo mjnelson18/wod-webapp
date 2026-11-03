@@ -171,9 +171,10 @@ This affects only local development — CI runs on Linux and is unaffected. Dele
 
 ## How the scheduled update works
 
-`.github/workflows/update.yml` runs on cron, decides whether the run is worth doing, rebuilds the
-JSON, and force-deploys site + data to Pages. Deployment uses a Pages artifact, so nothing is ever
-committed.
+`.github/workflows/update.yml` decides whether the run is worth doing, rebuilds the JSON, and
+force-deploys site + data to Pages. Deployment uses a Pages artifact, so nothing is ever committed.
+It is fired two ways: by the Cloudflare Worker in `/trigger` (the primary clock, via
+`workflow_dispatch`) and by its own GitHub cron (the free fallback).
 
 ### Cron (UTC) — fixture-aware
 
@@ -204,8 +205,19 @@ the 3-hourly baseline until it's restored.
 Date-pinned cron entries recur **annually**; the daily rewrite prunes past days, so a stale line
 would only ever misfire a year on, costing one gated quiet run.
 
-GitHub enforces a 5-minute minimum and delays or drops short schedules under load, so treat 10
-minutes as "about 10–20 minutes in practice" — near-live, not live.
+### The external trigger is the real clock
+
+GitHub's scheduler turned out to be far worse than "delayed under load": measured over
+Oct–Nov 2026 it delivered 6–12 of ~50 daily firings, hours late — during the Mon 2 Nov match the
+every-10-minutes window produced exactly one run, before kick-off. So the cron block above is the
+**fallback**, and the primary clock is a Cloudflare Worker (`/trigger`), fired by Cloudflare's
+to-the-minute cron every 10 minutes. It reads the deployed
+[`windows.json`](https://mjnelson18.github.io/wod-webapp/windows.json) — published by `update.yml`
+from the same `pipeline/windows.py` computation that writes the cron block — and dispatches
+`update.yml` inside a window plus a 3-hourly baseline tick, and the private assistant repo's
+`weekly.yml` on its own cadence. Setup, budget arithmetic and failure modes: `trigger/README.md`.
+If the worker or its `GITHUB_TOKEN` secret lapses, the starved GitHub cron keeps the site
+updating — slower, never broken.
 
 ### Throttling
 
