@@ -100,11 +100,13 @@ URL). It powers the question box above the site's Explorer tab:
 
 1. The browser sends `{question, context}` — the question plus a whitelisted
    summary of the season (label, gameweek, drafter short-name list).
-2. The worker asks the **Claude API** (`claude-haiku-5-5`, structured output)
+2. The worker asks the **Claude API** (`claude-sonnet-5-5`, structured output)
    to translate the question into a *query spec* — table, filters, aggregation,
    sort, limit — against a fixed catalogue of the site's tables. The schema and
-   prompt live in `query-spec.mjs`; the client can't supply prompt text beyond
-   the question itself, so the endpoint can't be repurposed as a general proxy.
+   prompt live in `query-spec.mjs` (including the group lore the headlines can
+   draw on); the client can't supply prompt text beyond the question itself, so
+   the endpoint can't be repurposed as a general proxy, and off-topic questions
+   are refused with a pointer back at the league data.
 3. The browser executes the spec over the season JSON it already has
    (`web/src/lib/queryExec.js`) — Claude never sees the data, and every number
    shown comes from real rows.
@@ -115,9 +117,11 @@ cannot affect the dispatches.
 **Cost & abuse controls** (in order): CORS allow-list
 (`https://mjnelson18.github.io` + localhost dev) → per-IP rate limit (10/min,
 the `ASK_RATE` binding) → monthly cap (2,000 requests, the `ASK_BUDGET` KV
-counter) → a single Haiku call, `max_tokens` 1024, model and prompt pinned
-server-side. A query costs ≈ $0.0003; the monthly cap is worth ≈ $0.60 — the
-cap is about abuse, not spend.
+counter) → a single Sonnet call, `max_tokens` 1024, model and prompt pinned
+server-side. A query costs ≈ $0.008 (Sonnet 5.5 at $2/$10 per MTok); the
+monthly cap is worth ≈ $16 at absolute worst — realistic group usage is
+pennies. Dropping `ASK_MODEL` back to `claude-haiku-5-5` cuts cost 20× if the
+cap ever starts being hit.
 
 **One-time setup** (both steps dashboard-side; the worker degrades gracefully
 until they're done — no key means the box shows "unavailable", no KV means the

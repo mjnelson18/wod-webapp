@@ -46,7 +46,7 @@ const ASK_ORIGINS = [
   "http://127.0.0.1:5173",
 ];
 
-const ASK_MODEL = "claude-haiku-5-5"; // $0.10/$0.50 per MTok — pennies per query
+const ASK_MODEL = "claude-sonnet-5-5"; // $2/$10 per MTok ≈ 1p per query; worth it over Haiku for nickname mapping and trade logic
 const ASK_MAX_QUESTION = 300;
 // Hard monthly ceiling on accepted requests. 2,000 Haiku calls ≈ $0.60 — the
 // cap is about abuse, not spend. KV is eventually consistent, so treat it as a
