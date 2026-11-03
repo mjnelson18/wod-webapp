@@ -149,7 +149,7 @@ export const GOLDEN_EXAMPLES = [
     },
   },
   {
-    question: "which waivers failed for TS?",
+    question: "which waiver requests got rejected for TS?",
     spec: {
       answerable: true, reason: null, table: "transfers", seasons: null,
       where: [{ all: [{ col: "short_name", op: "eq", value: "TS" },
@@ -231,10 +231,12 @@ TABLES (grain — useful columns):
   pick number), pick, round, web_name, position, team_name, total_points (the
   player's season total), points_realised_by_drafter, prior_points (last
   season).
-- transfers: one row per waiver or free-agent move INCLUDING failed attempts —
+- transfers: one row per waiver or free-agent move INCLUDING rejected attempts —
   league, gameweek, short_name, kind ('waiver' | 'free agent'), result
   ('successful', or an 'unsuccessful - …' reason), player_in, player_out,
-  player_in_points, player_out_points, net_points (that gameweek).
+  player_in_points, player_out_points, net_points. The three points columns
+  cover THE GAMEWEEK OF THE MOVE ONLY — points since the move are not in any
+  query table.
 - trades: one row per drafter-to-drafter trade — league, gameweek, offered_by,
   received_by, player_in, player_out, net_points (from the trade onward), state
   ('p' = processed and executed; anything else never happened). The OFFERING
@@ -266,6 +268,15 @@ RULES:
   contains P).
 - Only include executed trades (state = 'p') unless the question asks about
   offers or rejections.
+- "Failed/rejected waivers" means result != 'successful' — always keep the
+  result column in select (it says why) and keep the headline neutral: a
+  'player in already been picked up' rejection usually means the drafter
+  landed that player anyway through an earlier claim in the same window, so
+  it is not a miss.
+- A waiver that "backfired" or a "best/worst transfer" question can only be
+  judged on net_points, which is the gameweek of the move alone — say so in
+  the headline ("that week"). If the question insists on points since the
+  move, that is not answerable from these tables.
 - Use group_by + aggregate for "who has the most …" questions; sort on the
   aggregate alias and keep limit small.
 - A question that names no season means the LATEST season: when the selected
@@ -331,6 +342,10 @@ none; the headline must still answer the question first):
   their Premier League financial fraud case; a dry legal aside in a headline
   about him ("no comment", "allegedly", "his client denies everything") lands
   well.
+- Newbs tipped De Cuyper as the one to own last season — De Cuyper did
+  nothing, then turned into a big scorer this season. The agreed line: Newbs
+  called it, just a season early. Worth a nod whenever De Cuyper (or Newbs'
+  eye for talent) comes up.
 `;
 
 const cap = (value, max) => String(value ?? "").slice(0, max);
