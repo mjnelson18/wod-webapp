@@ -48,51 +48,53 @@ redoing this arithmetic.
    (Workers Free includes cron triggers; this worker's ~4,300 ticks/month is
    nowhere near its limits).
 
-3. **Deploy from this folder** (needs Node, which is already installed):
+3. **Bootstrap the worker in the Cloudflare dashboard** — local `wrangler`
+   does NOT run on the dev machine (endpoint security blocks npx executables),
+   so the first deploy is a paste job (done 2026-11-03): Workers & Pages →
+   Create → Worker named `wod-trigger` → Edit code → paste `worker.js` →
+   Deploy. Then Settings → Triggers → Add Cron Trigger `*/10 * * * *`;
+   Settings → Variables and Secrets → add Secret `GITHUB_TOKEN` = the PAT;
+   Settings → Domains & Routes → disable the `workers.dev` URL (no fetch
+   handler, nothing to serve).
 
-   ```bash
-   cd trigger && npx wrangler@latest login
-   ```
+4. **Wire up CI deploys** so `worker.js` edits ship from the repo instead of
+   re-pasting: `.github/workflows/deploy-trigger.yml` runs
+   `cloudflare/wrangler-action` on any push to main touching `trigger/`.
+   It needs two repo secrets (GitHub → Settings → Secrets and variables →
+   Actions):
+   - `CLOUDFLARE_API_TOKEN` — <https://dash.cloudflare.com/profile/api-tokens>
+     → Create Token → **Edit Cloudflare Workers** template.
+   - `CLOUDFLARE_ACCOUNT_ID` — shown in the right rail of the dashboard's
+     Workers & Pages overview.
 
-   ```bash
-   cd trigger && npx wrangler@latest deploy
-   ```
+   Until both exist the workflow warns and exits green, leaving the deployed
+   worker untouched. A CI deploy makes the repo the source of truth: it
+   overwrites dashboard code edits and syncs the cron + `workers.dev` setting
+   from `wrangler.toml` (which pins both, so nothing regresses). The
+   `GITHUB_TOKEN` worker secret survives deploys — renewing the PAT stays a
+   dashboard job.
 
-   ```bash
-   cd trigger && npx wrangler@latest secret put GITHUB_TOKEN
-   ```
-
-   (paste the PAT when prompted)
-
-4. **Watch one tick land** (≤10 min wait; each line logs what was dispatched
-   or why nothing was):
-
-   ```bash
-   cd trigger && npx wrangler@latest tail
-   ```
+5. **Watch one tick land**: the worker's page → Logs → live stream (≤10 min
+   wait; each tick logs what was dispatched or why nothing was).
 
 ## Verifying / debugging later
 
-- Live logs: `npx wrangler tail` from this folder, or the Cloudflare dashboard
-  → Workers → `wod-trigger` → Logs. `401`/`404` on a dispatch means the PAT
-  expired or lost a repo — mint a new one and `npx wrangler secret put
-  GITHUB_TOKEN` again.
-- Local dry-run without deploying (put `GITHUB_TOKEN=<PAT>` in `.dev.vars`
-  first, or dispatches will 401):
-
-  ```bash
-  cd trigger && npx wrangler@latest dev --test-scheduled
-  ```
-
-  then hit `http://localhost:8787/__scheduled?cron=*/10+*+*+*+*`.
+- Live logs: Cloudflare dashboard → Workers & Pages → `wod-trigger` → Logs
+  (enable Workers Logs under Observability for history, not just live tail).
+  `401`/`404` on a dispatch means the PAT expired or lost a repo — mint a new
+  one and replace the `GITHUB_TOKEN` secret in Settings → Variables and
+  Secrets.
 - `windows.json` stale or missing → the site updates on the 3-hourly baseline
   only. It refreshes with every data-driven deploy, and the daily-rewritten
   cron block in `update.yml` covers a kick-off moved in between.
+- The `npx wrangler` CLI (`tail`, `dev --test-scheduled`, `deploy`) works
+  fine from any machine whose security tooling allows it — just not the
+  current dev machine.
 
 ## Changing the cadence
 
 Match windows: nothing to do here — they come from `pipeline/windows.py` via
 the deployed `windows.json`. Baseline and assistant cadences: edit
-`assistantDue`/the baseline line in `worker.js` and `npx wrangler deploy`
-(remember the budget note above). The `*/10` in `wrangler.toml` is the tick
-resolution, not the firing rate.
+`assistantDue`/the baseline line in `worker.js` and push to main —
+`deploy-trigger.yml` ships it (remember the budget note above). The `*/10` in
+`wrangler.toml` is the tick resolution, not the firing rate.
