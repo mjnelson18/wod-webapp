@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useTables } from '../lib/data.js'
+import { useTables, useAsync, loadTableIfPresent } from '../lib/data.js'
 import { headToHead } from '../lib/h2h.js'
 import { fullName, leagueName } from '../lib/names.js'
 import {
@@ -32,23 +32,44 @@ function heat(share) {
  */
 export default function HeadToHead({ season, meta, league, setLeague }) {
   const { data, loading, error } = useTables(season, ['league_table'])
+  // A league that is REALLY head-to-head has an actual schedule, and the view
+  // anchors on its real table instead of the points order. Optional load: only
+  // h2h seasons publish the file, and classic seasons must not error over it.
+  const anyH2h = meta.leagues.some(l => l.scoring === 'h2h')
+  const h2h = useAsync(
+    () => (anyH2h ? loadTableIfPresent(season, 'h2h_table') : Promise.resolve(null)),
+    [season, anyH2h],
+  )
 
   const results = useMemo(() => {
     if (!data?.league_table) return null
     return Object.fromEntries(meta.leagues.map(l => {
-      const rows = data.league_table
+      let rows = data.league_table
         .filter(r => r.league === l.code)
         .sort((a, b) => a.rank - b.rank)
+      // For a real H2H league, "actually finished" means the real schedule's
+      // table — reorder so actualPosition (the ringed cell) and "different
+      // champion" compare against the scenario we are genuinely living in.
+      let anchored = 'points'
+      if (l.scoring === 'h2h' && h2h.data) {
+        const ranks = Object.fromEntries(
+          h2h.data.filter(r => r.league === l.code).map(r => [r.short_name, r.rank]))
+        if (rows.length && rows.every(r => ranks[r.short_name] != null)) {
+          rows = [...rows].sort((a, b) => ranks[a.short_name] - ranks[b.short_name])
+          anchored = 'h2h'
+        }
+      }
       const usable = rows.length > 0 && rows.every(r => Array.isArray(r.points_by_gameweek))
-      return [l.code, usable ? headToHead({
+      const result = usable ? headToHead({
         drafters: rows.map(r => r.short_name),
         scores: rows.map(r => r.points_by_gameweek),
         totals: rows.map(r => r.total),
         promoted: l.promoted ?? 0,
         relegated: l.relegated ?? 0,
-      }) : null]
+      }) : null
+      return [l.code, result ? { ...result, anchored } : null]
     }))
-  }, [data, meta])
+  }, [data, meta, h2h.data])
 
   // Promotion and relegation are decided in separate leagues on independent
   // schedules, so the chance next season's line-up is untouched is the product.
@@ -64,7 +85,7 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
   }, [results, meta])
 
   if (error) return <div className="notice">Couldn&apos;t load the league table: {String(error.message)}</div>
-  if (loading || !results) return <Loading what="the multiverse" />
+  if (loading || (anyH2h && h2h.loading) || !results) return <Loading what="the multiverse" />
 
   const config = meta.leagues.find(l => l.code === league)
   const result = results[league]
@@ -95,7 +116,9 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
     <>
       <Section
         title="Multiverse"
-        note="what if each gameweek had been a fixture, not a points total?"
+        note={result.anchored === 'h2h'
+          ? 'the season across every schedule you could have been given'
+          : 'what if each gameweek had been a fixture, not a points total?'}
         aside={toggle}
       >
         <StatRow>
@@ -120,7 +143,10 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
 
       <Section
         title="Where everyone finishes"
-        note={`Share of the ${result.total.toLocaleString()} schedules ending in each position. The ringed cell is where they actually finished on points.`}
+        note={`Share of the ${result.total.toLocaleString()} schedules ending in each position. The ringed cell is ${
+          result.anchored === 'h2h'
+            ? 'the real table — the schedule they were actually given'
+            : 'where they actually finished on points'}.`}
       >
         <div className="table-wrap">
           <table className="data">
@@ -156,7 +182,9 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
           </table>
         </div>
         <p className="legend">
-          Ringed cell = actual finish on total points. Shading is the share of schedules;{' '}
+          Ringed cell = {result.anchored === 'h2h'
+            ? 'the real head-to-head table, under the schedule the league actually got'
+            : 'actual finish on total points'}. Shading is the share of schedules;{' '}
           {outcome && <>the {outcome.label.toLowerCase()} column is emphasised when it&apos;s more likely than not. </>}
           Scores are held fixed, so this is the same performances scored a different way — not a
           guess at how people would have played chasing weekly wins.
