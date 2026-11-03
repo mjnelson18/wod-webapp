@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { loadTable } from '../lib/data.js'
+import { loadTable, loadTableIfPresent, loadSeasons, useAsync } from '../lib/data.js'
 import { askAvailable, askContext, fetchSpec } from '../lib/ask.js'
 import { runSpec, QueryError } from '../lib/queryExec.js'
 import { Collapsible } from './ui.jsx'
@@ -23,6 +23,8 @@ const EXAMPLES = [
   'top scorers in gameweek 1',
 ]
 
+const CROSS_SEASON_EXAMPLE = 'which players get drafted season after season?'
+
 const ERROR_TEXT = {
   busy: 'The question service is busy right now — give it a minute and try again.',
   budget: 'This month’s question budget is used up. The tables below still work.',
@@ -33,8 +35,13 @@ const ERROR_TEXT = {
 export default function AskBox({ season, meta }) {
   const [question, setQuestion] = useState('')
   const [state, setState] = useState({ status: 'idle' })
+  // The seasons index is one tiny fetch (already cached for the selector); it
+  // lets questions span seasons. null just means single-season answers.
+  const index = useAsync(() => loadSeasons().catch(() => null), [])
 
   if (!askAvailable()) return null
+
+  const publishedSeasons = (index.data?.seasons ?? []).map(s => ({ id: s.season, label: s.label }))
 
   async function submit(text) {
     const asked = (text ?? question).trim()
@@ -42,8 +49,15 @@ export default function AskBox({ season, meta }) {
     if (text) setQuestion(text)
     setState({ status: 'loading' })
     try {
-      const spec = await fetchSpec(asked, askContext(meta))
-      const { rows, headline } = await runSpec(spec, name => loadTable(season, name))
+      const spec = await fetchSpec(asked, askContext(meta, season, index.data))
+      const { rows, headline } = await runSpec(
+        spec,
+        // Cross-season loads tolerate a season missing the table (2425 has no
+        // trades); the selected season still fails loudly so a real outage
+        // isn't mistaken for "no data".
+        (name, s) => (s == null ? loadTable(season, name) : loadTableIfPresent(s, name)),
+        { seasons: publishedSeasons },
+      )
       setState({ status: 'done', rows, headline, spec })
     } catch (err) {
       if (err instanceof QueryError) {
@@ -78,7 +92,10 @@ export default function AskBox({ season, meta }) {
 
       {state.status === 'idle' && (
         <div className="chips" style={{ marginTop: 6 }}>
-          {EXAMPLES.map(example => (
+          {[...EXAMPLES,
+            // Only tempt people across seasons where there is more than one.
+            ...(publishedSeasons.length > 1 ? [CROSS_SEASON_EXAMPLE] : []),
+          ].map(example => (
             <button key={example} type="button" className="chip" onClick={() => submit(example)}>
               {example}
             </button>
@@ -117,6 +134,7 @@ export default function AskBox({ season, meta }) {
             <pre className="small" style={{ overflowX: 'auto' }}>
               {JSON.stringify({
                 table: state.spec.table,
+                seasons: state.spec.seasons ?? undefined,
                 where: state.spec.where,
                 group_by: state.spec.group_by,
                 aggregate: state.spec.aggregate,

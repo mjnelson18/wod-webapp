@@ -99,7 +99,8 @@ Since Nov 2026 the worker also serves **`POST /ask`**, the one HTTP route
 URL). It powers the question box above the site's Explorer tab:
 
 1. The browser sends `{question, context}` — the question plus a whitelisted
-   summary of the season (label, gameweek, drafter short-name list).
+   summary of the season (label, gameweek, drafter short-name list, and the
+   published-season list so questions can span seasons).
 2. The worker asks the **Claude API** (`claude-sonnet-5-5`, structured output)
    to translate the question into a *query spec* — table, filters, aggregation,
    sort, limit — against a fixed catalogue of the site's tables. The schema and
@@ -109,7 +110,11 @@ URL). It powers the question box above the site's Explorer tab:
    are refused with a pointer back at the league data.
 3. The browser executes the spec over the season JSON it already has
    (`web/src/lib/queryExec.js`) — Claude never sees the data, and every number
-   shown comes from real rows.
+   shown comes from real rows. A spec may set `seasons` ("all" or a list of
+   ids) to run over several seasons: the executor loads the table per season,
+   tags rows with `season`/`season_label`, skips seasons that lack the table
+   (2425 has no trades), and groups across the union — by player NAME, since
+   element ids are reassigned every year.
 
 The `scheduled()` cron handler is a separate entry point — an /ask failure
 cannot affect the dispatches.
@@ -136,7 +141,7 @@ budget check is skipped while the rate limit still applies):
 
 **After the first deploy**, confirm the workers.dev URL matches
 `VITE_ASK_ENDPOINT` in `web/.env` / `web/.env.dunelmliga` (the subdomain is the
-account's, usually `mjnelson18.workers.dev`) — fix the env files if not; the
+account's — for this account `nelsonmj91.workers.dev`) — fix the env files if not; the
 Ask box hides itself wherever the variable is unset.
 
 **Verify** (from any machine):

@@ -70,9 +70,8 @@ function applyCondition(row, { col, op, value }) {
   }
 }
 
-function checkColumns(spec, rows) {
-  if (!rows.length) return
-  const known = new Set(Object.keys(rows[0]))
+function checkColumns(spec, known) {
+  if (!known.size) return
   for (const group of spec.where ?? []) {
     for (const cond of group.all ?? []) {
       if (!known.has(cond.col)) throw new QueryError(`no column ${cond.col} in ${spec.table}`)
@@ -130,19 +129,64 @@ function fillHeadline(template, row) {
 }
 
 /**
- * Run a spec. `loadRows(table)` resolves to that table's rows.
- * Returns { rows, headline } — rows already filtered, aggregated, sorted,
- * projected and capped.
+ * Which seasons a spec wants, resolved against what the site publishes.
+ * null = run single-season (the current behaviour); otherwise a non-empty
+ * list of {id, label} to union over.
  */
-export async function runSpec(spec, loadRows) {
+function requestedSeasons(spec, seasons) {
+  const available = Array.isArray(seasons) ? seasons.filter(s => s?.id != null) : []
+  if (spec.seasons == null || !available.length) return null
+  if (spec.seasons === 'all') return available
+  if (Array.isArray(spec.seasons)) {
+    const wanted = spec.seasons.map(String)
+    const matched = available.filter(s => wanted.includes(String(s.id)))
+    if (!matched.length) {
+      throw new QueryError(`no published season matches ${wanted.join(', ')}`)
+    }
+    return matched
+  }
+  throw new QueryError('the seasons field makes no sense')
+}
+
+/**
+ * Run a spec. `loadRows(table)` resolves to that table's rows; for a
+ * cross-season spec it is called as `loadRows(table, seasonId)` per season and
+ * may resolve to null where a season lacks the table (that season is skipped).
+ * `options.seasons` is the published-season list ([{id, label}]) — without it
+ * every spec runs single-season. Returns { rows, headline } — rows already
+ * filtered, aggregated, sorted, projected and capped.
+ */
+export async function runSpec(spec, loadRows, options = {}) {
   if (!spec || spec.answerable === false) {
     throw new QueryError(spec?.reason || 'That question cannot be answered from the season tables.')
   }
   if (!QUERY_TABLES.includes(spec.table)) throw new QueryError(`unknown table ${spec.table}`)
 
-  const all = await loadRows(spec.table)
-  if (!Array.isArray(all)) throw new QueryError(`${spec.table} did not load`)
-  checkColumns(spec, all)
+  const span = requestedSeasons(spec, options.seasons)
+  let all
+  const known = new Set()
+  if (span) {
+    const batches = await Promise.all(span.map(({ id }) =>
+      loadRows(spec.table, id).then(rows => (Array.isArray(rows) ? rows : null), () => null)))
+    if (batches.every(b => b == null)) {
+      throw new QueryError(`none of those seasons publish ${spec.table}`)
+    }
+    // Rows gain season/season_label; columns are the union across seasons,
+    // since older archives carry fewer columns than live seasons.
+    all = []
+    span.forEach(({ id, label }, i) => {
+      const rows = batches[i]
+      if (!rows) return
+      if (rows.length) for (const key of Object.keys(rows[0])) known.add(key)
+      for (const row of rows) all.push({ ...row, season: id, season_label: label ?? String(id) })
+    })
+    known.add('season').add('season_label')
+  } else {
+    all = await loadRows(spec.table)
+    if (!Array.isArray(all)) throw new QueryError(`${spec.table} did not load`)
+    if (all.length) for (const key of Object.keys(all[0])) known.add(key)
+  }
+  checkColumns(spec, known)
 
   const groups = Array.isArray(spec.where) ? spec.where : []
   let rows = groups.length
