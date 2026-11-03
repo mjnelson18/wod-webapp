@@ -37,7 +37,12 @@ def gameweek_calendar(bootstrap_draft: dict) -> pd.DataFrame:
             "gameweek": int(event["id"]),
             "deadline_time": str(deadline),
             "month": str(deadline)[:7],
-            "finalised": bool(event.get("finished")) and bool(event.get("data_checked")),
+            # The DRAFT bootstrap's events have no data_checked field (that is
+            # the classic bootstrap's), so absent defaults to True — the same
+            # reading as fetchers.source.finalised_gameweeks, or no month would
+            # ever settle. When present (classic payloads, tests) it still
+            # holds settlement back until bonus is checked.
+            "finalised": bool(event.get("finished")) and bool(event.get("data_checked", True)),
         })
     return pd.DataFrame(out, columns=["gameweek", "deadline_time", "month", "finalised"])
 

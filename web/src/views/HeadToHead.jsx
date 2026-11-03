@@ -102,7 +102,9 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
           <Stat label="Schedules" value={result.distinguishable.toLocaleString()}
                 sub={result.distinguishable < result.total
                   ? `of ${result.total.toLocaleString()} fair rotations — more separate each week`
-                  : 'every fair rotation, not a sample'} />
+                  // Rotations repeat after `rounds` weeks, so once a full cycle
+                  // has been played every one has produced a distinct history.
+                  : `every fair rotation — all distinct since GW${result.rounds}`} />
           <Stat label="Different champion" value={asPct(result.championChanged)}
                 sub={`${fullName(meta, result.drafters[0].shortName)} keeps it otherwise`} />
           {outcome && (
