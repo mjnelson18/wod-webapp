@@ -42,15 +42,19 @@ from .transforms import (
     fixtures_from_live,
     form_table,
     formations,
+    gameweek_calendar,
     head_to_head_matches,
     head_to_head_table,
     is_head_to_head,
     league_table,
     live_league_table,
     lorenz_curve,
+    override_live_scores,
     player_usage,
     players_table,
+    points_breakdown,
     points_distribution,
+    pot_tracker,
     reconcile_head_to_head,
     season_review_facts,
     season_start_year,
@@ -59,6 +63,7 @@ from .transforms import (
     teams_table,
     trades_table,
     transfers_table,
+    weekly_beats,
     weekly_tables,
 )
 
@@ -312,6 +317,9 @@ def build_tables(season_id: str, *, site: str | None = None,
         # is the more interesting of the two, it just isn't the competition.
         if scoring[league.code] == "h2h":
             fixtures = head_to_head_matches(details, standings, league_code=league.code)
+            # The matches payload lags live scoring; mid-gameweek scores come from
+            # the same weekly summary the points table shows, so the two agree.
+            fixtures = override_live_scores(fixtures, summary)
             h2h_table, _ = head_to_head_table(
                 fixtures, standings, league_code=league.code, current_week=current_week)
             for note in reconcile_head_to_head(h2h_table, details, standings):
@@ -380,6 +388,26 @@ def build_tables(season_id: str, *, site: str | None = None,
         transfers=transfers, trades=trades,
     )
 
+    h2h_matches = (pd.concat(h2h_match_frames, ignore_index=True) if h2h_match_frames
+                   else pd.DataFrame(columns=H2H_MATCH_COLUMNS))
+
+    # Weekly talking points: templated beats per gameweek, the review facts' sibling.
+    beats = weekly_beats(
+        season=season, league_table=table, league_table_by_week=by_week,
+        weekly_summary=weekly_summary, transfers=transfers, trades=trades,
+        h2h_matches=h2h_matches,
+    )
+
+    # The side pot, for a league whose config keeps one (Dunelmliga). One payload:
+    # no site publishes two potted leagues, and the payload names its league anyway.
+    gw_calendar = gameweek_calendar(bootstrap_draft)
+    pot = next((p for p in (pot_tracker(by_week, gw_calendar, lg)
+                            for lg in season.leagues if lg.pot) if p), None)
+
+    # What each owned player's score was made of, straight from the explain arrays
+    # the live payloads already carry. Written as one file per gameweek.
+    breakdown = points_breakdown(live, weekly_summary)
+
     if isinstance(source, object) and hasattr(source, "stats"):
         say(f"  fetches={source.stats['fetched']} cache_hits={source.stats['cached']}")
 
@@ -390,8 +418,10 @@ def build_tables(season_id: str, *, site: str | None = None,
         "stage": "live",
         "scoring": scoring,
         "h2h_table": pd.concat(h2h_tables, ignore_index=True) if h2h_tables else empty_h2h,
-        "h2h_matches": (pd.concat(h2h_match_frames, ignore_index=True) if h2h_match_frames
-                        else pd.DataFrame(columns=H2H_MATCH_COLUMNS)),
+        "h2h_matches": h2h_matches,
+        "weekly_beats": beats,
+        "pot_tracker": pot,
+        "points_breakdown": breakdown,
         "hosts_agree": hosts_agree,
         "teams": teams,
         "players": players,

@@ -226,14 +226,53 @@ def head_to_head_matches(details: dict, standings: pd.DataFrame, *,
     # An excluded entry would leave its fixtures half-named. Drop them rather
     # than carry a match with one side into the table.
     out = out.dropna(subset=["home", "away"])
+    out = _derive_result(out)
+    return out[H2H_MATCH_COLUMNS].sort_values(["gameweek", "home"]).reset_index(drop=True)
 
+
+def _derive_result(out: pd.DataFrame) -> pd.DataFrame:
+    """`result` (home's point of view) and `winner`, from the scores. One rule,
+    shared by the raw payload mapping and the live-score override."""
     margin = out["home_points"] - out["away_points"]
     out["result"] = margin.map(lambda m: "D" if m == 0 else ("W" if m > 0 else "L"))
     out.loc[~out["started"], "result"] = None
     out["winner"] = None
     out.loc[out["result"] == "W", "winner"] = out["home"]
     out.loc[out["result"] == "L", "winner"] = out["away"]
-    return out[H2H_MATCH_COLUMNS].sort_values(["gameweek", "home"]).reset_index(drop=True)
+    return out
+
+
+def override_live_scores(matches: pd.DataFrame,
+                         weekly_summary: pd.DataFrame) -> pd.DataFrame:
+    """
+    Replace in-play fixture scores with the live banked points.
+
+    The `matches` payload lags live scoring, while the event/live feed behind
+    weekly_summary is near-live — so mid-gameweek the fixture scores drift behind
+    the points table built in the same run. For a match that has started but not
+    finished, each side's score becomes that drafter's summed `points_scored` for
+    the gameweek; a drafter or gameweek the summary lacks keeps the API value
+    rather than degrading the row. Finished matches are never touched.
+    """
+    if matches.empty or weekly_summary.empty:
+        return matches
+
+    totals = weekly_summary.groupby(["gameweek", "short_name"])["points_scored"].sum()
+    out = matches.copy()
+    live = out["started"] & ~out["finished"]
+    for side in ("home", "away"):
+        column = f"{side}_points"
+        replaced = [
+            int(value) if value is not None and pd.notna(value) else int(current)
+            for value, current in zip(
+                (totals.get((gw, name))
+                 for gw, name in zip(out.loc[live, "gameweek"], out.loc[live, side])),
+                out.loc[live, column],
+            )
+        ]
+        out.loc[live, column] = replaced
+        out[column] = out[column].astype(int)
+    return _derive_result(out)
 
 
 def head_to_head_table(matches: pd.DataFrame, standings: pd.DataFrame, *,

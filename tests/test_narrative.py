@@ -311,6 +311,57 @@ def test_bench_losses(facts):
     }
 
 
+# --- keepers ----------------------------------------------------------------
+
+def _keeper_summary() -> pd.DataFrame:
+    """AA runs two keepers: right call GW1 (5v2), tie GW2 (3v3), wrong GW3 (1v6).
+    BB carries one keeper all season, so there is never a choice to score."""
+    rows = []
+
+    def gk(short, gameweek, place, points):
+        rows.append({"league_code": "Prem", "short_name": short, "gameweek": gameweek,
+                     "element": 900 + place, "web_name": f"GK{place}",
+                     "position": "GKP", "place": place, "total_points": points,
+                     "points_scored": points if place <= 11 else 0,
+                     "optimal_points": 0})
+
+    gk("AA", 1, 1, 5), gk("AA", 1, 12, 2)
+    gk("AA", 2, 1, 3), gk("AA", 2, 12, 3)
+    gk("AA", 3, 1, 1), gk("AA", 3, 12, 6)
+    gk("BB", 1, 1, 4), gk("BB", 2, 1, 4), gk("BB", 3, 1, 4)
+    return pd.concat([_weekly_summary(), pd.DataFrame(rows)], ignore_index=True)
+
+
+@pytest.fixture(scope="module")
+def keeper_facts() -> dict:
+    return season_review_facts(
+        season=SEASON, current_week=3,
+        league_table=_league_table(), league_table_by_week=_by_week(),
+        weekly_summary=_keeper_summary(), weekly_points=_weekly_points(),
+        draft_picks=_draft_picks(), draft_performance=_draft_performance(),
+        transfers=_transfers(), trades=_trades(),
+    )
+
+
+def test_keeper_calls_count_a_tie_as_right(keeper_facts):
+    aa = next(k for k in _league(keeper_facts, "Prem")["keepers"]
+              if k["short_name"] == "AA")
+    assert aa["weeks_with_choice"] == 3
+    assert aa["correct"] == 2                        # the GW2 tie cost nothing
+    assert aa["points_lost"] == 5                    # GW3: benched 6 v started 1
+    assert aa["pct"] == pytest.approx(2 / 3, abs=1e-3)
+
+
+def test_a_drafter_without_a_second_keeper_is_left_out(keeper_facts):
+    """One keeper means no call to judge — absent beats 0-for-0."""
+    assert [k["short_name"] for k in _league(keeper_facts, "Prem")["keepers"]] == ["AA"]
+
+
+def test_a_league_with_no_keeper_rows_omits_the_beat(facts):
+    """The base fixture has no GKP rows at all (like a sparse archive)."""
+    assert _league(facts, "Prem")["keepers"] == []
+
+
 # --- cross-league -----------------------------------------------------------
 
 def test_cross_league_uses_means_not_totals(facts):

@@ -23,7 +23,7 @@ function heat(points) {
   return 'var(--heat-6)'
 }
 
-export default function SquadGrid({ columns, meta, transfers, trades, league, gameweek }) {
+export default function SquadGrid({ columns, meta, transfers, trades, league, gameweek, onSelect }) {
   const flags = useMemo(() => {
     // latest successful transfer-in per (drafter, element) for the Tn# label
     const transferWeek = new Map()
@@ -94,9 +94,14 @@ export default function SquadGrid({ columns, meta, transfers, trades, league, ga
                 .sort((a, b) => (a.place ?? 99) - (b.place ?? 99))
                 .map((c, i) => {
                   const d = decorate(col.short, c)
+                  // Only a <button> when there is a breakdown to open — on
+                  // seasons without one (2425) nothing looks clickable.
+                  const Cell = onSelect ? 'button' : 'div'
                   return (
-                    <div
+                    <Cell
                       key={c.element}
+                      type={onSelect ? 'button' : undefined}
+                      onClick={onSelect ? () => onSelect(c, col.short) : undefined}
                       className={`squad-cell${d.benched ? ' benched' : ''}${i === STARTERS ? ' bench-start' : ''}`}
                       style={{ background: heat(c.points_scored) }}
                       title={`${c.web_name} — ${c.total_points} pts`}
@@ -117,7 +122,7 @@ export default function SquadGrid({ columns, meta, transfers, trades, league, ga
                         {c.player_total_points != null && ` · ${c.player_total_points} S`}
                         {c.points_scored_cumulative != null && ` · ${c.points_scored_cumulative} R`}
                       </div>
-                    </div>
+                    </Cell>
                   )
                 })}
             </div>
@@ -132,6 +137,7 @@ export default function SquadGrid({ columns, meta, transfers, trades, league, ga
         {meta.capabilities.cumulative && <> · <code>S</code> season total · <code>R</code> realised by drafter</>}
         <br />
         Dashed border = benched. The heavy line separates the starting XI from the bench.
+        {onSelect && ' Tap a player to see what made up their points.'}
       </p>
     </>
   )

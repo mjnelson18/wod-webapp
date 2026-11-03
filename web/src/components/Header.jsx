@@ -8,8 +8,10 @@ import { hasReview } from '../lib/review.jsx'
 const TABS = [
   { view: 'gw', label: 'This Gameweek' },
   { view: 'season', label: 'Season Trends' },
+  // Only a league whose config keeps the side pot emits the data (Dunelmliga).
+  { view: 'pot', label: 'Pot Tracker', when: (season, meta) => Boolean(meta?.capabilities?.pot_tracker) },
   { view: 'compare', label: 'Cross-league', when: (season, meta) => (meta?.leagues?.length ?? 0) > 1 },
-  { view: 'h2h', label: 'Head to Head' },
+  { view: 'h2h', label: 'Multiverse' },
   { view: 'draft', label: 'Draft Night' },
   // Written once a season is over, so it only appears for seasons that have one.
   { view: 'review', label: 'Season Review', when: season => hasReview(season) },

@@ -1,10 +1,10 @@
-import { useMemo } from 'react'
-import { useTables, can } from '../lib/data.js'
+import { useEffect, useMemo, useState } from 'react'
+import { useTables, useAsync, loadTableIfPresent, can } from '../lib/data.js'
 import { navigate } from '../lib/router.js'
 import { fullName, label, round, signed, rankMove } from '../lib/names.js'
 import { headToHeadTable, fixturesFor } from '../lib/standings.js'
 import {
-  LeagueToggle, Section, Loading, Unavailable, Stat, StatRow, Collapsible, SubHead,
+  LeagueToggle, Section, Loading, Unavailable, Stat, StatRow, Collapsible, SubHead, Modal,
 } from '../components/ui.jsx'
 import SquadGrid from '../components/SquadGrid.jsx'
 
@@ -23,6 +23,24 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     'weekly_summary', 'league_table', 'transfers', 'trades',
     ...(h2h ? ['h2h_matches'] : []),
   ])
+
+  // Weekly talking points — optional file, absent on seasons built before it existed.
+  const beatsFile = useAsync(
+    () => (can(meta, 'weekly_beats') ? loadTableIfPresent(season, 'weekly_beats') : Promise.resolve(null)),
+    [season, meta],
+  )
+
+  // Points-breakdown drill-down: which squad cell is open, and that gameweek's
+  // breakdown file, fetched lazily on first open and promise-cached after.
+  const canBreakdown = can(meta, 'points_breakdown')
+  const [selected, setSelected] = useState(null)   // { row, short }
+  useEffect(() => { setSelected(null) }, [season, league, gw])
+  const breakdown = useAsync(
+    () => (selected && canBreakdown
+      ? loadTableIfPresent(season, `points_breakdown/${gw}`)
+      : Promise.resolve(null)),
+    [season, gw, canBreakdown, selected != null],
+  )
 
   const view = useMemo(() => {
     if (!data) return null
@@ -63,12 +81,17 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
       const scored = squad.reduce((s, r) => s + (Number(r.points_scored) || 0), 0)
       const optimal = squad.reduce((s, r) => s + (Number(r.optimal_points) || 0), 0)
       const beforeSubs = squad.reduce((s, r) => s + (Number(r.points_before_auto_subs) || 0), 0)
+      // What the bench actually scored — a different wound from the optimal-XI
+      // gap: these points existed and sat in places 12-15.
+      const benchPoints = squad.reduce(
+        (s, r) => ((r.place ?? 99) > STARTERS ? s + (Number(r.total_points) || 0) : s), 0)
       return {
         ...t,
         squad,
         scored,
         optimal,
         beforeSubs,
+        benchPoints,
         lostToSubs: Math.max(0, optimal - scored),
         autoSubGain: scored - beforeSubs,
         cumulative: cumulativeAt(t, gwIndex),
@@ -81,6 +104,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 
     const best = drafters.reduce((a, b) => (b.scored > (a?.scored ?? -1) ? b : a), null)
     const worst = drafters.reduce((a, b) => (b.scored < (a?.scored ?? 1e9) ? b : a), null)
+    const biggestBench = drafters.reduce((a, b) => (b.benchPoints > (a?.benchPoints ?? -1) ? b : a), null)
     const leagueTotal = drafters.reduce((s, d) => s + d.scored, 0)
     const leagueAvg = drafters.length ? leagueTotal / drafters.length : 0
     const totalLost = drafters.reduce((s, d) => s + d.lostToSubs, 0)
@@ -123,6 +147,12 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     }
     moves.sort((a, b) => Math.abs(b.net ?? 0) - Math.abs(a.net ?? 0))
 
+    // Best transfer of the week, on in-week net points. Trades are excluded: their
+    // net is measured from the trade to season end, not within this gameweek.
+    const bestMove = moves.reduce((a, m) => (
+      m.type !== 'Trade' && m.net != null && m.net > (a?.net ?? -Infinity) ? m : a
+    ), null)
+
     // The league's own table, as it stood after the selected gameweek — folded
     // from the fixtures rather than read off the shipped table, which is only
     // ever season-to-date.
@@ -132,13 +162,17 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
       : null
 
     return {
-      table, drafters, best, worst, leagueTotal, leagueAvg, totalLost, subs, moves,
+      table, drafters, best, worst, biggestBench, bestMove,
+      leagueTotal, leagueAvg, totalLost, subs, moves,
       standings, fixtures: fixturesFor(fixtures, gw),
     }
   }, [data, league, gw, meta.gameweeks, h2h])
 
   if (error) return <div className="notice">Couldn&apos;t load gameweek data: {String(error.message)}</div>
   if (loading || !view) return <Loading what={`gameweek ${gw}`} />
+
+  const beats = (beatsFile.data ?? [])
+    .filter(b => b.league === league && b.gameweek === gw && BEAT_KINDS.has(b.kind))
 
   return (
     <>
@@ -163,11 +197,29 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
                 value={view.worst ? view.worst.scored : '–'}
                 sub={view.worst ? fullName(meta, view.worst.short_name) : ''} />
           <Stat label="League average" value={round(view.leagueAvg)} sub={`${view.leagueTotal} total`} />
+          <Stat label="Benched points"
+                value={view.biggestBench ? view.biggestBench.benchPoints : '–'}
+                sub={view.biggestBench
+                  ? `${fullName(meta, view.biggestBench.short_name)} · most left on the bench`
+                  : ''} />
+          {view.bestMove && (
+            <Stat label="Best transfer" value={signed(view.bestMove.net)}
+                  sub={`${fullName(meta, view.bestMove.who)} · ${view.bestMove.inName} in, ${view.bestMove.outName} out`} />
+          )}
           {can(meta, 'optimal_points') && (
-            <Stat label="Left on the bench" value={Math.round(view.totalLost)}
-                  sub="league-wide vs optimal XI" />
+            <Stat label="Lost vs optimal XI" value={Math.round(view.totalLost)}
+                  sub="league-wide" />
           )}
         </StatRow>
+
+        {beats.length > 0 && (
+          <>
+            <SubHead>Talking points</SubHead>
+            <ul className="beats">
+              {beats.map((b, i) => <li key={i}><BeatLine beat={b} meta={meta} /></li>)}
+            </ul>
+          </>
+        )}
       </Section>
 
       {view.standings && (
@@ -290,8 +342,19 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         <SquadGrid columns={view.drafters.map(d => ({
           short: d.short_name, table: d, gwTotal: d.scored, cells: d.squad,
         }))} meta={meta} transfers={data.transfers} trades={data.trades}
-           league={league} gameweek={gw} />
+           league={league} gameweek={gw}
+           onSelect={canBreakdown ? (row, short) => setSelected({ row, short }) : undefined} />
       </Collapsible>
+
+      {selected && (
+        <Modal
+          title={`${selected.row.web_name} — gameweek ${gw}`}
+          onClose={() => setSelected(null)}
+        >
+          <PlayerBreakdown row={selected.row} short={selected.short} meta={meta}
+                           state={breakdown} />
+        </Modal>
+      )}
 
       <Collapsible
         title="Substitutions"
@@ -386,6 +449,122 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         )}
       </Collapsible>
 
+    </>
+  )
+}
+
+/* ---------- weekly talking points ---------- */
+
+// The beat kinds this build knows how to phrase. Anything else in the file is a
+// newer pipeline talking to an older client — skipped, never an error.
+const BEAT_KINDS = new Set([
+  'lead_change', 'season_high', 'season_low', 'personal_outlier',
+  'bench_pain', 'instant_transfer', 'trade_executed', 'h2h_upset',
+])
+
+const beatName = (meta, person) =>
+  person?.name || fullName(meta, person?.short_name) || person?.short_name || '?'
+
+/** One fixed sentence per beat kind — the pipeline supplies facts, never prose. */
+function BeatLine({ beat, meta }) {
+  const d = beat.data ?? {}
+  switch (beat.kind) {
+    case 'lead_change':
+      return (
+        <>
+          <strong>{beatName(meta, d.new)}</strong>
+          {d.tied ? ' draws level at the top with ' : ' takes the lead from '}
+          {beatName(meta, d.previous)}
+          {!d.tied && d.lead > 0 && <>, {d.lead} clear</>}
+        </>
+      )
+    case 'season_high':
+      return <><strong>{beatName(meta, d)}</strong> hits {d.points} — the best week by anyone this season</>
+    case 'season_low':
+      return <><strong>{beatName(meta, d)}</strong> posts {d.points}, the season&apos;s lowest week so far</>
+    case 'personal_outlier':
+      return (
+        <>
+          <strong>{beatName(meta, d)}</strong> scored {d.points}, well{' '}
+          {d.direction === 'above' ? 'above' : 'below'} their usual {d.average}
+        </>
+      )
+    case 'bench_pain':
+      return <><strong>{beatName(meta, d)}</strong> left {d.points_lost} points behind against the optimal XI</>
+    case 'instant_transfer':
+      return (
+        <>
+          <strong>{beatName(meta, d)}</strong>&apos;s {d.kind === 'waiver' ? 'waiver' : 'pickup'} paid off at once:{' '}
+          {d.player_in} in for {d.player_out}, {signed(d.net_points)} this week
+        </>
+      )
+    case 'trade_executed':
+      return (
+        <>
+          Trade through: <strong>{beatName(meta, d.offered_by)}</strong> gets {d.player_in} from{' '}
+          {beatName(meta, d.received_by)} for {d.player_out}
+        </>
+      )
+    case 'h2h_upset':
+      return (
+        <>
+          Upset: <strong>{beatName(meta, d.winner)}</strong> (#{d.winner_rank} on points) beat{' '}
+          {beatName(meta, d.loser)} (#{d.loser_rank}){d.provisional ? ' — provisional' : ''}
+        </>
+      )
+    default:
+      return null
+  }
+}
+
+/* ---------- points-breakdown modal body ---------- */
+
+function PlayerBreakdown({ row, short, meta, state }) {
+  const benched = (row.place ?? 99) > STARTERS
+  const record = state.data?.find(r => r.element === row.element)
+
+  return (
+    <>
+      <p className="small muted" style={{ marginTop: 0 }}>
+        {row.position}{row.team_name ? ` · ${row.team_name}` : ''} · {fullName(meta, short)} ·{' '}
+        {benched ? 'benched' : 'started'}
+        {row.originally_starting === 1 && benched && ' (auto-subbed off)'}
+        {row.originally_starting === 0 && !benched && ' (auto-subbed on)'}
+      </p>
+      {state.loading ? (
+        <div className="spinner">Loading breakdown…</div>
+      ) : !record ? (
+        <p className="muted small">No breakdown for this gameweek — the player may not have featured.</p>
+      ) : (
+        record.fixtures.map((fixture, i) => (
+          <div key={i}>
+            {record.fixtures.length > 1 && (
+              <SubHead note="double gameweek — one table per match">Match {i + 1}</SubHead>
+            )}
+            <div className="table-wrap">
+              <table className="data">
+                <thead>
+                  <tr><th>Stat</th><th>Value</th><th>Pts</th></tr>
+                </thead>
+                <tbody>
+                  {fixture.items.map((item, j) => (
+                    <tr key={j}>
+                      <td>{item.name}</td>
+                      <td className="num">{item.value}</td>
+                      <td className="num">{item.points}</td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td><strong>Total</strong></td>
+                    <td />
+                    <td className="num"><strong>{fixture.total}</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))
+      )}
     </>
   )
 }

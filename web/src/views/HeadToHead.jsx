@@ -64,7 +64,7 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
   }, [results, meta])
 
   if (error) return <div className="notice">Couldn&apos;t load the league table: {String(error.message)}</div>
-  if (loading || !results) return <Loading what="head-to-head schedules" />
+  if (loading || !results) return <Loading what="the multiverse" />
 
   const config = meta.leagues.find(l => l.code === league)
   const result = results[league]
@@ -72,7 +72,7 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
 
   if (!result) {
     return (
-      <Section title="Head to head" note="what if each gameweek had been a fixture?" aside={toggle}>
+      <Section title="Multiverse" note="what if each gameweek had been a fixture?" aside={toggle}>
         <Unavailable
           what="The head-to-head re-run" season={meta.label}
           reason={
@@ -94,13 +94,15 @@ export default function HeadToHead({ season, meta, league, setLeague }) {
   return (
     <>
       <Section
-        title="Head to head"
+        title="Multiverse"
         note="what if each gameweek had been a fixture, not a points total?"
         aside={toggle}
       >
         <StatRow>
-          <Stat label="Schedules" value={result.total.toLocaleString()}
-                sub="every fair rotation, not a sample" />
+          <Stat label="Schedules" value={result.distinguishable.toLocaleString()}
+                sub={result.distinguishable < result.total
+                  ? `of ${result.total.toLocaleString()} fair rotations — more separate each week`
+                  : 'every fair rotation, not a sample'} />
           <Stat label="Different champion" value={asPct(result.championChanged)}
                 sub={`${fullName(meta, result.drafters[0].shortName)} keeps it otherwise`} />
           {outcome && (

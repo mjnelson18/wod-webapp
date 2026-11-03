@@ -1,6 +1,6 @@
 /** Small shared pieces: league toggle, capability notice, loading, section wrapper. */
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /**
  * Collapsible detail section.
@@ -114,6 +114,57 @@ export function Stat({ label, value, sub }) {
       <div className="value">{value}</div>
       {sub && <div className="sub">{sub}</div>}
     </div>
+  )
+}
+
+/**
+ * Modal, on native <dialog> — the same "let the platform do the a11y" choice as
+ * Collapsible's <details>: showModal() brings focus trapping, Esc-to-close and
+ * focus restore for free. Renders as a bottom sheet on a phone, a centred card
+ * from 640px (see styles.css). Clicking the backdrop closes it: the backdrop is
+ * the only click whose target is the <dialog> element itself.
+ */
+export function Modal({ title, onClose, children }) {
+  const ref = useRef(null)
+  // The latest onClose, read through a ref so the dialog effect can run exactly
+  // once: re-running it on every parent render would close and re-open the
+  // dialog, and the native close event can fire into the unlistened gap.
+  const closeRef = useRef(onClose)
+  closeRef.current = onClose
+  useEffect(() => {
+    const dialog = ref.current
+    if (!dialog) return undefined
+    if (!dialog.open) dialog.showModal()
+    const requestClose = () => closeRef.current?.()
+    // Esc fires cancel-then-close per spec, but not every embedder delivers
+    // either event, so every close path below also calls onClose directly and
+    // the keydown fallback keeps Esc working everywhere. onClose unmounts the
+    // modal, so a double delivery is harmless.
+    const onKey = e => { if (e.key === 'Escape') { e.preventDefault(); requestClose() } }
+    dialog.addEventListener('close', requestClose)
+    dialog.addEventListener('keydown', onKey)
+    return () => {
+      dialog.removeEventListener('close', requestClose)
+      dialog.removeEventListener('keydown', onKey)
+      if (dialog.open) dialog.close()
+    }
+  }, [])
+
+  return (
+    <dialog
+      ref={ref}
+      className="modal"
+      onClick={e => { if (e.target === ref.current) closeRef.current?.() }}
+    >
+      <div className="modal-head">
+        <strong>{title}</strong>
+        <button type="button" className="modal-close" aria-label="Close"
+                onClick={() => closeRef.current?.()}>
+          ×
+        </button>
+      </div>
+      <div className="modal-body">{children}</div>
+    </dialog>
   )
 }
 

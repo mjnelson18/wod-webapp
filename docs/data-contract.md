@@ -25,6 +25,9 @@ web/public/data/                 # gitignored; written at build time
     h2h_table.json                 # head-to-head leagues; empty otherwise
     h2h_matches.json
     season_review_facts.json
+    weekly_beats.json              # talking points per gameweek (capability-gated)
+    pot_tracker.json               # only for a league with a pot rule (Dunelmliga)
+    points_breakdown/<gw>.json     # per-player stat lines, one file per gameweek
 ```
 
 The GitHub Action writes `/data/<site>/<season>/` and copies **one site's** folder to
@@ -55,10 +58,16 @@ Drives the season selector, gameweek chips, league toggle and — importantly �
   "capabilities": {
     "fixtures": true, "difficulty": true, "cost": true, "ownership_by_league": true,
     "draft_round": true, "cumulative": true, "team_names": true, "trades": true,
-    "optimal_points": true
+    "optimal_points": true,
+    "weekly_beats": true, "pot_tracker": false, "points_breakdown": true
   }
 }
 ```
+
+The last three flags say whether the optional files exist: `weekly_beats.json`,
+`pot_tracker.json` (drives the whole Pot Tracker tab via the tab's `when` predicate) and the
+`points_breakdown/` directory (drives whether squad cells are clickable). They may be absent
+entirely on older archives and preseason metas — the frontend's `can()` treats absent as off.
 
 ### Capabilities are how seasons degrade gracefully
 
@@ -92,6 +101,12 @@ Both head-to-head files are written for every season and are simply empty for a 
 views key off `meta.leagues[].scoring`, so an empty file is never ambiguous. Seasons built before
 these existed don't have them at all, which is why the gameweek view asks for `h2h_matches` by
 name rather than always.
+
+While a match is **started but not finished**, its `home_points`/`away_points` are the live banked
+points summed from `weekly_summary` rather than the lagging API matches payload
+(`override_live_scores` in `pipeline/transforms/league.py`), so mid-gameweek the fixture scores,
+the folded H2H table and the points table beside them always agree. Finished matches keep the
+API's own figures.
 
 Conventions that differ from the notebook's CSVs, and are deliberate:
 
@@ -134,9 +149,15 @@ Produced by `pipeline/transforms/narrative.py`.
 ```json
 { "season": "2526", "label": "2025/26", "complete": true,
   "leagues": [ { "code": "Prem", "champion": {…}, "final_table": […], "race": {…},
-                 "extremes": {…}, "draft": {…}, "moves": {…}, "bench": {…} } ],
+                 "extremes": {…}, "draft": {…}, "moves": {…}, "bench": {…},
+                 "keepers": […] } ],
   "cross_league": { "weekly": […], "record": {…}, "champion_crossover": […] } }
 ```
+
+`keepers` scores the weekly two-goalkeeper call: one row per drafter who ever had the choice —
+`{short_name, name, weeks_with_choice, correct, pct, points_lost}` — where an equal score counts
+as correct and a drafter with a single keeper all season is absent, not 0-for-0. Season Trends
+renders it in the Substitutions section.
 
 Two rules it follows, both of which matter more than the exact keys:
 
@@ -152,6 +173,47 @@ The prose that sits alongside it is **not** in the data pack — it lives in
 `web/src/content/season-review/<season>.md`, is written by hand once a season ends, and is
 committed. That split is the point: the honours strip renders from this JSON so headline
 numbers can't drift, while the writing stays a human artefact that no cron run rewrites.
+
+## `weekly_beats.json`
+
+Talking points per gameweek — the review facts' automatic weekly sibling, produced by
+`pipeline/transforms/beats.py` and rendered as a bullet list on the This Gameweek tab. One flat
+array of `{league, gameweek, kind, data}`; the frontend keeps a fixed sentence template per
+`kind` and **skips kinds it doesn't know**, so the pipeline can add kinds without breaking old
+clients. Current kinds: `lead_change`, `season_high`, `season_low`, `personal_outlier`,
+`bench_pain`, `instant_transfer`, `trade_executed`, `h2h_upset`. Thresholds live as constants in
+`beats.py`; like the review facts, a quiet week emits nothing rather than filler. Beats for the
+in-progress gameweek are recomputed every run and may come and go as scores move.
+
+## `pot_tracker.json`
+
+The Dunelmliga side pot, produced by `pipeline/transforms/pot.py` only for a league whose config
+carries `PotRules` (data, not code — `pipeline/config/seasons.py`). The WOD seasons never emit it,
+so the Pot Tracker tab never exists there.
+
+```json
+{ "league": "DL",
+  "rules": { "buy_in": 20, "monthly_stake": 10, "currency": "£" },
+  "drafters": ["AB", "CD", "…"],
+  "months": [ { "month": "2026-08", "label": "August 2026", "gameweeks": [1, 2, 3],
+                "points": { "AB": 150, "CD": 141 },
+                "settled": true, "losers": ["CD"], "tied": false } ],
+  "settled_months": 1, "pot_total": 130 }
+```
+
+A gameweek belongs to the month its **deadline** falls in. A month settles only when every one of
+its gameweeks is finalised (finished + data-checked); until then `points` shows the running sums
+and `losers` stays empty. A tie lists everyone on the low score with `tied: true` — settled
+offline, and the pot still gains exactly one stake.
+
+## `points_breakdown/<gw>.json`
+
+What each owned player's score was made of, from the live payload's `explain` arrays
+(`pipeline/transforms/breakdown.py`). One file per gameweek so the squads modal fetches only the
+week on screen; records are `{element, fixtures: [{fixture, total, items: [{stat, name, points,
+value}]}]}` with one `fixtures` entry per match (two in a double gameweek). Restricted to elements
+in that gameweek's `weekly_summary`. Absent where no raw exists (2425) — the capability flag is
+off and squad cells render as plain tiles.
 
 ## Payload size — the mobile constraint
 

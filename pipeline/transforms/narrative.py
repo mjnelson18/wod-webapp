@@ -378,6 +378,45 @@ def _bench(weekly_summary: pd.DataFrame, league: str, names: dict) -> dict:
     }
 
 
+def _keepers(weekly_summary: pd.DataFrame, league: str, names: dict) -> list[dict]:
+    """
+    The weekly two-keeper call: you start one of two, so hindsight can say how
+    often it was the right one. An equal score counts as right — the call cost
+    nothing. Weeks without a benched keeper offer no choice and aren't counted,
+    and a drafter who never had the choice is left out rather than shown 0-for-0.
+    """
+    rows = weekly_summary[(weekly_summary["league_code"] == league)
+                          & (weekly_summary["position"] == "GKP")]
+    if rows.empty or "place" not in rows.columns:
+        return []
+
+    points = lambda value: 0.0 if pd.isna(value) else float(value)  # noqa: E731
+    out = []
+    for short, mine in rows.groupby("short_name"):
+        weeks = correct = 0
+        lost = 0.0
+        for _, week in mine.groupby("gameweek"):
+            started = week[week["place"] <= 11]
+            benched = week[week["place"] > 11]
+            if len(started) != 1 or benched.empty:
+                continue
+            weeks += 1
+            start_points = points(started.iloc[0]["total_points"])
+            bench_best = points(benched["total_points"].max())
+            if start_points >= bench_best:
+                correct += 1
+            else:
+                lost += bench_best - start_points
+        if weeks:
+            out.append({**_person(names, league, str(short)),
+                        "weeks_with_choice": int(weeks),
+                        "correct": int(correct),
+                        "pct": round(correct / weeks, 4),
+                        "points_lost": int(round(lost))})
+    out.sort(key=lambda r: (-r["pct"], r["points_lost"]))
+    return out
+
+
 def _cross_league(by_week: pd.DataFrame, table: pd.DataFrame, leagues: list) -> dict:
     """
     Prem v Conf, on **mean** points per drafter.
@@ -514,6 +553,7 @@ def season_review_facts(*, season, current_week: int, league_table: pd.DataFrame
             "draft": _draft(draft_picks, draft_performance, league.code, names),
             "moves": _moves(transfers, trades, weekly_points, league.code, names),
             "bench": _bench(weekly_summary, league.code, names),
+            "keepers": _keepers(weekly_summary, league.code, names),
         })
 
     return _jsonable({

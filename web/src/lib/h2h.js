@@ -98,6 +98,15 @@ export function headToHead({ drafters, scores, totals, promoted = 0, relegated =
   const weeks = scores[0]?.length ?? 0
   if (!weeks) return null
 
+  // Schedules repeat their rounds cyclically, so with few gameweeks played only
+  // the opening rounds have been consulted and schedules sharing that prefix are
+  // observationally identical. Count the prefixes actually distinguishable so
+  // far — 15 after GW1 for six drafters, all 720 once a full cycle has run. Every
+  // prefix extends to equally many completions, so the histogram over the full
+  // enumeration below is unaffected; this is purely what the tile can honestly claim.
+  const prefixLength = Math.min(weeks, rounds)
+  const distinguishable = new Set(schedules.map(s => s.slice(0, prefixLength).join('.'))).size
+
   // points[matching][gameweek][drafter] — every schedule is then just a lookup
   // per week, which is what keeps the whole enumeration cheap.
   const points = matchings.map(m =>
@@ -164,6 +173,7 @@ export function headToHead({ drafters, scores, totals, promoted = 0, relegated =
 
   return {
     total,
+    distinguishable,
     rounds,
     weeks,
     matchings: matchings.length,

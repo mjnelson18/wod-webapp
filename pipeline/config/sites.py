@@ -19,7 +19,7 @@ and `schedule` all take `--site` and read this module.
 
 from dataclasses import dataclass
 
-from .seasons import League, Season, SEASON_2425, SEASON_2526, SEASON_2627
+from .seasons import League, PotRules, Season, SEASON_2425, SEASON_2526, SEASON_2627
 
 # --- dunelmliga -------------------------------------------------------------
 # Six drafters, one division, first season in this app. Two things differ from
@@ -43,6 +43,8 @@ DUNELMLIGA_2627 = Season(
             # This league re-drafts at GW21, which took its GW1 picks off the API.
             # The committed copy is the only surviving record of draft night.
             draft_choices_fallback="reference/draft_choices/dunelmliga_2627.json",
+            # £20 buy-in, and each calendar month's lowest scorer adds £10.
+            pot=PotRules(),
         ),
     ),
     notes="Head-to-head league: won on weekly fixtures, 3 points for a win.",
