@@ -19,7 +19,7 @@ import { Collapsible } from './ui.jsx'
 
 const EXAMPLES = [
   'who has left the most points on the bench?',
-  'which waivers failed this season?',
+  'which waiver requests got rejected?',
   'top scorers in gameweek 1',
 ]
 
