@@ -257,9 +257,14 @@ def override_live_scores(matches: pd.DataFrame,
     if matches.empty or weekly_summary.empty:
         return matches
 
-    totals = weekly_summary.groupby(["gameweek", "short_name"])["points_scored"].sum()
     out = matches.copy()
     live = out["started"] & ~out["finished"]
+    if not live.any():
+        # Nothing in play — the usual state. Assigning an empty list to zero
+        # selected rows is a TypeError in pandas, so bail out before the loop.
+        return matches
+
+    totals = weekly_summary.groupby(["gameweek", "short_name"])["points_scored"].sum()
     for side in ("home", "away"):
         column = f"{side}_points"
         replaced = [
