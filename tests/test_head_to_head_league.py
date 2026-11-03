@@ -295,6 +295,21 @@ def test_an_empty_summary_changes_nothing(live_fixtures):
     assert out.equals(live_fixtures)
 
 
+def test_nothing_in_play_changes_nothing(standings):
+    """The usual state between matches: every row finished or unstarted.
+
+    This exact shape crashed the first production build (TypeError assigning an
+    empty list into zero selected rows), so it is pinned.
+    """
+    settled = head_to_head_matches(details(), standings, league_code="DL")
+    summary = summary_rows({(gw, name): [99] for gw in (1, 2, 3)
+                            for name in ("AA", "BB", "CC", "DD")})
+
+    out = override_live_scores(settled, summary)
+
+    assert out.equals(settled)
+
+
 def test_the_folded_table_uses_the_live_scores(standings, live_fixtures):
     summary = summary_rows({(2, "AA"): [10, 15], (2, "CC"): [30, 32],
                             (2, "BB"): [20], (2, "DD"): [50]})
