@@ -75,6 +75,18 @@ def test_finalised_needs_finished_and_data_checked():
     assert bool(cal.loc[5, "finalised"]) is False
 
 
+def test_the_draft_bootstrap_has_no_data_checked_field():
+    """The real draft payload carries only `finished` — a finished gameweek must
+    finalise, or no month ever settles (the first production build's bug)."""
+    draft_shaped = {"events": {"data": [
+        {"id": 1, "deadline_time": "2026-08-15T10:00:00Z", "finished": True},
+        {"id": 2, "deadline_time": "2026-08-22T10:00:00Z", "finished": False},
+    ]}}
+    cal = gameweek_calendar(draft_shaped).set_index("gameweek")
+    assert bool(cal.loc[1, "finalised"]) is True
+    assert bool(cal.loc[2, "finalised"]) is False
+
+
 def test_an_empty_bootstrap_yields_an_empty_calendar():
     assert len(gameweek_calendar({})) == 0
     assert len(gameweek_calendar({"events": []})) == 0
