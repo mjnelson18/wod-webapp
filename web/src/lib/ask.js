@@ -19,11 +19,17 @@ export class AskError extends Error {
   }
 }
 
-/** The whitelisted context the worker's prompt builder accepts — nothing more. */
-export function askContext(meta) {
+/**
+ * The whitelisted context the worker's prompt builder accepts — nothing more.
+ * `season` is the selected season's id and `seasonsIndex` the seasons.json
+ * payload (null is fine: the prompt then only knows the selected season).
+ */
+export function askContext(meta, season, seasonsIndex) {
   return {
     label: meta?.label,
     gameweek: meta?.current_gameweek,
+    season,
+    seasons: (seasonsIndex?.seasons ?? []).map(s => ({ id: s.season, label: s.label })),
     leagues: (meta?.leagues ?? []).map(l => ({ code: l.code, name: l.name, scoring: l.scoring })),
     drafters: (meta?.drafters ?? []).map(d => ({
       short_name: d.short_name, name: d.name, league: d.league,

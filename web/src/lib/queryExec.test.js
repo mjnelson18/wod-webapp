@@ -31,7 +31,7 @@ const TABLES = { trades: TRADES, weekly_summary: WEEKLY_SUMMARY }
 const loadRows = name => Promise.resolve(TABLES[name])
 
 const spec = overrides => ({
-  answerable: true, reason: null, table: 'trades', where: [],
+  answerable: true, reason: null, table: 'trades', seasons: null, where: [],
   group_by: null, aggregate: null, select: null, sort: [], limit: 50,
   headline: null, ...overrides,
 })
@@ -118,6 +118,93 @@ describe('shaping', () => {
       limit: 1, headline: 'Traded for {no_such_column}',
     }), loadRows)
     expect(headline).toBeNull()
+  })
+})
+
+describe('cross-season execution', () => {
+  // Two tiny seasons: Salah drafted in both, Haaland only in the newer one,
+  // and the older season has no trades table at all (like the 2425 archive).
+  const BY_SEASON = {
+    2425: {
+      draft_picks: [
+        { short_name: 'MN', web_name: 'Salah' },
+        { short_name: 'TS', web_name: 'Son' },
+      ],
+    },
+    2526: {
+      draft_picks: [
+        { short_name: 'MN', web_name: 'Salah' },
+        { short_name: 'TS', web_name: 'Haaland' },
+      ],
+      trades: TRADES,
+    },
+  }
+  const loadBySeason = (name, season) => Promise.resolve(BY_SEASON[season]?.[name] ?? null)
+  const seasons = [{ id: '2425', label: '2024/25' }, { id: '2526', label: '2025/26' }]
+
+  it('unions the seasons, tags rows, and groups across them by name', async () => {
+    const { rows, headline } = await runSpec(spec({
+      table: 'draft_picks', seasons: 'all',
+      group_by: ['web_name'],
+      aggregate: [{ fn: 'count', col: null, as: 'times_drafted' }],
+      sort: [{ col: 'times_drafted', dir: 'desc' }, { col: 'web_name', dir: 'asc' }],
+      headline: '{web_name} has been drafted {times_drafted} times',
+    }), loadBySeason, { seasons })
+    expect(rows).toEqual([
+      { web_name: 'Salah', times_drafted: 2 },
+      { web_name: 'Haaland', times_drafted: 1 },
+      { web_name: 'Son', times_drafted: 1 },
+    ])
+    expect(headline).toBe('Salah has been drafted 2 times')
+  })
+
+  it('exposes season and season_label as columns', async () => {
+    const { rows } = await runSpec(spec({
+      table: 'draft_picks', seasons: 'all',
+      where: [{ all: [{ col: 'web_name', op: 'eq', value: 'Haaland' }] }],
+      select: ['web_name', 'season', 'season_label'],
+    }), loadBySeason, { seasons })
+    expect(rows).toEqual([{ web_name: 'Haaland', season: '2526', season_label: '2025/26' }])
+  })
+
+  it('skips a season that lacks the table, and only errors when all do', async () => {
+    const some = await runSpec(spec({ table: 'trades', seasons: 'all' }), loadBySeason, { seasons })
+    expect(some.rows).toHaveLength(3)
+    expect(some.rows.every(r => r.season === '2526')).toBe(true)
+
+    await expect(runSpec(spec({ table: 'players', seasons: 'all' }), loadBySeason, { seasons }))
+      .rejects.toBeInstanceOf(QueryError)
+  })
+
+  it('runs only the listed seasons, and refuses unknown ones', async () => {
+    const { rows } = await runSpec(spec({
+      table: 'draft_picks', seasons: ['2425'],
+    }), loadBySeason, { seasons })
+    expect(rows.every(r => r.season === '2425')).toBe(true)
+    expect(rows).toHaveLength(2)
+
+    await expect(runSpec(spec({ table: 'draft_picks', seasons: ['1999'] }), loadBySeason, { seasons }))
+      .rejects.toBeInstanceOf(QueryError)
+  })
+
+  it('tolerates a column that only newer seasons carry', async () => {
+    const withExtra = (name, season) => Promise.resolve(
+      season === '2526' ? [{ web_name: 'Salah', round: 1 }] : [{ web_name: 'Salah' }])
+    const { rows } = await runSpec(spec({
+      table: 'draft_picks', seasons: 'all',
+      where: [{ all: [{ col: 'round', op: 'eq', value: 1 }] }],
+    }), withExtra, { seasons })
+    // The 2425 row has no round, so only the 2526 row matches — no column error.
+    expect(rows).toEqual([{ web_name: 'Salah', round: 1, season: '2526', season_label: '2025/26' }])
+  })
+
+  it('falls back to single-season when the caller has no season list', async () => {
+    const { rows } = await runSpec(
+      spec({ seasons: 'all' }),
+      name => Promise.resolve(TABLES[name]),
+    )
+    expect(rows).toHaveLength(3)
+    expect(rows[0].season).toBeUndefined()
   })
 })
 

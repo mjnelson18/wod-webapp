@@ -8,7 +8,7 @@
 // for a real question. The CORS check matters — curl bypasses the browser's
 // own enforcement, so the headers are asserted here instead.
 
-const ENDPOINT = process.env.ASK_ENDPOINT ?? "https://wod-trigger.mjnelson18.workers.dev/ask";
+const ENDPOINT = process.env.ASK_ENDPOINT ?? "https://wod-trigger.nelsonmj91.workers.dev/ask";
 const ORIGIN = "https://mjnelson18.github.io";
 
 const context = {

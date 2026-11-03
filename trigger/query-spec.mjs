@@ -21,12 +21,21 @@ export const QUERY_TABLES = [
 export const QUERY_SPEC_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["answerable", "reason", "table", "where", "group_by", "aggregate",
-             "select", "sort", "limit", "headline"],
+  required: ["answerable", "reason", "table", "seasons", "where", "group_by",
+             "aggregate", "select", "sort", "limit", "headline"],
   properties: {
     answerable: { type: "boolean" },
     reason: { type: ["string", "null"] },
     table: { type: "string", enum: QUERY_TABLES },
+    // Which seasons to run over: null = the season the viewer has selected,
+    // "all" = every published season, or an explicit list of season ids.
+    seasons: {
+      anyOf: [
+        { type: "null" },
+        { type: "string", enum: ["all"] },
+        { type: "array", items: { type: "string" } },
+      ],
+    },
     // OR of AND-groups: rows match when any group's conditions all hold.
     where: {
       type: "array",
@@ -103,7 +112,7 @@ export const GOLDEN_EXAMPLES = [
   {
     question: "when did MN trade out Haaland?",
     spec: {
-      answerable: true, reason: null, table: "trades",
+      answerable: true, reason: null, table: "trades", seasons: null,
       where: [
         { all: [{ col: "offered_by", op: "eq", value: "MN" },
                 { col: "player_out", op: "contains", value: "Haaland" }] },
@@ -119,7 +128,7 @@ export const GOLDEN_EXAMPLES = [
   {
     question: "who has left the most points on the bench?",
     spec: {
-      answerable: true, reason: null, table: "weekly_summary",
+      answerable: true, reason: null, table: "weekly_summary", seasons: null,
       where: [{ all: [{ col: "place", op: "gte", value: 12 }] }],
       group_by: ["short_name"],
       aggregate: [{ fn: "sum", col: "total_points", as: "bench_points" }],
@@ -131,7 +140,7 @@ export const GOLDEN_EXAMPLES = [
   {
     question: "top scorers in gameweek 5",
     spec: {
-      answerable: true, reason: null, table: "weekly_points",
+      answerable: true, reason: null, table: "weekly_points", seasons: null,
       where: [{ all: [{ col: "gameweek", op: "eq", value: 5 }] }],
       group_by: null, aggregate: null,
       select: ["web_name", "team_name", "position", "owner", "total_points"],
@@ -142,13 +151,25 @@ export const GOLDEN_EXAMPLES = [
   {
     question: "which waivers failed for TS?",
     spec: {
-      answerable: true, reason: null, table: "transfers",
+      answerable: true, reason: null, table: "transfers", seasons: null,
       where: [{ all: [{ col: "short_name", op: "eq", value: "TS" },
                       { col: "result", op: "neq", value: "successful" }] }],
       group_by: null, aggregate: null,
       select: ["gameweek", "kind", "player_in", "player_out", "result"],
       sort: [{ col: "gameweek", dir: "asc" }], limit: 50,
       headline: null,
+    },
+  },
+  {
+    question: "which players do drafters keep coming back to across seasons?",
+    spec: {
+      answerable: true, reason: null, table: "draft_picks", seasons: "all",
+      where: [],
+      group_by: ["web_name"],
+      aggregate: [{ fn: "count", col: null, as: "times_drafted" }],
+      select: null,
+      sort: [{ col: "times_drafted", dir: "desc" }], limit: 10,
+      headline: "{web_name} has been drafted {times_drafted} times across the seasons",
     },
   },
 ];
@@ -199,6 +220,20 @@ RULES:
   offers or rejections.
 - Use group_by + aggregate for "who has the most …" questions; sort on the
   aggregate alias and keep limit small.
+- seasons: null means the season the viewer is looking at — the default, right
+  for almost every question. Use "all" (or a list of season ids from the
+  context) ONLY when the question plainly spans seasons: "ever", "all time",
+  "across seasons", "season after season". "Last season" means that one
+  season's id, not "all".
+- Cross-season results gain two extra columns, 'season' (the id) and
+  'season_label' — usable in where, group_by, select, sort and headline.
+- Player identity across seasons is the NAME: element ids are reassigned every
+  year, so group or filter cross-season player questions on web_name (or
+  player_in/player_out), never element.
+- Not every season has every table or column (the oldest archive has no trades
+  and no fixtures); seasons missing the table are skipped, not an error. For
+  cross-season questions prefer the small tables (draft_picks, players,
+  league_table) over the big weekly ones when either would answer.
 - limit must be between 1 and 50.
 - headline is a one-sentence answer template whose {column} placeholders are
   filled from the FIRST result row; use only column names present in the
@@ -254,6 +289,11 @@ export function buildSystemPrompt(context = {}) {
     .slice(0, 20)
     .map((d) => `${cap(d?.short_name, 8)} = ${cap(d?.name, 48)} [${cap(d?.league, 12)}]`)
     .join("; ");
+  const current = cap(context.season, 8);
+  const seasons = (Array.isArray(context.seasons) ? context.seasons : [])
+    .slice(0, 8)
+    .map((s) => `${cap(s?.id, 8)} (${cap(s?.label, 16)})${cap(s?.id, 8) === current && current ? " — selected" : ""}`)
+    .join("; ");
 
   const examples = GOLDEN_EXAMPLES
     .map((e) => `Q: ${e.question}\nSPEC: ${JSON.stringify(e.spec)}`)
@@ -262,6 +302,7 @@ export function buildSystemPrompt(context = {}) {
   return `You translate a fan's question about a draft Fantasy Premier League season into a query spec (JSON) that is executed over the season's data tables in their browser. You never see the data itself — only describe the query.
 
 Season: ${label || "unknown"}${gameweek ? `, currently gameweek ${gameweek}` : ""}.
+Published seasons (ids for the spec's seasons field): ${seasons || "only the selected one"}.
 Leagues: ${leagues || "unknown"}.
 Drafters: ${drafters || "unknown"}.
 ${TABLE_CATALOGUE}
