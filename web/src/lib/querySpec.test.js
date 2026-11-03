@@ -20,8 +20,8 @@ const FIXTURES = {
       player_in: 'Haaland', player_out: 'Isak', state: 'p' },
   ],
   weekly_summary: [
-    { gameweek: 1, short_name: 'MN', place: 12, total_points: 7 },
-    { gameweek: 1, short_name: 'TS', place: 1, total_points: 9 },
+    { gameweek: 1, short_name: 'MN', place: 12, total_points: 7, originally_starting: 1 },
+    { gameweek: 1, short_name: 'TS', place: 1, total_points: 9, originally_starting: 0 },
   ],
   weekly_points: [
     { gameweek: 5, web_name: 'Salah', team_name: 'LIV', position: 'MID',
@@ -34,6 +34,12 @@ const FIXTURES = {
   draft_picks: [
     { short_name: 'MN', web_name: 'Salah', round: 1 },
     { short_name: 'TS', web_name: 'Haaland', round: 1 },
+  ],
+  fixtures: [
+    { gameweek: 12, team_name: 'ARS', opposition: 'MCI', home_away: 'H',
+      team_score: null, opposition_score: null, team_difficulty: 4, opposition_difficulty: 4 },
+    { gameweek: 13, team_name: 'ARS', opposition: 'LEE', home_away: 'A',
+      team_score: null, opposition_score: null, team_difficulty: 2, opposition_difficulty: 5 },
   ],
 }
 
@@ -97,7 +103,8 @@ describe('the system prompt', () => {
   const context = {
     label: '2026/27', gameweek: 10,
     season: '2627',
-    seasons: [{ id: '2425', label: '2024/25' }, { id: '2627', label: '2026/27' }],
+    // Newest first, matching seasons.json order — the first entry is "latest".
+    seasons: [{ id: '2627', label: '2026/27' }, { id: '2425', label: '2024/25' }],
     leagues: [{ code: 'DL', name: 'Dunelmliga', scoring: 'h2h' }],
     drafters: [{ short_name: 'MN', name: 'Mike Nelson', league: 'DL' }],
   }
@@ -110,11 +117,19 @@ describe('the system prompt', () => {
     expect(prompt).toContain('head-to-head')
   })
 
-  it('lists the published seasons and marks the selected one', () => {
+  it('lists the published seasons and marks the latest and selected one', () => {
     const prompt = buildSystemPrompt(context)
     expect(prompt).toContain('2425 (2024/25)')
-    expect(prompt).toContain('2627 (2026/27) — selected')
+    expect(prompt).toContain('2627 (2026/27) — latest, selected')
     expect(prompt).toContain('never element')   // cross-season identity rule
+  })
+
+  it('teaches the public-game columns, fixtures and subjective proxies', () => {
+    const prompt = buildSystemPrompt(context)
+    expect(prompt).toContain('selected_by_percent')
+    expect(prompt).toContain('NEVER a 0-0')
+    expect(prompt).toContain('Subjective questions')
+    expect(prompt).toContain('means the LATEST season')
   })
 
   it('caps and flattens whatever the client sends — no prompt smuggling', () => {

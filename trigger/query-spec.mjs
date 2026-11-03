@@ -12,7 +12,7 @@
 // The seven tables the Explorer exposes; the executor refuses anything else.
 export const QUERY_TABLES = [
   "weekly_summary", "weekly_points", "draft_picks",
-  "transfers", "trades", "players", "league_table",
+  "transfers", "trades", "players", "league_table", "fixtures",
 ];
 
 // Structured-output schema: every object closed (additionalProperties: false)
@@ -161,6 +161,44 @@ export const GOLDEN_EXAMPLES = [
     },
   },
   {
+    question: "when was Lewis-Potter transferred out?",
+    spec: {
+      answerable: true, reason: null, table: "transfers", seasons: null,
+      where: [{ all: [{ col: "player_out", op: "contains", value: "Lewis-Potter" },
+                      { col: "result", op: "eq", value: "successful" }] }],
+      group_by: null, aggregate: null,
+      select: ["gameweek", "short_name", "kind", "player_out", "player_in"],
+      sort: [{ col: "gameweek", dir: "asc" }], limit: 10,
+      headline: "{short_name} let {player_out} go in gameweek {gameweek} and brought {player_in} in instead",
+    },
+  },
+  {
+    question: "who's the luckiest drafter?",
+    spec: {
+      answerable: true, reason: null, table: "weekly_summary", seasons: null,
+      where: [{ all: [{ col: "place", op: "lte", value: 11 },
+                      { col: "originally_starting", op: "eq", value: 0 }] }],
+      group_by: ["short_name"],
+      aggregate: [{ fn: "sum", col: "total_points", as: "rescue_points" }],
+      select: null,
+      sort: [{ col: "rescue_points", dir: "desc" }], limit: 6,
+      headline: "Luck has a name: {short_name}, handed {rescue_points} points by auto-subs without lifting a finger",
+    },
+  },
+  {
+    question: "who has the easiest fixtures over the next few weeks?",
+    spec: {
+      answerable: true, reason: null, table: "fixtures", seasons: null,
+      where: [{ all: [{ col: "gameweek", op: "gte", value: 11 },
+                      { col: "gameweek", op: "lte", value: 15 }] }],
+      group_by: ["team_name"],
+      aggregate: [{ fn: "mean", col: "team_difficulty", as: "avg_difficulty" }],
+      select: null,
+      sort: [{ col: "avg_difficulty", dir: "asc" }], limit: 5,
+      headline: "{team_name} have the kindest run from gameweek 11 — average difficulty {avg_difficulty}",
+    },
+  },
+  {
     question: "which players do drafters keep coming back to across seasons?",
     spec: {
       answerable: true, reason: null, table: "draft_picks", seasons: "all",
@@ -202,9 +240,19 @@ TABLES (grain — useful columns):
   ('p' = processed and executed; anything else never happened). The OFFERING
   drafter receives player_in and gives up player_out.
 - players: one row per footballer, season totals — web_name, position,
-  team_name, total_points, goals_scored, assists, bonus, clean_sheets, minutes.
+  team_name, total_points, goals_scored, assists, bonus, clean_sheets, minutes,
+  now_cost (price in the real public FPL game, £m — the draft league itself has
+  no prices), selected_by_percent (ownership % in the real public game), code
+  (permanent cross-season id).
 - league_table: one row per drafter — league, short_name, name, rank, total,
   gameweek_points, form_points.
+- fixtures: one row per CLUB per gameweek, from that club's perspective (each
+  match appears twice) — gameweek, team_name, opposition, home_away (H/A),
+  team_score, opposition_score (null = not played yet, NEVER a 0-0),
+  team_difficulty / opposition_difficulty (1 easy … 5 hard, for that side),
+  kickoff_time. All 38 gameweeks are published up front, so forward-looking
+  questions (easiest run-in, who plays whom next) filter gameweek >= the
+  current one.
 `;
 
 const RULES = `
@@ -220,11 +268,12 @@ RULES:
   offers or rejections.
 - Use group_by + aggregate for "who has the most …" questions; sort on the
   aggregate alias and keep limit small.
-- seasons: null means the season the viewer is looking at — the default, right
-  for almost every question. Use "all" (or a list of season ids from the
-  context) ONLY when the question plainly spans seasons: "ever", "all time",
-  "across seasons", "season after season". "Last season" means that one
-  season's id, not "all".
+- A question that names no season means the LATEST season: when the selected
+  season is not the latest, set seasons to the latest season's id. "This
+  season" while viewing an archive means the viewed (selected) season, so
+  seasons: null. Use "all" (or a list of ids from the context) ONLY when the
+  question plainly spans seasons: "ever", "all time", "across seasons",
+  "season after season". "Last season" means that one season's id, not "all".
 - Cross-season results gain two extra columns, 'season' (the id) and
   'season_label' — usable in where, group_by, select, sort and headline.
 - Player identity across seasons is the NAME: element ids are reassigned every
@@ -238,6 +287,19 @@ RULES:
 - headline is a one-sentence answer template whose {column} placeholders are
   filled from the FIRST result row; use only column names present in the
   result. Set it null when a sentence would add nothing over the table.
+- Make the headline tell the story rather than restate the filter: pull the
+  who/when/what columns into one sentence — a transfer-out answer names the
+  drafter, the week AND the replacement ("{short_name} let {player_out} go in
+  gameweek {gameweek} and brought {player_in} in"). Short names in headlines
+  are swapped for full names on screen, so {short_name} reads naturally. Facts
+  only ever come from {placeholders}; the colour is yours.
+- Subjective questions (luckiest, boldest, most cursed, biggest bottler…)
+  deserve an answer, not a refusal: pick a defensible proxy from the columns,
+  run it, and own the choice in the headline with some colour. E.g. luckiest =
+  points gifted by auto-subs (weekly_summary: place <= 11 AND
+  originally_starting = 0, sum total_points); most cursed = most points
+  stranded on the bench. Only "who is the best drafter" is settled lore (see
+  GROUP LORE).
 - If the tables above cannot answer the question (future fixtures, minute-by-
   minute events, anything outside this season), set answerable=false and
   explain briefly in reason.
@@ -292,7 +354,14 @@ export function buildSystemPrompt(context = {}) {
   const current = cap(context.season, 8);
   const seasons = (Array.isArray(context.seasons) ? context.seasons : [])
     .slice(0, 8)
-    .map((s) => `${cap(s?.id, 8)} (${cap(s?.label, 16)})${cap(s?.id, 8) === current && current ? " — selected" : ""}`)
+    .map((s, i) => {
+      const id = cap(s?.id, 8);
+      const tags = [
+        i === 0 ? "latest" : "",            // the index lists newest first
+        id === current && current ? "selected" : "",
+      ].filter(Boolean).join(", ");
+      return `${id} (${cap(s?.label, 16)})${tags ? ` — ${tags}` : ""}`;
+    })
     .join("; ");
 
   const examples = GOLDEN_EXAMPLES
