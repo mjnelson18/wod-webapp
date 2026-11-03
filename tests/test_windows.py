@@ -3,11 +3,12 @@
 Pure functions only — fetching is exercised in CI by reschedule.yml itself.
 """
 
+import json
 from datetime import datetime, timezone
 
 import pytest
 
-from pipeline.windows import cron_lines, match_windows, replace_block
+from pipeline.windows import cron_lines, match_windows, replace_block, window_payload
 
 
 def utc(*args):
@@ -77,6 +78,22 @@ def test_other_events_and_postponed_fixtures_are_ignored():
         {"event": 9, "kickoff_time": None},        # postponed, date TBC
     ]
     assert match_windows(fixtures, {9}, now=LONG_AGO) == []
+
+
+def test_window_payload_is_what_the_trigger_worker_reads():
+    """Z-suffixed ISO instants, directly comparable by the worker's Date()."""
+    fixtures = [fixture(9, "2026-10-31T15:00:00Z")]
+    now = utc(2026, 10, 30)
+    payload = window_payload(match_windows(fixtures, {9}, now=now), now=now)
+    assert payload == {
+        "generated": "2026-10-30T00:00:00Z",
+        "windows": [{
+            "start": "2026-10-31T14:50:00Z",
+            "end": "2026-10-31T18:30:00Z",
+            "kickoffs": ["2026-10-31T15:00:00Z"],
+        }],
+    }
+    json.dumps(payload)  # serializable as-is, nothing needs a custom encoder
 
 
 def test_replace_block_swaps_only_the_marked_lines():

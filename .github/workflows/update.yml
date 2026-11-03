@@ -14,6 +14,13 @@ name: Update data pack
 # land during live matches and do real work. pipeline.schedule still gates every
 # run, so a quiet one costs ~20 seconds and two small HTTP requests. See the
 # README for the schedule and throttling rules.
+#
+# The PRIMARY clock is not this cron: GitHub's scheduler is best-effort and in
+# practice delivers a fraction of these firings, hours late (observed Oct–Nov
+# 2026 — one run fired all evening during a Monday match). The Cloudflare
+# Worker in /trigger fires workflow_dispatch on the real cadence, reading the
+# same windows from the deployed windows.json. This schedule stays as the free
+# fallback for when the worker or its token lapses.
 
 on:
   schedule:
@@ -50,6 +57,13 @@ on:
         description: 'Rebuild the frozen 2425/2526 archives'
         type: boolean
         default: false
+      # The external trigger (see /trigger) sends 'cron' so its dispatches are
+      # treated like scheduled runs: gated by the throttle and skipped when the
+      # output matches what is live. A human's manual run always deploys.
+      trigger:
+        description: 'What fired this run (the external trigger sends "cron")'
+        type: string
+        default: 'manual'
 
 # Pages needs these; nothing here needs write access to the repo.
 permissions:
@@ -182,6 +196,20 @@ jobs:
             python -m pipeline.outputs --index --site dunelmliga
           fi
 
+      # The external trigger (see /trigger) reads its match windows from the
+      # deployed site, so the computation that writes the cron block also ships
+      # as JSON. Non-fatal: on an API error nothing is written and the worker
+      # degrades to its baseline tick, exactly like a stale cron block. The
+      # file is deliberately NOT part of the deploy digest — its `generated`
+      # timestamp changes every run and would force a deploy each time — so it
+      # only refreshes when a data change deploys; the daily-rewritten cron
+      # block covers a kick-off moved in between.
+      - name: Publish the match windows
+        if: steps.gate.outputs.should_build == 'true'
+        run: |
+          python -m pipeline.windows --json web/public/windows.json \
+            || echo "::warning title=Match windows::windows.json not refreshed this run"
+
       # Deploy only when the output differs from what is actually live.
       #
       # The comparison is against the digest published *with the site*, not a
@@ -228,7 +256,15 @@ jobs:
 
           echo "local : $digest"
           echo "live  : $live"
-          if [ "$digest" = "$live" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+          # A machine-fired run (GitHub cron, or the external trigger's
+          # dispatch) skips the deploy when nothing changed; a human's run
+          # always deploys.
+          machine=false
+          if [ "${{ github.event_name }}" = "schedule" ] \
+             || [ "${{ inputs.trigger }}" = "cron" ]; then
+            machine=true
+          fi
+          if [ "$digest" = "$live" ] && [ "$machine" = "true" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "::notice title=Unchanged::output identical to what is deployed; skipping deploy"
           else

@@ -216,6 +216,16 @@ reproduce the 2526 numbers from 2526 raw is wrong.**
   `repo` + `workflow` scopes) because the default token cannot push workflow files; if it expires
   the job warns, stale date-pinned windows stop firing, and the site degrades to the 3-hourly
   baseline cron — slower, never broken.
+- **GitHub's cron barely fires; the real clock is the Cloudflare Worker in `/trigger`.** Measured
+  Oct–Nov 2026, GitHub delivered 6–12 of ~50 daily scheduled firings, hours late, in both repos —
+  the cron blocks are correct and remain as the free fallback. The worker (Cloudflare `*/10` cron,
+  which fires to the minute) reads `windows.json` — published with the site by `update.yml` from
+  the same `pipeline/windows.py` computation, deliberately NOT in the deploy digest (its
+  `generated` timestamp would force a deploy every run) — and `workflow_dispatch`es `update.yml`
+  (input `trigger: cron`, treated like a scheduled run) and the private repo's `weekly.yml`. It
+  needs a `GITHUB_TOKEN` worker secret (fine-grained PAT, Actions RW on both repos, annual expiry);
+  when it lapses everything degrades to the starved GitHub cron. Cadence changes are budget
+  changes — see `trigger/README.md` before touching them.
 - Provisional vs. final points/bonus — don't cache a gameweek as immutable until it's truly done.
 - Season 2425's 5/7 split will break any code that assumes 6/6.
 - **`draft/<league>/choices` is not a history.** It serves the league's current or *next* draft, so
