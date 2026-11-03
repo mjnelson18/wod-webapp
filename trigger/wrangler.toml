@@ -5,8 +5,9 @@ name = "wod-trigger"
 main = "worker.js"
 compatibility_date = "2026-10-01"
 
-# Cron-only: no HTTP route, nothing to browse to.
-workers_dev = false
+# The worker serves one HTTP route, POST /ask (the Explorer's natural-language
+# query box), so the workers.dev URL is on. Everything else 404s.
+workers_dev = true
 
 [triggers]
 # One tick every 10 minutes; worker.js decides what (if anything) is due.
@@ -14,3 +15,19 @@ crons = ["*/10 * * * *"]
 
 [observability]
 enabled = true
+
+# Per-IP burst control for /ask: 10 requests per 60 seconds. The "unsafe" table
+# name is just Cloudflare's label for the rate-limiting binding (open beta) —
+# nothing here is unsafe. If a deploy ever rejects it, the worker degrades
+# gracefully: /ask checks for the binding before using it.
+[[unsafe.bindings]]
+name = "ASK_RATE"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }
+
+# Monthly budget counter for /ask — the "ask-budget" KV namespace, created in
+# the dashboard (Storage & Databases → KV) on 2026-11-03.
+[[kv_namespaces]]
+binding = "ASK_BUDGET"
+id = "779505a4683e4d7a81044a9b111c7ff5"

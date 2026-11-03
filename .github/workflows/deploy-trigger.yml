@@ -35,6 +35,22 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # A worker that fails to parse would fail the wrangler upload anyway
+      # (leaving the previous version live), but catching it here names the
+      # line instead of burying it in wrangler output.
+      - name: Syntax-check the worker
+        run: |
+          node --check trigger/query-spec.mjs
+          node -e "import('./trigger/worker.js').then(() => console.log('worker.js parses'), e => { console.error(String(e)); process.exit(1) })"
+
+      # The /ask contract tests: golden query specs validate against the schema
+      # in trigger/query-spec.mjs and execute correctly in the app's runner.
+      - name: Run the query-spec contract tests
+        working-directory: web
+        run: |
+          npm ci
+          npx vitest run
+
       - name: Check the Cloudflare secrets exist
         id: secrets
         env:
