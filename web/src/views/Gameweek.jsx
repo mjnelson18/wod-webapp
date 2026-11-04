@@ -81,17 +81,15 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
       const scored = squad.reduce((s, r) => s + (Number(r.points_scored) || 0), 0)
       const optimal = squad.reduce((s, r) => s + (Number(r.optimal_points) || 0), 0)
       const beforeSubs = squad.reduce((s, r) => s + (Number(r.points_before_auto_subs) || 0), 0)
-      // What the bench actually scored — a different wound from the optimal-XI
-      // gap: these points existed and sat in places 12-15.
-      const benchPoints = squad.reduce(
-        (s, r) => ((r.place ?? 99) > STARTERS ? s + (Number(r.total_points) || 0) : s), 0)
       return {
         ...t,
         squad,
         scored,
         optimal,
         beforeSubs,
-        benchPoints,
+        // Net bench points: how far short of the hindsight-optimal XI the
+        // lineup fell. This is the group's "benched points" — not what places
+        // 12-15 scored in total, most of which could never have started.
         lostToSubs: Math.max(0, optimal - scored),
         autoSubGain: scored - beforeSubs,
         cumulative: cumulativeAt(t, gwIndex),
@@ -104,7 +102,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 
     const best = drafters.reduce((a, b) => (b.scored > (a?.scored ?? -1) ? b : a), null)
     const worst = drafters.reduce((a, b) => (b.scored < (a?.scored ?? 1e9) ? b : a), null)
-    const biggestBench = drafters.reduce((a, b) => (b.benchPoints > (a?.benchPoints ?? -1) ? b : a), null)
+    const biggestBench = drafters.reduce((a, b) => (b.lostToSubs > (a?.lostToSubs ?? -1) ? b : a), null)
     const leagueTotal = drafters.reduce((s, d) => s + d.scored, 0)
     const leagueAvg = drafters.length ? leagueTotal / drafters.length : 0
     const totalLost = drafters.reduce((s, d) => s + d.lostToSubs, 0)
@@ -197,11 +195,13 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
                 value={view.worst ? view.worst.scored : '–'}
                 sub={view.worst ? fullName(meta, view.worst.short_name) : ''} />
           <Stat label="League average" value={round(view.leagueAvg)} sub={`${view.leagueTotal} total`} />
-          <Stat label="Benched points"
-                value={view.biggestBench ? view.biggestBench.benchPoints : '–'}
-                sub={view.biggestBench
-                  ? `${fullName(meta, view.biggestBench.short_name)} · most left on the bench`
-                  : ''} />
+          {can(meta, 'optimal_points') && (
+            <Stat label="Benched points"
+                  value={view.biggestBench ? Math.round(view.biggestBench.lostToSubs) : '–'}
+                  sub={view.biggestBench
+                    ? `${fullName(meta, view.biggestBench.short_name)} · net, vs their optimal XI`
+                    : ''} />
+          )}
           {view.bestMove && (
             <Stat label="Best transfer" value={signed(view.bestMove.net)}
                   sub={`${fullName(meta, view.bestMove.who)} · ${view.bestMove.inName} in, ${view.bestMove.outName} out`} />
