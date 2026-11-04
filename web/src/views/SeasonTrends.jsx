@@ -229,21 +229,19 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       }
     }).sort((a, b) => b.pool - a.pool)
 
-    // Most points sitting on a bench across the season — the same definition as
-    // the gameweek tile (what places 12-15 actually scored), summed.
-    const benchTotals = new Map()
-    for (const x of summary) {
-      if ((x.place ?? 99) > 11) {
-        benchTotals.set(x.short_name,
-          (benchTotals.get(x.short_name) ?? 0) + (Number(x.total_points) || 0))
-      }
-    }
-    const biggestBench = [...benchTotals.entries()].reduce(
-      (a, [short, pts]) => (pts > (a?.pts ?? -1) ? { short, pts } : a), null)
+    // Net bench points across the season — the same definition as the gameweek
+    // tile (the gap between the hindsight-optimal XI and what was banked),
+    // summed per drafter. `net_points_lost_through_subs` is scored − optimal,
+    // so it is negative when points were lost.
+    const drafterLost = summaryRows.filter(r => !r.is_average).map(r => ({
+      short: r.short_name,
+      pts: Math.max(0, -(Number(r.net_points_lost_through_subs) || 0)),
+    }))
+    const biggestBench = drafterLost.reduce(
+      (a, d) => (d.pts > (a?.pts ?? -1) ? d : a), null)
 
     const leader = rows[0]
-    const totalLost = summaryRows.filter(r => !r.is_average)
-      .reduce((s, r) => s + Math.abs(Number(r.net_points_lost_through_subs) || 0), 0)
+    const totalLost = drafterLost.reduce((s, d) => s + d.pts, 0)
     const bestPick = [...perf].sort((a, b) =>
       (b.points_realised_by_drafter ?? 0) - (a.points_realised_by_drafter ?? 0))[0]
 
@@ -279,9 +277,9 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
             <Stat label="Best draft pick" value={v.bestPick.points_realised_by_drafter}
                   sub={`${v.bestPick.web_name} · ${fullName(meta, v.bestPick.short_name)}`} />
           )}
-          {v.biggestBench && (
-            <Stat label="Benched points" value={v.biggestBench.pts}
-                  sub={`${fullName(meta, v.biggestBench.short)} · season total on the bench`} />
+          {can(meta, 'optimal_points') && v.biggestBench && (
+            <Stat label="Benched points" value={Math.round(v.biggestBench.pts)}
+                  sub={`${fullName(meta, v.biggestBench.short)} · season net, vs their optimal XI`} />
           )}
           {bestTransfer && bestTransfer.net_points_since != null && (
             <Stat label="Best transfer" value={signed(bestTransfer.net_points_since)}
@@ -314,32 +312,32 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
               <DrafterLines data={v.subCost} rows={v.rows} colours={colours} />
             </>
           )}
-
-        {keepers?.length > 0 && (
-          <>
-            <SubHead note="You start one keeper of two — how often was it the right one? An equal score counts as right.">
-              Keeper calls
-            </SubHead>
-            <div className="table-wrap">
-              <table className="data">
-                <thead>
-                  <tr><th>Drafter</th><th>Right call</th><th>%</th><th>Points lost</th></tr>
-                </thead>
-                <tbody>
-                  {keepers.map(k => (
-                    <tr key={k.short_name}>
-                      <td>{fullName(meta, k.short_name)}</td>
-                      <td className="num">{k.correct}/{k.weeks_with_choice}</td>
-                      <td className="num">{pct(k.pct, 0)}</td>
-                      <td className="num">{k.points_lost > 0 ? `−${k.points_lost}` : '0'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
       </Collapsible>
+
+      {keepers?.length > 0 && (
+        <Collapsible title="Keeper calls" summary={keeperSummary(meta, keepers)}>
+          <SubHead note="You start one keeper of two — how often was it the right one? An equal score counts as right.">
+            Right call, week by week
+          </SubHead>
+          <div className="table-wrap">
+            <table className="data">
+              <thead>
+                <tr><th>Drafter</th><th>Right call</th><th>%</th><th>Points lost</th></tr>
+              </thead>
+              <tbody>
+                {keepers.map(k => (
+                  <tr key={k.short_name}>
+                    <td>{fullName(meta, k.short_name)}</td>
+                    <td className="num">{k.correct}/{k.weeks_with_choice}</td>
+                    <td className="num">{pct(k.pct, 0)}</td>
+                    <td className="num">{k.points_lost > 0 ? `−${k.points_lost}` : '0'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Collapsible>
+      )}
 
       <Collapsible title="Transfers & trades"
                    count={v.activity.reduce((s, a) => s + a['waiver ok'] + a['free agent ok'] + a.trade, 0)}
@@ -726,4 +724,15 @@ function FormationTable({ rows, formations, meta }) {
       </table>
     </div>
   )
+}
+
+// One line for the collapsed Keeper calls header: the best and worst callers,
+// so the section says something before it is opened. Rows arrive sorted best
+// first (by % right, then fewest points lost).
+function keeperSummary(meta, keepers) {
+  const best = keepers[0]
+  const worst = keepers[keepers.length - 1]
+  const call = k => `${fullName(meta, k.short_name)} ${k.correct}/${k.weeks_with_choice}`
+  if (keepers.length === 1) return `${call(best)} right`
+  return `best ${call(best)} · worst ${call(worst)}, ${worst.points_lost} pts lost`
 }
