@@ -459,8 +459,18 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 // newer pipeline talking to an older client — skipped, never an error.
 const BEAT_KINDS = new Set([
   'lead_change', 'season_high', 'season_low', 'personal_outlier',
-  'bench_pain', 'instant_transfer', 'trade_executed', 'h2h_upset',
+  'bench_pain', 'instant_transfer', 'trade_executed', 'h2h_upset', 'keeper_call',
 ])
+
+// The tail of a keeper_call line: a perfect record of wrong calls is the joke,
+// a streak is the habit, and otherwise it is just this week's cost.
+function keeperCallTail(d) {
+  if (d.weeks >= 3 && d.wrong === d.weeks) {
+    return <> — the wrong keeper <strong>{d.wrong} weeks out of {d.weeks}</strong> this season</>
+  }
+  if (d.streak >= 3) return <> — the wrong call {d.streak} weeks running</>
+  return <> — {d.points_lost} points left in gloves on the bench</>
+}
 
 const beatName = (meta, person) =>
   person?.name || fullName(meta, person?.short_name) || person?.short_name || '?'
@@ -491,6 +501,13 @@ function BeatLine({ beat, meta }) {
       )
     case 'bench_pain':
       return <><strong>{beatName(meta, d)}</strong> left {d.points_lost} points behind against the optimal XI</>
+    case 'keeper_call':
+      return (
+        <>
+          <strong>{beatName(meta, d)}</strong> started {d.started} ({d.started_points}) with{' '}
+          {d.benched} ({d.benched_points}) on the bench{keeperCallTail(d)}
+        </>
+      )
     case 'instant_transfer':
       return (
         <>
