@@ -26,6 +26,11 @@ INSTANT_TRANSFER_MIN = 8
 RANK_SWING_MIN = 2
 # In an H2H league, a win over a side this many places higher is an upset.
 H2H_UPSET_RANK_GAP = 3
+# Starting the wrong one of two keepers is only worth a line when it cost this
+# much in the week...
+KEEPER_CALL_MIN = 5
+# ...or when it has become a habit: this many wrong calls in a row.
+KEEPER_STREAK_MIN = 3
 
 TRADE_PROCESSED = "p"
 SUCCESSFUL = "successful"
@@ -124,6 +129,65 @@ def _bench_beat(summary: pd.DataFrame, league: str, gameweek: int,
     })]
 
 
+def _keeper_beats(summary: pd.DataFrame, league: str, gameweek: int,
+                  names: dict) -> list[dict]:
+    """The wrong one of two keepers started — when it hurt, or when it's a habit.
+
+    Same rules as narrative._keepers: a week only counts as a call when exactly
+    one keeper started and at least one sat on the bench, and an equal score is
+    the right call. The season-to-date record and the current streak ride along
+    so the sentence can say "nine weeks out of nine" rather than just "again".
+    """
+    needed = {"position", "place", "total_points", "short_name", "gameweek"}
+    if not len(summary) or not needed.issubset(summary.columns):
+        return []
+    rows = summary[(summary["league_code"] == league)
+                   & (summary["position"] == "GKP")
+                   & (summary["gameweek"] <= gameweek)]
+    if rows.empty:
+        return []
+
+    points = lambda value: 0.0 if pd.isna(value) else float(value)  # noqa: E731
+    out = []
+    for short, mine in rows.groupby("short_name"):
+        weeks = wrong = streak = 0
+        this_week = None
+        for week_no, week in sorted(mine.groupby("gameweek"), key=lambda kv: kv[0]):
+            started = week[week["place"] <= 11]
+            benched = week[week["place"] > 11]
+            if len(started) != 1 or benched.empty:
+                continue
+            weeks += 1
+            start_points = points(started.iloc[0]["total_points"])
+            best_benched = benched.loc[benched["total_points"].idxmax()]
+            bench_points = points(best_benched["total_points"])
+            if start_points >= bench_points:
+                streak = 0
+                continue
+            wrong += 1
+            streak += 1
+            if int(week_no) == gameweek:
+                this_week = {
+                    "started": str(started.iloc[0].get("web_name", "")),
+                    "started_points": int(round(start_points)),
+                    "benched": str(best_benched.get("web_name", "")),
+                    "benched_points": int(round(bench_points)),
+                    "points_lost": int(round(bench_points - start_points)),
+                }
+        if this_week is None:
+            continue
+        if this_week["points_lost"] < KEEPER_CALL_MIN and streak < KEEPER_STREAK_MIN:
+            continue
+        out.append(_beat(league, gameweek, "keeper_call", {
+            **_person(names, league, str(short)),
+            **this_week,
+            "wrong": int(wrong),
+            "weeks": int(weeks),
+            "streak": int(streak),
+        }))
+    return out
+
+
 def _move_beats(transfers: pd.DataFrame, trades: pd.DataFrame, league: str,
                 gameweek: int, names: dict) -> list[dict]:
     out = []
@@ -212,6 +276,7 @@ def weekly_beats(*, season, league_table: pd.DataFrame,
             prior = rows[rows["gameweek"] < gameweek]
             out.extend(_week_beats(week, prior, league.code, int(gameweek), names))
             out.extend(_bench_beat(weekly_summary, league.code, int(gameweek), names))
+            out.extend(_keeper_beats(weekly_summary, league.code, int(gameweek), names))
             out.extend(_move_beats(transfers, trades, league.code, int(gameweek), names))
             out.extend(_upset_beats(h2h_matches, week, league.code, int(gameweek), names))
 

@@ -346,6 +346,11 @@ none; the headline must still answer the question first):
   nothing, then turned into a big scorer this season. The agreed line: Newbs
   called it, just a season early. Worth a nod whenever De Cuyper (or Newbs'
   eye for talent) comes up.
+- Chris Roper's keeper calls are the running joke of 2026/27: with two keepers
+  to choose from, he started the wrong one nine weeks out of nine to open the
+  season. Any question about keepers, goalkeepers, bench points or Chris Roper
+  himself deserves a dig ("Roper's gloves", "the one call he can't get
+  right"). The record lives in Season Trends → Keeper calls.
 `;
 
 const cap = (value, max) => String(value ?? "").slice(0, max);

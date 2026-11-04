@@ -185,3 +185,71 @@ def test_h2h_upsets_use_the_table_going_in():
 
 def test_beats_are_json_serialisable(beats):
     assert isinstance(json.loads(json.dumps(beats, allow_nan=False)), list)
+
+
+# --- keeper calls -------------------------------------------------------------
+#
+# Every drafter has two keepers all season. Worked by hand:
+#   AA  starts the wrong one every week by 1-2 points: too cheap to mention on
+#       cost alone, but a streak of three fires at GW3 and keeps firing, and by
+#       GW5 the record is a perfect 5 wrong out of 5.
+#   BB  gets it wrong once, in GW4, by 6 — over the cost bar, no streak.
+#   CC  is right every week (GW2 is a tie, which counts as right).
+KEEPERS = {
+    #       GW:  (started, benched)
+    "AA": [(1, 3), (2, 3), (1, 2), (0, 2), (1, 2)],
+    "BB": [(5, 1), (3, 3), (6, 2), (0, 6), (4, 1)],
+    "CC": [(4, 1), (2, 2), (6, 0), (3, 1), (5, 4)],
+}
+
+
+def summary_with_keepers():
+    base = summary_with_bench_pain()
+    base["position"] = "MID"
+    base["place"] = 1
+    base["total_points"] = base["points_scored"]
+    base["web_name"] = "Outfielder"
+    rows = []
+    for short, series in KEEPERS.items():
+        for gameweek, (started, benched) in enumerate(series, start=1):
+            common = {"league_code": "L1", "short_name": short, "gameweek": gameweek,
+                      "position": "GKP", "points_scored": 0, "optimal_points": 0}
+            rows.append({**common, "place": 1, "total_points": started,
+                         "web_name": f"{short} No.1"})
+            rows.append({**common, "place": 12, "total_points": benched,
+                         "web_name": f"{short} No.2"})
+    return pd.concat([base, pd.DataFrame(rows)], ignore_index=True)
+
+
+@pytest.fixture(scope="module")
+def keeper_beats():
+    beats = weekly_beats(
+        season=SEASON, league_table=league_table(SCORES),
+        league_table_by_week=build_by_week(SCORES),
+        weekly_summary=summary_with_keepers(),
+        transfers=transfers(), trades=trades(), h2h_matches=None,
+    )
+    return of_kind(beats, "keeper_call")
+
+
+def test_a_summary_without_keeper_columns_emits_no_keeper_beats(beats):
+    assert of_kind(beats, "keeper_call") == []
+
+
+def test_a_wrong_keeper_call_needs_cost_or_a_streak(keeper_beats):
+    assert [(b["gameweek"], b["data"]["short_name"]) for b in keeper_beats] == [
+        (3, "AA"), (4, "AA"), (4, "BB"), (5, "AA"),
+    ]
+
+
+def test_the_streak_carries_the_season_record(keeper_beats):
+    last = [b for b in keeper_beats if b["data"]["short_name"] == "AA"][-1]["data"]
+    assert (last["wrong"], last["weeks"], last["streak"]) == (5, 5, 5)
+    assert last["started"] == "AA No.1" and last["benched"] == "AA No.2"
+    assert (last["started_points"], last["benched_points"], last["points_lost"]) == (1, 2, 1)
+    assert last["name"] == "Name AA"
+
+
+def test_a_one_off_costly_call_has_no_streak_to_speak_of(keeper_beats):
+    bb = [b for b in keeper_beats if b["data"]["short_name"] == "BB"][0]["data"]
+    assert (bb["points_lost"], bb["wrong"], bb["weeks"], bb["streak"]) == (6, 1, 4, 1)

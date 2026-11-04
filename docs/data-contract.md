@@ -181,7 +181,9 @@ Talking points per gameweek — the review facts' automatic weekly sibling, prod
 array of `{league, gameweek, kind, data}`; the frontend keeps a fixed sentence template per
 `kind` and **skips kinds it doesn't know**, so the pipeline can add kinds without breaking old
 clients. Current kinds: `lead_change`, `season_high`, `season_low`, `personal_outlier`,
-`bench_pain`, `instant_transfer`, `trade_executed`, `h2h_upset`. Thresholds live as constants in
+`bench_pain`, `instant_transfer`, `trade_executed`, `h2h_upset`, `keeper_call` (the wrong one of
+two keepers started — when it cost enough in the week or has become a streak; carries the
+season-to-date `wrong`/`weeks` record and `streak`). Thresholds live as constants in
 `beats.py`; like the review facts, a quiet week emits nothing rather than filler. Beats for the
 in-progress gameweek are recomputed every run and may come and go as scores move.
 
