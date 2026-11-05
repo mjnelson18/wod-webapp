@@ -47,6 +47,9 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
   // beside the tables rather than through useTables, which errors on a 404.
   const facts = useAsync(() => loadTableIfPresent(season, 'season_review_facts'), [season])
   const [mode, setMode] = useState('cumulative')
+  // Season summary as season totals or per-gameweek averages. Every summary
+  // metric is a sum over gameweeks, so dividing by the gameweeks played is exact.
+  const [summaryMode, setSummaryMode] = useState('total')
   const [seriesMetric, setSeriesMetric] = useState('points_scored')
   const [lorenzMode, setLorenzMode] = useState('pct')
   // 'all' shows the early picks across every drafter, which is the interesting
@@ -124,13 +127,21 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       return row
     })
 
-    const summaryRows = inLeague(data.season_summary)
-    const series = gws.map(g => {
+    // Totals, or per-gameweek averages over the gameweeks played (the league
+    // average row included). The by-gameweek file is cumulative, so its average
+    // mode is the rolling average up to that week.
+    const perGw = summaryMode === 'average'
+    const summaryRows = inLeague(data.season_summary).map(r => (perGw
+      ? { ...r, ...Object.fromEntries(SUMMARY_COLUMNS.map(([key]) =>
+          [key, r[key] == null ? r[key] : r[key] / gws.length])) }
+      : r))
+    const series = gws.map((g, i) => {
       const row = { gameweek: g }
       for (const r of rows) {
         const hit = inLeague(data.season_summary_by_gameweek)
           .find(x => x.short_name === r.short_name && x.gameweek === g)
-        row[r.short_name] = hit ? hit[seriesMetric] : null
+        const value = hit ? hit[seriesMetric] : null
+        row[r.short_name] = perGw && value != null ? round(value / (i + 1)) : value
       }
       return row
     })
@@ -250,7 +261,7 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
              summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
              biggestBench, lorenz, maxSquad, draftRows, earlyRounds, squadRounds,
              shareSeries, draftOutcomes }
-  }, [data, league, meta, mode, seriesMetric, lorenzMode, draftFilter])
+  }, [data, league, meta, mode, summaryMode, seriesMetric, lorenzMode, draftFilter])
 
   if (error) return <div className="notice">Couldn&apos;t load season data: {String(error.message)}</div>
   if (loading || !v) return <Loading what="season trends" />
@@ -522,6 +533,9 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       </Collapsible>
 
       <Collapsible title="Season summary" summary="the full points breakdown">
+        <Segmented ariaLabel="Summary mode" value={summaryMode} onChange={setSummaryMode}
+          options={[{ value: 'total', label: 'Total' },
+                    { value: 'average', label: 'Per GW average' }]} />
         <div className="table-wrap">
           <table className="data">
             <thead>
@@ -535,7 +549,7 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
                 <tr key={r.short_name} style={r.is_average ? { fontStyle: 'italic', opacity: 0.75 } : undefined}>
                   <td>{r.is_average ? 'League average' : fullName(meta, r.short_name)}</td>
                   {SUMMARY_COLUMNS.map(([key]) => (
-                    <td key={key} className="num">{round(r[key], 0)}</td>
+                    <td key={key} className="num">{round(r[key], summaryMode === 'average' ? 1 : 0)}</td>
                   ))}
                 </tr>
               ))}
@@ -543,7 +557,9 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
           </table>
         </div>
 
-        <SubHead note="Pick a column to see how it moved over the season">Over time</SubHead>
+        <SubHead note={summaryMode === 'average'
+          ? 'Pick a column to see its rolling per-gameweek average over the season'
+          : 'Pick a column to see its cumulative total over the season'}>Over time</SubHead>
         <Segmented ariaLabel="Metric" value={seriesMetric} onChange={setSeriesMetric}
                    options={SUMMARY_SERIES} />
         <DrafterLines data={v.series} rows={v.rows} colours={colours} />
