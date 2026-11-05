@@ -427,9 +427,13 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
              "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
+        # Sorted so the published order is deterministic: the league table comes
+        # out in API standings order, which changes every gameweek.
         "drafters": [
             {"short_name": r["short_name"], "name": _clean(r.get("name")), "league": r["league_code"]}
-            for r in tables["league_table"].to_dict("records")
+            for r in tables["league_table"]
+                .sort_values(["league_code", "short_name"], kind="stable")
+                .to_dict("records")
         ],
         # Frame-probed capabilities plus the payload-shaped extras. The extras are
         # merged here rather than inside _capabilities, which _write_preseason

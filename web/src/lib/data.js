@@ -81,8 +81,17 @@ export const DRAFTER_COLOURS = [
   '#00AEEF', '#FF6A13', '#00A651', '#E4002B', '#A020F0', '#8B4513',
 ]
 
-/** Stable colour per drafter within a league, ordered by the meta drafter list. */
+/**
+ * Stable colour per drafter within a league, dealt alphabetically by initials.
+ *
+ * The palette is indexed by the drafter's position in the league's list, so
+ * the order has to be one that doesn't move as the season goes on — the
+ * published meta list follows the standings, which would re-deal every colour
+ * each time the table changed. Each league is dealt from the first colour.
+ */
 export function colourMap(meta, league) {
-  const drafters = (meta?.drafters ?? []).filter(d => d.league === league)
+  const drafters = (meta?.drafters ?? [])
+    .filter(d => d.league === league)
+    .sort((a, b) => String(a.short_name).localeCompare(String(b.short_name), undefined, { sensitivity: 'base' }))
   return Object.fromEntries(drafters.map((d, i) => [d.short_name, DRAFTER_COLOURS[i % DRAFTER_COLOURS.length]]))
 }
