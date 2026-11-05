@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useTables, useAsync, loadTableIfPresent, can } from '../lib/data.js'
+import { useTables, useAsync, loadTableIfPresent, can, executedTrades } from '../lib/data.js'
 import { navigate } from '../lib/router.js'
 import { fullName, label, round, signed, rankMove } from '../lib/names.js'
 import { headToHeadTable, fixturesFor } from '../lib/standings.js'
@@ -135,7 +135,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         net: t.net_points, counterparty: null,
       })
     }
-    for (const t of trades ?? []) {
+    for (const t of executedTrades(trades)) {
       if (t.league !== league || t.gameweek !== gw) continue
       moves.push({
         type: 'Trade', who: t.offered_by, inName: t.player_in, outName: t.player_out,

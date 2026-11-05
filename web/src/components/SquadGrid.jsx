@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { fullName } from '../lib/names.js'
+import { executedTrades } from '../lib/data.js'
 
 /**
  * The flagship squad grid, extracted so the Gameweek view stays readable.
@@ -41,8 +42,9 @@ export default function SquadGrid({ columns, meta, transfers, trades, league, ga
         attemptedOut.add(`${t.short_name}|${t.element_out}`)
       }
     }
+    // only processed trades moved a player; offers that went nowhere must not label a slot
     const tradeWeek = new Map()
-    for (const t of trades ?? []) {
+    for (const t of executedTrades(trades)) {
       if (t.league && t.league !== league) continue
       if (t.element_in != null) tradeWeek.set(`${t.offered_by}|${t.element_in}`, t.gameweek)
       if (t.element_out != null) tradeWeek.set(`${t.received_by}|${t.element_out}`, t.gameweek)
