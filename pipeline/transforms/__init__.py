@@ -21,6 +21,7 @@ from .league import (
     override_live_scores,
     reconcile_head_to_head,
 )
+from .drafters import assign_drafter_colours
 from .moves import (
     finalise_trades,
     finalise_transfers,
@@ -77,6 +78,7 @@ __all__ = [
     "attach_prior_season",
     "draft_picks_table",
     "entry_ids",
+    "assign_drafter_colours",
     "finalise_trades",
     "finalise_transfers",
     "fixtures_from_fantasy",

@@ -54,7 +54,8 @@ Drives the season selector, gameweek chips, league toggle and — importantly �
   "gameweeks": [1, 2, "…", 38],
   "leagues": [ { "code": "Prem", "name": "Premiership", "size": 6, "relegated": 2 },
                { "code": "Conf", "name": "Conference",  "size": 6, "promoted": 2 } ],
-  "drafters": [ { "short_name": "TS", "name": "Tom Shiel", "league": "Prem" } ],
+  "drafters": [ { "short_name": "TS", "name": "Tom Shiel", "league": "Prem", "colour": 11 } ],
+  "colour_registry": { "AC": 0, "AN": 1, "…": 2, "TS": 11 },
   "capabilities": {
     "fixtures": true, "difficulty": true, "cost": true, "ownership_by_league": true,
     "draft_round": true, "cumulative": true, "team_names": true, "trades": true,
@@ -63,6 +64,14 @@ Drives the season selector, gameweek chips, league toggle and — importantly �
   }
 }
 ```
+
+`drafters[].colour` is the drafter's slot in the frontend's 12-colour palette, and it follows the
+person from season to season: the pipeline reads the previous season's `colour_registry` (every
+drafter it has ever seen, upper-cased initials → slot) from that season's generated `meta.json`,
+keeps each returning drafter's slot and deals newcomers the lowest free one. Initials are the
+identity because FPL Draft issues a new `entry_id` every season. A meta without `colour` (older
+archives, dev fixtures) makes the frontend fall back to dealing six colours alphabetically per
+league — stable within a season only.
 
 The last three flags say whether the optional files exist: `weekly_beats.json`,
 `pot_tracker.json` (drives the whole Pot Tracker tab via the tab's `when` predicate) and the

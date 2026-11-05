@@ -31,6 +31,25 @@ describe('colourMap', () => {
     expect(new Set(Object.values(c)).size).toBe(6)
   })
 
+  it('uses the pipeline-dealt slot when every drafter has one', () => {
+    const meta = { drafters: [
+      drafter('TS', 'Prem'), drafter('AN', 'Prem'), drafter('AC', 'Conf'),
+    ].map((d, i) => ({ ...d, colour: [11, 3, 11][i] })) }
+    expect(colourMap(meta, 'Prem')).toEqual({ TS: DRAFTER_COLOURS[11], AN: DRAFTER_COLOURS[3] })
+    // the same slot in another league is the same colour — slots are per person, not per league
+    expect(colourMap(meta, 'Conf')).toEqual({ AC: DRAFTER_COLOURS[11] })
+  })
+
+  it('falls back to the alphabetical deal when any slot is missing', () => {
+    const meta = { drafters: [{ ...drafter('TS', 'Prem'), colour: 5 }, drafter('AN', 'Prem')] }
+    expect(colourMap(meta, 'Prem')).toEqual({ AN: DRAFTER_COLOURS[0], TS: DRAFTER_COLOURS[1] })
+  })
+
+  it('has twelve distinct colours, so slots never clash within a season', () => {
+    expect(DRAFTER_COLOURS).toHaveLength(12)
+    expect(new Set(DRAFTER_COLOURS.map(c => c.toLowerCase())).size).toBe(12)
+  })
+
   it('does not reorder the meta it was given', () => {
     const meta = { drafters: prem.map(s => drafter(s, 'Prem')) }
     colourMap(meta, 'Prem')

@@ -9,7 +9,7 @@
     "build:dunelmliga": "vite build --mode dunelmliga --outDir dist/dunelmliga",
     "preview": "vite preview",
     "test": "vitest run",
-    "fixtures": "node scripts/make-dev-fixtures.mjs"
+    "fixtures": "node ../scripts/make-dev-fixtures.mjs"
   },
   "dependencies": {
     "@tanstack/react-table": "^8.21.3",
