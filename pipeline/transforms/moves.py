@@ -93,7 +93,8 @@ def trades_table(trades: dict, table: pd.DataFrame, *, league_code) -> pd.DataFr
     Entries missing from `table` (i.e. excluded ones) keep their entry id as a
     label rather than being dropped.
     """
-    rows = trades.get("trades") or []
+    # a league with no trades endpoint payload (404) arrives as None, not {}
+    rows = (trades or {}).get("trades") or []
     if not rows:
         return pd.DataFrame(columns=TRADE_COLUMNS)
 

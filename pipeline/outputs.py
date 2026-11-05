@@ -276,7 +276,9 @@ def _capabilities(tables: dict) -> dict:
         "draft_round": filled(summary, "round"),
         "cumulative": filled(summary, "points_scored_cumulative"),
         "team_names": filled(summary, "team_name"),
-        "trades": len(tables["trades"]) > 0,
+        # offers that were never accepted don't make a season "have trades"
+        "trades": bool(filled(tables["trades"], "state")
+                       and (tables["trades"]["state"] == "p").any()),
         "optimal_points": filled(summary, "optimal_points"),
         # a full-season fixture table, needed for the next-6 look-ahead
         "fixture_lookahead": filled(tables.get("fixtures_by_team", pd.DataFrame()), "opposition"),

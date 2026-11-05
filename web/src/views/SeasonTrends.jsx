@@ -3,7 +3,7 @@ import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Legend,
 } from 'recharts'
-import { useTables, useAsync, loadTableIfPresent, colourMap, can } from '../lib/data.js'
+import { useTables, useAsync, loadTableIfPresent, colourMap, can, executedTrades } from '../lib/data.js'
 import { fullName, label, pct, round, signed } from '../lib/names.js'
 import {
   LeagueToggle, Section, Loading, Unavailable, Stat, StatRow,
@@ -100,9 +100,10 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
 
     // transfer + trade activity by type
     const types = ['waiver ok', 'free agent ok', 'waiver failed', 'trade']
+    const trades = executedTrades(data.trades)
     const activity = rows.map(r => {
       const mine = inLeague(data.transfers).filter(t => t.short_name === r.short_name)
-      const myTrades = (data.trades ?? []).filter(t =>
+      const myTrades = trades.filter(t =>
         t.league === league && (t.offered_by === r.short_name || t.received_by === r.short_name))
       return {
         short_name: r.short_name,
@@ -117,7 +118,7 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       for (const r of rows) {
         row[r.short_name] = inLeague(data.transfers)
           .filter(t => t.short_name === r.short_name && t.gameweek <= g && t.result === 'successful').length
-          + (data.trades ?? []).filter(t => t.league === league && t.gameweek <= g
+          + trades.filter(t => t.league === league && t.gameweek <= g
               && (t.offered_by === r.short_name || t.received_by === r.short_name)).length
       }
       return row

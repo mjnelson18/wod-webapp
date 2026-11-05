@@ -69,6 +69,14 @@ export function can(meta, capability) {
   return Boolean(meta?.capabilities?.[capability])
 }
 
+/**
+ * Trades that actually happened. The trades table keeps every offer the API
+ * served — offered, rejected, withdrawn, expired — and only `state === 'p'`
+ * (processed) ones changed a squad. Views that describe what happened filter
+ * through here; the Data Explorer shows every row.
+ */
+export const executedTrades = rows => (rows ?? []).filter(t => t.state === 'p')
+
 export const DRAFTER_COLOURS = [
   '#00AEEF', '#FF6A13', '#00A651', '#E4002B', '#A020F0', '#8B4513',
 ]
