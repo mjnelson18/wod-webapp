@@ -79,19 +79,28 @@ export const executedTrades = rows => (rows ?? []).filter(t => t.state === 'p')
 
 export const DRAFTER_COLOURS = [
   '#00AEEF', '#FF6A13', '#00A651', '#E4002B', '#A020F0', '#8B4513',
+  '#F5B700', '#D62598', '#009FA0', '#1F3A93', '#7A9A01', '#FF8FAB',
 ]
 
 /**
- * Stable colour per drafter within a league, dealt alphabetically by initials.
+ * One colour per drafter in a league.
  *
- * The palette is indexed by the drafter's position in the league's list, so
- * the order has to be one that doesn't move as the season goes on — the
- * published meta list follows the standings, which would re-deal every colour
- * each time the table changed. Each league is dealt from the first colour.
+ * Seasons built with a colour registry carry each drafter's palette slot in
+ * `meta.drafters[].colour`: the pipeline deals a slot the first time a person
+ * drafts and hands the same one back every season after, so a drafter is the
+ * same colour in 2425, 2526 and 2627. Twelve slots cover both leagues without
+ * a clash.
+ *
+ * A meta without slots (dev fixtures, an archive built before they existed)
+ * falls back to dealing the six base colours alphabetically by initials —
+ * stable within a season, but not across them.
  */
 export function colourMap(meta, league) {
-  const drafters = (meta?.drafters ?? [])
-    .filter(d => d.league === league)
+  const drafters = (meta?.drafters ?? []).filter(d => d.league === league)
+  if (drafters.length && drafters.every(d => Number.isInteger(d.colour))) {
+    return Object.fromEntries(drafters.map(d => [d.short_name, DRAFTER_COLOURS[d.colour % DRAFTER_COLOURS.length]]))
+  }
+  const sorted = [...drafters]
     .sort((a, b) => String(a.short_name).localeCompare(String(b.short_name), undefined, { sensitivity: 'base' }))
-  return Object.fromEntries(drafters.map((d, i) => [d.short_name, DRAFTER_COLOURS[i % DRAFTER_COLOURS.length]]))
+  return Object.fromEntries(sorted.map((d, i) => [d.short_name, DRAFTER_COLOURS[i % 6]]))
 }

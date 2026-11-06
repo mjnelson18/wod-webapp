@@ -20,6 +20,7 @@ import pandas as pd
 from . import paths
 from .adapters import backfill_difficulty, backfill_players
 from .config import DEFAULT_SITE, get_site, is_configured
+from .config.seasons import previous_season
 from .fetchers import build_source
 from .fetchers.http import Maintenance, RateLimited
 from .transforms import (
@@ -144,13 +145,7 @@ def _draft_choices(source, league, say) -> dict:
 
 def _previous_season(season_id: str) -> str | None:
     """'2627' -> '2526'. None if the id isn't the two-year form."""
-    text = str(season_id or "")
-    if not (len(text) == 4 and text.isdigit()):
-        return None
-    start = int(text[:2])
-    if start <= 0:
-        return None
-    return f"{start - 1:02d}{start:02d}"
+    return previous_season(season_id)
 
 
 def _preseason_tables(season, site, source, teams, players, say) -> dict:

@@ -83,7 +83,7 @@ env:
   # WOD only — Dunelmliga has no archived seasons.
   ARCHIVE_SEASONS: '2425 2526'
   # Bump to force archives to rebuild without touching their inputs.
-  ARCHIVE_CACHE_VERSION: 'v1'
+  ARCHIVE_CACHE_VERSION: 'v2'   # v2: meta.drafters[].colour + colour_registry
 
 jobs:
   build:

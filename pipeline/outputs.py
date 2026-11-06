@@ -12,6 +12,8 @@ import pandas as pd
 
 from . import paths
 from .config import DEFAULT_SITE, get_site
+from .config.seasons import previous_season
+from .transforms.drafters import assign_drafter_colours
 
 # weekly_points is one row per element per gameweek per league — ~59k rows for a
 # full season, 88% of it undrafted players. Views need owned rows plus the best
@@ -285,6 +287,51 @@ def _capabilities(tables: dict) -> dict:
     }
 
 
+
+def _prior_colour_registry(season, site) -> dict:
+    """
+    Last season's colour deal, read back from its generated meta.json.
+
+    Same arrangement as the prior players table in build.py: the archives are
+    restored into data/<site>/ before the current season builds, so the file is
+    on disk by now; missing (the oldest season, a local build with no archive)
+    just means dealing afresh. Own site only — colours belong to people, and the
+    two sites share none.
+    """
+    prior = previous_season(season.season)
+    if not prior:
+        return {}
+    path = paths.season_data_dir(prior, site) / "meta.json"
+    try:
+        meta = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    registry = {str(k).upper(): int(v) for k, v in (meta.get("colour_registry") or {}).items()}
+    for drafter in meta.get("drafters") or []:
+        if drafter.get("colour") is not None:
+            registry.setdefault(str(drafter["short_name"]).upper(), int(drafter["colour"]))
+    return registry
+
+
+def _drafters_meta(rows, season, site) -> tuple[list[dict], dict]:
+    """
+    meta.drafters plus the colour registry to carry forward.
+
+    `rows` carry short_name, name and league_code; they are published sorted by
+    (league, initials) so the order is deterministic — the league table comes
+    out in API standings order, which changes every gameweek.
+    """
+    rows = sorted(rows, key=lambda r: (str(r["league_code"]), str(r["short_name"]).upper()))
+    colours, registry = assign_drafter_colours(
+        [r["short_name"] for r in rows], _prior_colour_registry(season, site))
+    drafters = [
+        {"short_name": r["short_name"], "name": r["name"], "league": r["league_code"],
+         "colour": colours[r["short_name"]]}
+        for r in rows
+    ]
+    return drafters, registry
+
+
 def _league_table_view(tables: dict) -> list[dict]:
     """Per-drafter table with per-gameweek arrays precomputed for the trends chart."""
     table = tables["league_table"]
@@ -357,6 +404,11 @@ def _write_preseason(tables: dict, *, site: str | None = None,
         "players": tables["players"], "fixtures_by_team": empty,
     })
 
+    drafters, colour_registry = _drafters_meta(
+        [{"short_name": r["short_name"], "name": full_name(r), "league_code": r["league_code"]}
+         for r in standings.to_dict("records")],
+        season, site)
+
     meta = {
         "season": season.season,
         "label": season.label,
@@ -372,10 +424,8 @@ def _write_preseason(tables: dict, *, site: str | None = None,
              "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
-        "drafters": [
-            {"short_name": r["short_name"], "name": full_name(r), "league": r["league_code"]}
-            for r in standings.to_dict("records")
-        ],
+        "drafters": drafters,
+        "colour_registry": colour_registry,
         "capabilities": capabilities,
         "notes": season.notes,
     }
@@ -412,6 +462,11 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
         points = _reduce_weekly_points(points)
 
     gameweeks = sorted(int(g) for g in summary["gameweek"].unique())
+    drafters, colour_registry = _drafters_meta(
+        [{"short_name": r["short_name"], "name": _clean(r.get("name")), "league_code": r["league_code"]}
+         for r in tables["league_table"].to_dict("records")],
+        season, site)
+
     meta = {
         "season": season.season,
         "label": season.label,
@@ -427,14 +482,10 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
              "scoring": (tables.get("scoring") or {}).get(lg.code, "classic")}
             for lg in season.leagues
         ],
-        # Sorted so the published order is deterministic: the league table comes
-        # out in API standings order, which changes every gameweek.
-        "drafters": [
-            {"short_name": r["short_name"], "name": _clean(r.get("name")), "league": r["league_code"]}
-            for r in tables["league_table"]
-                .sort_values(["league_code", "short_name"], kind="stable")
-                .to_dict("records")
-        ],
+        "drafters": drafters,
+        # upper-cased initials -> palette slot, for everyone who has ever drafted;
+        # next season's build reads this to keep each person's colour
+        "colour_registry": colour_registry,
         # Frame-probed capabilities plus the payload-shaped extras. The extras are
         # merged here rather than inside _capabilities, which _write_preseason
         # reuses against empty frames — a preseason meta simply lacks these keys,

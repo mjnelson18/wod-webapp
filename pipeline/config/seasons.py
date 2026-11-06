@@ -153,3 +153,14 @@ SEASON_2627 = Season(
 def is_configured(season: Season) -> bool:
     """False while a live season still has <FILL IN> league codes."""
     return all(lg.league_code is not None for lg in season.leagues) or season.default_source != "live"
+
+
+def previous_season(season_id: str) -> str | None:
+    """'2627' -> '2526'. None if the id isn't the two-year form."""
+    text = str(season_id or "")
+    if not (len(text) == 4 and text.isdigit()):
+        return None
+    start = int(text[:2])
+    if start <= 0:
+        return None
+    return f"{start - 1:02d}{start:02d}"
