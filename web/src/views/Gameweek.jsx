@@ -15,9 +15,12 @@ const FORM_GAMES = 5
 
 export default function Gameweek({ season, meta, league, setLeague, route }) {
   const gw = Number(route.param) || meta.current_gameweek
-  // A gameweek still being played. Auto-subs have not happened and the optimal
-  // XI is measured against players yet to kick off, so the bench figures mean
-  // nothing until Monday; what can be said is how many starters have featured.
+  // A gameweek still being played. The optimal XI is measured against players
+  // yet to kick off, so the bench figures mean nothing until Monday. What can be
+  // said is how many of each XI are done for the week — and the pipeline has
+  // already made the auto-subs that are settled (a starter whose match is over
+  // without him playing, replaced by a bench player who has), so the XI and the
+  // points here run ahead of FPL's own, which waits for the final whistle.
   const live = meta.live_gameweek != null && gw === meta.live_gameweek
   // Only a league played as weekly fixtures has these, and only seasons built
   // since they existed ship the files at all — so they are asked for by name
@@ -92,10 +95,11 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         scored,
         optimal,
         beforeSubs,
-        // Starters who have been on the pitch this gameweek (minutes is null on
-        // seasons built from CSVs, which never show as live anyway).
+        // Starters whose club has finished its matches this gameweek — nothing
+        // more is coming from them, played or not. (Null on seasons built from
+        // CSVs, which never show as live anyway.)
         starters: starters.length,
-        played: starters.filter(r => Number(r.minutes) > 0).length,
+        played: starters.filter(r => r.fixture_finished === true).length,
         // Net bench points: how far short of the hindsight-optimal XI the
         // lineup fell. This is the group's "benched points" — not what places
         // 12-15 scored in total, most of which could never have started.
@@ -187,7 +191,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     <>
       <Section
         title={`Gameweek ${gw}`}
-        note={live ? 'in progress · points are provisional; auto-subs apply when the gameweek ends' : undefined}
+        note={live ? 'in progress · points are provisional; settled auto-subs already made' : undefined}
         aside={<LeagueToggle meta={meta} league={league} setLeague={setLeague} />}
       >
         <div className="chips" style={{ marginBottom: 10 }}>
@@ -209,7 +213,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
           <Stat label="League average" value={round(view.leagueAvg)} sub={`${view.leagueTotal} total`} />
           {live && (
             <Stat label="Played" value={`${view.playedTotal}/${view.startersTotal}`}
-                  sub="starters who have featured so far" />
+                  sub="starters whose match is over" />
           )}
           {!live && can(meta, 'optimal_points') && (
             <Stat label="Benched points"
@@ -379,19 +383,26 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 
       <Collapsible
         title="Substitutions"
-        count={live ? undefined : view.subs.length}
-        summary={live ? 'applied when the gameweek ends' : `${Math.round(view.totalLost)} pts left on benches`}
+        count={view.subs.length}
+        summary={live ? 'provisional · made here as matches finish' : `${Math.round(view.totalLost)} pts left on benches`}
       >
-        {live ? (
-          <p className="muted small">
-            Auto-subs, and what a perfect line-up would have scored, are worked out once
-            every match in the gameweek has finished.
+        {live && (
+          <p className="muted small" style={{ marginTop: 0 }}>
+            FPL only applies auto-subs once the whole gameweek is over. These are made
+            here as soon as they are settled — a starter whose match has finished without
+            him playing, replaced by the first bench player who has, keeping a legal
+            formation — so the XIs and points above run ahead of FPL&apos;s. What a perfect
+            line-up would have scored waits for the final whistle.
           </p>
-        ) : view.subs.length === 0 ? (
-          <p className="muted small">No auto-subs this gameweek.</p>
+        )}
+        {view.subs.length === 0 ? (
+          <p className="muted small">No auto-subs this gameweek{live ? ' yet' : ''}.</p>
         ) : (
           <>
-            <SubHead note="Auto-subs applied when a starter didn't play">Subbed players</SubHead>
+            <SubHead note={live ? 'Provisional — starters whose match is over without playing'
+                                : "Auto-subs applied when a starter didn't play"}>
+              Subbed players
+            </SubHead>
             <div className="table-wrap">
               <table className="data">
                 <thead>
@@ -411,25 +422,29 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
               </table>
             </div>
 
-            <SubHead note="Points a perfect line-up would have added">Cost per drafter</SubHead>
-            <div className="table-wrap">
-              <table className="data">
-                <thead>
-                  <tr><th>Drafter</th><th>Scored</th><th>Optimal</th><th>Lost</th><th>Auto-sub gain</th></tr>
-                </thead>
-                <tbody>
-                  {[...view.drafters].sort((a, b) => b.lostToSubs - a.lostToSubs).map(d => (
-                    <tr key={d.short_name}>
-                      <td>{fullName(meta, d.short_name)}</td>
-                      <td className="num">{d.scored}</td>
-                      <td className="num">{round(d.optimal)}</td>
-                      <td className="num">{d.lostToSubs > 0 ? `−${Math.round(d.lostToSubs)}` : '0'}</td>
-                      <td className="num">{signed(d.autoSubGain)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {!live && (
+              <>
+                <SubHead note="Points a perfect line-up would have added">Cost per drafter</SubHead>
+                <div className="table-wrap">
+                  <table className="data">
+                    <thead>
+                      <tr><th>Drafter</th><th>Scored</th><th>Optimal</th><th>Lost</th><th>Auto-sub gain</th></tr>
+                    </thead>
+                    <tbody>
+                      {[...view.drafters].sort((a, b) => b.lostToSubs - a.lostToSubs).map(d => (
+                        <tr key={d.short_name}>
+                          <td>{fullName(meta, d.short_name)}</td>
+                          <td className="num">{d.scored}</td>
+                          <td className="num">{round(d.optimal)}</td>
+                          <td className="num">{d.lostToSubs > 0 ? `−${Math.round(d.lostToSubs)}` : '0'}</td>
+                          <td className="num">{signed(d.autoSubGain)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
           </>
         )}
       </Collapsible>
