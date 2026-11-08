@@ -10,6 +10,7 @@ Gameweeks are 1-indexed: `live_by_gameweek[1]` is `event/1`.
 import numpy as np
 import pandas as pd
 
+from .live_subs import apply_provisional_subs
 from .optimal import add_optimal_points
 
 STARTING_XI = 11
@@ -134,13 +135,18 @@ def _player_details(players: pd.DataFrame, draft_picks: pd.DataFrame,
 
 def weekly_tables(*, picks_by_entry_gameweek: dict, live_by_gameweek: dict,
                   players: pd.DataFrame, draft_picks: pd.DataFrame,
-                  standings: pd.DataFrame, entry_names: dict, league_code):
+                  standings: pd.DataFrame, entry_names: dict, league_code,
+                  live_gameweek: int | None = None):
     """
     Build (weekly_summary, weekly_points) for one league.
 
     weekly_points covers *every* element, not just owned ones, and is emitted per
     league. That duplication is intentional: a footballer can be owned by different
     drafters in each league, so each league needs its own ownership view.
+
+    `live_gameweek` is the week still in play, if any: its predictable auto-subs
+    are applied ahead of FPL (see live_subs.py), so the banked points for that
+    week are the best live estimate rather than the pre-sub picks.
     """
     picks = _picks_frame(picks_by_entry_gameweek, entry_names, league_code)
     points = _points_frame(live_by_gameweek, league_code)
@@ -173,6 +179,9 @@ def weekly_tables(*, picks_by_entry_gameweek: dict, live_by_gameweek: dict,
     blank = summary["gameweek"].isin(known) & summary["fixture_finished"].isna()
     summary.loc[blank, "fixture_finished"] = True
     summary["fixture_finished"] = summary["fixture_finished"].astype("boolean")
+
+    if live_gameweek:
+        summary = apply_provisional_subs(summary, int(live_gameweek))
 
     # what the drafter actually banked: only the final starting XI counts
     summary["points_scored"] = np.where(

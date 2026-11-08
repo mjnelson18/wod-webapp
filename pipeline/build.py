@@ -314,6 +314,7 @@ def build_tables(season_id: str, *, site: str | None = None,
             picks_by_entry_gameweek=entry_picks, live_by_gameweek=live,
             players=players, draft_picks=picks, standings=standings,
             entry_names=names, league_code=league.code,
+            live_gameweek=live_gameweek,
         )
 
         transfers = finalise_transfers(
