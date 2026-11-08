@@ -21,12 +21,25 @@ const TABS = [
 const BRAND = import.meta.env.VITE_SITE_BRAND ?? "What's On Draft"
 const TAGLINE = import.meta.env.VITE_SITE_TAGLINE ?? '· data pack'
 
+// "as of 16:42" today, "as of Sat 16:42" within the week, else "as of 8 Nov 16:42"
+// — in the viewer's own time zone, which is what "when did this last update"
+// means to someone checking their phone at half-time.
+function asOf(date) {
+  const now = new Date()
+  const sameDay = date.toDateString() === now.toDateString()
+  const withinWeek = now - date < 6 * 24 * 60 * 60 * 1000
+  const time = date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+  if (sameDay) return time
+  if (withinWeek) return `${date.toLocaleDateString(undefined, { weekday: 'short' })} ${time}`
+  return `${date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })} ${time}`
+}
+
 // Before GW1 there are no gameweeks, so every chart and table would be empty.
 // Draft Night is the exception: it needs only the picks, so it opens the moment
 // draft night has happened. An unlisted stage (or meta still loading) shows all.
 const STAGE_TABS = { pre_draft: [], drafted: ['draft'] }
 
-export default function Header({ route, seasons, meta }) {
+export default function Header({ route, seasons, meta, builtAt }) {
   const current = seasons.find(s => s.season === route.season)
   const allowed = STAGE_TABS[meta?.stage]
   const tabs = TABS
@@ -63,6 +76,11 @@ export default function Header({ route, seasons, meta }) {
       <div className="header-top">
         <div className="brand">
           {BRAND} <span>{TAGLINE}</span>
+          {builtAt && (
+            <span className="as-of" title={builtAt.toLocaleString()}>
+              {' '}· as of {asOf(builtAt)}
+            </span>
+          )}
         </div>
         {/* A site in its first season has nothing to select between. */}
         {seasons.length > 1 ? (

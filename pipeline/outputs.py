@@ -88,6 +88,9 @@ WEEKLY_SUMMARY = {
     "opposition_score": "opposition_score",
     "team_difficulty": "team_difficulty", "opposition_difficulty": "opposition_difficulty",
     "kickoff_time_first": "kickoff_time_first",
+    # For a gameweek in play: has this player featured yet, and is his club's
+    # match over? Null on seasons built from CSVs, which never carried either.
+    "minutes": "minutes", "fixture_finished": "fixture_finished",
 }
 
 WEEKLY_POINTS = {
@@ -415,6 +418,7 @@ def _write_preseason(tables: dict, *, site: str | None = None,
         "source": season.default_source,
         "stage": tables["stage"],
         "current_gameweek": 0,
+        "live_gameweek": None,
         "total_gameweeks": 0,
         "complete": False,
         "gameweeks": [],
@@ -473,6 +477,11 @@ def write_season(tables: dict, *, site: str | None = None, out_dir: str | None =
         "source": season.default_source,
         "stage": tables.get("stage", "live"),
         "current_gameweek": int(tables["current_week"]),
+        # The gameweek still being played, or null. The frontend hides what
+        # cannot be known yet (auto-subs, optimal XI) and keeps the week out of
+        # the season trends until it settles; an archive is never live.
+        "live_gameweek": (int(tables["live_gameweek"])
+                          if tables.get("live_gameweek") else None),
         "total_gameweeks": len(gameweeks),
         "complete": len(gameweeks) >= season.total_gameweeks,
         "gameweeks": gameweeks,

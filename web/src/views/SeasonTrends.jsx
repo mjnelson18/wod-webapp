@@ -65,7 +65,14 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
     if (!data) return null
     const inLeague = rows => (rows ?? []).filter(r => r.league === league)
     const rows = inLeague(data.league_table).sort((a, b) => a.rank - b.rank)
-    const gws = meta.gameweeks
+    // Trends run to the last *settled* gameweek. A week still being played has
+    // most of its points to come, so it would drag every average down until it
+    // finishes; the pipeline applies the same cut to the pre-computed tables.
+    // The one exception is a live GW1, which is kept rather than show nothing.
+    const liveGw = meta.live_gameweek ?? null
+    const settled = meta.gameweeks.filter(g => g !== liveGw)
+    const gws = settled.length ? settled : meta.gameweeks
+    const lastGw = gws[gws.length - 1] ?? 0
 
     const points = gws.map((g, i) => {
       const point = { gameweek: g }
@@ -78,7 +85,8 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
     })
 
     // score histogram
-    const scores = rows.flatMap(r => (r.points_by_gameweek ?? []).map(p => ({ s: r.short_name, p })))
+    const scores = rows.flatMap(r =>
+      (r.points_by_gameweek ?? []).slice(0, gws.length).map(p => ({ s: r.short_name, p })))
     const lo = Math.floor(Math.min(...scores.map(x => x.p)) / BIN) * BIN
     const hi = Math.ceil((Math.max(...scores.map(x => x.p)) + 1) / BIN) * BIN
     const bins = []
@@ -105,9 +113,11 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
     const types = ['waiver ok', 'free agent ok', 'waiver failed', 'trade']
     const trades = executedTrades(data.trades)
     const activity = rows.map(r => {
-      const mine = inLeague(data.transfers).filter(t => t.short_name === r.short_name)
+      const mine = inLeague(data.transfers)
+        .filter(t => t.short_name === r.short_name && t.gameweek <= lastGw)
       const myTrades = trades.filter(t =>
-        t.league === league && (t.offered_by === r.short_name || t.received_by === r.short_name))
+        t.league === league && t.gameweek <= lastGw
+        && (t.offered_by === r.short_name || t.received_by === r.short_name))
       return {
         short_name: r.short_name,
         'waiver ok': mine.filter(t => t.kind === 'waiver' && t.result === 'successful').length,
@@ -257,7 +267,8 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
     const bestPick = [...perf].sort((a, b) =>
       (b.points_realised_by_drafter ?? 0) - (a.points_realised_by_drafter ?? 0))[0]
 
-    return { rows, gws, points, bins, subCost, activity, activityByWeek, types,
+    return { rows, gws, liveGw, settledOnly: settled.length > 0,
+             points, bins, subCost, activity, activityByWeek, types,
              summaryRows, series, usage, share, perf, forms, leader, totalLost, bestPick,
              biggestBench, lorenz, maxSquad, draftRows, earlyRounds, squadRounds,
              shareSeries, draftOutcomes }
@@ -278,10 +289,14 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
       <Section title="Season Trends"
                aside={<LeagueToggle meta={meta} league={league} setLeague={setLeague} />}>
         <StatRow>
-          <Stat label="Leader" value={v.leader ? v.leader.total : '–'}
+          <Stat label="Leader"
+                value={v.leader ? (v.leader.cumulative_by_gameweek?.[v.gws.length - 1] ?? v.leader.total) : '–'}
                 sub={v.leader ? fullName(meta, v.leader.short_name) : ''} />
-          <Stat label="Gameweeks played" value={meta.current_gameweek}
-                sub={meta.complete ? 'season complete' : 'in progress'} />
+          <Stat label={v.liveGw != null ? 'Gameweeks settled' : 'Gameweeks played'}
+                value={v.gws.length}
+                sub={meta.complete ? 'season complete'
+                  : v.liveGw != null ? `GW${v.liveGw} in play · ${v.settledOnly ? 'not counted yet' : 'all there is so far'}`
+                  : 'in progress'} />
           {can(meta, 'optimal_points') && (
             <Stat label="Points lost to subs" value={Math.round(v.totalLost)} sub="league-wide, all season" />
           )}
@@ -298,6 +313,14 @@ export default function SeasonTrends({ season, meta, league, setLeague }) {
                   sub={`${bestTransfer.player_in} in · ${fullName(meta, bestTransfer.short_name)} · since GW${bestTransfer.gameweek}`} />
           )}
         </StatRow>
+        {v.liveGw != null && (
+          <div className="notice" style={{ marginTop: 10 }}>
+            Gameweek {v.liveGw} is still being played
+            {v.settledOnly
+              ? ', so it is left out of these trends until it is complete.'
+              : ' and is the only gameweek so far, so everything here is provisional.'}
+          </div>
+        )}
       </Section>
 
       <Collapsible title="Points" summary="cumulative, per gameweek, distribution" open>

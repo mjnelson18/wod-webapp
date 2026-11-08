@@ -15,6 +15,10 @@ const FORM_GAMES = 5
 
 export default function Gameweek({ season, meta, league, setLeague, route }) {
   const gw = Number(route.param) || meta.current_gameweek
+  // A gameweek still being played. Auto-subs have not happened and the optimal
+  // XI is measured against players yet to kick off, so the bench figures mean
+  // nothing until Monday; what can be said is how many starters have featured.
+  const live = meta.live_gameweek != null && gw === meta.live_gameweek
   // Only a league played as weekly fixtures has these, and only seasons built
   // since they existed ship the files at all — so they are asked for by name
   // rather than always, which would 404 the older archives.
@@ -81,12 +85,17 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
       const scored = squad.reduce((s, r) => s + (Number(r.points_scored) || 0), 0)
       const optimal = squad.reduce((s, r) => s + (Number(r.optimal_points) || 0), 0)
       const beforeSubs = squad.reduce((s, r) => s + (Number(r.points_before_auto_subs) || 0), 0)
+      const starters = squad.filter(r => (r.place ?? 99) <= STARTERS)
       return {
         ...t,
         squad,
         scored,
         optimal,
         beforeSubs,
+        // Starters who have been on the pitch this gameweek (minutes is null on
+        // seasons built from CSVs, which never show as live anyway).
+        starters: starters.length,
+        played: starters.filter(r => Number(r.minutes) > 0).length,
         // Net bench points: how far short of the hindsight-optimal XI the
         // lineup fell. This is the group's "benched points" — not what places
         // 12-15 scored in total, most of which could never have started.
@@ -106,6 +115,8 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     const leagueTotal = drafters.reduce((s, d) => s + d.scored, 0)
     const leagueAvg = drafters.length ? leagueTotal / drafters.length : 0
     const totalLost = drafters.reduce((s, d) => s + d.lostToSubs, 0)
+    const playedTotal = drafters.reduce((s, d) => s + d.played, 0)
+    const startersTotal = drafters.reduce((s, d) => s + d.starters, 0)
 
     // subs detail: who was subbed on/off, and what it cost or gained
     const subs = []
@@ -161,7 +172,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 
     return {
       table, drafters, best, worst, biggestBench, bestMove,
-      leagueTotal, leagueAvg, totalLost, subs, moves,
+      leagueTotal, leagueAvg, totalLost, playedTotal, startersTotal, subs, moves,
       standings, fixtures: fixturesFor(fixtures, gw),
     }
   }, [data, league, gw, meta.gameweeks, h2h])
@@ -176,6 +187,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
     <>
       <Section
         title={`Gameweek ${gw}`}
+        note={live ? 'in progress · points are provisional; auto-subs apply when the gameweek ends' : undefined}
         aside={<LeagueToggle meta={meta} league={league} setLeague={setLeague} />}
       >
         <div className="chips" style={{ marginBottom: 10 }}>
@@ -195,7 +207,11 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
                 value={view.worst ? view.worst.scored : '–'}
                 sub={view.worst ? fullName(meta, view.worst.short_name) : ''} />
           <Stat label="League average" value={round(view.leagueAvg)} sub={`${view.leagueTotal} total`} />
-          {can(meta, 'optimal_points') && (
+          {live && (
+            <Stat label="Played" value={`${view.playedTotal}/${view.startersTotal}`}
+                  sub="starters who have featured so far" />
+          )}
+          {!live && can(meta, 'optimal_points') && (
             <Stat label="Benched points"
                   value={view.biggestBench ? Math.round(view.biggestBench.lostToSubs) : '–'}
                   sub={view.biggestBench
@@ -206,7 +222,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
             <Stat label="Best transfer" value={signed(view.bestMove.net)}
                   sub={`${fullName(meta, view.bestMove.who)} · ${view.bestMove.inName} in, ${view.bestMove.outName} out`} />
           )}
-          {can(meta, 'optimal_points') && (
+          {!live && can(meta, 'optimal_points') && (
             <Stat label="Lost vs optimal XI" value={Math.round(view.totalLost)}
                   sub="league-wide" />
           )}
@@ -214,7 +230,9 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 
         {beats.length > 0 && (
           <>
-            <SubHead>Talking points</SubHead>
+            <SubHead note={live ? 'so far — the gameweek is still being played' : undefined}>
+              Talking points
+            </SubHead>
             <ul className="beats">
               {beats.map((b, i) => <li key={i}><BeatLine beat={b} meta={meta} /></li>)}
             </ul>
@@ -309,7 +327,7 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
             <thead>
               <tr>
                 <th>#</th><th>Drafter</th><th>GW</th><th>Total</th>
-                <th>Form</th><th>vs optimal</th>
+                <th>Form</th><th>{live ? 'Played' : 'vs optimal'}</th>
               </tr>
             </thead>
             <tbody>
@@ -325,7 +343,10 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
                     <td className="num">{d.scored}</td>
                     <td className="num">{d.cumulative ?? d.total}</td>
                     <td className="num">{round(d.form_points)}</td>
-                    <td className="num">{d.lostToSubs > 0 ? `−${Math.round(d.lostToSubs)}` : '0'}</td>
+                    <td className="num">
+                      {live ? `${d.played}/${d.starters}`
+                            : d.lostToSubs > 0 ? `−${Math.round(d.lostToSubs)}` : '0'}
+                    </td>
                   </tr>
                 )
               })}
@@ -358,10 +379,15 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
 
       <Collapsible
         title="Substitutions"
-        count={view.subs.length}
-        summary={`${Math.round(view.totalLost)} pts left on benches`}
+        count={live ? undefined : view.subs.length}
+        summary={live ? 'applied when the gameweek ends' : `${Math.round(view.totalLost)} pts left on benches`}
       >
-        {view.subs.length === 0 ? (
+        {live ? (
+          <p className="muted small">
+            Auto-subs, and what a perfect line-up would have scored, are worked out once
+            every match in the gameweek has finished.
+          </p>
+        ) : view.subs.length === 0 ? (
           <p className="muted small">No auto-subs this gameweek.</p>
         ) : (
           <>
@@ -486,16 +512,25 @@ function BeatLine({ beat, meta }) {
           {d.tied ? ' draws level at the top with ' : ' takes the lead from '}
           {beatName(meta, d.previous)}
           {!d.tied && d.lead > 0 && <>, {d.lead} clear</>}
+          {beat.provisional && ' — for now'}
         </>
       )
     case 'season_high':
-      return <><strong>{beatName(meta, d)}</strong> hits {d.points} — the best week by anyone this season</>
+      return (
+        <>
+          <strong>{beatName(meta, d)}</strong> hits {d.points} —{' '}
+          {beat.provisional
+            ? 'already the best week by anyone this season, with games still to play'
+            : 'the best week by anyone this season'}
+        </>
+      )
     case 'season_low':
       return <><strong>{beatName(meta, d)}</strong> posts {d.points}, the season&apos;s lowest week so far</>
     case 'personal_outlier':
       return (
         <>
-          <strong>{beatName(meta, d)}</strong> scored {d.points}, well{' '}
+          <strong>{beatName(meta, d)}</strong> scored {d.points}{beat.provisional ? ' so far' : ''},{' '}
+          {beat.provisional ? 'already ' : ''}well{' '}
           {d.direction === 'above' ? 'above' : 'below'} their usual {d.average}
         </>
       )
@@ -512,7 +547,7 @@ function BeatLine({ beat, meta }) {
       return (
         <>
           <strong>{beatName(meta, d)}</strong>&apos;s {d.kind === 'waiver' ? 'waiver' : 'pickup'} paid off at once:{' '}
-          {d.player_in} in for {d.player_out}, {signed(d.net_points)} this week
+          {d.player_in} in for {d.player_out}, {signed(d.net_points)} {beat.provisional ? 'so far ' : ''}this week
         </>
       )
     case 'trade_executed':

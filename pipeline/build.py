@@ -69,8 +69,9 @@ from .transforms import (
 )
 
 
-def _current_week(source, season) -> int:
-    game = source.game() or {}
+def _current_week(source, season, game: dict | None = None) -> int:
+    if game is None:
+        game = source.game() or {}
     week = game.get("current_event")
     if week:
         return int(week)
@@ -81,6 +82,22 @@ def _current_week(source, season) -> int:
     if game.get("next_event"):
         return 0
     return season.total_gameweeks
+
+
+def _live_gameweek(game: dict, current_week: int) -> int | None:
+    """
+    The gameweek still being played, or None.
+
+    `current_event` stays on a finished gameweek until the next one opens, so
+    "current" alone does not mean "in progress" — `current_event_finished` does.
+    The archives' game.json reports the last week finished, and a payload that
+    omits the flag is treated as finished too: a settled season must never look
+    live, because the live state hides stats the frontend otherwise shows.
+    """
+    current = game.get("current_event")
+    if not current_week or current is None or int(current) != int(current_week):
+        return None
+    return int(current_week) if game.get("current_event_finished") is False else None
 
 
 def _prior_players(season, site, say) -> "pd.DataFrame | None":
@@ -209,7 +226,10 @@ def build_tables(season_id: str, *, site: str | None = None,
         )
 
     source = build_source(season, source=source_kind, force=force)
-    current_week = gameweeks or _current_week(source, season)
+    game = source.game() or {}
+    current_week = gameweeks or _current_week(source, season, game)
+    # A forced gameweek count is a test or a rebuild, not a week in play.
+    live_gameweek = None if gameweeks else _live_gameweek(game, current_week)
     weeks = list(range(1, current_week + 1))
     say = print if verbose else (lambda *a, **k: None)
     say(f"{season.season}: gameweeks 1..{current_week}")
@@ -358,17 +378,30 @@ def build_tables(season_id: str, *, site: str | None = None,
 
     # Pre-computed per-view tables, so the client never aggregates a 6,840-row
     # table to draw a chart.
+    #
+    # The season-trend tables stop at the last *settled* gameweek. A week in
+    # play has most of its points still to come — auto-subs have not happened,
+    # half the squads have not kicked off — so letting it in drags every
+    # average, share and optimal-XI figure down until Monday. The first
+    # gameweek has nothing settled behind it, so it stays in rather than
+    # leaving the view empty; the frontend reads `meta.live_gameweek` and
+    # applies the same rule to the tables it folds itself.
+    settled_summary, settled_points, settled_week = weekly_summary, weekly_points, current_week
+    if live_gameweek and current_week > 1:
+        settled_summary = weekly_summary[weekly_summary["gameweek"] < live_gameweek]
+        settled_points = weekly_points[weekly_points["gameweek"] < live_gameweek]
+        settled_week = live_gameweek - 1
     views = {
-        "season_summary": season_summary(weekly_summary, weekly_points),
-        "season_summary_by_gameweek": season_summary_by_gameweek(weekly_summary, weekly_points),
-        "formations": formations(weekly_summary),
-        "draft_performance": draft_pick_performance(weekly_summary, weekly_points, current_week),
-        "player_usage": player_usage(weekly_summary),
-        "lorenz": lorenz_curve(weekly_summary),
-        "draft_share": draft_share(weekly_summary),
-        "draft_share_by_gameweek": draft_share_by_gameweek(weekly_summary),
-        "distribution_position": points_distribution(weekly_summary, "position"),
-        "distribution_team": points_distribution(weekly_summary, "team_name"),
+        "season_summary": season_summary(settled_summary, settled_points),
+        "season_summary_by_gameweek": season_summary_by_gameweek(settled_summary, settled_points),
+        "formations": formations(settled_summary),
+        "draft_performance": draft_pick_performance(settled_summary, settled_points, settled_week),
+        "player_usage": player_usage(settled_summary),
+        "lorenz": lorenz_curve(settled_summary),
+        "draft_share": draft_share(settled_summary),
+        "draft_share_by_gameweek": draft_share_by_gameweek(settled_summary),
+        "distribution_position": points_distribution(settled_summary, "position"),
+        "distribution_team": points_distribution(settled_summary, "team_name"),
         "available_players": available_form_players(weekly_points, current_week),
     }
 
@@ -390,7 +423,7 @@ def build_tables(season_id: str, *, site: str | None = None,
     beats = weekly_beats(
         season=season, league_table=table, league_table_by_week=by_week,
         weekly_summary=weekly_summary, transfers=transfers, trades=trades,
-        h2h_matches=h2h_matches,
+        h2h_matches=h2h_matches, live_gameweek=live_gameweek,
     )
 
     # The side pot, for a league whose config keeps one (Dunelmliga). One payload:
@@ -410,6 +443,7 @@ def build_tables(season_id: str, *, site: str | None = None,
     return {
         "season": season,
         "current_week": current_week,
+        "live_gameweek": live_gameweek,
         "stage": "live",
         "scoring": scoring,
         "h2h_table": pd.concat(h2h_tables, ignore_index=True) if h2h_tables else empty_h2h,
