@@ -253,3 +253,91 @@ def test_the_streak_carries_the_season_record(keeper_beats):
 def test_a_one_off_costly_call_has_no_streak_to_speak_of(keeper_beats):
     bb = [b for b in keeper_beats if b["data"]["short_name"] == "BB"][0]["data"]
     assert (bb["points_lost"], bb["wrong"], bb["weeks"], bb["streak"]) == (6, 1, 4, 1)
+
+
+# --- a gameweek still being played -------------------------------------------
+#
+# GW5 of the hand-worked season is treated as in play. AA's 2 is the season low
+# and far below their average, but with games to come that may not hold; the
+# bench-pain figure is meaningless before auto-subs. A season high already set
+# mid-week stands, flagged so the sentence can say "so far".
+LIVE_SCORES = {
+    "AA": [50, 20, 30, 25, 2],
+    "BB": [40, 45, 30, 35, 36],
+    "CC": [30, 25, 80, 30, 95],   # already past their own GW3 high, mid-week
+}
+
+
+def live_beats(summary, live_gameweek=5):
+    return weekly_beats(
+        season=SEASON, league_table=league_table(LIVE_SCORES),
+        league_table_by_week=build_by_week(LIVE_SCORES),
+        weekly_summary=summary, transfers=transfers(), trades=trades(),
+        h2h_matches=None, live_gameweek=live_gameweek,
+    )
+
+
+def test_a_live_week_keeps_its_highs_and_drops_its_lows():
+    beats = live_beats(summary_with_bench_pain())
+    gw5 = [b for b in beats if b["gameweek"] == 5]
+    kinds = {b["kind"] for b in gw5}
+    assert "season_high" in kinds            # already the best week by anyone
+    assert "season_low" not in kinds         # the games to come may fix it
+    outliers = [b["data"]["direction"] for b in gw5 if b["kind"] == "personal_outlier"]
+    assert outliers == ["above"]             # CC's 95 yes, AA's 2 no
+    assert all(b.get("provisional") is True for b in gw5)
+    # Settled weeks are untouched, and carry no flag at all.
+    assert all("provisional" not in b for b in beats if b["gameweek"] < 5)
+
+
+def test_a_live_week_has_no_bench_pain_yet():
+    # Bench pain for AA sits in GW2 in the fixture; make GW5 painful too.
+    summary = summary_with_bench_pain()
+    at = (summary["short_name"] == "BB") & (summary["gameweek"] == 5)
+    summary.loc[at, "optimal_points"] = summary.loc[at, "points_scored"] + 30
+    beats = live_beats(summary)
+    assert [b["gameweek"] for b in of_kind(beats, "bench_pain")] == [2]
+    # ...and it appears the moment the week is settled.
+    settled = live_beats(summary, live_gameweek=None)
+    assert [b["gameweek"] for b in of_kind(settled, "bench_pain")] == [2, 5]
+
+
+def test_nothing_changes_when_no_week_is_live(beats):
+    assert "provisional" not in beats[0]
+    assert live_beats(summary_with_bench_pain(), live_gameweek=None) == weekly_beats(
+        season=SEASON, league_table=league_table(LIVE_SCORES),
+        league_table_by_week=build_by_week(LIVE_SCORES),
+        weekly_summary=summary_with_bench_pain(), transfers=transfers(),
+        trades=trades(), h2h_matches=None,
+    )
+
+
+def keeper_summary_with_fixtures(finished_by_short):
+    """The keeper fixture with a fixture_finished flag per drafter's GW5 keepers."""
+    summary = summary_with_keepers()
+    summary["fixture_finished"] = True
+    for short, finished in finished_by_short.items():
+        at = ((summary["short_name"] == short) & (summary["gameweek"] == 5)
+              & (summary["position"] == "GKP"))
+        summary.loc[at, "fixture_finished"] = finished
+    return summary
+
+
+def test_a_live_keeper_call_waits_for_both_keepers_to_play():
+    # AA's keepers have both finished; BB's benched keeper is still playing.
+    summary = keeper_summary_with_fixtures({"BB": [True, False]})
+    summary.loc[(summary["short_name"] == "BB") & (summary["gameweek"] == 5)
+                & (summary["place"] == 12), "total_points"] = 9     # would cost 5
+    beats = of_kind(live_beats(summary), "keeper_call")
+    gw5 = [b["data"]["short_name"] for b in beats if b["gameweek"] == 5]
+    assert gw5 == ["AA"]
+    assert all(b["provisional"] for b in beats if b["gameweek"] == 5)
+    # Earlier weeks are exactly as before.
+    assert [(b["gameweek"], b["data"]["short_name"]) for b in beats if b["gameweek"] < 5] == [
+        (3, "AA"), (4, "AA"), (4, "BB"),
+    ]
+
+
+def test_a_live_keeper_call_needs_the_fixture_column_at_all():
+    beats = of_kind(live_beats(summary_with_keepers()), "keeper_call")
+    assert [b["gameweek"] for b in beats] == [3, 4, 4]

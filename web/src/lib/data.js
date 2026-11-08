@@ -22,6 +22,19 @@ function get(path) {
 }
 
 export const loadSeasons = () => get('seasons.json')
+
+/**
+ * When the deployed data was fetched — `built.json`, written beside the site by
+ * the deploy workflow, never by the pipeline (it sits outside the data digest so
+ * a timestamp alone cannot force a deploy). Absent in local dev and on a site
+ * built before it existed, so it resolves to null rather than failing anything.
+ */
+export const loadBuiltAt = () =>
+  fetch(`${import.meta.env.BASE_URL}built.json`)
+    .then(r => (r.ok ? r.json() : null))
+    .then(d => (d?.built ? new Date(d.built) : null))
+    .then(d => (d && !Number.isNaN(d.getTime()) ? d : null))
+    .catch(() => null)
 export const loadMeta = season => get(`${season}/meta.json`)
 export const loadTable = (season, name) => get(`${season}/${name}.json`)
 

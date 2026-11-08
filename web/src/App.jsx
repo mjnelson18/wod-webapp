@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useRoute, navigate, buildHash } from './lib/router.js'
-import { loadSeasons, loadMeta, useAsync } from './lib/data.js'
+import { loadSeasons, loadMeta, useAsync, loadBuiltAt } from './lib/data.js'
 import Header from './components/Header.jsx'
 
 // Lazy per view so a phone opening the gameweek grid doesn't download Recharts
@@ -36,6 +36,7 @@ export default function App() {
 
   const season = route.season
   const meta = useAsync(() => (season ? loadMeta(season) : Promise.resolve(null)), [season])
+  const builtAt = useAsync(loadBuiltAt, [])
 
   // League selection lives above the views so it persists across tab changes.
   const [league, setLeague] = useState(null)
@@ -57,6 +58,7 @@ export default function App() {
         route={route}
         seasons={seasons.data.seasons}
         meta={meta.data}
+        builtAt={builtAt.data}
       />
       <main>
         {meta.error && <Fatal error={meta.error} />}

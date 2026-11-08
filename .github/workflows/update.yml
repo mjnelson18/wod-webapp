@@ -169,7 +169,10 @@ jobs:
       # through the whole pre-season.
       - name: Build current season
         if: steps.gate.outputs.should_build == 'true' && steps.gate.outputs.season_ready == 'true'
-        run: python -m pipeline.build --season "$CURRENT_SEASON"
+        run: |
+          # The moment the live data was fetched — shown on the site as "as of".
+          echo "BUILT_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+          python -m pipeline.build --season "$CURRENT_SEASON"
 
       - name: Current season not configured yet
         if: steps.gate.outputs.should_build == 'true' && steps.gate.outputs.season_ready != 'true'
@@ -291,6 +294,11 @@ jobs:
           mkdir -p web/public
           # published alongside the site so the next run can tell what is live
           printf '%s' "${{ steps.digest.outputs.digest }}" > web/public/digest.txt
+          # When this data was fetched. Kept out of data/ on purpose: a timestamp
+          # inside the digest would force a deploy every run (see windows.json),
+          # so it only moves when a data change deploys — which is exactly when
+          # the figures on the site last changed.
+          printf '{"built":"%s"}' "${BUILT_AT:-$(date -u +%Y-%m-%dT%H:%M:%SZ)}" > web/public/built.json
 
           rm -rf web/public/data
           cp -r data/wod web/public/data

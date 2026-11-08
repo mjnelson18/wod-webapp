@@ -70,18 +70,52 @@ def _picks_frame(picks_by_entry_gameweek: dict, entry_names: dict, league_code) 
 
 
 def _points_frame(live_by_gameweek: dict, league_code) -> pd.DataFrame:
-    """One row per element per gameweek, for every element the API reported."""
+    """One row per element per gameweek, for every element the API reported.
+
+    `minutes` rides along so a week in play can say who has actually featured
+    yet; it is null when the payload does not carry it.
+    """
     rows = []
     for gameweek, payload in sorted(live_by_gameweek.items()):
         for element_id, details in (payload or {}).get("elements", {}).items():
             rows.append({
                 "id": int(element_id),
                 "total_points": details["stats"].get("total_points", 0),
+                "minutes": details["stats"].get("minutes"),
                 "gameweek": int(gameweek),
             })
-    frame = pd.DataFrame(rows, columns=["id", "total_points", "gameweek"])
+    frame = pd.DataFrame(rows, columns=["id", "total_points", "minutes", "gameweek"])
     frame["league_code"] = league_code
     return frame
+
+
+def _fixture_state(live_by_gameweek: dict) -> tuple[pd.DataFrame, set[int]]:
+    """
+    Per (gameweek, club): has every one of its matches that week finished?
+
+    From the fixture list the live payload carries beside the scores. A match is
+    done at the final whistle (`finished_provisional`), before the bonus is
+    confirmed — for "has this player played yet" that is the right moment. Also
+    returns the gameweeks that carried a fixture list at all: a club absent from
+    a known list has a blank week (nothing left to play), while a payload with
+    no list says nothing either way.
+    """
+    rows, known = [], set()
+    for gameweek, payload in sorted(live_by_gameweek.items()):
+        fixtures = (payload or {}).get("fixtures")
+        if fixtures is None:
+            continue
+        known.add(int(gameweek))
+        done: dict[int, bool] = {}
+        for fixture in fixtures:
+            finished = bool(fixture.get("finished_provisional") or fixture.get("finished"))
+            for team in (fixture.get("team_h"), fixture.get("team_a")):
+                if team is None:
+                    continue
+                done[int(team)] = done.get(int(team), True) and finished
+        rows.extend({"gameweek": int(gameweek), "team_id": team, "fixture_finished": finished}
+                    for team, finished in done.items())
+    return pd.DataFrame(rows, columns=["gameweek", "team_id", "fixture_finished"]), known
 
 
 def _player_details(players: pd.DataFrame, draft_picks: pd.DataFrame,
@@ -112,10 +146,11 @@ def weekly_tables(*, picks_by_entry_gameweek: dict, live_by_gameweek: dict,
     points = _points_frame(live_by_gameweek, league_code)
 
     summary = picks.merge(
-        points[["id", "total_points", "gameweek"]],
+        points[["id", "total_points", "minutes", "gameweek"]],
         left_on=["element", "gameweek"], right_on=["id", "gameweek"], how="inner",
     )
     summary["total_points"] = pd.to_numeric(summary["total_points"])
+    summary["minutes"] = pd.to_numeric(summary["minutes"], errors="coerce").astype("Int64")
     summary["points_before_auto_subs"] = np.where(
         summary["originally_starting"] == 1, summary["total_points"], 0
     )
@@ -129,6 +164,15 @@ def weekly_tables(*, picks_by_entry_gameweek: dict, live_by_gameweek: dict,
 
     details = _player_details(players, draft_picks, league_code)
     summary = summary.merge(details, on="element", how="left")
+
+    # Whether the player's club has finished its matches this week. Null where
+    # the payload had no fixture list; a club missing from a list that exists
+    # has a blank gameweek, which counts as finished.
+    state, known = _fixture_state(live_by_gameweek)
+    summary = summary.merge(state, on=["gameweek", "team_id"], how="left")
+    blank = summary["gameweek"].isin(known) & summary["fixture_finished"].isna()
+    summary.loc[blank, "fixture_finished"] = True
+    summary["fixture_finished"] = summary["fixture_finished"].astype("boolean")
 
     # what the drafter actually banked: only the final starting XI counts
     summary["points_scored"] = np.where(

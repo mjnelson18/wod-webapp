@@ -62,7 +62,13 @@ def _lead_beats(rows: pd.DataFrame, league: str, names: dict) -> list[dict]:
 
 
 def _week_beats(week: pd.DataFrame, prior: pd.DataFrame, league: str,
-                gameweek: int, names: dict) -> list[dict]:
+                gameweek: int, names: dict, live: bool = False) -> list[dict]:
+    """
+    Points can only climb while a gameweek is in play, so a week that is
+    already the season's best, or already well above someone's average, is a
+    fact worth saying on Saturday night. A low week is not: the games still to
+    come may fix it. Those wait for the final whistle.
+    """
     out = []
 
     # A new best or worst week for the whole league (needs history to beat).
@@ -74,7 +80,7 @@ def _week_beats(week: pd.DataFrame, prior: pd.DataFrame, league: str,
                 "points": int(high["points_scored"]),
             }))
         low = week.loc[week["points_scored"].idxmin()]
-        if int(low["points_scored"]) < int(prior["points_scored"].min()):
+        if not live and int(low["points_scored"]) < int(prior["points_scored"].min()):
             out.append(_beat(league, gameweek, "season_low", {
                 **_person(names, league, str(low["short_name"])),
                 "points": int(low["points_scored"]),
@@ -87,6 +93,8 @@ def _week_beats(week: pd.DataFrame, prior: pd.DataFrame, league: str,
             continue
         average = float(history.mean())
         difference = float(record["points_scored"]) - average
+        if live and difference < 0:
+            continue
         if abs(difference) >= PERSONAL_OUTLIER_MARGIN:
             out.append(_beat(league, gameweek, "personal_outlier", {
                 **_person(names, league, str(record["short_name"])),
@@ -108,9 +116,13 @@ def _week_beats(week: pd.DataFrame, prior: pd.DataFrame, league: str,
 
 
 def _bench_beat(summary: pd.DataFrame, league: str, gameweek: int,
-                names: dict) -> list[dict]:
-    """The week's worst optimal-XI gap, when it is painful enough to mention."""
-    if not len(summary):
+                names: dict, live: bool = False) -> list[dict]:
+    """The week's worst optimal-XI gap, when it is painful enough to mention.
+
+    Nothing to say while the week is in play: auto-subs have not happened and
+    the optimal XI is measured against players who have not kicked off.
+    """
+    if live or not len(summary):
         # A columnless empty frame (preseason, or an H2H build with no summary
         # yet) would KeyError on the column lookups below.
         return []
@@ -130,13 +142,17 @@ def _bench_beat(summary: pd.DataFrame, league: str, gameweek: int,
 
 
 def _keeper_beats(summary: pd.DataFrame, league: str, gameweek: int,
-                  names: dict) -> list[dict]:
+                  names: dict, live: bool = False) -> list[dict]:
     """The wrong one of two keepers started — when it hurt, or when it's a habit.
 
     Same rules as narrative._keepers: a week only counts as a call when exactly
     one keeper started and at least one sat on the bench, and an equal score is
     the right call. The season-to-date record and the current streak ride along
     so the sentence can say "nine weeks out of nine" rather than just "again".
+
+    In a week still being played the call is settled as soon as every one of
+    the drafter's keepers has finished his match — which can be Saturday
+    teatime — so it is said then, and not before.
     """
     needed = {"position", "place", "total_points", "short_name", "gameweek"}
     if not len(summary) or not needed.issubset(summary.columns):
@@ -166,7 +182,7 @@ def _keeper_beats(summary: pd.DataFrame, league: str, gameweek: int,
                 continue
             wrong += 1
             streak += 1
-            if int(week_no) == gameweek:
+            if int(week_no) == gameweek and not (live and not _all_finished(week)):
                 this_week = {
                     "started": str(started.iloc[0].get("web_name", "")),
                     "started_points": int(round(start_points)),
@@ -186,6 +202,13 @@ def _keeper_beats(summary: pd.DataFrame, league: str, gameweek: int,
             "streak": int(streak),
         }))
     return out
+
+
+def _all_finished(rows: pd.DataFrame) -> bool:
+    """Every player in `rows` has a finished (or blank) fixture this week."""
+    if "fixture_finished" not in rows.columns or rows.empty:
+        return False
+    return bool(rows["fixture_finished"].fillna(False).astype(bool).all())
 
 
 def _move_beats(transfers: pd.DataFrame, trades: pd.DataFrame, league: str,
@@ -256,11 +279,16 @@ def _upset_beats(matches: pd.DataFrame, week: pd.DataFrame, league: str,
 def weekly_beats(*, season, league_table: pd.DataFrame,
                  league_table_by_week: pd.DataFrame, weekly_summary: pd.DataFrame,
                  transfers: pd.DataFrame, trades: pd.DataFrame,
-                 h2h_matches: pd.DataFrame | None = None) -> list[dict]:
+                 h2h_matches: pd.DataFrame | None = None,
+                 live_gameweek: int | None = None) -> list[dict]:
     """Every talking point for every played gameweek, newest data included.
 
-    Beats for the current gameweek are provisional by nature — they are recomputed
-    every build, so a mid-gameweek outlier that fades simply disappears.
+    `live_gameweek` is the week still being played, if any. Its beats are
+    recomputed every build, so one that fades simply disappears — but some can
+    never hold mid-week (a season low, a bench-pain figure before auto-subs) and
+    are not emitted, while a keeper call waits until both keepers have played.
+    The ones that are emitted carry `provisional: true` so the sentence can say
+    "so far".
     """
     names = {(r["league_code"], r["short_name"]): r.get("name")
              for r in league_table.to_dict("records")}
@@ -274,11 +302,17 @@ def weekly_beats(*, season, league_table: pd.DataFrame,
         for gameweek in sorted(rows["gameweek"].unique()):
             week = rows[rows["gameweek"] == gameweek]
             prior = rows[rows["gameweek"] < gameweek]
-            out.extend(_week_beats(week, prior, league.code, int(gameweek), names))
-            out.extend(_bench_beat(weekly_summary, league.code, int(gameweek), names))
-            out.extend(_keeper_beats(weekly_summary, league.code, int(gameweek), names))
+            live = live_gameweek is not None and int(gameweek) == int(live_gameweek)
+            out.extend(_week_beats(week, prior, league.code, int(gameweek), names, live=live))
+            out.extend(_bench_beat(weekly_summary, league.code, int(gameweek), names, live=live))
+            out.extend(_keeper_beats(weekly_summary, league.code, int(gameweek), names, live=live))
             out.extend(_move_beats(transfers, trades, league.code, int(gameweek), names))
             out.extend(_upset_beats(h2h_matches, week, league.code, int(gameweek), names))
+
+    if live_gameweek is not None:
+        for beat in out:
+            if beat["gameweek"] == int(live_gameweek):
+                beat["provisional"] = True
 
     out.sort(key=lambda b: (b["league"], b["gameweek"]))
     return _jsonable(out)
