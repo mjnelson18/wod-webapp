@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 596" width="1050" height="596" role="img" aria-label="Flow diagram: Cloudflare Worker clock wakes a GitHub Actions run, which reads FPL APIs, uses a run cache, and publishes static files to GitHub Pages that people open in a browser. Questions go from the browser via the worker to Claude and return as a query recipe.">
+<title>Flow diagram: Cloudflare Worker clock wakes a GitHub Actions run, which reads FPL APIs, uses a run cache, and publishes static files to GitHub Pages that people open in a browser. Questions go from the browser via the worker to Claude and return as a query recipe.</title>
+<style>
+svg { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+.node rect { stroke: #1b2330; stroke-opacity: .28; stroke-width: 1; }
+.role-clock rect { fill: #e8e2f6 } .role-worker rect { fill: #dbe7f1 } .role-ext rect { fill: #eceef2 }
+.role-store rect { fill: #e3f0e7 } .role-ai rect { fill: #fbe8cc } .role-people rect { fill: #fde0d8 }
+.node .eyebrow { font-size: 9.5px; letter-spacing: .09em; fill: #5a6473; font-weight: 600; }
+.node .name { font-size: 13px; font-weight: 600; fill: #1b2330; }
+.node .sub { font-size: 10.5px; fill: #1b2330; fill-opacity: .82; }
+.edge { fill: none; stroke-width: 1.5; stroke: #1b2330; stroke-linejoin: round; }
+.edge-trigger { stroke: #6a4fc0; stroke-dasharray: 6 4; }
+.edge-human { stroke: #c0533a; stroke-dasharray: 2 4; stroke-linecap: round; }
+.fill-t { fill: #6a4fc0 } .fill-h { fill: #c0533a } .fill-d { fill: #1b2330 }
+.lbl { font-size: 11px; fill: #1b2330; }
+.lbl-trigger { fill: #6a4fc0; font-weight: 500; }
+.lbl-human { fill: #c0533a; font-weight: 500; }
+.lbl-bg { fill: #ffffff; }
+</style>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-d"/></marker>
+<marker id="arrow-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-t"/></marker>
+<marker id="arrow-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-h"/></marker>
+</defs>
+<rect width="1050" height="596" fill="#ffffff"/>
+<g transform="translate(0,26)">
+<polyline class="edge edge-trigger" points="390.0,142 390.0,170" marker-end="url(#arrow-t)"/>
+<rect class="lbl-bg" x="394" y="149" width="55" height="15" rx="3"/>
+<text class="lbl lbl-trigger" x="398" y="160" text-anchor="start">wakes up</text>
+<polyline class="edge edge-trigger" points="220,228.0 290,228.0" marker-end="url(#arrow-t)"/>
+<rect class="lbl-bg" x="233" y="210.0" width="43" height="15" rx="3"/>
+<text class="lbl lbl-trigger" x="255.0" y="221.0" text-anchor="middle">backup</text>
+<polyline class="edge edge-data" points="220,354.5 290,354.5" marker-end="url(#arrow)"/>
+<rect class="lbl-bg" x="236" y="336.5" width="38" height="15" rx="3"/>
+<text class="lbl lbl-data" x="255.0" y="347.5" text-anchor="middle">reads</text>
+<polyline class="edge edge-data" points="390.0,430 390.0,470" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<rect class="lbl-bg" x="394" y="444" width="150" height="15" rx="3"/>
+<text class="lbl lbl-data" x="398" y="455" text-anchor="start">remembers finished weeks</text>
+<polyline class="edge edge-data" points="490,190 620,190" marker-end="url(#arrow)"/>
+<rect class="lbl-bg" x="524" y="172.0" width="61" height="15" rx="3"/>
+<text class="lbl lbl-data" x="555.0" y="183.0" text-anchor="middle">publishes</text>
+<polyline class="edge edge-data" points="620,90 490,90" marker-end="url(#arrow)"/>
+<rect class="lbl-bg" x="507" y="72.0" width="96" height="15" rx="3"/>
+<text class="lbl lbl-data" x="555.0" y="83.0" text-anchor="middle">match timetable</text>
+<polyline class="edge edge-data" points="790,100 870,100" marker-end="url(#arrow)"/>
+<rect class="lbl-bg" x="811" y="82.0" width="38" height="15" rx="3"/>
+<text class="lbl lbl-data" x="830.0" y="93.0" text-anchor="middle">opens</text>
+<polyline class="edge edge-data" points="950,40 950,14 440,14 440,40" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<rect class="lbl-bg" x="532" y="-3" width="327" height="15" rx="3"/>
+<text class="lbl lbl-data" x="695" y="8" text-anchor="middle">a typed question goes left · a query recipe comes back</text>
+<polyline class="edge edge-data" points="290,90 220,90" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<rect class="lbl-bg" x="239" y="72.0" width="32" height="15" rx="3"/>
+<text class="lbl lbl-data" x="255.0" y="83.0" text-anchor="middle">asks</text>
+<g class="node role-clock">
+<rect x="290" y="40" width="200" height="102" rx="7"/>
+<text class="eyebrow" x="300" y="56">CLOCK · ASK RELAY</text>
+<text class="name" x="300" y="73">Cloudflare Worker</text>
+<text class="sub" x="300" y="89">Tiny always-on script. Every 10</text>
+<text class="sub" x="300" y="102">min it reads the match timetable</text>
+<text class="sub" x="300" y="115">to see if now matters. Also</text>
+<text class="sub" x="300" y="128">relays Explorer questions.</text>
+</g>
+<g class="node role-ai">
+<rect x="20" y="40" width="200" height="89" rx="7"/>
+<text class="eyebrow" x="30" y="56">AI</text>
+<text class="name" x="30" y="73">Claude</text>
+<text class="sub" x="30" y="89">Turns a typed question into a</text>
+<text class="sub" x="30" y="102">query recipe. Never sees the</text>
+<text class="sub" x="30" y="115">stats themselves.</text>
+</g>
+<g class="node role-clock">
+<rect x="20" y="190" width="200" height="76" rx="7"/>
+<text class="eyebrow" x="30" y="206">BACKUP CLOCK</text>
+<text class="name" x="30" y="223">GitHub&#x27;s own timer</text>
+<text class="sub" x="30" y="239">Slow and patchy on this account.</text>
+<text class="sub" x="30" y="252">Kept only as a fallback.</text>
+</g>
+<g class="node role-ext">
+<rect x="20" y="310" width="200" height="89" rx="7"/>
+<text class="eyebrow" x="30" y="326">SOURCE</text>
+<text class="name" x="30" y="343">Fantasy Premier League APIs</text>
+<text class="sub" x="30" y="359">Public and read-only: fixtures,</text>
+<text class="sub" x="30" y="372">scores, league tables, draft</text>
+<text class="sub" x="30" y="385">picks, transfers.</text>
+</g>
+<g class="node role-worker">
+<rect x="290" y="170" width="200" height="260" rx="7"/>
+<text class="eyebrow" x="300" y="186">WORKER</text>
+<text class="name" x="300" y="203">GitHub Actions run</text>
+<text class="sub" x="300" y="219">A rented computer that boots,</text>
+<text class="sub" x="300" y="232">    works, then switches off:</text>
+<text class="sub" x="300" y="245">1 · Is football on right now? If</text>
+<text class="sub" x="300" y="258">    not, stop.</text>
+<text class="sub" x="300" y="271">2 · Fetch this week&#x27;s scores and</text>
+<text class="sub" x="300" y="284">    fixtures.</text>
+<text class="sub" x="300" y="297">3 · Recompute every table and</text>
+<text class="sub" x="300" y="310">    chart.</text>
+<text class="sub" x="300" y="323">4 · Rebuild the website.</text>
+<text class="sub" x="300" y="336">5 · Deploy, but only if something</text>
+<text class="sub" x="300" y="349">    changed.</text>
+</g>
+<g class="node role-store">
+<rect x="290" y="470" width="200" height="89" rx="7"/>
+<text class="eyebrow" x="300" y="486">MEMORY</text>
+<text class="name" x="300" y="503">Run cache</text>
+<text class="sub" x="300" y="519">Finished gameweeks are saved once</text>
+<text class="sub" x="300" y="532">and reused. Nothing is ever</text>
+<text class="sub" x="300" y="545">committed to the code.</text>
+</g>
+<g class="node role-ext">
+<rect x="620" y="40" width="170" height="160" rx="7"/>
+<text class="eyebrow" x="630" y="56">OUTPUT</text>
+<text class="name" x="630" y="73">GitHub Pages website</text>
+<text class="sub" x="630" y="89">Static files only: the app</text>
+<text class="sub" x="630" y="102">plus JSON data packs. Two</text>
+<text class="sub" x="630" y="115">sites, WOD and Dunelmliga.</text>
+<text class="sub" x="630" y="128">No server, no database.</text>
+</g>
+<g class="node role-people">
+<rect x="870" y="40" width="160" height="102" rx="7"/>
+<text class="eyebrow" x="880" y="56">PEOPLE</text>
+<text class="name" x="880" y="73">Hosts &amp; league members</text>
+<text class="sub" x="880" y="89">Open the site on a phone</text>
+<text class="sub" x="880" y="102">or laptop; ask the</text>
+<text class="sub" x="880" y="115">Explorer questions in</text>
+<text class="sub" x="880" y="128">plain English.</text>
+</g>
+</g>
+</svg>

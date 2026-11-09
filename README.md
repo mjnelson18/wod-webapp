@@ -24,6 +24,24 @@ No server, no database. A scheduled job writes static JSON and force-deploys it 
   [data contract](docs/data-contract.md)
 - `data/` — generated output, gitignored
 
+## How it fits together
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/architecture-public-site-dark.svg">
+  <img alt="Architecture: a Cloudflare Worker clock wakes a GitHub Actions run, which reads the FPL APIs, keeps a run cache, and publishes static files to GitHub Pages. Explorer questions go via the worker to Claude and come back as a query recipe the browser executes." src="docs/architecture-public-site.svg" width="1050">
+</picture>
+
+Boxes are roles: a **clock** that decides when to run, a **worker** (GitHub Actions) rented by the
+minute, **outside services** read from or published to, **memory** between runs, the one **AI** step,
+and **people**. Dashed arrows are wake-up calls carrying no data; solid arrows move data.
+
+The site has no server: visitors download finished files, and the build publishes the match-window
+list the clock itself reads (see [The external trigger is the real clock](#the-external-trigger-is-the-real-clock)
+and [trigger/README.md](trigger/README.md)). Most wake-ups end after a two-request gate says nothing
+has changed. The Explorer's ask feature sends only the typed question to Claude; it returns a query
+recipe and the browser runs it over the season JSON it already holds, so every number in an answer
+comes from a real row.
+
 ## Two sites, one codebase
 
 The same pipeline and the same React app publish two independent data packs:
