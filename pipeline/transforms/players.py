@@ -9,7 +9,7 @@ PLAYER_COLUMNS = [
     # before this was carried through. Absent from the CSV-derived 2425 archive,
     # which predates it having anywhere to live.
     "id", "code", "web_name", "team", "team_name", "position", "total_points",
-    "goals_scored", "assists", "bonus", "clean_sheets", "minutes", "draft_rank",
+    "goals_scored", "assists", "bonus", "clean_sheets", "minutes", "starts", "draft_rank",
 ]
 
 
@@ -40,6 +40,10 @@ def players_table(bootstrap_draft: dict, bootstrap_fantasy: dict | None = None) 
     # but a hand-built or trimmed payload in a test needn't, and losing the
     # permanent id should cost the cross-season join, not the whole run.
     players["code"] = elements["code"] if "code" in elements.columns else pd.NA
+    # `starts` arrived in the API in 2022/23 and the historical CSVs never carried
+    # it, so it is selected tolerantly too: a payload without it costs the one
+    # stat (the frontend shows a dash), not the table.
+    players["starts"] = elements["starts"] if "starts" in elements.columns else pd.NA
 
     positions = pd.json_normalize(bootstrap_draft["element_types"])[["id", "singular_name_short"]]
     positions.columns = ["element_type", "position"]

@@ -7,6 +7,7 @@ import {
   LeagueToggle, Section, Loading, Unavailable, Stat, StatRow, Collapsible, SubHead, Modal,
 } from '../components/ui.jsx'
 import SquadGrid from '../components/SquadGrid.jsx'
+import { acquisition, drafterRecord } from '../lib/playerStats.js'
 
 const STARTERS = 11
 // Matches the notebook's form window: mean over the last 5 gameweeks, divided by
@@ -42,6 +43,15 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
   const canBreakdown = can(meta, 'points_breakdown')
   const [selected, setSelected] = useState(null)   // { row, short }
   useEffect(() => { setSelected(null) }, [season, league, gw])
+  // The season's player totals (starts, minutes, goals…) for the modal's context
+  // block: one small file, fetched the first time a cell is opened.
+  const players = useAsync(
+    () => (selected ? loadTableIfPresent(season, 'players') : Promise.resolve(null)),
+    [season, selected != null],
+  )
+  // Whether the week picker is showing every gameweek or just the recent ones.
+  const [allWeeks, setAllWeeks] = useState(false)
+  useEffect(() => { setAllWeeks(false) }, [season])
   const breakdown = useAsync(
     () => (selected && canBreakdown
       ? loadTableIfPresent(season, `points_breakdown/${gw}`)
@@ -194,14 +204,9 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
         note={live ? 'in progress · points are provisional; settled auto-subs already made' : undefined}
         aside={<LeagueToggle meta={meta} league={league} setLeague={setLeague} />}
       >
-        <div className="chips" style={{ marginBottom: 10 }}>
-          {meta.gameweeks.map(g => (
-            <button key={g} className="chip" aria-pressed={g === gw}
-                    onClick={() => navigate({ season, view: 'gw', param: g })}>
-              {g}
-            </button>
-          ))}
-        </div>
+        <WeekChips gameweeks={meta.gameweeks} gw={gw}
+                   expanded={allWeeks} setExpanded={setAllWeeks}
+                   onPick={g => navigate({ season, view: 'gw', param: g })} />
 
         <StatRow>
           <Stat label="Gameweek high"
@@ -377,7 +382,12 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
           onClose={() => setSelected(null)}
         >
           <PlayerBreakdown row={selected.row} short={selected.short} meta={meta}
-                           state={breakdown} />
+                           state={breakdown}
+                           context={{
+                             rows: data.weekly_summary, transfers: data.transfers,
+                             trades: data.trades, league, gameweek: gw,
+                             player: players.data?.find(p => p.element === selected.row.element) ?? null,
+                           }} />
         </Modal>
       )}
 
@@ -494,6 +504,45 @@ export default function Gameweek({ season, meta, league, setLeague, route }) {
   )
 }
 
+/* ---------- gameweek picker ---------- */
+
+// The form window — the last five gameweeks — stays one tap away; everything
+// before it folds into a single chip. Nobody goes back to GW2 in March, and by
+// then a chip per week no longer fits a phone without scrolling anyway. The
+// fold opens itself when the selected week is inside it, so a deep link to an
+// early gameweek is never shown without its chip pressed.
+function WeekChips({ gameweeks, gw, expanded, setExpanded, onPick }) {
+  const earlier = gameweeks.length > FORM_GAMES + 1 ? gameweeks.slice(0, -FORM_GAMES) : []
+  const recent = gameweeks.slice(earlier.length)
+  const showAll = expanded || earlier.includes(gw)
+  const first = earlier[0]
+  const last = earlier[earlier.length - 1]
+  return (
+    <div className="chips" style={{ marginBottom: 10 }}>
+      {earlier.length > 0 && !showAll && (
+        <button type="button" className="chip chip-more"
+                aria-label={`Show gameweeks ${first} to ${last}`}
+                onClick={() => setExpanded(true)}>
+          {first}–{last} …
+        </button>
+      )}
+      {(showAll ? gameweeks : recent).map(g => (
+        <button key={g} type="button" className="chip" aria-pressed={g === gw}
+                onClick={() => onPick(g)}>
+          {g}
+        </button>
+      ))}
+      {earlier.length > 0 && expanded && !earlier.includes(gw) && (
+        <button type="button" className="chip chip-more"
+                aria-label="Show recent gameweeks only"
+                onClick={() => setExpanded(false)}>
+          fewer
+        </button>
+      )}
+    </div>
+  )
+}
+
 /* ---------- weekly talking points ---------- */
 
 // The beat kinds this build knows how to phrase. Anything else in the file is a
@@ -586,7 +635,7 @@ function BeatLine({ beat, meta }) {
 
 /* ---------- points-breakdown modal body ---------- */
 
-function PlayerBreakdown({ row, short, meta, state }) {
+function PlayerBreakdown({ row, short, meta, state, context }) {
   const benched = (row.place ?? 99) > STARTERS
   const record = state.data?.find(r => r.element === row.element)
 
@@ -598,6 +647,8 @@ function PlayerBreakdown({ row, short, meta, state }) {
         {row.originally_starting === 1 && benched && ' (auto-subbed off)'}
         {row.originally_starting === 0 && !benched && ' (auto-subbed on)'}
       </p>
+      {context && <PlayerContext row={row} short={short} meta={meta} {...context} />}
+      <SubHead>This gameweek</SubHead>
       {state.loading ? (
         <div className="spinner">Loading breakdown…</div>
       ) : !record ? (
@@ -633,5 +684,79 @@ function PlayerBreakdown({ row, short, meta, state }) {
         ))
       )}
     </>
+  )
+}
+
+/* ---------- the player in context ---------- */
+
+// The quiet block above the breakdown: the tile's abbreviations spelled out.
+// Left, the footballer's season — the players table is season-to-date, so these
+// are today's figures whichever week is open. Right, what he has been to this
+// drafter as at the selected week: how he arrived, how often he made the XI,
+// what he banked, and his own scoring per week since — against the weeks
+// before the pick-up where that can be known, else his season average.
+const firstName = (meta, short) => fullName(meta, short).split(' ')[0]
+
+function acquiredText(how, meta) {
+  switch (how.kind) {
+    case 'draft':
+      return how.pick != null ? `Draft R${how.round}, pick ${how.pick}` : `Draft R${how.round}`
+    case 'waiver': return `Waiver, GW${how.gameweek}`
+    case 'free': return `Free agent, GW${how.gameweek}`
+    case 'trade':
+      return how.from ? `Trade from ${firstName(meta, how.from)}, GW${how.gameweek}` : `Trade, GW${how.gameweek}`
+    default:
+      return how.gameweek != null ? `In squad since GW${how.gameweek}` : '–'
+  }
+}
+
+const dash = v => (v == null ? '–' : v)
+const perWeek = v => (v == null ? '–' : round(v, 1))
+
+function PlayerContext({ row, short, meta, rows, transfers, trades, league, gameweek, player }) {
+  const record = drafterRecord({
+    rows, league, short, element: row.element, gameweek, player, seasonGameweeks: meta.gameweeks,
+  })
+  const how = acquisition({
+    row, transfers, trades, league, short, element: row.element, gameweek, firstOwned: record.firstOwned,
+  })
+  const drafted = how.kind === 'draft'
+  return (
+    <div className="player-context">
+      <div>
+        <h4>
+          This season
+          {player?.total_points != null && <span> · {player.total_points} pts</span>}
+        </h4>
+        <dl>
+          <div><dt>Starts</dt><dd>{dash(player?.starts)}</dd></div>
+          <div><dt>Minutes</dt><dd>{dash(player?.minutes)}</dd></div>
+          <div><dt>Goals</dt><dd>{dash(player?.goals_scored)}</dd></div>
+          <div><dt>Assists</dt><dd>{dash(player?.assists)}</dd></div>
+          {row.position !== 'FWD' && (
+            <div><dt>Clean sheets</dt><dd>{dash(player?.clean_sheets)}</dd></div>
+          )}
+        </dl>
+      </div>
+      <div>
+        <h4>With {firstName(meta, short)}</h4>
+        <dl>
+          <div><dt>Acquired</dt><dd>{acquiredText(how, meta)}</dd></div>
+          <div>
+            <dt>Started</dt>
+            <dd>{record.started} of {record.weeksOwned} wk{record.weeksOwned === 1 ? '' : 's'}</dd>
+          </div>
+          <div><dt>Realised</dt><dd>{record.realised} pts</dd></div>
+          <div><dt>{drafted ? 'Pts/GW' : 'Pts/GW since'}</dt><dd>{perWeek(record.perWeekOwned)}</dd></div>
+          {/* A draft pick has no "before" — even one who missed a week in the
+              squad at the start — and his season average is the line above. */}
+          {!drafted && record.perWeekBefore != null ? (
+            <div><dt>Pts/GW before</dt><dd>{perWeek(record.perWeekBefore)}</dd></div>
+          ) : !drafted && record.perWeekSeason != null && (
+            <div><dt>Pts/GW season</dt><dd>{perWeek(record.perWeekSeason)}</dd></div>
+          )}
+        </dl>
+      </div>
+    </div>
   )
 }
