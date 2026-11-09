@@ -136,15 +136,21 @@ export function Modal({ title, onClose, children }) {
     if (!dialog) return undefined
     if (!dialog.open) dialog.showModal()
     const requestClose = () => closeRef.current?.()
+    // The native close event arrives a task late. In development, StrictMode
+    // runs this effect's cleanup and then the effect again on mount, so the
+    // cleanup's close() delivers its event to the re-shown dialog and shut the
+    // modal a moment after it opened. A close event for a dialog that is open
+    // again is that stale one, and is ignored.
+    const onClosed = () => { if (!dialog.open) requestClose() }
     // Esc fires cancel-then-close per spec, but not every embedder delivers
     // either event, so every close path below also calls onClose directly and
     // the keydown fallback keeps Esc working everywhere. onClose unmounts the
     // modal, so a double delivery is harmless.
     const onKey = e => { if (e.key === 'Escape') { e.preventDefault(); requestClose() } }
-    dialog.addEventListener('close', requestClose)
+    dialog.addEventListener('close', onClosed)
     dialog.addEventListener('keydown', onKey)
     return () => {
-      dialog.removeEventListener('close', requestClose)
+      dialog.removeEventListener('close', onClosed)
       dialog.removeEventListener('keydown', onKey)
       if (dialog.open) dialog.close()
     }

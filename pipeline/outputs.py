@@ -150,7 +150,8 @@ PLAYERS = {
     "element": "id", "code": "code", "web_name": "web_name", "position": "position",
     "team_id": "team", "team_name": "team_name", "total_points": "total_points",
     "goals_scored": "goals_scored", "assists": "assists", "bonus": "bonus",
-    "clean_sheets": "clean_sheets", "minutes": "minutes", "draft_rank": "draft_rank",
+    "clean_sheets": "clean_sheets", "minutes": "minutes", "starts": "starts",
+    "draft_rank": "draft_rank",
     "now_cost": "now_cost", "selected_by_percent": "selected_by_percent",
 }
 
