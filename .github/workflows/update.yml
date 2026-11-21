@@ -36,6 +36,9 @@ on:
     - cron: '*/10 12-20 21 11 *'   # Sat 21 Nov — 7 kickoffs, 12:30–17:30 UTC
     - cron: '*/10 13-19 22 11 *'   # Sun 22 Nov — 2 kickoffs, 14:00–16:30 UTC
     - cron: '*/10 19-23 23 11 *'   # Mon 23 Nov — 1 kickoff, 20:00 UTC
+    - cron: '*/10 19-23 27 11 *'   # Fri 27 Nov — 1 kickoff, 20:00 UTC
+    - cron: '*/10 14-20 28 11 *'   # Sat 28 Nov — 3 kickoffs, 15:00–17:30 UTC
+    - cron: '*/10 11-19 29 11 *'   # Sun 29 Nov — 6 kickoffs, 12:00–16:30 UTC
     # END match windows
     # Static baseline between windows: waivers, trades, bonus stragglers, the
     # pre-season, and the fallback cadence if the generated block goes stale.
